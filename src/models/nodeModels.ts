@@ -46,6 +46,9 @@ export interface Dialog{
 
     get Content(): RichContent;
     set Content(content: RichContent);    
+
+    get Html(): HTMLElement;
+    set Html(html: HTMLElement);
 }
 
 export interface DialogNode{
@@ -53,4 +56,5 @@ export interface DialogNode{
     coordinates: Coordinates;
     naming: Named;
     pictures: Pictures;
+    dialog: Dialog
 }

@@ -1,9 +1,9 @@
 {
   "name": "stagecraft",
-  "version": "2.2.0",
+  "version": "0.1.0",
   "main": "dist-electron/main/index.js",
-  "description": "Electron Vite React boilerplate.",
-  "author": "草鞋没号 <308487730@qq.com>",
+  "description": "Flow chart tool for creating rich, branching video game dialog",
+  "author": "andrei_g_git",
   "license": "MIT",
   "private": true,
   "debug": {
@@ -16,7 +16,8 @@
     "build": "tsc && vite build && electron-builder",
     "preview": "vite preview",
     "pree2e": "vite build --mode=test",
-    "e2e": "playwright test"
+    "e2e": "playwright test",
+    "test": "vitest"
   },
   "dependencies": {
     "electron-updater": "^5.3.0",
@@ -27,11 +28,14 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.32.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
     "electron": "^23.2.0",
     "electron-builder": "^23.6.0",
+    "jsdom": "^21.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.60.0",

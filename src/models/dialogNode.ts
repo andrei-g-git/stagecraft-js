@@ -1,16 +1,18 @@
 import { CommonNode } from "./commonNode";
 import { NodeCoordinates } from "./nodeCoordinates";
-import { Common, Coordinates, DialogNode, Named, Pictures } from "./nodeModels";
+import { Common, Coordinates, Dialog, DialogNode, Named, Pictures } from "./nodeModels";
 import { NodeNames } from "./nodeNames";
 import { NodePictures } from "./nodePictures";
 import { Coord2D } from "./vectors";
+import { RichContent } from "./wysiwygModels";
 
-export class BasicDialogNode implements DialogNode, Common, Coordinates, Named, Pictures{
+export class BasicDialogNode implements DialogNode, Common, Coordinates, Named, Pictures, Dialog{
     constructor(
         public common: Common,// = new CommonNode(),
         public coordinates: Coordinates,// = new NodeCoordinates(),
         public naming: Named,// = new NodeNames(),
         public pictures: Pictures,// = new NodePictures()
+        public dialog: Dialog
     ){}
 
     get Id(): number {
@@ -69,5 +71,17 @@ export class BasicDialogNode implements DialogNode, Common, Coordinates, Named, 
     set Avatar(avatar: string) {
         this.pictures.Avatar = avatar;
     }
+    get Content(): RichContent {
+        return this.dialog.Content;
+    }
+    set Content(content: RichContent){
+        this.dialog.Content = content;
+    }  
+    get Html(): HTMLElement{
+        return this.dialog.Html;
+    }
+    set Html(html: HTMLElement){
+        this.dialog.Html = html;
+    }   
     
 }
