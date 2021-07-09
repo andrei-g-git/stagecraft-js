@@ -77,10 +77,10 @@ export class BasicDialogNode implements DialogNode, Common, Coordinates, Named, 
     set Content(content: RichContent){
         this.dialog.Content = content;
     }  
-    get Html(): HTMLElement{
+    get Html(): string/* HTMLElement */{
         return this.dialog.Html;
     }
-    set Html(html: HTMLElement){
+    set Html(html: string/* HTMLElement */){
         this.dialog.Html = html;
     }   
     

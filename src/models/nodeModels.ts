@@ -47,8 +47,8 @@ export interface Dialog{
     get Content(): RichContent;
     set Content(content: RichContent);    
 
-    get Html(): HTMLElement;
-    set Html(html: HTMLElement);
+    get Html(): string; //HTMLElement;
+    set Html(html: string/* HTMLElement */);
 }
 
 export interface DialogNode{
@@ -57,4 +57,12 @@ export interface DialogNode{
     naming: Named;
     pictures: Pictures;
     dialog: Dialog
+}
+
+export interface NodeModels{
+    get Models(): Common[];
+    set Models(models: Common[]);
+
+    getHtml: (index: number) => string;
+    setHtml: (index: number, html: string) => void;
 }
