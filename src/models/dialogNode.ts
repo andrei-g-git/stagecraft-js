@@ -1,8 +1,4 @@
-import { CommonNode } from "./commonNode";
-import { NodeCoordinates } from "./nodeCoordinates";
 import { Common, Coordinates, Dialog, DialogNode, Named, Pictures } from "./nodeModels";
-import { NodeNames } from "./nodeNames";
-import { NodePictures } from "./nodePictures";
 import { Coord2D } from "./vectors";
 import { RichContent } from "./wysiwygModels";
 

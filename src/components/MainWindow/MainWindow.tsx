@@ -1,18 +1,18 @@
 
 //test delete
-import DialogNodeView from "../Nodes/DialogNodeView";
+import DialogNodeView from "../Nodes/DialogCard";
 
 const MainWindow = (props: any) => {
 
     return(
         <div className="main-window-container">
-            <DialogNodeView preview="<p> AAAAAAA </p>"                
+            {/* <DialogNodeView preview="<p> AAAAAAA </p>"                
                 fullContent={<div dangerouslySetInnerHTML={{__html: `
                     <p>aa<strong>aaaa bb</strong><strong style="color: rgb(230, 0, 0);">bb</strong><span style="color: rgb(230, 0, 0);">bb</span><em style="color: rgb(230, 0, 0);">bb ccc</em><em><s>cccc</s></em><s>cc dddd</s>ddddd</p>                
                 `}}>
 
                 </div>}
-            />
+            /> */}
         </div>
     )
 }

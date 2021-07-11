@@ -1,13 +1,13 @@
 import { NodeModels } from "@/models/nodeModels";
 import { loadedFlowModel } from "@/redux/actions";
 import {connect} from "react-redux";
-import DialogNodeView from "../Nodes/DialogNodeView";
+import DialogCard from "../Nodes/DialogCard";
 
 const FlowSheet = (props: any) => {
 
     return (
         <div>
-            <DialogNodeView preview="12345"
+            <DialogCard preview="12345"
                 fullContent={<div dangerouslySetInnerHTML={{__html: props.nodeModel.getHtml(0)}}>
 
             </div>}
