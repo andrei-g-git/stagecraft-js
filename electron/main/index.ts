@@ -1,7 +1,13 @@
-import { app, BrowserWindow, shell, ipcMain } from 'electron'
+import { app, BrowserWindow, shell, ipcMain, session } from 'electron'  //session import mine
 import { release } from 'node:os'
 import { join } from 'node:path'
 import { update } from './update'
+
+//mine
+//import installExtension, { REDUX_DEVTOOLS } from 'electron-devtools-installer';
+
+//mine
+const reactDevToolsPath = "C:/Users/me/AppData/Local/BraveSoftware/Brave-Browser/User Data/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.27.3_0";
 
 // The built directory structure
 //
@@ -41,7 +47,19 @@ const preload = join(__dirname, '../preload/index.js')
 const url = process.env.VITE_DEV_SERVER_URL
 const indexHtml = join(process.env.DIST, 'index.html')
 
+
 async function createWindow() {
+
+  //MINE
+  // installExtension(REDUX_DEVTOOLS)
+  //   .then((name) => console.log(`Added Extension:  ${name}`))
+  //   .catch((err) => console.log('An error occurred: ', err));  
+
+  //MINE, MANUAL INSTALL
+  // const reactDevToolsPath = "C:/Users/me/AppData/Local/BraveSoftware/Brave-Browser/User Data/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.27.3_0";
+  // await session.defaultSession.loadExtension(reactDevToolsPath)
+
+
   win = new BrowserWindow({
     title: 'Main window',
     icon: join(process.env.PUBLIC, 'favicon.ico'),
@@ -78,7 +96,23 @@ async function createWindow() {
   update(win)
 }
 
-app.whenReady().then(createWindow)
+// ################ SECOND ARGUMENT FOR THEN() IS MINE
+//app.whenReady().then(() => {console.log("APP CREATED, MESSAGE FROM INDEX.TS")})
+// app.whenReady().then(() => {
+//   console.log("APP CREATED, MESSAGE FROM INDEX.TS")
+//   createWindow();
+  
+// })
+
+//app.whenReady().then(createWindow)
+
+//session stuff mine
+app.whenReady().then(async () => {
+  await session.defaultSession.loadExtension(
+    reactDevToolsPath,
+    { allowFileAccess: true }   //this is the key line
+    )
+}).then(createWindow).catch(console.log);
 
 app.on('window-all-closed', () => {
   win = null

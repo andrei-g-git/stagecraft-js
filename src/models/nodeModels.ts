@@ -20,7 +20,7 @@ export interface Common{
     set Type(type: string); 
     set Ingoing(ingoing: number[]); 
     set Outgoing(outgoing: number[]); 
-    setIngoing: (ingoing: number, index: number) => void;
+    setIngoing: (ingoing: number, index: number) => void;  //THGESE NEED GETTERS TOO
     setOutgoing: (outgoing: number, index: number) => void;
 }
 

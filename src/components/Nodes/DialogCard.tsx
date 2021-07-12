@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import NodeTextAndPreview from "./NodeTextAndPreview";
 import "./DialogNode.scss";
 
-const DialogNode = (props: {preview: ReactNode, fullContent: ReactNode}) => {
+const DialogNode = (props: {preview: ReactNode, fullContent: ReactNode/* , blah: any */}) => {
 
     return (
         <div className="dialog-node-container">
