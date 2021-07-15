@@ -16,4 +16,11 @@ export class AllNodeModels implements NodeModels{
         (this.nodes[index] as unknown as Dialog).Html = html;
     };    
 
+    getId = (index: number) => {
+        return (this.nodes[index] as unknown as Common).Id;
+    }
+    setId = (index: number, id: number) => {
+        (this.nodes[index] as unknown as Common).Id = id;
+    }
+
 }

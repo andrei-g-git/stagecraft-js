@@ -65,4 +65,7 @@ export interface NodeModels{
 
     getHtml: (index: number) => string;
     setHtml: (index: number, html: string) => void;
+
+    getId: (index: number) => number;
+    setId: (index: number, id: number) => void;
 }

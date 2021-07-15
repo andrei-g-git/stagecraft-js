@@ -21,7 +21,7 @@ export const editorReducer = (state = initialState, action: ActionType) => {
         case EDITOR_HTML_CHANGED:
             return{
                 ...state,
-                content: (<StringPayload><unknown>action).payload
+                html: (<StringPayload><unknown>action).payload
             }  
         default:
             return state;          
