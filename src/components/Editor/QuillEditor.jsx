@@ -6,10 +6,8 @@ import "./QuillEditor.scss";
 import { useEffect } from "react";
 
 const QuillEditor = (props) => {
-
     useEffect(() => {
         if(props.visible) {
-            console.log("html:   ", props.html)
             props.changeHtml(props.html)
         }
     },

@@ -22,7 +22,8 @@ const FlowSheet = (props: any) => {
                     props.nodeModel.Models.map((node: Common, index: number) => 
                         <DialogCard id={props.nodeModel.getId(index)} 
                             preview="<div>12345</div>"
-                            fullContent={<div dangerouslySetInnerHTML={{__html: props.nodeModel.getHtml(index)}}></div>}
+                            //fullContent={<div dangerouslySetInnerHTML={{__html: props.nodeModel.getHtml(index)}}></div>}
+                            fullContent={props.nodeModel.getHtml(index)}
                         />                    
                     )
                 :

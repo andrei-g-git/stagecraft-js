@@ -2,12 +2,12 @@
 //test delete
 import QuillEditor from "../Editor/QuillEditor.jsx";
 import FlowSheet from "../FlowSheet.tsx/FlowSheet";
-import DialogNodeView from "../Nodes/DialogCard";
 
 const MainWindow = (props: any) => {
 
     return(
         <div className="main-window-container">
+
             <QuillEditor />
 
             <FlowSheet />

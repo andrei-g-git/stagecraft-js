@@ -4,10 +4,12 @@ import { join } from 'node:path'
 import { update } from './update'
 
 //mine
-//import installExtension, { REDUX_DEVTOOLS } from 'electron-devtools-installer';
+import installExtension, { REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 
 //mine
-const reactDevToolsPath = "C:/Users/me/AppData/Local/BraveSoftware/Brave-Browser/User Data/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.27.3_0";
+//const reactDevToolsPath = "C:/Users/me/AppData/Local/BraveSoftware/Brave-Browser/User Data/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.27.3_0";
+const reactDevToolsPath = "C:/work/misc/ReactDevTools_manifestv2";
+const REDUX_DEVTOOLS_PATH = "C:/Users/me/AppData/Local/BraveSoftware/Brave-Browser/User Data/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd/3.0.19_0";
 
 // The built directory structure
 //
@@ -50,7 +52,7 @@ const indexHtml = join(process.env.DIST, 'index.html')
 
 async function createWindow() {
 
-  //MINE
+  // //MINE
   // installExtension(REDUX_DEVTOOLS)
   //   .then((name) => console.log(`Added Extension:  ${name}`))
   //   .catch((err) => console.log('An error occurred: ', err));  
@@ -111,7 +113,16 @@ app.whenReady().then(async () => {
   await session.defaultSession.loadExtension(
     reactDevToolsPath,
     { allowFileAccess: true }   //this is the key line
-    )
+  )
+  // await session.defaultSession.loadExtension(
+  //   REDUX_DEVTOOLS_PATH,
+  //   { allowFileAccess: true }   //this is the key line
+  // )
+
+  // installExtension(REDUX_DEVTOOLS)
+  //   .then((name) => console.log(`Added Extension:  ${name}`))
+  //   .catch((err) => console.log('An error occurred: ', err));
+
 }).then(createWindow).catch(console.log);
 
 app.on('window-all-closed', () => {

@@ -1,10 +1,16 @@
-import { ReactNode } from "react";
 import { connect } from "react-redux"; 
 import NodeTextAndPreview from "./NodeTextAndPreview";
-import "./DialogNode.scss";
 import { changedEditorHtml, selectedNodeId, toggledTextEditor } from "@/redux/actions";
+import "./DialogNode.scss";
 
-const DialogNode = (props: any/* {preview: ReactNode, fullContent: ReactNode} */) => {
+const DialogNode = (props: {
+    preview: string, 
+    fullContent: string,
+    id: number,
+    toggleEditor: Function,
+    selectNode: Function,
+    sendHtmlToEditor: Function
+}) => {
 
     return (
         <div className="dialog-node-container"
