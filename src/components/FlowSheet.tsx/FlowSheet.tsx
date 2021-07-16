@@ -7,6 +7,7 @@ import DialogCard from "../Nodes/DialogCard";
 import { createNode } from "@/models/usage/factory";
 import {DIALOG} from "../../models/typeOfNodes";
 import { AllNodeModels } from "@/models/AllNodeModels";
+import DragHandle from "../Nodes/DragHandle.jsx";
 
 
 const FlowSheet = (props: any) => {
@@ -20,17 +21,26 @@ const FlowSheet = (props: any) => {
         <div>
             {   props.nodeModel ? 
                     props.nodeModel.Models.map((node: Common, index: number) => 
-                        <DialogCard id={props.nodeModel.getId(index)} 
-                            preview="<div>12345</div>"
-                            //fullContent={<div dangerouslySetInnerHTML={{__html: props.nodeModel.getHtml(index)}}></div>}
-                            fullContent={props.nodeModel.getHtml(index)}
-                        />                    
+                        <DragHandle>
+                            <DialogCard id={props.nodeModel.getId(index)} 
+                                preview="<div>12345</div>"
+                                //fullContent={<div dangerouslySetInnerHTML={{__html: props.nodeModel.getHtml(index)}}></div>}
+                                fullContent={props.nodeModel.getHtml(index)}
+                            />                              
+                        </DragHandle>
+                  
                     )
                 :
                     <div></div>
             }
         </div>
     )
+}
+
+const recordDragCoordinates = (model: NodeModels) => {
+    return (x: number, y: number, id: number): void => {
+        
+    }
 }
 
 const testNodeCreation = () => {

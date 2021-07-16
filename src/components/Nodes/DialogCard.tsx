@@ -9,7 +9,8 @@ const DialogNode = (props: {
     id: number,
     toggleEditor: Function,
     selectNode: Function,
-    sendHtmlToEditor: Function
+    sendHtmlToEditor: Function,
+    //nodeRef: any
 }) => {
 
     return (
@@ -18,6 +19,7 @@ const DialogNode = (props: {
         >
             <NodeTextAndPreview preview={props.preview}
                 fullContent={props.fullContent}
+                //ref={props.nodeRef}
             />
         </div>
     )
