@@ -21,7 +21,10 @@ const FlowSheet = (props: any) => {
         <div>
             {   props.nodeModel ? 
                     props.nodeModel.Models.map((node: Common, index: number) => 
-                        <DragHandle>
+                        <DragHandle id={props.nodeModel.getId(index)}
+                            notifyPosition={updateModelCoordinates(props.nodeModel)}
+                            notifyDragStop={recordModelOnDragEnd(props.nodeModel, props.loadModel)}
+                        >
                             <DialogCard id={props.nodeModel.getId(index)} 
                                 preview="<div>12345</div>"
                                 //fullContent={<div dangerouslySetInnerHTML={{__html: props.nodeModel.getHtml(index)}}></div>}
@@ -37,9 +40,17 @@ const FlowSheet = (props: any) => {
     )
 }
 
-const recordDragCoordinates = (model: NodeModels) => {
+const updateModelCoordinates = (model: NodeModels) => {
     return (x: number, y: number, id: number): void => {
-        
+        model.setCoordinatesById(id, x, y);
+        console.log("x, y:  ", x, "  ", y)
+    }
+}
+
+const recordModelOnDragEnd = (model: NodeModels, updateModel: Function) => {
+    return () => {
+        console.log("STOPPED")
+        updateModel(model);
     }
 }
 

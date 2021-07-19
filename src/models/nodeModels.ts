@@ -68,4 +68,6 @@ export interface NodeModels{
 
     getId: (index: number) => number;
     setId: (index: number, id: number) => void;
+
+    setCoordinatesById: (id: number, x: number, y: number) => void;
 }
