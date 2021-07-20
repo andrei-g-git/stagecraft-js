@@ -1,7 +1,9 @@
 
 //test delete
+import FlowCanvas from "../Canvas/FlowCanvas.js";
 import QuillEditor from "../Editor/QuillEditor.jsx";
 import FlowSheet from "../FlowSheet.tsx/FlowSheet";
+import "./MainWindow.scss";
 
 const MainWindow = (props: any) => {
 
@@ -9,6 +11,8 @@ const MainWindow = (props: any) => {
         <div className="main-window-container">
 
             <QuillEditor />
+
+            <FlowCanvas />
 
             <FlowSheet />
         </div>

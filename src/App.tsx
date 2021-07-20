@@ -1,5 +1,4 @@
 import MainWindow from './components/MainWindow/MainWindow'
-import './App.scss'
 import { makeStore } from './redux/makeStore'
 import { Provider } from 'react-redux';
 
