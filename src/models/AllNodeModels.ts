@@ -2,8 +2,7 @@ import { Common, Coordinates, Dialog, NodeModels } from "./nodeModels";
 
 export class AllNodeModels implements NodeModels{
     constructor(public nodes: Common[]){}
-    
-    
+
     get Models(): Common[] {
         return this.nodes;
     }
@@ -29,5 +28,10 @@ export class AllNodeModels implements NodeModels{
             .filter(node => node.Id === id)[0] as unknown as Coordinates)
             .Position = {x: x, y: y};
     };
+
+    getAllCoordinates = () => {
+        return (this.nodes as unknown as Coordinates[])
+            .map(node => node.Position)
+    }
 
 }

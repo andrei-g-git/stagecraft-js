@@ -4,7 +4,8 @@ import {
     EDITOR_CONTENT_CHANGED,
     EDITOR_HTML_CHANGED,
     NODE_ID_SELECTED,
-    TEXT_EDITOR_TOGGLED 
+    TEXT_EDITOR_TOGGLED, 
+    DRAG_COUNTER_CHANGED
 } from "./actionTypes";
 import { /* GenericPayload, StringPayload */ ActionType, StringPayload, NumberPayload, DeltaPayload, NodeModelsPayload, BooleanPayload} from "./types";
 import { Delta } from "@/components/Editor/quillTypes";
@@ -40,5 +41,12 @@ export const toggledTextEditor = (visible: boolean): (ActionType & BooleanPayloa
     return {
         type: TEXT_EDITOR_TOGGLED,
         payload: visible
+    }
+}
+
+export const changedDragCounter = (count: number): (ActionType & NumberPayload) => {
+    return {
+        type: DRAG_COUNTER_CHANGED,
+        payload: count
     }
 }

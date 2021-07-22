@@ -9,7 +9,7 @@ const DragHandle = (props: any) => {
                 axis="both"
                 defaultPosition={{x: 0, y: 0}}            
                 onStart={handleStart}
-                onDrag={handleDrag(props.notifyPosition, props.id)}
+                onDrag={handleDrag(props.notifyPosition, props.id/* , props.delete */)}
                 onStop={handleStop(props.notifyDragStop)}
             >
                 <div>
@@ -27,8 +27,9 @@ const handleStart = () => {
 
 }
 
-const handleDrag = (notifyPosition: Function, id: number): any => {
+const handleDrag = (notifyPosition: Function, id: number/* , deleteThis: any */): any => {
     return (event: any, dragData: any) => {
+        //console.log("COORD PAIRS:  ", deleteThis)
         notifyPosition(dragData.x, dragData.y, id);
     }
 }
