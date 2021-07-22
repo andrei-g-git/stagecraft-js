@@ -1,16 +1,15 @@
 import { connect } from "react-redux"; 
 import NodeTextAndPreview from "./NodeTextAndPreview";
 import { changedEditorHtml, selectedNodeId, toggledTextEditor } from "@/redux/actions";
-import "./DialogNode.scss";
+import "./DialogCard.scss";
 
-const DialogNode = (props: {
+const DialogCard = (props: {
     preview: string, 
     fullContent: string,
     id: number,
     toggleEditor: Function,
     selectNode: Function,
     sendHtmlToEditor: Function,
-    //nodeRef: any
 }) => {
 
     return (
@@ -19,7 +18,6 @@ const DialogNode = (props: {
         >
             <NodeTextAndPreview preview={props.preview}
                 fullContent={props.fullContent}
-                //ref={props.nodeRef}
             />
         </div>
     )
@@ -51,4 +49,4 @@ const dispatchStateToProps = (dispatch: any) => {
     }
 }
 
-export default connect(mapStateToProps, dispatchStateToProps)(DialogNode);
+export default connect(mapStateToProps, dispatchStateToProps)(DialogCard);

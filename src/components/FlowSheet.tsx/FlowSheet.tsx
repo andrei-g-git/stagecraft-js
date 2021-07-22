@@ -18,7 +18,7 @@ const FlowSheet = (props: any) => {
     //     []
     // )
     return (
-        <div>
+        <div className="flow-sheet">
             {   props.nodeModel ? 
                     props.nodeModel.Models.map((node: Common, index: number) => 
                         <DragHandle id={props.nodeModel.getId(index)}
@@ -45,7 +45,7 @@ const FlowSheet = (props: any) => {
 const updateModelCoordinates = (model: NodeModels, incrementDragCounter: Function, count: number) => {
     return (x: number, y: number, id: number): void => {
         model.setCoordinatesById(id, x, y);
-        console.log("x, y:  ", x, "  ", y);
+        //console.log("x, y:  ", x, "  ", y);
         incrementDragCounter(count);
     }
 }

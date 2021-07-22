@@ -24,7 +24,7 @@ const MainWindow = (props: any) => {
             {
                 props.nodeModel?
                     <>
-                        <FlowCanvas coordinates={test(props.nodeModel)/* props.nodeModel.getAllCoordinates() */} />{/* coordinatePairs={makeCoordinatePairs(props.nodeModel.getAllCoordinates())}/> */}
+                        <FlowCanvas receiveCoordinates={updateInOutCoordinates(props.nodeModel)}/* coordinates={props.nodeModel.getAllCoordinates()} */ />{/* coordinatePairs={makeCoordinatePairs(props.nodeModel.getAllCoordinates())}/> */}
 
                         <FlowSheet />            
                     </>
@@ -36,9 +36,17 @@ const MainWindow = (props: any) => {
     )
 }
 
+const updateInOutCoordinates = (model: NodeModels) => {
+    return () => {
+        console.log(model)
+        return model.getAllCoordinates();
+    }
+    
+}
+
 const test = (model: NodeModels) => {
     const coordinates = model.getAllCoordinates()
-    console.log("CCCCCC: ", coordinates)
+    //console.log("CCCCCC: ", coordinates)
     return coordinates;
 }
 
@@ -69,6 +77,11 @@ const testNodeCreation = () => {
     allNodes.setHtml(0, `<p><strong>aaaaaaa</strong><strong style="color: rgb(230, 0, 0);">axxx<u>bb</u></strong><u style="color: rgb(230, 0, 0);">bb</u><u>xxxxxxxxx</u></p>`);
     allNodes.setHtml(1, `<p><strong>bbbbbbb</strong><strong style="color: rgb(0, 230, 0);">bxxx<u>bb</u></strong><u style="color: rgb(230, 0, 0);">bb</u><u>xxxxxxxxx</u></p>`);
     allNodes.setHtml(2, `<p><strong>ccccccc</strong><strong style="color: rgb(0, 0, 230);">cxxx<u>bb</u></strong><u style="color: rgb(230, 0, 0);">bb</u><u>xxxxxxxxx</u></p>`);
+
+    allNodes.setId(0, Math.floor(Math.random() * 1000));
+    allNodes.setId(1, Math.floor(Math.random() * 1000));
+    allNodes.setId(2, Math.floor(Math.random() * 1000));
+
     console.log("ALL NODES", allNodes)
     return allNodes;
 }

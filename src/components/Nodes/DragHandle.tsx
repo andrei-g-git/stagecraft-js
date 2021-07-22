@@ -29,8 +29,8 @@ const handleStart = () => {
 
 const handleDrag = (notifyPosition: Function, id: number/* , deleteThis: any */): any => {
     return (event: any, dragData: any) => {
-        //console.log("COORD PAIRS:  ", deleteThis)
         notifyPosition(dragData.x, dragData.y, id);
+        //notifyPosition(dragData.x + dragData.deltaX, dragData.y + dragData.deltaY, id);
     }
 }
 

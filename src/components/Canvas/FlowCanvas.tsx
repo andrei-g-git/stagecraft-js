@@ -3,12 +3,12 @@ import { useBezierDraw, useCanvasContext } from "./flowCanvasHooks"
 import "./FlowCanvas.scss";
 
 const FlowCanvas = (props: any) => {
-    console.log("PAIRS:::", props.coordinates)
+    //console.log("PAIRS:::", props.coordinates)
     const WIDTH = 1920;
     const HEIGHT = 1080;
     const [ctx, ref] = useCanvasContext(null, WIDTH, HEIGHT);
 
-    useBezierDraw(ctx, props.coordinates/* Pairs *//* [{in: {x: 0, y: 0}, out: {x: 0, y: 0}}] */, props.count);
+    useBezierDraw(ctx, props.receiveCoordinates/* props.coordinates *//* Pairs *//* [{in: {x: 0, y: 0}, out: {x: 0, y: 0}}] */, WIDTH, HEIGHT, props.count);
 
     return (
         <canvas className="flow-canvas"
