@@ -1,0 +1,44 @@
+.main-pane{
+    position: fixed; //??
+    display: flex;
+    flex-direction: column;
+    height: 100%;//vw;
+    width: 100%;//vw;
+
+
+    .menu-bar{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex: 1;
+        border: solid 2px red;
+    }
+
+    .work-area{
+        display: flex;
+        flex-direction: row;
+        flex: 30;
+        border: solid 2px green;
+
+        .left-nav{
+            flex: 1;
+            border: solid 2px black;
+        }
+
+        .canvas-container{
+            flex: 6;
+            border: solid 2px blue;
+        }
+
+        .right-pane{
+            flex: 2;
+            border: solid 2px gray;
+        }
+    }
+
+    .footer{
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+    }
+}

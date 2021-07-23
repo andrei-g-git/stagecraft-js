@@ -8,7 +8,7 @@ import { createNode } from "@/models/usage/factory";
 import {DIALOG} from "../../models/typeOfNodes";
 import { AllNodeModels } from "@/models/AllNodeModels";
 import DragHandle from "../Nodes/DragHandle.jsx";
-
+import "./FlowSheet.scss";
 
 const FlowSheet = (props: any) => {
 

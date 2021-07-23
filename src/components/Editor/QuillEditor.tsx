@@ -2,6 +2,7 @@ import {connect} from "react-redux";
 import ReactQuill from "react-quill";
 import { changedEditorContent, changedEditorHtml } from "@/redux/actions";
 import { Delta } from "./quillTypes";
+import "./QuillEditor.scss";
 
 const QuillEditor = (props: any) => {
 

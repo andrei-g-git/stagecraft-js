@@ -10,6 +10,7 @@ import { createNode } from "@/models/usage/factory.js";
 import { AllNodeModels } from "@/models/AllNodeModels.js";
 import { DIALOG } from "@/models/typeOfNodes.js";
 import "./MainWindow.scss";
+import MainPane from "./MainPane.js";
 
 const MainWindow = (props: any) => {
     useEffect(() => {
@@ -20,17 +21,22 @@ const MainWindow = (props: any) => {
     return(
         <div className="main-window-container">
 
-            <QuillEditor />
+            {/* <QuillEditor />
             {
                 props.nodeModel?
                     <>
-                        <FlowCanvas receiveCoordinates={updateInOutCoordinates(props.nodeModel)}/* coordinates={props.nodeModel.getAllCoordinates()} */ />{/* coordinatePairs={makeCoordinatePairs(props.nodeModel.getAllCoordinates())}/> */}
+                        <FlowCanvas receiveCoordinates={updateInOutCoordinates(props.nodeModel)} />
 
                         <FlowSheet />            
                     </>
                 :
                     <div></div>
-            }
+            } */}
+
+            <MainPane center={<FlowSheet />}
+                right={<QuillEditor />}
+                //bottom={<div style={{width: "1920px", height: "100px", backgroundColor:"lightgray"}}></div>}
+            />
 
         </div>
     )
