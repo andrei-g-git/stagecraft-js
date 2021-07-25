@@ -1,4 +1,3 @@
-//import {useRef, useState, cloneElement, forwardRef} from "react";
 import Draggable from "react-draggable"
 import "./DragHandle.scss";
 
@@ -9,7 +8,7 @@ const DragHandle = (props: any) => {
                 axis="both"
                 defaultPosition={{x: 0, y: 0}}            
                 onStart={handleStart}
-                onDrag={handleDrag(props.notifyPosition, props.id/* , props.delete */)}
+                onDrag={handleDrag(props.notifyPosition, props.id)}
                 onStop={handleStop(props.notifyDragStop)}
             >
                 <div>
@@ -27,7 +26,7 @@ const handleStart = () => {
 
 }
 
-const handleDrag = (notifyPosition: Function, id: number/* , deleteThis: any */): any => {
+const handleDrag = (notifyPosition: Function, id: number) => {
     return (event: any, dragData: any) => {
         notifyPosition(dragData.x, dragData.y, id);
         //notifyPosition(dragData.x + dragData.deltaX, dragData.y + dragData.deltaY, id);

@@ -12,11 +12,6 @@ import "./FlowSheet.scss";
 
 const FlowSheet = (props: any) => {
 
-    // useEffect(() => {
-    //     props.loadModel(testNodeCreation())
-    // },
-    //     []
-    // )
     return (
         <div className="flow-sheet">
             {   props.nodeModel ? 
@@ -24,12 +19,9 @@ const FlowSheet = (props: any) => {
                         <DragHandle id={props.nodeModel.getId(index)}
                             notifyPosition={updateModelCoordinates(props.nodeModel, props.incrementDragCounter, props.count)}
                             notifyDragStop={recordModelOnDragEnd(props.nodeModel, props.loadModel)}
-
-                            //delete={props.coordinatePairs}
                         >
                             <DialogCard id={props.nodeModel.getId(index)} 
                                 preview="<div>12345</div>"
-                                //fullContent={<div dangerouslySetInnerHTML={{__html: props.nodeModel.getHtml(index)}}></div>}
                                 fullContent={props.nodeModel.getHtml(index)}
                             />                              
                         </DragHandle>
