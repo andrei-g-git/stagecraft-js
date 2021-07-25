@@ -1,15 +1,21 @@
 import { useEffect, useState, useRef } from "react";
 import { drawBezierCurve } from "./draw";
 
-export const useCanvasContext = (context: CanvasRenderingContext2D | null, width: number, height: number): [
+export const useCanvasContext = (context: CanvasRenderingContext2D | null, /* width: number, height: number */): [
     ctx: CanvasRenderingContext2D | null, 
-    ref: React.MutableRefObject<HTMLCanvasElement | null>
+    ref: React.MutableRefObject<HTMLCanvasElement | null>,
+    // width: number,
+    // height: number
 ] => {
     const [ctx, setCtx] = useState(context);
     const ref: React.MutableRefObject<HTMLCanvasElement | null> = useRef<HTMLCanvasElement | null>(null);
+    let width: number = 0; 
+    let height: number = 0;
     useEffect(() => {
         if(ref){
             const canvasObject = ref.current;
+            width = canvasObject!.clientWidth;
+            height =canvasObject!.clientHeight;
             setCtx(canvasObject!.getContext("2d"));
             if(ctx) ctx!.clearRect(0, 0, width, height)    
                       
@@ -18,12 +24,20 @@ export const useCanvasContext = (context: CanvasRenderingContext2D | null, width
     },
         []
     );
-    return [ctx, ref];
+    return [ctx, ref/* , width, height */];
 }
 
-export const useBezierDraw = (ctx: CanvasRenderingContext2D | null, receiveCoordinates: Function, width: number, height: number, count: number) => {
+export const useBezierDraw = (ctx: CanvasRenderingContext2D | null, receiveCoordinates: Function, sheetCurrent: HTMLCanvasElement | null /* dimensions: any *//* width: number, height: number */, count: number) => {
     useEffect(() => { 
         if(ctx){
+            console.log("DIMENSIONS:  ", sheetCurrent?.clientWidth, sheetCurrent?.clientHeight)//dimensions.Width, "   ", dimensions.Height)
+            //ctx.clearRect(0, 0, dimensions.Width, dimensions.Height);
+            let width = 0;
+            let height = 0;
+            if(sheetCurrent){
+                width = sheetCurrent.clientWidth;
+                height = sheetCurrent.clientHeight;
+            }
             ctx.clearRect(0, 0, width, height);
             const coordinates = receiveCoordinates();  
             for(var i = 0; i < (coordinates.length - 1); i++){ 

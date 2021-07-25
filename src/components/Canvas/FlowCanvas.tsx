@@ -1,19 +1,23 @@
 import { connect } from "react-redux";
 import { useBezierDraw, useCanvasContext } from "./flowCanvasHooks"
 import "./FlowCanvas.scss";
+import { useEffect } from "react";
 
 const FlowCanvas = (props: any) => {
-    const WIDTH = 1920;
-    const HEIGHT = 1080;
-    const [ctx, ref] = useCanvasContext(null, WIDTH, HEIGHT);
+    const [ctx, ref/* , width, height */] = useCanvasContext(null/* , WIDTH, HEIGHT */);
 
-    useBezierDraw(ctx, props.receiveCoordinates, WIDTH, HEIGHT, props.count);
+    useBezierDraw(ctx, props.receiveCoordinates, props.sheetCurrent/* new CanvasDimensions(props.sheetCurent) */,/* WIDTH, HEIGHT, */  props.count);
+
+    useEffect(() => {
+    },
+        [props.count]
+    )
 
     return (
         <canvas className="flow-canvas"
             ref={ref}
-            width={WIDTH}
-            height={HEIGHT}
+            width={ref.current?.clientWidth}
+            height={ref.current?.clientHeight}
         />
     )
 }
@@ -22,6 +26,17 @@ const mapStateToProps = (state: any) => {
     return{
         count: state.ui.dragCount
     }
+}
+
+class CanvasDimensions{
+    constructor(public currentRef: HTMLCanvasElement | null){}
+
+    get Width(): number {
+        return this.currentRef ? this.currentRef.clientWidth : 0
+    }
+    get Height(): number {
+        return this.currentRef ? this.currentRef.clientHeight : 0
+    }    
 }
 
 export default connect(mapStateToProps, null)(FlowCanvas);

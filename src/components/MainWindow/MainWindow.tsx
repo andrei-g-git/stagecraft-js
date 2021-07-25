@@ -11,6 +11,7 @@ import { AllNodeModels } from "@/models/AllNodeModels.js";
 import { DIALOG } from "@/models/typeOfNodes.js";
 import "./MainWindow.scss";
 import MainPane from "./MainPane.js";
+import FlowContainer from "../FlowSheet.tsx/FlowContainer.js";
 
 const MainWindow = (props: any) => {
     useEffect(() => {
@@ -33,9 +34,8 @@ const MainWindow = (props: any) => {
                     <div></div>
             } */}
 
-            <MainPane center={<FlowSheet />}
+            <MainPane center={<FlowContainer nodeModel={props.nodeModel}/>}
                 right={<QuillEditor />}
-                //bottom={<div style={{width: "1920px", height: "100px", backgroundColor:"lightgray"}}></div>}
             />
 
         </div>
@@ -44,7 +44,7 @@ const MainWindow = (props: any) => {
 
 const updateInOutCoordinates = (model: NodeModels) => {
     return () => {
-        console.log(model)
+        //console.log(model)
         return model.getAllCoordinates();
     }
     
