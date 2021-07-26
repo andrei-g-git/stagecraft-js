@@ -6,7 +6,7 @@ import { useState } from "react";
 const FlowContainer = (props: any) => {
     const [sheetCurrent, setSheetCurrent] = useState(null);
     return(
-        <div style={{width: "100%", height: "100%"}}>
+        <div style={{width: "100%", height: "100%", position: "relative"}}>
             <FlowSheet notifyCurrentRef={sendFlowSheetCurrentRef(setSheetCurrent)}/>
             <FlowCanvas receiveCoordinates={updateInOutCoordinates(props.nodeModel)} 
                 sheetCurrent={sheetCurrent}

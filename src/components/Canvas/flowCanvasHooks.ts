@@ -41,7 +41,7 @@ export const useBezierDraw = (ctx: CanvasRenderingContext2D | null, receiveCoord
             ctx.clearRect(0, 0, width, height);
             const coordinates = receiveCoordinates();  
             for(var i = 0; i < (coordinates.length - 1); i++){ 
-                const x1 = coordinates[i].x + 300;
+                const x1 = coordinates[i].x + 150;
                 const y1 = coordinates[i].y + 100;                     
                 
                 const x2 = coordinates[i + 1].x;
