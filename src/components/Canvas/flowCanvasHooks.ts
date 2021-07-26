@@ -27,11 +27,9 @@ export const useCanvasContext = (context: CanvasRenderingContext2D | null, /* wi
     return [ctx, ref/* , width, height */];
 }
 
-export const useBezierDraw = (ctx: CanvasRenderingContext2D | null, receiveCoordinates: Function, sheetCurrent: HTMLCanvasElement | null /* dimensions: any *//* width: number, height: number */, count: number) => {
+export const useBezierDraw = (ctx: CanvasRenderingContext2D | null, receiveCoordinates: Function, sheetCurrent: HTMLCanvasElement | null, count: number, bezierLeverLength: number) => {
     useEffect(() => { 
         if(ctx){
-            console.log("DIMENSIONS:  ", sheetCurrent?.clientWidth, sheetCurrent?.clientHeight)//dimensions.Width, "   ", dimensions.Height)
-            //ctx.clearRect(0, 0, dimensions.Width, dimensions.Height);
             let width = 0;
             let height = 0;
             if(sheetCurrent){
@@ -47,7 +45,7 @@ export const useBezierDraw = (ctx: CanvasRenderingContext2D | null, receiveCoord
                 const x2 = coordinates[i + 1].x;
                 const y2 = coordinates[i + 1].y + 100;
 
-                drawBezierCurve(ctx, x1, y1, x2, y2);             
+                drawBezierCurve(ctx, x1, y1, x2, y2, bezierLeverLength);             
             }
         }   
         

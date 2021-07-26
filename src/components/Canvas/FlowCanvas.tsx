@@ -4,9 +4,15 @@ import "./FlowCanvas.scss";
 import { useEffect } from "react";
 
 const FlowCanvas = (props: any) => {
-    const [ctx, ref/* , width, height */] = useCanvasContext(null/* , WIDTH, HEIGHT */);
+    const [ctx, ref] = useCanvasContext(null);
 
-    useBezierDraw(ctx, props.receiveCoordinates, props.sheetCurrent/* new CanvasDimensions(props.sheetCurent) */,/* WIDTH, HEIGHT, */  props.count);
+    useBezierDraw(
+        ctx, 
+        props.receiveCoordinates, 
+        props.sheetCurrent, 
+        props.count, 
+        80
+    );
 
     useEffect(() => {
     },
