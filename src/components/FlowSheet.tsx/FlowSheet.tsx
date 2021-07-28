@@ -24,6 +24,7 @@ const FlowSheet = (props: any) => {
             {   props.nodeModel ? 
                     props.nodeModel.Models.map((node: Common, index: number) => 
                         <DragHandle id={props.nodeModel.getId(index)}
+                            position={(props.nodeModel as NodeModels).getCoordinatesByIndex(index)}
                             notifyPosition={updateModelCoordinates(props.nodeModel, props.incrementDragCounter, props.count)}
                             notifyDragStop={recordModelOnDragEnd(props.nodeModel, props.loadModel)}
                         >

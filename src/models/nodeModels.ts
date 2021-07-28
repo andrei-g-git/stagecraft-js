@@ -71,5 +71,8 @@ export interface NodeModels{
 
     setCoordinatesById: (id: number, x: number, y: number) => void;
 
+    getCoordinatesByIndex: (index: number) => Coord2D;
+    setCoordinatesByIndex: (index: number, x: number, y: number) => void;
+
     getAllCoordinates: () => Coord2D[]
 }

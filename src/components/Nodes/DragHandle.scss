@@ -1,8 +1,8 @@
 .drag-handle-container{
     position: absolute;
-    width: max-content;
+    width: 100%;
     .card-handle{
-        //width: 300px;
+        width: 150px;
         height: 50px;
         background-color: aquamarine;
     }

@@ -88,6 +88,10 @@ const testNodeCreation = () => {
     allNodes.setId(1, Math.floor(Math.random() * 1000));
     allNodes.setId(2, Math.floor(Math.random() * 1000));
 
+    allNodes.setCoordinatesByIndex(0, Math.floor(Math.random() * 100), Math.floor(Math.random() * 100))
+    allNodes.setCoordinatesByIndex(1, Math.floor(Math.random() * 100), Math.floor(Math.random() * 100))
+    allNodes.setCoordinatesByIndex(2, Math.floor(Math.random() * 100), Math.floor(Math.random() * 100))
+
     console.log("ALL NODES", allNodes)
     return allNodes;
 }
