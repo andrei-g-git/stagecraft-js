@@ -73,24 +73,14 @@ const makeCoordinatePairs = (coordinateArray: {x: number, y: number}[]): CoordPa
 
 const testNodeCreation = () => {
     const nodeModels: Common[] = [];
-    //for(var i=0; i <=2; i++){}
-    Array.from({length: 3}, () => {
-        console.log("REPEAT")
-        nodeModels.push(createNode(DIALOG))
-    }) 
-    //const node = createNode(DIALOG);
     const allNodes = new AllNodeModels(nodeModels);
-    allNodes.setHtml(0, `<p><strong>aaaaaaa</strong><strong style="color: rgb(230, 0, 0);">axxx<u>bb</u></strong><u style="color: rgb(230, 0, 0);">bb</u><u>xxxxxxxxx</u></p>`);
-    allNodes.setHtml(1, `<p><strong>bbbbbbb</strong><strong style="color: rgb(0, 230, 0);">bxxx<u>bb</u></strong><u style="color: rgb(230, 0, 0);">bb</u><u>xxxxxxxxx</u></p>`);
-    allNodes.setHtml(2, `<p><strong>ccccccc</strong><strong style="color: rgb(0, 0, 230);">cxxx<u>bb</u></strong><u style="color: rgb(230, 0, 0);">bb</u><u>xxxxxxxxx</u></p>`);
+    for(var i = 0; i < 100; i++){
+        nodeModels.push(createNode(DIALOG))
+        allNodes.setHtml(i, `<p><strong>${i}${i}${i+1}</strong><strong style="color: rgb(230, 0, 0);">${i+1}${i+1}${i+2}<u>${i+2}${i+2}</u></strong><u style="color: rgb(230, 0, 0);">bb</u><u>${i+3}${i+3}${i+3}</u></p>`);
+        allNodes.setId(i, Math.floor(Math.random() * 1000));
+        allNodes.setCoordinatesByIndex(i, Math.floor(Math.random() * 600), Math.floor(Math.random() * 600))      
+    }
 
-    allNodes.setId(0, Math.floor(Math.random() * 1000));
-    allNodes.setId(1, Math.floor(Math.random() * 1000));
-    allNodes.setId(2, Math.floor(Math.random() * 1000));
-
-    allNodes.setCoordinatesByIndex(0, Math.floor(Math.random() * 100), Math.floor(Math.random() * 100))
-    allNodes.setCoordinatesByIndex(1, Math.floor(Math.random() * 100), Math.floor(Math.random() * 100))
-    allNodes.setCoordinatesByIndex(2, Math.floor(Math.random() * 100), Math.floor(Math.random() * 100))
 
     console.log("ALL NODES", allNodes)
     return allNodes;

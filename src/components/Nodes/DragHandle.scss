@@ -1,9 +1,12 @@
-.drag-handle-container{
+.drag-inner-container{
     position: absolute;
-    width: 100%;
+    width: 150px;
+    height: 150px;
+    border: solid 1px black;
+
     .card-handle{
-        width: 150px;
-        height: 50px;
+        width: 100%;
+        height: 10%;
         background-color: aquamarine;
     }
 }

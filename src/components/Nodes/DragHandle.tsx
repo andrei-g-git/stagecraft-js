@@ -3,7 +3,7 @@ import "./DragHandle.scss";
 
 const DragHandle = (props: any) => {
     return(
-        <div className="drag-handle-container">
+
             <Draggable handle=".card-handle"
                 axis="both"
                 defaultPosition={{x: props.position.x, y: props.position.y}}            
@@ -11,14 +11,14 @@ const DragHandle = (props: any) => {
                 onDrag={handleDrag(props.notifyPosition, props.id)}
                 onStop={handleStop(props.notifyDragStop)}
             >
-                <div>
+                <div className="drag-inner-container">
                     <div className="card-handle"></div>
                     {
                         props.children
                     }                         
                 </div>                 
             </Draggable>
-        </div>
+
     )
 }
 
