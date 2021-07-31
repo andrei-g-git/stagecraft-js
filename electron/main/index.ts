@@ -71,9 +71,13 @@ async function createWindow() {
       // Consider using contextBridge.exposeInMainWorld
       // Read more on https://www.electronjs.org/docs/latest/tutorial/context-isolation
       nodeIntegration: true,
-      contextIsolation: false,
+      contextIsolation: false
     },
   })
+
+
+  //mine
+  win.removeMenu(); //< --------------------------------------------------------
 
   if (process.env.VITE_DEV_SERVER_URL) { // electron-vite-vue#298
     win.loadURL(url)

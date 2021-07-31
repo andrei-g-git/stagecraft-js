@@ -5,7 +5,7 @@ const MainPane = (props: any) => {
     return(
         <div className="main-pane">
             <div className="menu-bar">
-
+                {props.menubar}
             </div>
             <div className="work-area">
                 <div className="left-nav">
