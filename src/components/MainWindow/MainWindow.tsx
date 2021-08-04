@@ -12,6 +12,7 @@ import { DIALOG } from "@/models/typeOfNodes.js";
 import "./MainWindow.scss";
 import MainPane from "./MainPane.js";
 import FlowContainer from "../FlowSheet.tsx/FlowContainer.js";
+import EditorContainer from "../Editor/EditorContainer.js";
 
 const MainWindow = (props: any) => {
     useEffect(() => {
@@ -22,20 +23,8 @@ const MainWindow = (props: any) => {
     return(
         <div className="main-window-container">
 
-            {/* <QuillEditor />
-            {
-                props.nodeModel?
-                    <>
-                        <FlowCanvas receiveCoordinates={updateInOutCoordinates(props.nodeModel)} />
-
-                        <FlowSheet />            
-                    </>
-                :
-                    <div></div>
-            } */}
-
             <MainPane center={<FlowContainer nodeModel={props.nodeModel}/>}
-                right={<QuillEditor />}
+                right={<EditorContainer nodeModel={props.nodeModel}/>}
             />
 
         </div>

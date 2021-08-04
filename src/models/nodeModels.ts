@@ -1,4 +1,5 @@
 //import { DialogNode } from "./DialogNode";
+import { Delta } from "@/components/Editor/quillTypes";
 import {Coord2D} from "./vectors";
 import {RichContent} from "./wysiwygModels";
 
@@ -68,6 +69,10 @@ export interface NodeModels{
 
     getId: (index: number) => number;
     setId: (index: number, id: number) => void;
+
+    setHtmlById: (id: number, html: string) => void;
+
+    setJsonById: (id: number, json: Delta) => void;
 
     setCoordinatesById: (id: number, x: number, y: number) => void;
 

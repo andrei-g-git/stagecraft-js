@@ -1,5 +1,23 @@
 .quill-container{
     border: solid 1px black;
-    width: 300px;
-    height: 300px;
+    width: 100%; //300px;
+    height: 50%; //300px;
+    //z-index: -3324;
+    background-color: antiquewhite;
+
+    .ql-container { //from react-quill
+        min-height: 20rem;
+        //height: 100%;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        // .ql-editor{ //this one is from react-quill
+        //     height: 80%;
+        //     flex: 1;
+        //     overflow-y: auto;        
+        // }        
+    }
+
+
 }

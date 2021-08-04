@@ -15,19 +15,29 @@ const QuillEditor = (props) => {
     )
 
     return(
-        props.visible ?
-            <div className="quill-container">
-                <ReactQuill theme="snow"
-                    value={props.html}
-                    modules={getModules()}
-                    formats={null/* getFormats() */}
-                    onChange={handleChange(props.changeContent, props.changeHtml)}
-                >
+        // props.visible ?
+        //      <div className="quill-container">
+        //         <ReactQuill theme="snow"
+        //             value={props.html}
+        //             modules={getModules()}
+        //             formats={null}
+        //             onChange={handleChange(props.changeContent, props.changeHtml)}
+        //         >
 
-                </ReactQuill>            
-            </div>
-        :
-            <div></div>
+        //         </ReactQuill>            
+        //     </div>
+        // :
+        //     <div></div> 
+        <div className="quill-container">
+            <ReactQuill theme="snow"
+                value={props.html}
+                modules={getModules()}
+                formats={null}
+                onChange={handleChange(props.changeContent, props.changeHtml)}
+            >
+
+            </ReactQuill>               
+        </div>
 
     )
 }
