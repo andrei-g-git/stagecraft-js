@@ -2,6 +2,8 @@ import { Delta } from "@/components/Editor/quillTypes";
 import { Common, Coordinates, Dialog, NodeModels } from "./nodeModels";
 import { Coord2D } from "./vectors";
 import {RichContent} from "./wysiwygModels";
+import { literalToClass } from "./usage/dataConversion";
+import { StandardRichContent } from "./StandardRichContent";
 
 export class AllNodeModels implements NodeModels{
     constructor(public nodes: Common[]){}
@@ -49,9 +51,12 @@ export class AllNodeModels implements NodeModels{
             .Html = html;
     }
     setJsonById = (id: number, content: Delta) => {
+        const literal = {content: content.ops};
+        const conentInstance = literalToClass(literal, StandardRichContent);
+
         ((this.nodes as unknown as Common[])
             .filter(node => node.Id === id)[0] as unknown as Dialog)
-            .Content = content.ops;      //i think this is because of the properties I set in the interface, I should try only giving it methods and let the class implementation
+            .Content = conentInstance;//{content: content.ops};      //i think this is because of the properties I set in the interface, I should try only giving it methods and let the class implementation
                                                 //handle the properties i.e. constructor(public property: initialValue)
     }
 

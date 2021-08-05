@@ -2,12 +2,18 @@ import { Common } from "./nodeModels";
 
 export class CommonNode implements Common{
 
-    id: number = 0;
-    title: string = "";
-    type: string = "";
-    ingoing: number[] = [];
-    outgoing: number[] = [];
-
+    // id: number = 0;
+    // title: string = "";
+    // type: string = "";
+    // ingoing: number[] = [];
+    // outgoing: number[] = [];
+    constructor(
+        public id: number = 0,
+        public title: string = "",
+        public type: string = "",
+        public ingoing: number[] = [],
+        public outgoing: number[] = []
+    ){}
 
     get Id(): number {
         return this.id;        

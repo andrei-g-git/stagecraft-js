@@ -2,11 +2,17 @@ import { Coordinates } from "./nodeModels";
 import { Coord2D } from "./vectors";
 
 export class NodeCoordinates implements Coordinates{
-    position: Coord2D = {
-        x: 0, 
-        y: 0
-    };
-
+    // position: Coord2D = {
+    //     x: 0, 
+    //     y: 0
+    // };
+    constructor(
+        public position: Coord2D = {
+            x: 0, 
+            y: 0
+        }
+    ){}
+    
     get Position(): Coord2D {
         return this.position;
     }

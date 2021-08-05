@@ -3,15 +3,15 @@ export type ImageBlob = {
 }
 
 export interface RichAttributes{
-    bold: boolean;
-    color: string;
-    italic: boolean;
-    link: string;
-    strike: boolean;
-    underline: boolean;
-    header: number;
-    list: string;
-    indent: number;
+    // bold: boolean;
+    // color: string;
+    // italic: boolean;
+    // link: string;
+    // strike: boolean;
+    // underline: boolean;
+    // header: number;
+    // list: string;
+    // indent: number;
 
     get Bold(): boolean;
     get Color(): string;
@@ -35,8 +35,8 @@ export interface RichAttributes{
 }
 
 export interface RichElement{
-    insert: string | ImageBlob;
-    attributes: RichAttributes;
+    //insert: string | ImageBlob;
+    //attributes: RichAttributes;
 
     get Insert(): string | ImageBlob;
     get Attributes(): RichAttributes;
@@ -46,7 +46,7 @@ export interface RichElement{
 }
 
 export interface RichContent{
-    content: RichElement[];
+    //content: RichElement[];
 
     get Content(): RichElement[];
     set Content(content: RichElement[]);

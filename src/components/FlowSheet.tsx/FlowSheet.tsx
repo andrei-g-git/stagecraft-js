@@ -16,7 +16,15 @@ const FlowSheet = (props: any) => {
         props.notifyCurrentRef(sheetRef.current);
     },
         []
-    )
+    );
+
+    useEffect(() => {
+
+    },
+        [props.textEditorVisible]
+    );
+
+
     return (
         <div className="flow-sheet"
             ref={sheetRef}
@@ -60,7 +68,8 @@ const recordModelOnDragEnd = (model: NodeModels, updateModel: Function) => {
 const mapStateToProps = (state: any) => {
     return{
         nodeModel: state.model.nodeModel,
-        count: state.ui.dragCount
+        count: state.ui.dragCount,
+        textEditorVisible: state.ui.textEditorVisible
     }
 }
 

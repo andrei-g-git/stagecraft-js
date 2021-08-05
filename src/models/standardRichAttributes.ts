@@ -1,15 +1,27 @@
 import { RichAttributes } from "./wysiwygModels";
 
 export class StandardRichAttributes implements RichAttributes{
-    bold: boolean = false;
-    color: string = "";
-    italic: boolean = false;
-    link: string = "";
-    strike: boolean = false;
-    underline: boolean = false;
-    header: number = 3;
-    list: string = "";
-    indent: number = 1;
+    // bold: boolean = false;
+    // color: string = "";
+    // italic: boolean = false;
+    // link: string = "";
+    // strike: boolean = false;
+    // underline: boolean = false;
+    // header: number = 3;
+    // list: string = "";
+    // indent: number = 1;
+
+    constructor(
+        public bold: boolean = false,
+        public color: string = "",
+        public italic: boolean = false,
+        public link: string = "",
+        public strike: boolean = false,
+        public underline: boolean = false,
+        public header: number = 3,
+        public list: string = "",
+        public indent: number = 1
+    ){}
     
     get Bold(): boolean {
         throw new Error("Method not implemented.");

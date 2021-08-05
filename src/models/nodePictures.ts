@@ -1,7 +1,8 @@
 import { Pictures } from "./nodeModels";
 
 export class NodePictures implements Pictures{
-    avatar: string = "";
+    //avatar: string = "";
+    constructor(public avatar: string = ""){}
 
     get Avatar(): string {
         return this.avatar;
