@@ -5,7 +5,10 @@ import QuillEditor from "../Editor/QuillEditor.jsx";
 import FlowSheet from "../FlowSheet.tsx/FlowSheet";
 import { CoordPair } from "../Canvas/types.js";
 import { Common, NodeModels } from "@/models/nodeModels.js";
-import { loadedFlowModel } from "@/redux/actions.js";
+import { 
+    loadedFlowModel,
+    toggledConnecting 
+} from "@/redux/actions.js";
 import { createNode } from "@/models/usage/factory.js";
 import { AllNodeModels } from "@/models/AllNodeModels.js";
 import { DIALOG } from "@/models/typeOfNodes.js";
@@ -21,7 +24,9 @@ const MainWindow = (props: any) => {
         []
     )
     return(
-        <div className="main-window-container">
+        <div className="main-window-container"
+            onMouseUp={handleMouseUp(toggledConnecting)}
+        >
 
             <MainPane center={<FlowContainer nodeModel={props.nodeModel}/>}
                 right={<EditorContainer nodeModel={props.nodeModel}/>}
@@ -31,6 +36,12 @@ const MainWindow = (props: any) => {
     )
 }
 
+const handleMouseUp = (toggleConnecting: Function) => {
+    return () => {
+        console.log("MOUSE UP")
+        toggleConnecting(false);
+    }
+}
 const updateInOutCoordinates = (model: NodeModels) => {
     return () => {
         //console.log(model)
@@ -77,7 +88,8 @@ const testNodeCreation = () => {
 
 const mapStateToProps = (state: any) => {
     return {
-        nodeModel: state.model.nodeModel
+        nodeModel: state.model.nodeModel,
+        connecting: state.ui.connecting //for debugging
     }
 }
 
@@ -85,6 +97,9 @@ const mapDispatchToProps = (dispatch: any) => {
     return{
         loadModel: (model: NodeModels) => {
             dispatch(loadedFlowModel(model));
+        },
+        toggleConnecting: (connecting: boolean) => {
+            dispatch(toggledConnecting(connecting));
         }
     }
 }

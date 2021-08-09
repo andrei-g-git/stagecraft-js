@@ -5,7 +5,8 @@ import {
     EDITOR_HTML_CHANGED,
     NODE_ID_SELECTED,
     TEXT_EDITOR_TOGGLED, 
-    DRAG_COUNTER_CHANGED
+    DRAG_COUNTER_CHANGED,
+    CONNECTING_TOGGLED
 } from "./actionTypes";
 import { /* GenericPayload, StringPayload */ ActionType, StringPayload, NumberPayload, DeltaPayload, NodeModelsPayload, BooleanPayload} from "./types";
 import { Delta } from "@/components/Editor/quillTypes";
@@ -48,5 +49,13 @@ export const changedDragCounter = (count: number): (ActionType & NumberPayload) 
     return {
         type: DRAG_COUNTER_CHANGED,
         payload: count
+    }
+}
+
+export const toggledConnecting = (connecting: boolean): (ActionType & BooleanPayload) => {
+    //console.log("FROM ACTION, CONNECTING:   ", connecting)
+    return {
+        type: CONNECTING_TOGGLED,
+        payload: connecting
     }
 }

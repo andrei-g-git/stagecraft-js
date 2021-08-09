@@ -1,11 +1,13 @@
 import {
+    CONNECTING_TOGGLED,
     DRAG_COUNTER_CHANGED,
     TEXT_EDITOR_TOGGLED
 } from "./actionTypes";
 
 const initialState = {
     textEditorVisible: false,
-    dragCount: 0
+    dragCount: 0,
+    connecting: false
 }
 
 export const uiReducer = (state = initialState, action: any) => {
@@ -19,6 +21,12 @@ export const uiReducer = (state = initialState, action: any) => {
             return{
                 ...state,
                 dragCount: action.payload
+            }
+        case CONNECTING_TOGGLED:
+            //console.log("FROM REDUCER:  ", action.paylaod)
+            return{
+                ...state,
+                connecting: action.paylaod
             }
         default:
             return state;

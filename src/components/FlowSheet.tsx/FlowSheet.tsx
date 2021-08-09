@@ -9,6 +9,7 @@ import {DIALOG} from "../../models/typeOfNodes";
 import { AllNodeModels } from "@/models/AllNodeModels";
 import DragHandle from "../Nodes/DragHandle.jsx";
 import "./FlowSheet.scss";
+import Connector from "../Nodes/Connector";
 
 const FlowSheet = (props: any) => {
     const sheetRef = useRef(null);
@@ -39,7 +40,14 @@ const FlowSheet = (props: any) => {
                             <DialogCard id={props.nodeModel.getId(index)} 
                                 preview="<div>12345</div>"
                                 fullContent={props.nodeModel.getHtml(index)}
-                            />                              
+                            />   
+                            <div className="handle-inner-container">
+                                <div> DialogCard /</div>
+                                <Connector isOutgoing={false} 
+                                    id={props.nodeModel.getId(index)}
+                                />
+                                <div> Connector </div>
+                            </div>                           
                         </DragHandle>
                   
                     )
