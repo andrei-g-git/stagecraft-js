@@ -1,0 +1,19 @@
+.add-node{
+    width: 100%;
+    aspect-ratio: 10/8;
+    background-color: green;
+}
+.toolbar-item-selected{
+    border: solid 1px orange;
+    border-radius: 15%;
+}
+
+.dialog-item{
+    background-color: rgba(0, 255, 0, 150);
+    background-image: url(src/assets/dialog_bubble.png);
+    background-repeat: no-repeat; //these repeat
+    background-size: contain;
+    background-position: center;
+
+    align-self: flex-start;
+}

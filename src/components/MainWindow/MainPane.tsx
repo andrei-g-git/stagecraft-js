@@ -16,6 +16,11 @@ const MainPane = (props: any) => {
 
                     </div>
                 </div>
+                <div className="canvas-toolbar">
+                    {
+                        props.toolbar
+                    }
+                </div>
                 <div className="canvas-container">
                     {
                         props.center

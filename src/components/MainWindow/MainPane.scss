@@ -25,6 +25,11 @@
             border: solid 2px black;
         }
 
+        .canvas-toolbar{
+            flex: 0.15;
+            border: dotted 1px red;
+        }
+
         .canvas-container{
             flex: 6;
             border: solid 2px blue;

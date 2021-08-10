@@ -17,6 +17,7 @@ import MainPane from "./MainPane";
 import FlowContainer from "../FlowSheet.tsx/FlowContainer";
 import EditorContainer from "../Editor/EditorContainer";
 import { withEditorContainerState } from "../Editor/editorHOC";
+import FlowToolbar from "../FlowToolbar/FlowToolbar.js";
 
 const MainWindow = (props: any) => {
     useEffect(() => {
@@ -33,6 +34,7 @@ const MainWindow = (props: any) => {
         >
 
             <MainPane center={<FlowContainer nodeModel={props.nodeModel}/>}
+                toolbar={<FlowToolbar />}
                 right={<EditorContainerWithState nodeModel={props.nodeModel}/>}
             />
 

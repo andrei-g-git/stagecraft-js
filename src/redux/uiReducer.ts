@@ -1,13 +1,15 @@
 import {
     CONNECTING_TOGGLED,
     DRAG_COUNTER_CHANGED,
+    FLOW_TOOLBAR_ITEM_CHANGED,
     TEXT_EDITOR_TOGGLED
 } from "./actionTypes";
 
 const initialState = {
     textEditorVisible: false,
     dragCount: 0,
-    connecting: false
+    connecting: false,
+    flowToolbarSelection: -1
 }
 
 export const uiReducer = (state = initialState, action: any) => {
@@ -18,6 +20,7 @@ export const uiReducer = (state = initialState, action: any) => {
                 textEditorVisible: action.payload
             }
         case DRAG_COUNTER_CHANGED:
+            //console.log("FROM REDUCER, COUNTER PAYLOAD:  ", action.payload)
             return{
                 ...state,
                 dragCount: action.payload
@@ -27,6 +30,12 @@ export const uiReducer = (state = initialState, action: any) => {
             return{
                 ...state,
                 connecting: action.paylaod
+            }
+        case FLOW_TOOLBAR_ITEM_CHANGED:
+            console.log("FROM REDUCER, SELECTED ITEM PAYLOAD:  ", action.payload)
+            return{
+                ...state,
+                flowToolbarSelection: action.paylaod
             }
         default:
             return state;
