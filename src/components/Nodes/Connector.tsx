@@ -8,7 +8,7 @@ const Connector = (props: {isOutgoing: boolean, id: number, connecting: boolean,
 
     useEffect(() => { //DEBUG... doesn't work, setting initial state back to false
         console.log("USE EFFECT FROM CONNECTOR")
-        console.log("FROM CONNECTOR, CONNECTING IS SET TO:   ", props.connecting)
+        console.log("FROM CONNECTOR, CONNECTING IS SET TO:   ", props.connecting)	 
     },
         [props.connecting]
     );

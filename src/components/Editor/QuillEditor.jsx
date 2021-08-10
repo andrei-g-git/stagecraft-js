@@ -74,23 +74,25 @@ const getFormats = () => {
     return formats;
 }
 
-const mapStateToProps = (state) => {
-    return {
-        content: state.editor.content,
-        html: state.editor.html,
-        visible: state.ui.textEditorVisible,
-        id: state.model.selected
-    }
-}
-const mapDispatchToProps = (dispatch) => {
-    return {
-        changeContent: (content) => {
-            dispatch(changedEditorContent(content))
-        },
-        changeHtml: (html) => {
-            dispatch(changedEditorHtml(html))
-        }
-    }
-}
+// const mapStateToProps = (state) => {
+//     return {
+//         content: state.editor.content,
+//         html: state.editor.html,
+//         visible: state.ui.textEditorVisible,
+//         id: state.model.selected
+//     }
+// }
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         changeContent: (content) => {
+//             dispatch(changedEditorContent(content))
+//         },
+//         changeHtml: (html) => {
+//             dispatch(changedEditorHtml(html))
+//         }
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuillEditor);
+// export default connect(mapStateToProps, mapDispatchToProps)(QuillEditor);
+
+export default QuillEditor;

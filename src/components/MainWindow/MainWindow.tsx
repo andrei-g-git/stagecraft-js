@@ -8,14 +8,15 @@ import { Common, NodeModels } from "@/models/nodeModels.js";
 import { 
     loadedFlowModel,
     toggledConnecting 
-} from "@/redux/actions.js";
-import { createNode } from "@/models/usage/factory.js";
-import { AllNodeModels } from "@/models/AllNodeModels.js";
-import { DIALOG } from "@/models/typeOfNodes.js";
+} from "@/redux/actions";
+import { createNode } from "@/models/usage/factory";
+import { AllNodeModels } from "@/models/AllNodeModels";
+import { DIALOG } from "@/models/typeOfNodes";
 import "./MainWindow.scss";
-import MainPane from "./MainPane.js";
-import FlowContainer from "../FlowSheet.tsx/FlowContainer.js";
-import EditorContainer from "../Editor/EditorContainer.js";
+import MainPane from "./MainPane";
+import FlowContainer from "../FlowSheet.tsx/FlowContainer";
+import EditorContainer from "../Editor/EditorContainer";
+import { withEditorContainerState } from "../Editor/editorHOC";
 
 const MainWindow = (props: any) => {
     useEffect(() => {
@@ -23,13 +24,16 @@ const MainWindow = (props: any) => {
     },
         []
     )
+
+    const EditorContainerWithState = withEditorContainerState(EditorContainer);
+
     return(
         <div className="main-window-container"
             onMouseUp={handleMouseUp(toggledConnecting)}
         >
 
             <MainPane center={<FlowContainer nodeModel={props.nodeModel}/>}
-                right={<EditorContainer nodeModel={props.nodeModel}/>}
+                right={<EditorContainerWithState nodeModel={props.nodeModel}/>}
             />
 
         </div>

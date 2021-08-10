@@ -29,24 +29,25 @@ const handleClick = (id: number, toggleEditor: Function, selectNode: Function, s
     sendHtmlToEditor(fullContent);
 }
 
-const mapStateToProps = (state: any) => {
-    return {
+// const mapStateToProps = (state: any) => {
+//     return {
         
-    }
-}
+//     }
+// }
 
-const dispatchStateToProps = (dispatch: any) => {
-    return {
-        toggleEditor: (visible: boolean) => {
-            dispatch(toggledTextEditor(visible))
-        },
-        selectNode: (id: number) => {
-            dispatch(selectedNodeId(id))
-        },
-        sendHtmlToEditor: (html: string) => {
-            dispatch(changedEditorHtml(html))
-        }
-    }
-}
+// const dispatchStateToProps = (dispatch: any) => {
+//     return {
+//         toggleEditor: (visible: boolean) => {
+//             dispatch(toggledTextEditor(visible))
+//         },
+//         selectNode: (id: number) => {
+//             dispatch(selectedNodeId(id))
+//         },
+//         sendHtmlToEditor: (html: string) => {
+//             dispatch(changedEditorHtml(html))
+//         }
+//     }
+// }
 
-export default connect(mapStateToProps, dispatchStateToProps)(DialogCard);
+// export default connect(mapStateToProps, dispatchStateToProps)(DialogCard);
+export default DialogCard;

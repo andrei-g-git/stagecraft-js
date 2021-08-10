@@ -46,3 +46,5 @@ class CanvasDimensions{
 }
 
 export default connect(mapStateToProps, null)(FlowCanvas);
+
+//export default FlowCanvas;

@@ -10,6 +10,7 @@ import { AllNodeModels } from "@/models/AllNodeModels";
 import DragHandle from "../Nodes/DragHandle.jsx";
 import "./FlowSheet.scss";
 import Connector from "../Nodes/Connector";
+import { withDialogCardState } from "../Nodes/nodesHOC";
 
 const FlowSheet = (props: any) => {
     const sheetRef = useRef(null);
@@ -25,6 +26,7 @@ const FlowSheet = (props: any) => {
         [props.textEditorVisible]
     );
 
+    const DialogCardWithState = withDialogCardState(DialogCard);
 
     return (
         <div className="flow-sheet"
@@ -37,15 +39,15 @@ const FlowSheet = (props: any) => {
                             notifyPosition={updateModelCoordinates(props.nodeModel, props.incrementDragCounter, props.count)}
                             notifyDragStop={recordModelOnDragEnd(props.nodeModel, props.loadModel)}
                         >
-                            <DialogCard id={props.nodeModel.getId(index)} 
+                            <DialogCardWithState id={props.nodeModel.getId(index)} 
                                 preview="<div>12345</div>"
                                 fullContent={props.nodeModel.getHtml(index)}
                             />   
                             <div className="handle-inner-container">
                                 <div> DialogCard /</div>
-                                <Connector isOutgoing={false} 
+                                {/* <Connector isOutgoing={false} 
                                     id={props.nodeModel.getId(index)}
-                                />
+                                /> */}
                                 <div> Connector </div>
                             </div>                           
                         </DragHandle>
