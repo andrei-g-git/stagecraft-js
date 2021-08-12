@@ -1,3 +1,7 @@
+import { 
+    DIALOG_NODE, 
+    SCRIPT_NODE 
+} from "@/const/toolbarItems";
 import { CommonNode } from "../commonNode";
 import { BasicDialogNode } from "../dialogNode";
 import { NodeCoordinates } from "../nodeCoordinates";
@@ -10,9 +14,9 @@ import {
     SCRIPT
 } from "../typeOfNodes";
 
-export const createNode = (nodeType: string): Common => {
+export const createNode = (nodeType: number/* string */): Common => {
     switch(nodeType){
-        case DIALOG:
+        case DIALOG_NODE: //DIALOG:
             return <Common> new BasicDialogNode(
                 new CommonNode(),
                 new NodeCoordinates(),
@@ -20,7 +24,7 @@ export const createNode = (nodeType: string): Common => {
                 new NodePictures(),
                 new NodeDialog()
             ); 
-        case SCRIPT:
+        case SCRIPT_NODE: //SCRIPT:
             return <Common> new MockNode()
         default:
             return <Common> new BasicDialogNode(

@@ -80,12 +80,12 @@ const makeCoordinatePairs = (coordinateArray: {x: number, y: number}[]): CoordPa
 const testNodeCreation = () => {
     const nodeModels: Common[] = [];
     const allNodes = new AllNodeModels(nodeModels);
-    for(var i = 0; i <= 100; i++){
-        nodeModels.push(createNode(DIALOG))
-        allNodes.setHtml(i, `<p><strong>${i}${i}${i+1}</strong><strong style="color: rgb(230, 0, 0);">${i+1}${i+1}${i+2}<u>${i+2}${i+2}</u></strong><u style="color: rgb(230, 0, 0);">bb</u><u>${i+3}${i+3}${i+3}</u></p>`);
-        allNodes.setId(i, Math.floor(Math.random() * 1000));
-        allNodes.setCoordinatesByIndex(i, Math.floor(Math.random() * 600), Math.floor(Math.random() * 600))      
-    }
+    // for(var i = 0; i <= 100; i++){
+    //     nodeModels.push(createNode(DIALOG))
+    //     allNodes.setHtml(i, `<p><strong>${i}${i}${i+1}</strong><strong style="color: rgb(230, 0, 0);">${i+1}${i+1}${i+2}<u>${i+2}${i+2}</u></strong><u style="color: rgb(230, 0, 0);">bb</u><u>${i+3}${i+3}${i+3}</u></p>`);
+    //     allNodes.setId(i, Math.floor(Math.random() * 1000));
+    //     allNodes.setCoordinatesByIndex(i, Math.floor(Math.random() * 600), Math.floor(Math.random() * 600))      
+    // }
 
 
     console.log("ALL NODES", allNodes)

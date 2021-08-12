@@ -61,8 +61,11 @@ export interface DialogNode{
 }
 
 export interface NodeModels{
+    //[x: string]: any; //???? comes from 'quick fix' add index signature to whatever when trying to add a private method to the class...
     get Models(): Common[];
     set Models(models: Common[]);
+
+    get Length(): number;
 
     getHtml: (index: number) => string;
     setHtml: (index: number, html: string) => void;
@@ -80,4 +83,9 @@ export interface NodeModels{
     setCoordinatesByIndex: (index: number, x: number, y: number) => void;
 
     getAllCoordinates: () => Coord2D[]
+
+    addNode: (node: Common) => void;
+
+    generateId: (/* self: NodeModels */) => number;
+    //checkIdForDoublesAndUpdate: (self: NodeModels, id: number) => number;
 }

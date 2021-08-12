@@ -14,6 +14,14 @@ export class AllNodeModels implements NodeModels{
     set Models(nodes: Common[]) {
         this.nodes = nodes;
     }
+    get Length(): number {
+        return this.Models.length;
+    }
+
+    addNode = (node: Common) =>{
+        this.Models.push(node);
+    }
+
     getHtml = (index: number) => {
         return (this.nodes[index] as unknown as Dialog).Html;
     }
@@ -58,6 +66,24 @@ export class AllNodeModels implements NodeModels{
             .filter(node => node.Id === id)[0] as unknown as Dialog)
             .Content = conentInstance;//{content: content.ops};      //i think this is because of the properties I set in the interface, I should try only giving it methods and let the class implementation
                                                 //handle the properties i.e. constructor(public property: initialValue)
+    }
+
+    generateId = (/* self: NodeModels */) => { //I definitely need to test this...
+        let id = Math.floor(Math.random() * 1000);
+        //id = this.checkIdForDoublesAndUpdate(this, id); // stack overflow...
+        return id;
+    }
+
+    private checkIdForDoublesAndUpdate = (self: NodeModels, id: number) => {
+        const newId = Math.floor(Math.random() * 1000);
+        const nodesMatchingGeneratedId = this.Models.filter(node => node.Id === id);
+
+        let result = id;
+        if(nodesMatchingGeneratedId.length){
+            result = /* self */this.checkIdForDoublesAndUpdate(self, newId);
+        }
+        
+        return result; 
     }
 
 }
