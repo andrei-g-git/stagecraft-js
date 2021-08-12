@@ -1,3 +1,5 @@
+@import "../../css/mixins.scss";
+
 .add-node{
     width: 100%;
     aspect-ratio: 10/8;
@@ -9,11 +11,13 @@
 }
 
 .dialog-item{
-    background-color: rgba(0, 255, 0, 150);
-    background-image: url(src/assets/dialog_bubble.png);
-    background-repeat: no-repeat; //these repeat
-    background-size: contain;
-    background-position: center;
+    background-color: rgba(0, 255, 150, 150);
+    @include genericBackgroundImage("dialog_bubble", no-repeat, contain, center);
+    //align-self: flex-start;
+}
 
-    align-self: flex-start;
+.script-item{
+    background-color: rgba(0, 150, 255, 150);
+    @include genericBackgroundImage("code_icon_raw", no-repeat, contain, center);    
+    //align-self: flex-start;
 }

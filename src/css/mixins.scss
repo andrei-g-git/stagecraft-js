@@ -1,0 +1,22 @@
+@mixin genericBackgroundImage(
+    $urlBaseName,
+    $repeat: no-repeat,
+    $size: contain,
+    $position: center   
+){
+    $url: "src/assets/#{$urlBaseName}.png";
+    background-image: url($url);
+    background-repeat: $repeat; 
+    background-size: $size;
+    background-position: $position;    
+}
+
+@mixin commonBackgroundImageProperties(
+    $repeat: no-repeat,
+    $size: contain,
+    $position: center   
+){
+    background-repeat: $repeat; 
+    background-size: $size;
+    background-position: $position;    
+}

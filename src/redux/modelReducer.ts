@@ -21,6 +21,6 @@ export const modelReducer = (state = initialState, action: any) => {
                 selected: action.payload
             }
         default:
-            return state;
+            return {...state};
     }
 }

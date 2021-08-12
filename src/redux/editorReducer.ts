@@ -24,6 +24,6 @@ export const editorReducer = (state = initialState, action: ActionType) => {
                 html: (<StringPayload><unknown>action).payload
             }  
         default:
-            return state;          
+            return {...state};          
     }
 }

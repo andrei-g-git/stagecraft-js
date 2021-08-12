@@ -68,3 +68,12 @@ export const changedFlowToolbarItem = (itemEnum: number): (ActionType & NumberPa
         payload: itemEnum
     }
 }
+
+
+export const testtt = (item: string): (ActionType & StringPayload) => {
+    console.log("CHANGED ITEMMMMMMMMMMM:  ", item)
+    return {
+        type: FLOW_TOOLBAR_ITEM_CHANGED,
+        payload: item
+    }
+}

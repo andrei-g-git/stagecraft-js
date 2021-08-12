@@ -15,6 +15,10 @@ const FlowToolbar = (props: any) => {
             <AddStatefulNode classAffix="dialog"
                 itemEnum={DIALOG_NODE}
             />
+
+            <AddStatefulNode classAffix="script"
+                itemEnum={SCRIPT_NODE}
+            />                        
         </div>
     )
 }
