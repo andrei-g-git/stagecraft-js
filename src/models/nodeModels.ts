@@ -21,8 +21,19 @@ export interface Common{
     set Type(type: string); 
     set Ingoing(ingoing: number[]); 
     set Outgoing(outgoing: number[]); 
-    setIngoing: (ingoing: number, index: number) => void;  //THGESE NEED GETTERS TOO
-    setOutgoing: (outgoing: number, index: number) => void;
+    // setIngoing: {  fuck this there's basically no overloading in ts, don't even try, it's bullshit
+    //     (ingoing: number): void;
+    //     (ingoing: number, index: number): void;
+    // }  //THGESE NEED GETTERS TOO
+    // setOutgoing: {
+    //     (outgoing: number): void;
+    //     (outgoing: number, index: number): void;
+    // }
+    setIngoingAtIndex: (ingoing: number, index: number) => void;
+    setIngoing: (ingoing: number) => void;
+
+    setOutgoingAtIndex: (outgoing: number, index: number) => void;
+    setOutgoing: (outgoing: number) => void;
 }
 
 export interface Coordinates{
@@ -88,4 +99,6 @@ export interface NodeModels{
 
     generateId: (/* self: NodeModels */) => number;
     //checkIdForDoublesAndUpdate: (self: NodeModels, id: number) => number;
+
+    addConnection: (outgoing: number, ingoing: number) => void;
 }

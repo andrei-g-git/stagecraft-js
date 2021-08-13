@@ -1,0 +1,17 @@
+.node-connector{
+    width: 20px;
+    height: 20px;
+    
+    position: absolute;
+    top: 50%;
+}
+
+.ingoing-connector{
+    left: 0;
+    background-color: cornflowerblue;
+}
+
+.outgoing-connector{
+    right: 0;
+    background-color: beige;
+}

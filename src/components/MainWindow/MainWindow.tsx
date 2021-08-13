@@ -26,6 +26,12 @@ const MainWindow = (props: any) => {
         []
     )
 
+    useEffect(() => {
+        console.log("FROM MAINNNNNN , connecting is::::  ", props.connecting)
+    },
+        [props.connecting]
+    )
+
     const EditorContainerWithState = withEditorContainerState(EditorContainer);
 
     return(
@@ -44,7 +50,7 @@ const MainWindow = (props: any) => {
 
 const handleMouseUp = (toggleConnecting: Function) => {
     return () => {
-        console.log("MOUSE UP")
+        console.log("MOUSE UP-------------------------")
         toggleConnecting(false);
     }
 }
@@ -95,7 +101,7 @@ const testNodeCreation = () => {
 const mapStateToProps = (state: any) => {
     return {
         nodeModel: state.model.nodeModel,
-        connecting: state.ui.connecting //for debugging
+        connecting: state.ui.connecting //for debugging 
     }
 }
 

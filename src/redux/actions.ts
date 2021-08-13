@@ -7,7 +7,9 @@ import {
     TEXT_EDITOR_TOGGLED, 
     DRAG_COUNTER_CHANGED,
     CONNECTING_TOGGLED,
-    FLOW_TOOLBAR_ITEM_CHANGED
+    FLOW_TOOLBAR_ITEM_CHANGED,
+    OUTGOING_CONNECTOR_ID_CHANGED,
+    INGOING_CONNECTOR_ID_CHANGED
 } from "./actionTypes";
 import { /* GenericPayload, StringPayload */ ActionType, StringPayload, NumberPayload, DeltaPayload, NodeModelsPayload, BooleanPayload} from "./types";
 import { Delta } from "@/components/Editor/quillTypes";
@@ -54,7 +56,7 @@ export const changedDragCounter = (count: number): (ActionType & NumberPayload) 
 }
 
 export const toggledConnecting = (connecting: boolean): (ActionType & BooleanPayload) => {
-    //console.log("FROM ACTION, CONNECTING:   ", connecting)
+    console.log("FROM ACTION toggleConnecting, CONNECTING:   ", connecting)
     return {
         type: CONNECTING_TOGGLED,
         payload: connecting
@@ -68,6 +70,23 @@ export const changedFlowToolbarItem = (itemEnum: number): (ActionType & NumberPa
         payload: itemEnum
     }
 }
+
+export const changedOutgoingConnectorId = (id: number): (ActionType & NumberPayload) => {
+    return{
+        type: OUTGOING_CONNECTOR_ID_CHANGED,
+        payload: id
+    }
+}
+
+export const changedIngoingConnectorId = (id: number): (ActionType & NumberPayload) => {
+    return{
+        type: INGOING_CONNECTOR_ID_CHANGED,
+        payload: id
+    }
+}
+
+
+
 
 
 export const testtt = (item: string): (ActionType & StringPayload) => {

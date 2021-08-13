@@ -30,7 +30,8 @@ const FlowCanvas = (props: any) => {
 
 const mapStateToProps = (state: any) => {
     return{
-        count: state.ui.dragCount
+        count: state.ui.dragCount,
+        model: state.model.nodeModel //test, delete
     }
 }
 

@@ -86,4 +86,16 @@ export class AllNodeModels implements NodeModels{
         return result; 
     }
 
+    
+    addConnection = (outgoing: number, ingoing: number) => { //outgoing node whose connection is dragged is the ingoing node id to the target and vice versa
+        console.log("############# from NODE model, outgoing, ingoing:   ", outgoing, "   ", ingoing);
+        (this.nodes as unknown as Common[])
+            .filter(node => node.Id === outgoing)[0]
+            .setOutgoing(ingoing);
+
+        (this.nodes as unknown as Common[])
+            .filter(node => node.Id === ingoing)[0]
+            .setIngoing(outgoing);            
+    }
+
 }

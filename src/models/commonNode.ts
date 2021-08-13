@@ -45,10 +45,17 @@ export class CommonNode implements Common{
     set Outgoing(outgoing: number[]) {
         this.outgoing = outgoing;
     }
-    setIngoing = (ingoing: number, index: number) => {
+    setIngoingAtIndex = (ingoing: number, index: number) => {
         this.ingoing[index] = ingoing;
     }
-    setOutgoing = (outgoing: number, index: number) => {
+    setIngoing = (ingoing: number) => {
+        this.ingoing.push(ingoing)
+    }
+
+    setOutgoingAtIndex = (outgoing: number, index: number) => {
         this.outgoing[index] = outgoing;
+    }
+    setOutgoing = (outgoing: number) => {
+        this.outgoing.push(outgoing);
     }
 }

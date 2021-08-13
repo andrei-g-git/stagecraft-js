@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Common, NodeModels } from "@/models/nodeModels";
-import { changedDragCounter, loadedFlowModel } from "@/redux/actions";
+import { changedDragCounter, changedIngoingConnectorId, changedOutgoingConnectorId, loadedFlowModel } from "@/redux/actions";
 import {connect} from "react-redux";
 import DialogCard from "../Nodes/DialogCard";
 
@@ -39,16 +39,23 @@ const FlowSheet = (props: any) => {
                             notifyPosition={updateModelCoordinates(props.nodeModel, props.incrementDragCounter, props.count)}
                             notifyDragStop={recordModelOnDragEnd(props.nodeModel, props.loadModel)}
                         >
-                            <DialogCardWithState id={props.nodeModel.getId(index)} 
+                            {/* <DialogCardWithState id={props.nodeModel.getId(index)} 
                                 preview="<div>12345</div>"
                                 fullContent={props.nodeModel.getHtml(index)}
-                            />   
+                            />    */}
                             <div className="handle-inner-container">
-                                <div> DialogCard /</div>
-                                {/* <Connector isOutgoing={false} 
+                                <Connector isOutgoing={false} 
                                     id={props.nodeModel.getId(index)}
-                                /> */}
-                                <div> Connector </div>
+                                    notifyConnection={() => {}}
+                                />
+                                <DialogCardWithState id={props.nodeModel.getId(index)} 
+                                    preview="<div>12345</div>"
+                                    fullContent={props.nodeModel.getHtml(index)}
+                                />                                 
+                                <Connector isOutgoing={true} 
+                                    id={props.nodeModel.getId(index)}
+                                    notifyConnection={addNodeConnectionToModel(props.nodeModel, props.outgoing, props.ingoing, props.resetOutgoingAndIngoing)}
+                                />
                             </div>                           
                         </DragHandle>
                   
@@ -58,6 +65,16 @@ const FlowSheet = (props: any) => {
             }
         </div>
     )
+}
+
+const addNodeConnectionToModel = (model: NodeModels, outgoing: number, ingoing: number, resetCurrentConnections: Function) => {
+    return () => {
+        console.log(">>>>>CONNECTED \n")
+        console.log(">>>>>>>>  ", outgoing, "  ", ingoing)
+        model.addConnection(outgoing, ingoing);
+        resetCurrentConnections();
+
+    }
 }
 
 const updateModelCoordinates = (model: NodeModels, incrementDragCounter: Function, count: number) => {
@@ -79,7 +96,9 @@ const mapStateToProps = (state: any) => {
     return{
         nodeModel: state.model.nodeModel,
         count: state.ui.dragCount,
-        textEditorVisible: state.ui.textEditorVisible
+        textEditorVisible: state.ui.textEditorVisible,
+        outgoing: state.ui.outgoing,
+        ingoing: state.ui.ingoing
     }
 }
 
@@ -92,7 +111,11 @@ const mapDispatchToProps = (dispatch: any) => {
             count++;
             if(count > 999) count = 0;
             dispatch(changedDragCounter(count));
-        } 
+        },
+        resetOutgoingAndIngoing: () => {
+            dispatch(changedOutgoingConnectorId(-1));
+            dispatch(changedIngoingConnectorId(-1));
+        }   
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(FlowSheet);

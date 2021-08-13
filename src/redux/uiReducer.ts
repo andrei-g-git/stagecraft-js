@@ -2,6 +2,8 @@ import {
     CONNECTING_TOGGLED,
     DRAG_COUNTER_CHANGED,
     FLOW_TOOLBAR_ITEM_CHANGED,
+    INGOING_CONNECTOR_ID_CHANGED,
+    OUTGOING_CONNECTOR_ID_CHANGED,
     TESTTT,
     TEXT_EDITOR_TOGGLED
 } from "./actionTypes";
@@ -11,13 +13,15 @@ const initialState: {
     dragCount: number,
     connecting: boolean,
     flowToolbarSelection: number,
-    blah: string    
+    outgoing: number,
+    ingoing: number
 } = {
     textEditorVisible: false,
     dragCount: 0,
     connecting: false,
     flowToolbarSelection: -1,
-    blah: "WAAAAH"
+    outgoing: -1,
+    ingoing: -1
 }
 
 export const uiReducer = (state = initialState, action: any) => {
@@ -34,7 +38,7 @@ export const uiReducer = (state = initialState, action: any) => {
                 dragCount: action.payload
             }
         case CONNECTING_TOGGLED:
-            //console.log("FROM REDUCER:  ", action.paylaod)
+            console.log("XXXXXXXXXXXX from reducer:  ", action.payload)
             return{
                 ...state,
                 connecting: action.payload
@@ -45,6 +49,19 @@ export const uiReducer = (state = initialState, action: any) => {
                 ...state,
                 flowToolbarSelection: action.payload
             }
+        case OUTGOING_CONNECTOR_ID_CHANGED: 
+            return{
+                ...state,
+                outgoing: action.payload
+            }
+        //}
+        case INGOING_CONNECTOR_ID_CHANGED: 
+            return{
+                ...state,
+                ingoing: action.payload
+            }
+
+
 
         //delete
         case TESTTT:
