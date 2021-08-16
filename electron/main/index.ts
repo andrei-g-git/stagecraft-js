@@ -114,18 +114,18 @@ async function createWindow() {
 
 //session stuff mine
 app.whenReady().then(async () => {
-  await session.defaultSession.loadExtension(
-    reactDevToolsPath,
-    { allowFileAccess: true }   //this is the key line
-  )
+  // await session.defaultSession.loadExtension(
+  //   reactDevToolsPath,
+  //   { allowFileAccess: true }   //this is the key line
+  // )
   // await session.defaultSession.loadExtension(
   //   REDUX_DEVTOOLS_PATH,
   //   { allowFileAccess: true }   //this is the key line
   // )
 
-  // installExtension(REDUX_DEVTOOLS)
-  //   .then((name) => console.log(`Added Extension:  ${name}`))
-  //   .catch((err) => console.log('An error occurred: ', err));
+  installExtension(REDUX_DEVTOOLS)
+    .then((name) => console.log(`Added Extension:  ${name}`))
+    .catch((err) => console.log('An error occurred: ', err));
 
 }).then(createWindow).catch(console.log);
 

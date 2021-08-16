@@ -78,6 +78,11 @@ export default defineConfig(({ command }) => {
       globals: true,
       environment: 'jsdom',
       setupFiles: './src/__tests__/setup.js'
-    }
+    },
+    // optimizeDeps: { 
+    //   exclude: [
+    //     "redux-devtools-extension" //mine
+    //   ]
+    // }
   }
 })

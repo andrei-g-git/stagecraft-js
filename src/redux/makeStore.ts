@@ -3,6 +3,8 @@ import { modelReducer } from "./modelReducer";
 import { editorReducer } from "./editorReducer";
 import { uiReducer } from "./uiReducer";
 
+import {composeWithDevTools} from "redux-devtools-extension";
+
 export const makeStore = () =>{
     const reducers = combineReducers({
         model: modelReducer,
@@ -10,5 +12,5 @@ export const makeStore = () =>{
         ui: uiReducer
     })
 
-    return (createStore(reducers))
+    return (createStore(reducers, composeWithDevTools()))
 }
