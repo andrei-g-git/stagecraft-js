@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { drawBezierCurve } from "./draw";
+import { Coord2DPair } from "@/models/vectors";
 
 export const useCanvasContext = (context: CanvasRenderingContext2D | null, /* width: number, height: number */): [
     ctx: CanvasRenderingContext2D | null, 
@@ -27,7 +28,7 @@ export const useCanvasContext = (context: CanvasRenderingContext2D | null, /* wi
     return [ctx, ref/* , width, height */];
 }
 
-export const useBezierDraw = (ctx: CanvasRenderingContext2D | null, receiveCoordinates: Function, sheetCurrent: HTMLCanvasElement | null, count: number, bezierLeverLength: number) => {
+export const useBezierDraw = (ctx: CanvasRenderingContext2D | null, receiveCoordinates: Function, /* coordinatePairs: Coord2DPair[] ,*/ sheetCurrent: HTMLCanvasElement | null, count: number, bezierLeverLength: number) => {
     useEffect(() => { 
         if(ctx){
             let width = 0;
@@ -37,15 +38,26 @@ export const useBezierDraw = (ctx: CanvasRenderingContext2D | null, receiveCoord
                 height = sheetCurrent.clientHeight;
             }
             ctx.clearRect(0, 0, width, height);
-            const coordinates = receiveCoordinates();  
-            for(var i = 0; i < (coordinates.length - 1); i++){ 
-                const x1 = coordinates[i].x + 150;
-                const y1 = coordinates[i].y + 100;                     
+            // const coordinates = receiveCoordinates();  
+            // for(var i = 0; i < (coordinates.length - 1); i++){ 
+            //     const x1 = coordinates[i].x + 150;
+            //     const y1 = coordinates[i].y + 100;                     
                 
-                const x2 = coordinates[i + 1].x;
-                const y2 = coordinates[i + 1].y + 100;
+            //     const x2 = coordinates[i + 1].x;
+            //     const y2 = coordinates[i + 1].y + 100;
 
-                drawBezierCurve(ctx, x1, y1, x2, y2, bezierLeverLength);             
+            //     drawBezierCurve(ctx, x1, y1, x2, y2, bezierLeverLength);             
+            // }
+            const coordinates = receiveCoordinates();
+            for(var i = 0; i < coordinates.length; i++){
+                drawBezierCurve(
+                    ctx,
+                    coordinates[i].x1 + 150,
+                    coordinates[i].y1 + 100,
+                    coordinates[i].x2,
+                    coordinates[i].y2 + 100,
+                    bezierLeverLength
+                )
             }
         }   
         

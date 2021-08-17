@@ -1,6 +1,6 @@
 import { Delta } from "@/components/Editor/quillTypes";
 import { Common, Coordinates, Dialog, NodeModels } from "./nodeModels";
-import { Coord2D } from "./vectors";
+import { Coord2D, Coord2DPair } from "./vectors";
 import {RichContent} from "./wysiwygModels";
 import { literalToClass } from "./usage/dataConversion";
 import { StandardRichContent } from "./StandardRichContent";
@@ -53,6 +53,27 @@ export class AllNodeModels implements NodeModels{
         return (this.nodes as unknown as Coordinates[])
             .map(node => node.Position)
     }
+
+    getConnectionPairs = () => {
+        //const idPairs: {in: number, out: number}[] = [];
+        const coordinatePairs: Coord2DPair[] = [];
+        this.nodes.forEach(node => {
+            node.Outgoing.forEach(outgoingId => {
+                //idPairs.push({in: node.Id, out: outgoingId});
+                const outgoingNode = this.nodes.filter(node => node.Id === outgoingId)[0];
+                coordinatePairs.push({
+                    x1: (node as unknown as Coordinates).Position.x,
+                    y1: (node as unknown as Coordinates).Position.y,
+                    x2: (outgoingNode as unknown as Coordinates).Position.x,
+                    y2: (outgoingNode as unknown as Coordinates).Position.y,
+                })
+            });
+        });
+        // return idPairs.filter((item, index) => index === idPairs.indexOf(item)) //indexOf returns only the first index maching that value, filtering in uniques
+        //     .map(idPair => {x1: })
+        return coordinatePairs.filter((pair, index) => index === coordinatePairs.indexOf(pair));
+    }
+
     setHtmlById = (id: number, html: string) => {
         ((this.nodes as unknown as Common[])
             .filter(node => node.Id === id)[0] as unknown as Dialog)

@@ -1,6 +1,6 @@
 //import { DialogNode } from "./DialogNode";
 import { Delta } from "@/components/Editor/quillTypes";
-import {Coord2D} from "./vectors";
+import {Coord2D, Coord2DPair} from "./vectors";
 import {RichContent} from "./wysiwygModels";
 
 export interface Common{
@@ -93,7 +93,9 @@ export interface NodeModels{
     getCoordinatesByIndex: (index: number) => Coord2D;
     setCoordinatesByIndex: (index: number, x: number, y: number) => void;
 
-    getAllCoordinates: () => Coord2D[]
+    getAllCoordinates: () => Coord2D[];
+
+    getConnectionPairs: () => Coord2DPair[];
 
     addNode: (node: Common) => void;
 

@@ -19,7 +19,8 @@ const FlowContainer = (props: any) => {
             onClick={handleClick(props.resetSelection, props.selected, props.nodeModel)}
         >
             <FlowSheet notifyCurrentRef={sendFlowSheetCurrentRef(setSheetCurrent)}/>
-            <FlowCanvas receiveCoordinates={updateInOutCoordinates(props.nodeModel)} 
+            <FlowCanvas //receiveCoordinates={updateInOutCoordinates(props.nodeModel)} 
+                receiveCoordinates/* Pairs */={updateCoordinatePairs(props.nodeModel)} 
                 sheetCurrent={sheetCurrent}
             />
         </div>    
@@ -41,6 +42,12 @@ const handleClick = (resetSelection: Function, selected: number, model: NodeMode
 
 
         resetSelection(NO_SELECTION);  
+    }
+}
+
+const updateCoordinatePairs = (model: NodeModels) => {
+    return () => {
+        return model.getConnectionPairs();
     }
 }
 

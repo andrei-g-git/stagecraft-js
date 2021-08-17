@@ -9,12 +9,14 @@ const FlowCanvas = (props: any) => {
     useBezierDraw(
         ctx, 
         props.receiveCoordinates, 
+        //props.coordinatePairs,
         props.sheetCurrent, 
         props.count, 
         80
     );
 
     useEffect(() => {
+        console.log("PAIRS:   ", props.receiveCoordinates())
     },
         [props.count]
     )
