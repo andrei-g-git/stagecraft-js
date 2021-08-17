@@ -28,7 +28,7 @@ export const withAddDialogState = (WrappedComponent: React.FunctionComponent<any
     return withToolbarItemState(
         WrappedComponent, 
         (state: any) => {
-            console.log("from what should be a CALLBACK, state:  ", state.ui)
+            //console.log("from what should be a CALLBACK, state:  ", state.ui)
             return{
                 selected: state.ui.flowToolbarSelection
             }

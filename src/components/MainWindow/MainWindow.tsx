@@ -36,7 +36,7 @@ const MainWindow = (props: any) => {
 
     return(
         <div className="main-window-container"
-            onMouseUp={handleMouseUp(toggledConnecting)}
+            onMouseUp={handleMouseUp(props.toggleConnecting)}
         >
 
             <MainPane center={<FlowContainer nodeModel={props.nodeModel}/>}
@@ -49,9 +49,10 @@ const MainWindow = (props: any) => {
 }
 
 const handleMouseUp = (toggleConnecting: Function) => {
-    return () => {
+    return (event: any) => {
         console.log("MOUSE UP-------------------------")
         toggleConnecting(false);
+        console.log("still up")
     }
 }
 const updateInOutCoordinates = (model: NodeModels) => {
@@ -94,7 +95,7 @@ const testNodeCreation = () => {
     // }
 
 
-    console.log("ALL NODES", allNodes)
+    //console.log("ALL NODES", allNodes)
     return allNodes;
 }
 

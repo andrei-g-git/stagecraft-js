@@ -3,14 +3,15 @@ import { Common, NodeModels } from "@/models/nodeModels";
 import { changedDragCounter, changedIngoingConnectorId, changedOutgoingConnectorId, loadedFlowModel } from "@/redux/actions";
 import {connect} from "react-redux";
 import DialogCard from "../Nodes/DialogCard";
-
-import { createNode } from "@/models/usage/factory";
-import {DIALOG} from "../../models/typeOfNodes";
-import { AllNodeModels } from "@/models/AllNodeModels";
 import DragHandle from "../Nodes/DragHandle.jsx";
-import "./FlowSheet.scss";
-import Connector from "../Nodes/Connector";
 import { withDialogCardState } from "../Nodes/nodesHOC";
+import { withInConnectorState, withOutConnectorState } from "../Nodes/connectorHOC";
+import {OutConnector, InConnector} from "../Nodes/Connectors";
+import "./FlowSheet.scss";
+
+const DialogCardWithState = withDialogCardState(DialogCard);
+const OutConnectorWithState = withOutConnectorState(OutConnector);
+const InConnectorWithState = withInConnectorState(InConnector);
 
 const FlowSheet = (props: any) => {
     const sheetRef = useRef(null);
@@ -26,8 +27,6 @@ const FlowSheet = (props: any) => {
         [props.textEditorVisible]
     );
 
-    const DialogCardWithState = withDialogCardState(DialogCard);
-
     return (
         <div className="flow-sheet"
             ref={sheetRef}
@@ -39,23 +38,18 @@ const FlowSheet = (props: any) => {
                             notifyPosition={updateModelCoordinates(props.nodeModel, props.incrementDragCounter, props.count)}
                             notifyDragStop={recordModelOnDragEnd(props.nodeModel, props.loadModel)}
                         >
-                            {/* <DialogCardWithState id={props.nodeModel.getId(index)} 
-                                preview="<div>12345</div>"
-                                fullContent={props.nodeModel.getHtml(index)}
-                            />    */}
                             <div className="handle-inner-container">
-                                <Connector isOutgoing={false} 
-                                    id={props.nodeModel.getId(index)}
-                                    notifyConnection={() => {}}
-                                />
                                 <DialogCardWithState id={props.nodeModel.getId(index)} 
-                                    preview="<div>12345</div>"
+                                    preview="<div> . . . .1234</div>"
                                     fullContent={props.nodeModel.getHtml(index)}
-                                />                                 
-                                <Connector isOutgoing={true} 
-                                    id={props.nodeModel.getId(index)}
-                                    notifyConnection={addNodeConnectionToModel(props.nodeModel, props.outgoing, props.ingoing, props.resetOutgoingAndIngoing)}
+                                />    
+
+                                <InConnectorWithState id={props.nodeModel.getId(index)}
+                                    notifyConnection={addNodeConnectionToModel(props.nodeModel, props.outgoing, props.resetOutgoingAndIngoing)}
                                 />
+
+                                <OutConnectorWithState id={props.nodeModel.getId(index)}/>
+
                             </div>                           
                         </DragHandle>
                   
@@ -67,9 +61,8 @@ const FlowSheet = (props: any) => {
     )
 }
 
-const addNodeConnectionToModel = (model: NodeModels, outgoing: number, ingoing: number, resetCurrentConnections: Function) => {
-    return () => {
-        console.log(">>>>>CONNECTED \n")
+const addNodeConnectionToModel = (model: NodeModels, outgoing: number, resetCurrentConnections: Function) => {
+    return (ingoing: number) => {
         console.log(">>>>>>>>  ", outgoing, "  ", ingoing)
         model.addConnection(outgoing, ingoing);
         resetCurrentConnections();
@@ -86,7 +79,6 @@ const updateModelCoordinates = (model: NodeModels, incrementDragCounter: Functio
 
 const recordModelOnDragEnd = (model: NodeModels, updateModel: Function) => {
     return () => {
-        console.log("STOPPED")
         updateModel(model);
     }
 }

@@ -6,7 +6,7 @@ import {
     SCRIPT_NODE
 } from "../../const/toolbarItems";
 
-const AddStatefulNode = withAddDialogState(AddNode); //mapStateToProps fumbles flowToolbarSelection after initial state, everything else works ...
+const AddStatefulNode = withAddDialogState(AddNode); //mapStateToProps fumbles flowToolbarSelection after initial state, everything else works ...  -- still current?
 
 const FlowToolbar = (props: any) => {
 

@@ -56,7 +56,6 @@ export const changedDragCounter = (count: number): (ActionType & NumberPayload) 
 }
 
 export const toggledConnecting = (connecting: boolean): (ActionType & BooleanPayload) => {
-    console.log("FROM ACTION toggleConnecting, CONNECTING:   ", connecting)
     return {
         type: CONNECTING_TOGGLED,
         payload: connecting
@@ -64,7 +63,6 @@ export const toggledConnecting = (connecting: boolean): (ActionType & BooleanPay
 }
 
 export const changedFlowToolbarItem = (itemEnum: number): (ActionType & NumberPayload) => {
-    console.log("CHANGED ITEM:  ", itemEnum)
     return {
         type: FLOW_TOOLBAR_ITEM_CHANGED,
         payload: itemEnum
@@ -82,17 +80,5 @@ export const changedIngoingConnectorId = (id: number): (ActionType & NumberPaylo
     return{
         type: INGOING_CONNECTOR_ID_CHANGED,
         payload: id
-    }
-}
-
-
-
-
-
-export const testtt = (item: string): (ActionType & StringPayload) => {
-    console.log("CHANGED ITEMMMMMMMMMMM:  ", item)
-    return {
-        type: FLOW_TOOLBAR_ITEM_CHANGED,
-        payload: item
     }
 }

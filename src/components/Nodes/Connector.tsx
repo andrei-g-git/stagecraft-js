@@ -8,7 +8,7 @@ const Connector = (props: {isOutgoing: boolean, id: number, connecting: boolean,
     const [clicked, setClicked] = useState(false);
 
     useEffect(() => { //DEBUG... doesn't work, setting initial state back to false
-        console.log("USE EFFECT FROM CONNECTOR")
+        //console.log("USE EFFECT FROM CONNECTOR")
         console.log("FROM CONNECTOR, CONNECTING IS SET TO:   ", props.connecting)	 
     },
         [props.connecting]
@@ -29,7 +29,7 @@ const Connector = (props: {isOutgoing: boolean, id: number, connecting: boolean,
 }
 
 const handleClick = (setClicked: Function) => {
-    return () => {
+    return (event: MouseEvent) => {
         setClicked(true); //not sure how I'm going to toggle this off without redux and listening for state change...
         setTimeout(() => { //fuck...
             setClicked(false);
@@ -40,14 +40,15 @@ const handleClick = (setClicked: Function) => {
 }
 
 const handleMouseDown = (draggingOut: Function, setOutgoing: Function, id: number) => {
-    return () => {
+    return (event: any) => {
+        console.log("-------from connector.tsx MOUSE DOWN")
         draggingOut(true);
         setOutgoing(id);
     }
 }
 
 const handleMouseUp = (connecting: boolean, isOutgoing: boolean, draggingOut: Function, setIngoing: Function, id: number, notifyConnection: Function) => {
-    return () => {
+    return (event: any) => {
         console.log("~~~CHECKING from connector")
         console.log("//// is outgoing?   ", isOutgoing)
         if(connecting && ! isOutgoing){

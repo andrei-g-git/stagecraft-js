@@ -5,7 +5,7 @@ import { changedFlowToolbarItem, testtt } from "@/redux/actions";
 
 const AddNode = (props: any) => {
     useEffect(() => {
-        console.log("SSSSELECTED:  ", props.selected, "   AND PROP ENUM:  ",  props.itemEnum)
+        //console.log("SSSSELECTED:  ", props.selected, "   AND PROP ENUM:  ",  props.itemEnum)
     }, 
         [props.selected]
     )
