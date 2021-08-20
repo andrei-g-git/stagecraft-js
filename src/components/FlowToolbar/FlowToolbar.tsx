@@ -10,6 +10,7 @@ const AddStatefulNode = withAddDialogState(AddNode); //mapStateToProps fumbles f
 
 const FlowToolbar = (props: any) => {
 
+    /* INJECT CHILDREN --- but I'll need a new container to do it in*/
     return(
         <div className="flow-toolbar">
             <AddStatefulNode classAffix="dialog"

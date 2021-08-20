@@ -18,9 +18,9 @@ const FlowContainer = (props: any) => {
         <div style={{width: "100%", height: "100%", position: "relative"}}
             onClick={handleClick(props.resetSelection, props.selected, props.nodeModel)}
         >
+            {/* INJECT CHILDREN */}
             <FlowSheet notifyCurrentRef={sendFlowSheetCurrentRef(setSheetCurrent)}/>
-            <FlowCanvas //receiveCoordinates={updateInOutCoordinates(props.nodeModel)} 
-                receiveCoordinates/* Pairs */={updateCoordinatePairs(props.nodeModel)} 
+            <FlowCanvas receiveCoordinates={updateCoordinatePairs(props.nodeModel)} 
                 sheetCurrent={sheetCurrent}
             />
         </div>    

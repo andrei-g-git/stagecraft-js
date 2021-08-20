@@ -38,7 +38,8 @@ const FlowSheet = (props: any) => {
                             notifyPosition={updateModelCoordinates(props.nodeModel, props.incrementDragCounter, props.count)}
                             notifyDragStop={recordModelOnDragEnd(props.nodeModel, props.loadModel)}
                         >
-                            <div className="handle-inner-container">
+                            <div className="handle-inner-container"> {/* obvipusly they can't all be dialog cards... */}
+                                {/* INJECT CHILDREN */}
                                 <DialogCardWithState id={props.nodeModel.getId(index)} 
                                     preview="<div> . . . .1234</div>"
                                     fullContent={props.nodeModel.getHtml(index)}

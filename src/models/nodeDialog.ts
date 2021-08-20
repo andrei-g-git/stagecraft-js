@@ -21,5 +21,5 @@ export class NodeDialog implements Dialog{
     set Html(html: string/* HTMLElement */) {
         this.html = html;
     }
-    
+
 }

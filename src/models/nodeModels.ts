@@ -71,6 +71,28 @@ export interface DialogNode{
     dialog: Dialog
 }
 
+export interface Script{
+    get Script(): string;
+    set Script(code: string);
+
+    get Arguments(): string[];
+    set Arguments(args: string[]);
+
+    getArgument: (index: number) => string;
+    setArgument: (arg: string) => void;
+    setArgumentAt: (index: number, arg: string) => void;
+
+    removeScript: () => void;
+    removeArgument: (index: number) => void;
+}
+
+export interface ScriptNode{
+    common: Common;
+    coordinates: Coordinates; //on closer insepction this would fit into common...
+    script: Script;
+
+}
+
 export interface NodeModels{
     //[x: string]: any; //???? comes from 'quick fix' add index signature to whatever when trying to add a private method to the class...
     get Models(): Common[];
