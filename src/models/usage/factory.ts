@@ -13,11 +13,13 @@ import {
     DIALOG,
     SCRIPT
 } from "../typeOfNodes";
+import { BasicScriptNode } from "../scriptNode";
+import { NodeScript } from "../nodeScript";
 
 export const createNode = (nodeType: number/* string */): Common => {
     switch(nodeType){
         case DIALOG_NODE: //DIALOG:
-            return <Common> new BasicDialogNode(
+            return <Common><unknown> new BasicDialogNode(
                 new CommonNode(),
                 new NodeCoordinates(),
                 new NodeNames(),
@@ -25,9 +27,13 @@ export const createNode = (nodeType: number/* string */): Common => {
                 new NodeDialog()
             ); 
         case SCRIPT_NODE: //SCRIPT:
-            return <Common> new MockNode()
+            return <Common><unknown> new BasicScriptNode(
+                new CommonNode(),
+                new NodeCoordinates(),
+                new NodeScript()
+            );
         default:
-            return <Common> new BasicDialogNode(
+            return <Common><unknown> new BasicDialogNode(
                     new CommonNode(),
                     new NodeCoordinates(),
                     new NodeNames(),
@@ -38,38 +44,38 @@ export const createNode = (nodeType: number/* string */): Common => {
 }
 
 //for testing until I implement it for real
-class MockNode implements Common{
-    get Id(): number {
-        throw new Error("Method not implemented.");
-    }
-    set Id(id: number) {
-        throw new Error("Method not implemented.");
-    }
-    get Title(): string {
-        throw new Error("Method not implemented.");
-    }
-    set Title(title: string) {
-        throw new Error("Method not implemented.");
-    }
-    get Type(): string {
-        throw new Error("Method not implemented.");
-    }
-    set Type(type: string) {
-        throw new Error("Method not implemented.");
-    }
-    get Ingoing(): number[] {
-        throw new Error("Method not implemented.");
-    }
-    set Ingoing(ingoing: number[]) {
-        throw new Error("Method not implemented.");
-    }
-    get Outgoing(): number[] {
-        throw new Error("Method not implemented.");
-    }
-    set Outgoing(outgoing: number[]) {
-        throw new Error("Method not implemented.");
-    }
-    setIngoing =  (ingoing: number, index: number) => {} ;
-    setOutgoing = (outgoing: number, index: number) => {};
+// class MockNode implements Common{
+//     get Id(): number {
+//         throw new Error("Method not implemented.");
+//     }
+//     set Id(id: number) {
+//         throw new Error("Method not implemented.");
+//     }
+//     get Title(): string {
+//         throw new Error("Method not implemented.");
+//     }
+//     set Title(title: string) {
+//         throw new Error("Method not implemented.");
+//     }
+//     get Type(): string {
+//         throw new Error("Method not implemented.");
+//     }
+//     set Type(type: string) {
+//         throw new Error("Method not implemented.");
+//     }
+//     get Ingoing(): number[] {
+//         throw new Error("Method not implemented.");
+//     }
+//     set Ingoing(ingoing: number[]) {
+//         throw new Error("Method not implemented.");
+//     }
+//     get Outgoing(): number[] {
+//         throw new Error("Method not implemented.");
+//     }
+//     set Outgoing(outgoing: number[]) {
+//         throw new Error("Method not implemented.");
+//     }
+//     setIngoing =  (ingoing: number, index: number) => {} ;
+//     setOutgoing = (outgoing: number, index: number) => {};
     
-}
+// }

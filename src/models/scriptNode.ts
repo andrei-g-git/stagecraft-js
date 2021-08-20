@@ -1,14 +1,11 @@
-import { Common, Coordinates, Dialog, DialogNode, Named, Pictures } from "./nodeModels";
+import { Common, Coordinates, Script, ScriptNode } from "./nodeModels";
 import { Coord2D } from "./vectors";
-import { RichContent } from "./wysiwygModels";
 
-export class BasicDialogNode implements DialogNode, Common, Coordinates, Named, Pictures, Dialog{
+export class BasicScriptNode implements ScriptNode, Common, Coordinates, Script{
     constructor(
-        public common: Common,// = new CommonNode(),
-        public coordinates: Coordinates,// = new NodeCoordinates(),
-        public naming: Named,// = new NodeNames(),
-        public pictures: Pictures,// = new NodePictures()
-        public dialog: Dialog
+        public common: Common, //these shouldn't be public...
+        public coordinates: Coordinates,
+        public script: Script
     ){}
 
     get Id(): number {
@@ -60,31 +57,36 @@ export class BasicDialogNode implements DialogNode, Common, Coordinates, Named, 
     }
     set Position(position: Coord2D) {
         this.coordinates.Position = position;
+    }    
+
+    get Script(): string{
+        return this.script.Script;
     }
-    get Name(): string {
-        return this.naming.Name;
+    set Script(code: string){
+        this.script.Script = code;
     }
-    set Name(name: string) {
-        this.naming.Name = name;
+
+    get Arguments(): string[]{
+        return this.script.Arguments;
     }
-    
-    get Avatar(): string {
-        return this.pictures.Avatar;
+    set Arguments(args: string[]){
+        this.script.Arguments = args;
     }
-    set Avatar(avatar: string) {
-        this.pictures.Avatar = avatar;
+
+    getArgument = (index: number) => {
+        return this.script.getArgument(index);
     }
-    get Content(): RichContent {
-        return this.dialog.Content;
+    setArgument = (arg: string) => {
+        this.script.setArgument(arg);
     }
-    set Content(content: RichContent){
-        this.dialog.Content = content;
-    }  
-    get Html(): string/* HTMLElement */{
-        return this.dialog.Html;
+    setArgumentAt = (index: number, arg: string) => {
+        this.script.setArgumentAt(index, arg);
     }
-    set Html(html: string/* HTMLElement */){
-        this.dialog.Html = html;
+
+    removeScript = () => {
+        this.script.removeScript();
+    }
+    removeArgument = (index: number) => {
+        this.script.removeArgument(index);
     }   
-    
 }
