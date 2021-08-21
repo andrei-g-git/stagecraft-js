@@ -24,3 +24,22 @@ export const withDialogCardState = (
         }
     )
 }
+
+export const withScriptCardState = (WrappedComponent: React.FunctionComponent<any>) => {
+    return withState(
+        WrappedComponent, 
+        (state: any) => {
+            return {}
+        }, 
+        (dispatch: Function) => {
+            return {
+                toggleEditor: (visible: boolean) => {
+                    //dispatch(toggledTextEditor(visible))
+                },
+                selectNode: (id: number) => {
+                    dispatch(selectedNodeId(id))
+                }
+            }
+        }
+    )
+}

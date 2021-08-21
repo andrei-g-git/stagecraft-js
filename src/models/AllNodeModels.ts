@@ -1,5 +1,5 @@
 import { Delta } from "@/components/Editor/quillTypes";
-import { Common, Coordinates, Dialog, NodeModels } from "./nodeModels";
+import { Common, Coordinates, Dialog, NodeModels, Script } from "./nodeModels";
 import { Coord2D, Coord2DPair } from "./vectors";
 import {RichContent} from "./wysiwygModels";
 import { literalToClass } from "./usage/dataConversion";
@@ -22,12 +22,33 @@ export class AllNodeModels implements NodeModels{
         this.Models.push(node);
     }
 
+    getType = (index: number) => {
+        return this.Models[index].Type;
+    }
+    setType = (index: number, type: string) => {
+        this.Models[index].Type = type;
+    }
+
     getHtml = (index: number) => {
         return (this.nodes[index] as unknown as Dialog).Html;
     }
     setHtml = (index: number, html: string) => {
         (this.nodes[index] as unknown as Dialog).Html = html;
-    };    
+    };
+
+    getScript = (index: number) => {
+        return (this.nodes[index] as unknown as Script).Script;
+    }
+    setScript = (index: number, script: string) => {
+        (this.nodes[index] as unknown as Script).Script = script;
+    }
+    getArguments = (index: number) => {
+        return (this.nodes[index] as unknown as Script).Arguments;
+    }
+    setArguments = (index: number, args: string[]) => {
+        (this.nodes[index] as unknown as Script).Arguments = args;
+    }  
+
     getId = (index: number) => {
         return (this.nodes[index] as unknown as Common).Id;
     }

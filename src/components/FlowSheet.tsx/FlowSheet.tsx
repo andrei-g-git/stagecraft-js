@@ -8,6 +8,7 @@ import { withDialogCardState } from "../Nodes/nodesHOC";
 import { withInConnectorState, withOutConnectorState } from "../Nodes/connectorHOC";
 import {OutConnector, InConnector} from "../Nodes/Connectors";
 import "./FlowSheet.scss";
+import { createCard } from "../Nodes/cardFactory";
 
 const DialogCardWithState = withDialogCardState(DialogCard);
 const OutConnectorWithState = withOutConnectorState(OutConnector);
@@ -38,12 +39,10 @@ const FlowSheet = (props: any) => {
                             notifyPosition={updateModelCoordinates(props.nodeModel, props.incrementDragCounter, props.count)}
                             notifyDragStop={recordModelOnDragEnd(props.nodeModel, props.loadModel)}
                         >
-                            <div className="handle-inner-container"> {/* obvipusly they can't all be dialog cards... */}
-                                {/* INJECT CHILDREN */}
-                                <DialogCardWithState id={props.nodeModel.getId(index)} 
-                                    preview="<div> . . . .1234</div>"
-                                    fullContent={props.nodeModel.getHtml(index)}
-                                />    
+                            <div className="handle-inner-container"> 
+                                {
+                                    createCard(props.nodeModel.getType(index), index, props.nodeModel)
+                                }
 
                                 <InConnectorWithState id={props.nodeModel.getId(index)}
                                     notifyConnection={addNodeConnectionToModel(props.nodeModel, props.outgoing, props.resetOutgoingAndIngoing)}

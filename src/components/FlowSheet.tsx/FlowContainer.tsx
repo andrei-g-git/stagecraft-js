@@ -1,18 +1,24 @@
 import { NodeModels } from "@/models/nodeModels";
 import FlowCanvas from "../Canvas/FlowCanvas";
 import FlowSheet from "./FlowSheet";
-import { useState, MouseEvent } from "react";
+import { useState, MouseEvent, useEffect } from "react";
 import { withCountState } from "../Canvas/canvasHOC";
 import { connect } from "react-redux";
 import { changedFlowToolbarItem } from "@/redux/actions";
-import { NO_SELECTION } from "@/const/toolbarItems";
+import { DIALOG_NODE, NO_SELECTION, SCRIPT_NODE } from "@/const/toolbarItems";
 import { createNode } from "@/models/usage/factory";
-import { SCRIPT } from "@/models/typeOfNodes";
+import { DIALOG, SCRIPT } from "@/models/typeOfNodes";
 
 const FlowContainer = (props: any) => {
     const [sheetCurrent, setSheetCurrent] = useState(null);
 
     const FlowCanvasWithState = withCountState(FlowCanvas); //FlowCanvas has refs...
+
+    useEffect(() => {
+        console.log("from FlowContainer, model is:   ", props.nodeModel)
+    }, 
+        []
+    )
 
     return(
         <div style={{width: "100%", height: "100%", position: "relative"}}
@@ -34,10 +40,17 @@ const handleClick = (resetSelection: Function, selected: number, model: NodeMode
             const x = event.clientX;
             const y = event.clientY;
 
+            //pretty much delete this whole thing
+            const stringTypes = [
+                {enum: DIALOG_NODE, str: DIALOG},
+                {enum: SCRIPT_NODE, str: SCRIPT}
+            ]
+
             model.addNode(createNode(selected));
             const index = model.Length - 1;
             model.setId(index, model.generateId(/* model */));//Math.floor(Math.random() * 1000));
-            model.setCoordinatesByIndex(index, x, y);              
+            model.setCoordinatesByIndex(index, x, y);   
+            model.setType(index, stringTypes.filter(pair => pair.enum === selected)[0].str); //well this is shit           
         }
 
 

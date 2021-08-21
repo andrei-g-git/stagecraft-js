@@ -100,8 +100,17 @@ export interface NodeModels{
 
     get Length(): number;
 
+    getType: (index: number) => string;
+    setType: (index: number, type: string) => void;
+
     getHtml: (index: number) => string;
     setHtml: (index: number, html: string) => void;
+
+    getScript: (index: number) => string;
+    setScript: (index: number, script: string) => void;
+
+    getArguments: (index: number) => string[];
+    setArguments: (index: number, args: string[]) => void;
 
     getId: (index: number) => number;
     setId: (index: number, id: number) => void;
