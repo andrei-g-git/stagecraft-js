@@ -1,4 +1,4 @@
-import { Common, Coordinates, Script, ScriptNode } from "./nodeModels";
+import { Common, Coordinates, NamedValue, Script, ScriptNode } from "./nodeModels";
 import { Coord2D } from "./vectors";
 
 export class BasicScriptNode implements ScriptNode, Common, Coordinates, Script{
@@ -66,20 +66,20 @@ export class BasicScriptNode implements ScriptNode, Common, Coordinates, Script{
         this.script.Script = code;
     }
 
-    get Arguments(): string[]{
+    get Arguments(): NamedValue[] /* string[] */{
         return this.script.Arguments;
     }
-    set Arguments(args: string[]){
+    set Arguments(args: NamedValue[] /* string[] */){
         this.script.Arguments = args;
     }
 
     getArgument = (index: number) => {
         return this.script.getArgument(index);
     }
-    setArgument = (arg: string) => {
+    setArgument = (arg: NamedValue /* string */) => { // ARGUMENTS SHOULD HAVE NAMES --- {name: string, value: any} --- type should be preserved to render in different colors
         this.script.setArgument(arg);
     }
-    setArgumentAt = (index: number, arg: string) => {
+    setArgumentAt = (index: number, arg: NamedValue /* string */) => {
         this.script.setArgumentAt(index, arg);
     }
 

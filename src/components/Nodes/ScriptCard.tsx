@@ -1,9 +1,9 @@
+import { NamedValue } from "@/models/nodeModels";
 import "./ScriptCard.scss";
 
 const ScriptCard = (props: any) => {
-
     return(
-        <div className="script-node-container">
+        <div className="script-card">
             <div className={`script-and-arguments${argumentsLengthTooLong(props.arguments) ? " flex-column" : ""}`}>
                 <div>
                     <span className="function-span">
@@ -16,17 +16,6 @@ const ScriptCard = (props: any) => {
                         {"("}
                     </span>                
                 </div>
-
-
-                {/* <span className={`arguments-span${argumentsLengthTooLong(props.arguments) ? " one-per-line" : ""}`}>
-                    {
-                        mergeArguments(props.arguments)
-                    }
-                </span>
-
-                <span className="paranthesis">
-                    {")"}
-                </span>                 */}
                 {
                     makeParanthesisAndArguments(props.arguments, argumentsLengthTooLong)
                 }
@@ -35,28 +24,55 @@ const ScriptCard = (props: any) => {
     )
 }
 
-const mergeArguments = (args: string[]) => {
-    return args.join();
-}
-
-const argumentsLengthTooLong = (args: string[]) => {
+const argumentsLengthTooLong = (args: NamedValue[]) => {
     let isTooLong = false;
-    const combinedStringLength = args.join("").length;
-    if((args.length > 3) || combinedStringLength > 30){
+    const combinedStringLength = args
+        .map((arg: NamedValue) => arg.name + "=" + arg.value?.toString())
+        .join()
+        .length;
+
+    if((args.length > 2) || combinedStringLength > 30){
         isTooLong = true;        
     } 
-    return isTooLong;
+    return isTooLong;        
 }
 
-const makeParanthesisAndArguments = (args: string[], argumentsTooLong: Function) => {
-    let argumentElements = <div className="after-open-paranthesis">{/* <div className="script-and-arguments"> */}
-        {/* <span className="paranthesis">
-            {"("}
-        </span> */}
-
-        <span className="arguments-span">
+const makeParanthesisAndArguments = (args: NamedValue [], argumentsTooLong: Function) => {
+    let additionalClass = "";
+    let extraArgPairClass = "";
+    if(argumentsLengthTooLong(args)){
+        additionalClass = " flex-column";
+        extraArgPairClass = " argument-padding";
+    }
+    let argumentElements = <div className={`after-open-paranthesis${additionalClass}`}>
+        <span className={`arguments-line${additionalClass}`}>
             {
-                mergeArguments(args)
+                args.map((arg: NamedValue, index: number) =>
+                    <div className={`argument-name-value${extraArgPairClass}`}>
+                        <span className="argument-left-hand">
+                            {
+                                arg.name
+                            }
+                        </span>
+                        <span className="argument-equal-sign">
+                            =    
+                        </span>   
+                        <span className={`argument-${chooseValueType(arg.value)}`}>
+                            {
+                                arg.value?.toString()
+                            }
+                        </span>    
+                        {
+                            index < args.length - 1 ?
+                                <span className="argument-comma">
+                                    {", "}
+                                </span>    
+                            :
+                                <div></div>                          
+                        }               
+                    </div> 
+
+                )      
             }
         </span>
 
@@ -64,29 +80,22 @@ const makeParanthesisAndArguments = (args: string[], argumentsTooLong: Function)
             {")"}
         </span>      
     </div>
-    if(argumentsTooLong(args)){
-        argumentElements = <div className="after-open-paranthesis-one-per-line">
-            {/* <span className="paranthesis">
-                {"("}
-            </span> */}
 
-            {/* <div className="arguments-per-line"> */}
-                {
-                    args.map((arg: string) => 
-                        <span className="single-argument">
-                            {"    " + arg + ","}
-                        </span>
-                    )
-                }
-            {/* </div> */}            
-
-            <span className="paranthesis">
-                {")"}
-            </span>         
-        </div>
-    }
 
     return argumentElements;
+
+}
+
+const chooseValueType = (value: string | number | boolean | null) => {
+    //if(value === null) return "null";
+    const stringValue = String(value);
+    if(stringValue === "null") return stringValue;
+    switch(typeof value){
+        case "string": return "string";
+        case "number": return "number";
+        case "boolean": return "boolean";
+        default: return "string";
+    }
 }
 
 export default ScriptCard;

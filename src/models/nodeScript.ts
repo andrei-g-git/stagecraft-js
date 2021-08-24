@@ -1,8 +1,8 @@
-import { Script} from "./nodeModels";
+import { NamedValue, Script} from "./nodeModels";
 
 export class NodeScript implements Script{
 
-    constructor(private script: string = "", private _arguments: string[] = []){} //wait should these be public? kind of deals away with encapsulation...
+    constructor(private script: string = "", private _arguments: NamedValue[] /* string[] */ = []){} //wait should these be public? kind of deals away with encapsulation...
 
     get Script(): string {
         return this.script;
@@ -10,17 +10,17 @@ export class NodeScript implements Script{
     set Script(code: string) {
         this.script = code;
     }
-    get Arguments(): string[] {
+    get Arguments(): NamedValue[]/* string[] */ {
         return this._arguments;
     }
-    set Arguments(args: string[]) {
+    set Arguments(args: NamedValue[] /* string[] */) {
         this._arguments = args;
     }
 
     getArgument = (index: number) => {
         return this._arguments[index];
     }
-    setArgument = (arg: string) => {
+    setArgument = (arg: NamedValue /* string */) => { // ARGUMENTS SHOULD HAVE NAMES --- {name: string, value: any} --- type should be preserved to render in different colors
         if(this.script.length){
             this._arguments.push(arg);
         }else{
@@ -28,7 +28,7 @@ export class NodeScript implements Script{
         }
         
     }
-    setArgumentAt = (index: number, arg: string) => {
+    setArgumentAt = (index: number, arg: NamedValue /* string */) => {
         if(this.script.length){
             this._arguments[index] = arg;
         }else{

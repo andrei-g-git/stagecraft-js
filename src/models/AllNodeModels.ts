@@ -1,5 +1,5 @@
 import { Delta } from "@/components/Editor/quillTypes";
-import { Common, Coordinates, Dialog, NodeModels, Script } from "./nodeModels";
+import { Common, Coordinates, Dialog, NamedValue, NodeModels, Script } from "./nodeModels";
 import { Coord2D, Coord2DPair } from "./vectors";
 import {RichContent} from "./wysiwygModels";
 import { literalToClass } from "./usage/dataConversion";
@@ -42,10 +42,10 @@ export class AllNodeModels implements NodeModels{
     setScript = (index: number, script: string) => {
         (this.nodes[index] as unknown as Script).Script = script;
     }
-    getArguments = (index: number) => {
+    getArguments = (index: number) => { // ARGUMENTS SHOULD HAVE NAMES --- {name: string, value: any} --- type should be preserved to render in different colors
         return (this.nodes[index] as unknown as Script).Arguments;
     }
-    setArguments = (index: number, args: string[]) => {
+    setArguments = (index: number, args: NamedValue[] /* string[] */) => {
         (this.nodes[index] as unknown as Script).Arguments = args;
     }  
 

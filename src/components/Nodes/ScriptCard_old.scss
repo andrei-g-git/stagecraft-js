@@ -1,0 +1,48 @@
+.script-node-container{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    display: flex;
+
+    .flex-column{
+        flex-direction: column;
+    }
+    .script-and-arguments{
+        display: flex;
+        //flex-direction: column;
+
+        .function-span{
+            color: cornflowerblue;
+        }
+
+        .paranthesis{
+            color: rgb(196, 123, 196);
+        }
+
+        .after-open-paranthesis{
+            display: inline;
+
+            .arguments-span{
+                color: brown;
+            }            
+        }
+
+        .after-open-paranthesis-one-per-line{
+            //display: block;
+            display: flex;
+            flex-direction: column;
+
+            .single-argument{
+                color: brown;
+                white-space: pre-wrap;
+            }
+        }
+
+
+        // .one-per-line{
+        //     display: block;
+        // }
+    }    
+
+
+}

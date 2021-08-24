@@ -3,6 +3,11 @@ import { Delta } from "@/components/Editor/quillTypes";
 import {Coord2D, Coord2DPair} from "./vectors";
 import {RichContent} from "./wysiwygModels";
 
+export type NamedValue = {
+    name: "string",
+    value: "string" | number | boolean | null
+}
+
 export interface Common{
     // id: number;
     // title: string;
@@ -75,12 +80,12 @@ export interface Script{
     get Script(): string;
     set Script(code: string);
 
-    get Arguments(): string[];
-    set Arguments(args: string[]);
+    get Arguments(): NamedValue[];// string[];
+    set Arguments(args: NamedValue[] /* string[] */);
 
-    getArgument: (index: number) => string;
-    setArgument: (arg: string) => void;
-    setArgumentAt: (index: number, arg: string) => void;
+    getArgument: (index: number) => NamedValue;// string;
+    setArgument: (arg: NamedValue/* string */) => void;
+    setArgumentAt: (index: number, arg: NamedValue/* string */) => void;
 
     removeScript: () => void;
     removeArgument: (index: number) => void;
@@ -109,8 +114,8 @@ export interface NodeModels{
     getScript: (index: number) => string;
     setScript: (index: number, script: string) => void;
 
-    getArguments: (index: number) => string[];
-    setArguments: (index: number, args: string[]) => void;
+    getArguments: (index: number) => NamedValue[];//string[]; // ARGUMENTS SHOULD HAVE NAMES --- {name: string, value: any} --- type should be preserved to render in different colors
+    setArguments: (index: number, args: NamedValue[]/* string[] */) => void;
 
     getId: (index: number) => number;
     setId: (index: number, id: number) => void;

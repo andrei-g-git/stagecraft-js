@@ -23,7 +23,13 @@ export const createCard = (type: string, index: number, model: NodeModels) => {
                 //script={model.getScript(index)}
                 //arguments={model.getArguments(index)}
                 script="setCharacterLevel"
-                arguments={["Tristran", 111111, 222222, 333333]}
+                //arguments={["Tristran", 111111, 222222, 333333]}
+                arguments={[
+                    {name: "charName", value: "Tristran"},
+                    {name: "level", value: 22},
+                    {name: "isWounded", value: true},
+                    {name: "weapon", value: null}
+                ]}
             />
         default:
             const DefaultCard = withDialogCardState(DialogCard);
