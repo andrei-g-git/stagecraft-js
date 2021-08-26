@@ -1,14 +1,19 @@
 import { 
     EDITOR_CONTENT_CHANGED,
-    EDITOR_HTML_CHANGED 
+    EDITOR_HTML_CHANGED, 
+    EDITOR_SCRIPT_CHANGED
 } from "./actionTypes";
-import { ActionType, DeltaPayload, StringPayload } from "./types";
+import { ActionType, DeltaPayload, ScriptPayload, StringPayload } from "./types";
 
 const initialState = {
     content: {
         ops: []
     },
-    html: ""
+    html: "",
+    script: {
+        script: "",
+        arguments: []
+    }
 }
 
 export const editorReducer = (state = initialState, action: ActionType) => {
@@ -23,6 +28,11 @@ export const editorReducer = (state = initialState, action: ActionType) => {
                 ...state,
                 html: (<StringPayload><unknown>action).payload
             }  
+        case EDITOR_SCRIPT_CHANGED:
+            return{
+                ...state,
+                script: (<ScriptPayload><unknown>action).payload
+            }
         default:
             return {...state};          
     }

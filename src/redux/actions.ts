@@ -1,4 +1,4 @@
-import { NodeModels } from "@/models/nodeModels";
+import { NodeModels, ScriptContent } from "@/models/nodeModels";
 import { 
     FLOW_MODEL_LOADED,
     EDITOR_CONTENT_CHANGED,
@@ -9,9 +9,11 @@ import {
     CONNECTING_TOGGLED,
     FLOW_TOOLBAR_ITEM_CHANGED,
     OUTGOING_CONNECTOR_ID_CHANGED,
-    INGOING_CONNECTOR_ID_CHANGED
+    INGOING_CONNECTOR_ID_CHANGED,
+    EDITOR_SCRIPT_CHANGED,
+    SCRIPT_EDITOR_TOGGLED
 } from "./actionTypes";
-import { /* GenericPayload, StringPayload */ ActionType, StringPayload, NumberPayload, DeltaPayload, NodeModelsPayload, BooleanPayload} from "./types";
+import { /* GenericPayload, StringPayload */ ActionType, StringPayload, NumberPayload, DeltaPayload, NodeModelsPayload, BooleanPayload, ScriptPayload} from "./types";
 import { Delta } from "@/components/Editor/quillTypes";
 
 
@@ -80,5 +82,19 @@ export const changedIngoingConnectorId = (id: number): (ActionType & NumberPaylo
     return{
         type: INGOING_CONNECTOR_ID_CHANGED,
         payload: id
+    }
+}
+
+export const changedEditorScript = (script: ScriptContent): (ActionType & ScriptPayload) => {
+    return{
+        type: EDITOR_SCRIPT_CHANGED,
+        payload: script
+    }
+}
+
+export const toggledScriptEditor = (visible: boolean): (ActionType & BooleanPayload) => {
+    return{
+        type: SCRIPT_EDITOR_TOGGLED,
+        payload: visible
     }
 }

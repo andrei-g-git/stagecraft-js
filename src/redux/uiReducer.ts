@@ -4,11 +4,13 @@ import {
     FLOW_TOOLBAR_ITEM_CHANGED,
     INGOING_CONNECTOR_ID_CHANGED,
     OUTGOING_CONNECTOR_ID_CHANGED,
-    TEXT_EDITOR_TOGGLED
+    TEXT_EDITOR_TOGGLED,
+    SCRIPT_EDITOR_TOGGLED
 } from "./actionTypes";
 
 const initialState: {
     textEditorVisible: boolean,
+    scriptEditorVisible: boolean,
     dragCount: number,
     connecting: boolean,
     flowToolbarSelection: number,
@@ -16,6 +18,7 @@ const initialState: {
     ingoing: number
 } = {
     textEditorVisible: false,
+    scriptEditorVisible: false,
     dragCount: 0,
     connecting: false,
     flowToolbarSelection: -1,
@@ -55,7 +58,11 @@ export const uiReducer = (state = initialState, action: any) => {
                 ...state,
                 ingoing: action.payload
             }
-
+        case SCRIPT_EDITOR_TOGGLED:
+            return{
+                ...state,
+                scriptEditorVisible: action.payload
+            }
 
 
         default:

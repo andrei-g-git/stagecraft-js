@@ -114,10 +114,10 @@ async function createWindow() {
 
 //session stuff mine
 app.whenReady().then(async () => {
-  // await session.defaultSession.loadExtension(
-  //   reactDevToolsPath,
-  //   { allowFileAccess: true }   //this is the key line
-  // )
+  await session.defaultSession.loadExtension(
+    reactDevToolsPath,
+    { allowFileAccess: true }   //this is the key line 
+  )
   // await session.defaultSession.loadExtension(
   //   REDUX_DEVTOOLS_PATH,
   //   { allowFileAccess: true }   //this is the key line

@@ -8,6 +8,11 @@ export type NamedValue = {
     value: "string" | number | boolean | null
 }
 
+export type ScriptContent = {
+    script: string,
+    arguments: NamedValue[]
+}
+
 export interface Common{
     // id: number;
     // title: string;

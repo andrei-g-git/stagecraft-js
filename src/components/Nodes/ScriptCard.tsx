@@ -3,7 +3,9 @@ import "./ScriptCard.scss";
 
 const ScriptCard = (props: any) => {
     return(
-        <div className="script-card">
+        <div className="script-card"
+            onClick={props.handleClick}
+        >
             <div className={`script-and-arguments${argumentsLengthTooLong(props.arguments) ? " flex-column" : ""}`}>
                 <div>
                     <span className="function-span">

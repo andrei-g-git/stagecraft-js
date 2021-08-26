@@ -1,5 +1,8 @@
-import { changedEditorHtml, selectedNodeId, toggledTextEditor } from "@/redux/actions";
+import { changedEditorHtml, changedEditorScript, selectedNodeId, toggledScriptEditor, toggledTextEditor } from "@/redux/actions";
 import { withState } from "../_Util/higherOrderComponents";
+import { ScriptContent } from "@/models/nodeModels";
+
+//NOT USING, MOVED TO stateHOC.tsx in HigherORderComponents
 
 export const withDialogCardState = (
     WrappedComponent: React.FunctionComponent<any>
@@ -34,11 +37,14 @@ export const withScriptCardState = (WrappedComponent: React.FunctionComponent<an
         (dispatch: Function) => {
             return {
                 toggleEditor: (visible: boolean) => {
-                    //dispatch(toggledTextEditor(visible))
+                    dispatch(toggledScriptEditor(visible))
                 },
                 selectNode: (id: number) => {
                     dispatch(selectedNodeId(id))
-                }
+                },
+                sendContentToEditor: (content: ScriptContent) => {
+                    dispatch(changedEditorScript(content))
+                }                
             }
         }
     )

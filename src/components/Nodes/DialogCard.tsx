@@ -9,7 +9,7 @@ const DialogCard = (props: {
     id: number,
     toggleEditor: Function,
     selectNode: Function,
-    sendHtmlToEditor: Function,
+    sendHtmlToEditor: Function
 }) => {
 
     return (

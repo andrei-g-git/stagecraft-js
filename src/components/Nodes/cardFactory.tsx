@@ -3,7 +3,8 @@ import {
     DIALOG,
     SCRIPT
 } from "../../models/typeOfNodes";
-import { withDialogCardState, withScriptCardState } from "./nodesHOC";
+import { withDialogCardState, withScriptCardState } from "./HigherOrderComponents/stateHOC";//"./nodesHOC";
+import { withHandlers } from "./HigherOrderComponents/cardHOC";
 import DialogCard from "./DialogCard";
 import ScriptCard from "./ScriptCard";
 
@@ -17,19 +18,32 @@ export const createCard = (type: string, index: number, model: NodeModels) => {
                 fullContent={model.getHtml(index)}
             /> 
         case SCRIPT:
-            const ScriptCardWithState = withScriptCardState(ScriptCard);
-            return <ScriptCardWithState
+            //const ScriptCardWithState = withScriptCardState(ScriptCard);
+            //const WithStateAndHandlers = withHandlers(ScriptCardWithState);
+            //return <ScriptCardWithState
+            
+            const WithHandlers = withHandlers(ScriptCard); //need to call this first even though it uses store state that hansn't yet been added...
+            const WithStateAndHandlers = withScriptCardState(WithHandlers);
+            return <WithStateAndHandlers
                 id={model.getId(index)}
                 //script={model.getScript(index)}
                 //arguments={model.getArguments(index)}
                 script="setCharacterLevel"
-                //arguments={["Tristran", 111111, 222222, 333333]}
                 arguments={[
                     {name: "charName", value: "Tristran"},
                     {name: "level", value: 22},
                     {name: "isWounded", value: true},
                     {name: "weapon", value: null}
                 ]}
+                content={{
+                    script: "setCharacterLevel",
+                    arguments: [
+                        {name: "charName", value: "Tristran"},
+                        {name: "level", value: 22},
+                        {name: "isWounded", value: true},
+                        {name: "weapon", value: null}
+                    ]
+                }}
             />
         default:
             const DefaultCard = withDialogCardState(DialogCard);

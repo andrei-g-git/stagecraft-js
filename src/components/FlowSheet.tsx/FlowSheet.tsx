@@ -4,13 +4,13 @@ import { changedDragCounter, changedIngoingConnectorId, changedOutgoingConnector
 import {connect} from "react-redux";
 import DialogCard from "../Nodes/DialogCard";
 import DragHandle from "../Nodes/DragHandle.jsx";
-import { withDialogCardState } from "../Nodes/nodesHOC";
+//import { withDialogCardState } from "../Nodes/nodesHOC_delete";
 import { withInConnectorState, withOutConnectorState } from "../Nodes/connectorHOC";
 import {OutConnector, InConnector} from "../Nodes/Connectors";
 import "./FlowSheet.scss";
 import { createCard } from "../Nodes/cardFactory";
 
-const DialogCardWithState = withDialogCardState(DialogCard);
+//const DialogCardWithState = withDialogCardState(DialogCard);
 const OutConnectorWithState = withOutConnectorState(OutConnector);
 const InConnectorWithState = withInConnectorState(InConnector);
 

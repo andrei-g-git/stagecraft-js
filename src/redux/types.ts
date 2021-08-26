@@ -1,5 +1,5 @@
 import { Delta } from "@/components/Editor/quillTypes"
-import { NodeModels } from "@/models/nodeModels"
+import { NodeModels, ScriptContent } from "@/models/nodeModels"
 
 export type GenericPayload = {
     type: string,
@@ -17,4 +17,5 @@ export type StringPayload = {payload: string}
 export type BooleanPayload = {payload: boolean}
 export type DeltaPayload = {payload: Delta}
 export type NodeModelsPayload = {payload: NodeModels}
+export type ScriptPayload = {payload: ScriptContent}
 //export type Payload = {payload: }
