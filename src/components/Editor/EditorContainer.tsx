@@ -5,7 +5,7 @@ import { loadedFlowModel, toggledTextEditor } from "@/redux/actions";
 import { NodeModels } from "@/models/nodeModels";
 import { Delta } from "./quillTypes";
 import { withQuillEditorState } from "./editorHOC";
-
+import { createEditor } from "./editorFactory.js";
 const EditorContainer = (props: any) => {
 
     const EditorWithState = withQuillEditorState(QuillEditor); //this causes the editor to loose focus on every key press...
@@ -13,7 +13,10 @@ const EditorContainer = (props: any) => {
     return (
         props.visible? 
             <div className="editor-container">
-                <EditorWithState />
+                {/* <EditorWithState /> */}
+                {
+                    createEditor(props.type)
+                }   
 
                 <button onClick={() => handleClick(
                         props.updateModel,
@@ -27,14 +30,16 @@ const EditorContainer = (props: any) => {
                     Done!
                 </button>
             </div>
+
         :
             <div></div>
     )
 }
 
 const handleClick = (updateModel: Function, toggleEditor: Function, model: NodeModels, id: number, delta: Delta, html: string) => {
-    model.setHtmlById(id, html);
-    model.setJsonById(id, delta);
+    //model.setHtmlById(id, html);
+    //model.setJsonById(id, delta);
+    console.log("ATTEMPRING TO TOGGLE EDITOR OFF")
     toggleEditor(false);
 }
 

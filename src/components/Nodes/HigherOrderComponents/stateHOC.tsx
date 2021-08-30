@@ -1,6 +1,7 @@
-import { changedEditorHtml, changedEditorScript, selectedNodeId, toggledScriptEditor, toggledTextEditor } from "@/redux/actions";
+import { changedEditor, changedEditorDialog, changedEditorHtml, changedEditorScript, selectedNodeId, toggledEditor, toggledScriptEditor, toggledTextEditor } from "@/redux/actions";
 import { withState } from "../../_Util/higherOrderComponents";
-import { ScriptContent } from "@/models/nodeModels";
+import { DialogContent, ScriptContent } from "@/models/nodeModels";
+import { SCRIPT_EDITOR, TEXT_EDITOR } from "@/const/editors";
 
 //NOT USING, MOVED TO stateHOC.tsx in HigherORderComponents
 
@@ -15,14 +16,19 @@ export const withDialogCardState = (
         (dispatch: Function) => {
             return {
                 toggleEditor: (visible: boolean) => {
-                    dispatch(toggledTextEditor(visible))
+                    //dispatch(toggledTextEditor(visible))
+                    dispatch(toggledEditor(visible));
+                    dispatch(changedEditor(TEXT_EDITOR));
                 },
                 selectNode: (id: number) => {
                     dispatch(selectedNodeId(id))
                 },
-                sendHtmlToEditor: (html: string) => {
-                    dispatch(changedEditorHtml(html))
-                }
+                // sendHtmlToEditor: (html: string) => {
+                //     dispatch(changedEditorHtml(html))
+                // },
+                sendContentToEditor: (content: DialogContent) => {
+                    dispatch(changedEditorDialog(content));
+                }  
             }
         }
     )
@@ -35,16 +41,18 @@ export const withScriptCardState = (WrappedComponent: React.FunctionComponent<an
             return {}
         }, 
         (dispatch: Function) => {
-            console.log("store dispatches from stateHOC")
+            //console.log("store dispatches from stateHOC")
             return {
                 toggleEditor: (visible: boolean) => {
-                    dispatch(toggledScriptEditor(visible))
+                    //dispatch(toggledScriptEditor(visible))
+                    dispatch(toggledEditor(visible));
+                    dispatch(changedEditor(SCRIPT_EDITOR));
                 },
                 selectNode: (id: number) => {
                     dispatch(selectedNodeId(id))
                 },
                 sendContentToEditor: (content: ScriptContent) => {
-                    dispatch(changedEditorScript(content))
+                    dispatch(changedEditorScript(content));
                 }                
             }
         }

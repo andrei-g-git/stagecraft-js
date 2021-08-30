@@ -1,3 +1,4 @@
+import { NO_EDITOR } from "@/const/editors";
 import {
     CONNECTING_TOGGLED,
     DRAG_COUNTER_CHANGED,
@@ -5,8 +6,11 @@ import {
     INGOING_CONNECTOR_ID_CHANGED,
     OUTGOING_CONNECTOR_ID_CHANGED,
     TEXT_EDITOR_TOGGLED,
-    SCRIPT_EDITOR_TOGGLED
+    SCRIPT_EDITOR_TOGGLED,
+    EDITOR_CHANGED,
+    EDITOR_TOGGLED
 } from "./actionTypes";
+import { NO_SELECTION } from "@/const/toolbarItems";
 
 const initialState: {
     textEditorVisible: boolean,
@@ -15,15 +19,19 @@ const initialState: {
     connecting: boolean,
     flowToolbarSelection: number,
     outgoing: number,
-    ingoing: number
+    ingoing: number,
+    editor: number,
+    editorVisible: boolean
 } = {
     textEditorVisible: false,
     scriptEditorVisible: false,
     dragCount: 0,
     connecting: false,
-    flowToolbarSelection: -1,
+    flowToolbarSelection: NO_SELECTION,
     outgoing: -1,
-    ingoing: -1
+    ingoing: -1,
+    editor: NO_EDITOR,
+    editorVisible: false
 }
 
 export const uiReducer = (state = initialState, action: any) => {
@@ -63,6 +71,16 @@ export const uiReducer = (state = initialState, action: any) => {
                 ...state,
                 scriptEditorVisible: action.payload
             }
+        case EDITOR_CHANGED:
+            return{
+                ...state,
+                editor: action.payload
+            }
+        case EDITOR_TOGGLED:
+            return{
+                ...state,
+                editorVisible: action.payload
+            }           
 
 
         default:

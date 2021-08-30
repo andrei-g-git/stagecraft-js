@@ -6,13 +6,13 @@ import "./QuillEditor.scss";
 import { useEffect } from "react";
 
 const QuillEditor = (props) => {
-    useEffect(() => {
-        if(props.visible) {
-            props.changeHtml(props.html)
-        }
-    },
-        [props.visible]
-    )
+    // useEffect(() => {
+    //     if(props.visible) {
+    //         props.changeHtml(props.html)
+    //     }
+    // },
+    //     [props.visible]
+    // )
 
     return(
         // props.visible ?
@@ -33,7 +33,8 @@ const QuillEditor = (props) => {
                 value={props.html}
                 modules={getModules()}
                 formats={null}
-                onChange={handleChange(props.changeContent, props.changeHtml)}
+                //onChange={handleChange(props.changeContent, props.changeHtml)}
+                onChange={handleChange(props.changeDialog)}
             >
 
             </ReactQuill>               
@@ -42,10 +43,16 @@ const QuillEditor = (props) => {
     )
 }
 
-const handleChange = (changeContent, changeHtml) => {
+const handleChange = (changeDialog/* changeContent, changeHtml */) => {
     return (value, delta, source, editor) => {
-        changeContent(editor.getContents());
-        changeHtml(value);
+        // changeContent(editor.getContents());
+        // changeHtml(value);
+        console.log("typing")
+        changeDialog({
+            preview: "zzzz",
+            full: value,
+            delta: editor.getContents()
+        })
     }
 }
 

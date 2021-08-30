@@ -1,4 +1,4 @@
-import { NodeModels, ScriptContent } from "@/models/nodeModels";
+import { DialogContent, NodeModels, ScriptContent } from "@/models/nodeModels";
 import { 
     FLOW_MODEL_LOADED,
     EDITOR_CONTENT_CHANGED,
@@ -11,9 +11,12 @@ import {
     OUTGOING_CONNECTOR_ID_CHANGED,
     INGOING_CONNECTOR_ID_CHANGED,
     EDITOR_SCRIPT_CHANGED,
-    SCRIPT_EDITOR_TOGGLED
+    SCRIPT_EDITOR_TOGGLED,
+    EDITOR_CHANGED,
+    EDITOR_TOGGLED,
+    EDITOR_DIALOG_CHANGED
 } from "./actionTypes";
-import { /* GenericPayload, StringPayload */ ActionType, StringPayload, NumberPayload, DeltaPayload, NodeModelsPayload, BooleanPayload, ScriptPayload} from "./types";
+import { /* GenericPayload, StringPayload */ ActionType, StringPayload, NumberPayload, DeltaPayload, NodeModelsPayload, BooleanPayload, ScriptPayload, DialogPayload} from "./types";
 import { Delta } from "@/components/Editor/quillTypes";
 
 
@@ -96,5 +99,26 @@ export const toggledScriptEditor = (visible: boolean): (ActionType & BooleanPayl
     return{
         type: SCRIPT_EDITOR_TOGGLED,
         payload: visible
+    }
+}
+
+export const changedEditor = (editorEnum: number): (ActionType & NumberPayload) => {
+    return{
+        type: EDITOR_CHANGED,
+        payload: editorEnum
+    }
+}
+
+export const toggledEditor = (visible: boolean): (ActionType & BooleanPayload) => {
+    return {
+        type: EDITOR_TOGGLED,
+        payload: visible
+    }
+}
+
+export const changedEditorDialog = (dialog: DialogContent): (ActionType & DialogPayload) => {
+    return{
+        type: EDITOR_DIALOG_CHANGED,
+        payload: dialog
     }
 }

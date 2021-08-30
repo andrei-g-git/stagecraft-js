@@ -13,6 +13,12 @@ export type ScriptContent = {
     arguments: NamedValue[]
 }
 
+export type DialogContent = {
+    preview: string,
+    full: string,
+    delta: Delta
+}
+
 export interface Common{
     // id: number;
     // title: string;

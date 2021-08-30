@@ -9,12 +9,13 @@ const DialogCard = (props: {
     id: number,
     toggleEditor: Function,
     selectNode: Function,
-    sendHtmlToEditor: Function
+    //sendHtmlToEditor: Function
+    sendContentToEditor: Function
 }) => {
 
     return (
         <div className="dialog-node-container"
-            onClick={() => handleClick(props.id, props.toggleEditor, props.selectNode, props.sendHtmlToEditor, props.fullContent)}
+            onClick={() => handleClick(props.id, props.toggleEditor, props.selectNode, /* props.sendHtmlToEditor, */props.sendContentToEditor, props.preview, props.fullContent)}
         >
             <NodeTextAndPreview preview={props.preview}
                 fullContent={props.fullContent}
@@ -23,10 +24,14 @@ const DialogCard = (props: {
     )
 }
 
-const handleClick = (id: number, toggleEditor: Function, selectNode: Function, sendHtmlToEditor: Function, fullContent: string) => {
+const handleClick = (id: number, toggleEditor: Function, selectNode: Function, /* sendHtmlToEditor: Function, */sendContentToEditor: Function, preview: string, fullContent: string) => {
     selectNode(id);
     toggleEditor(true);
-    sendHtmlToEditor(fullContent);
+    //sendHtmlToEditor(fullContent);
+    sendContentToEditor({
+        preview: preview,
+        full: fullContent
+    })
 }
 
 // const mapStateToProps = (state: any) => {
