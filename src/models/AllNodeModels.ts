@@ -36,6 +36,32 @@ export class AllNodeModels implements NodeModels{
         (this.nodes[index] as unknown as Dialog).Html = html;
     };
 
+    getPreviewHtml = (index: number) => {
+        return (this.nodes[index] as unknown as Dialog).PreviewHtml;
+    }
+    setPreviewHtml = (index: number, html: string) => {
+        (this.nodes[index] as unknown as Dialog).PreviewHtml = html;
+    }
+    getPreviewJson = (index: number) => {
+        return (this.nodes[index] as unknown as Dialog).PreviewJson;
+    }
+    setPreviewJson = (index: number, json: RichContent) => {
+        (this.nodes[index] as unknown as Dialog).PreviewJson = json;
+    }
+//
+    getFullHtml = (index: number) => {
+        return (this.nodes[index] as unknown as Dialog).FullHtml;
+    }
+    setFullHtml = (index: number, html: string) => {
+        (this.nodes[index] as unknown as Dialog).FullHtml = html;
+    }
+    getFullJson = (index: number) => {
+        return (this.nodes[index] as unknown as Dialog).FullJson;
+    }
+    setFullJson = (index: number, json: RichContent) => {
+        (this.nodes[index] as unknown as Dialog).FullJson = json;
+    }
+//    
     getScript = (index: number) => {
         return (this.nodes[index] as unknown as Script).Script;
     }
@@ -100,7 +126,7 @@ export class AllNodeModels implements NodeModels{
             .filter(node => node.Id === id)[0] as unknown as Dialog)
             .Html = html;
     }
-    setJsonById = (id: number, content: Delta) => {
+    setJsonById = (id: number, content: Delta) => { // NO DELTA!!!
         const literal = {content: content.ops};
         const conentInstance = literalToClass(literal, StandardRichContent);
 
@@ -110,6 +136,32 @@ export class AllNodeModels implements NodeModels{
                                                 //handle the properties i.e. constructor(public property: initialValue)
     }
 
+
+    setPreviewHtmlById = (id: number, html: string) => {
+        ((this.nodes as unknown as Common[])
+            .filter(node => node.Id === id)[0] as unknown as Dialog)
+            .PreviewHtml = html;       
+    }
+    setPreviewJsonById = (id: number, json: RichContent) => {
+        // const literal = {content: json.Content};
+        // const conentInstance = literalToClass(literal, StandardRichContent);
+
+        ((this.nodes as unknown as Common[])
+            .filter(node => node.Id === id)[0] as unknown as Dialog)
+            .PreviewJson = json // --- not actual json, it's a RichContent instance ... //conentInstance;      wefwafawefawef  //<<<<<<<  
+    }
+//
+    setFullHtmlById = (id: number, html: string) => {
+        ((this.nodes as unknown as Common[])
+            .filter(node => node.Id === id)[0] as unknown as Dialog)
+            .FullHtml = html;       
+    }
+    setFullJsonById = (id: number, json: RichContent) => {
+        ((this.nodes as unknown as Common[])
+            .filter(node => node.Id === id)[0] as unknown as Dialog)
+            .FullJson = json;
+    }
+//
     generateId = (/* self: NodeModels */) => { //I definitely need to test this...
         let id = Math.floor(Math.random() * 1000);
         //id = this.checkIdForDoublesAndUpdate(this, id); // stack overflow...

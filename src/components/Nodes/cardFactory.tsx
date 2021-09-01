@@ -10,13 +10,42 @@ import ScriptCard from "./ScriptCard";
 
 export const createCard = (type: string, index: number, model: NodeModels) => {
     switch(type){
+        // case DIALOG:
+        //     const DialogCardWithState = withDialogCardState(DialogCard);
+        //     return <DialogCardWithState 
+        //         id={model.getId(index)} 
+        //         preview="<div> . . . .1234</div>"
+        //         fullContent={model.getHtml(index)}
+        //     /> 
         case DIALOG:
-            const DialogCardWithState = withDialogCardState(DialogCard);
-            return <DialogCardWithState 
-                id={model.getId(index)} 
-                preview="<div> . . . .1234</div>"
-                fullContent={model.getHtml(index)}
-            /> 
+            const DialogWithHandlers = withHandlers(DialogCard);
+            const DialogWithStateAndHandlers = withDialogCardState(DialogWithHandlers);
+            return<DialogWithStateAndHandlers id={model.getId(index)}
+                preview={model.getPreviewHtml(index)} 
+                full={model.getFullHtml(index)}
+                content={{
+                    preview: {
+                        html: model.getPreviewHtml(index),
+                        json: model.getPreviewJson(index)
+                    },
+                    full: {
+                        html: model.getFullHtml(index),
+                        json: model.getFullJson(index)
+                    }                    
+                }}
+                // preview={`<p>Foo ${model.getId(index)}</p>`}
+                // full={`<p>${index}${index}${index}${index}</p>`}
+                // content={{
+                //     preview: {
+                //         html: `<p>Foo ${model.getId(index)}</p>`,
+                //         json: {ops: [{attributes: [], insert: `Foo ${model.getId(index)}`}]}
+                //     },
+                //     full: {
+                //         html: `<p>${index}${index}${index}${index}</p>`,
+                //         json: {ops: [{attributes: [], insert: `${index}${index}${index}${index}`}]}
+                //     }                    
+                // }}
+            />
         case SCRIPT:
             //const ScriptCardWithState = withScriptCardState(ScriptCard);
             //const WithStateAndHandlers = withHandlers(ScriptCardWithState);

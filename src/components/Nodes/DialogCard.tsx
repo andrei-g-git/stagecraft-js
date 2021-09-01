@@ -2,36 +2,44 @@ import { connect } from "react-redux";
 import NodeTextAndPreview from "./NodeTextAndPreview";
 import { changedEditorHtml, selectedNodeId, toggledTextEditor } from "@/redux/actions";
 import "./DialogCard.scss";
+import { DialogContent } from "@/models/nodeModels";
+import { useEffect } from "react";
 
 const DialogCard = (props: {
     preview: string, 
-    fullContent: string,
+    full/* Content */: string,
+    content: DialogContent,
     id: number,
     toggleEditor: Function,
     selectNode: Function,
     //sendHtmlToEditor: Function
     sendContentToEditor: Function
 }) => {
-
+    useEffect(() => {
+        console.log("CONTENT SHOULD CHANGE")
+    },
+        [props.preview, props.full]
+    )
     return (
         <div className="dialog-node-container"
-            onClick={() => handleClick(props.id, props.toggleEditor, props.selectNode, /* props.sendHtmlToEditor, */props.sendContentToEditor, props.preview, props.fullContent)}
+            onClick={() => handleClick(props.id, props.toggleEditor, props.selectNode, /* props.sendHtmlToEditor, */props.sendContentToEditor, props.content/* props.preview, props.fullContent */)}
         >
             <NodeTextAndPreview preview={props.preview}
-                fullContent={props.fullContent}
+                fullContent={props.full/* Content */}
             />
         </div>
     )
 }
 
-const handleClick = (id: number, toggleEditor: Function, selectNode: Function, /* sendHtmlToEditor: Function, */sendContentToEditor: Function, preview: string, fullContent: string) => {
+const handleClick = (id: number, toggleEditor: Function, selectNode: Function, /* sendHtmlToEditor: Function, */sendContentToEditor: Function, content: DialogContent/* preview: string, fullContent: string */) => {
     selectNode(id);
     toggleEditor(true);
     //sendHtmlToEditor(fullContent);
-    sendContentToEditor({
-        preview: preview,
-        full: fullContent
-    })
+    // sendContentToEditor({
+    //     preview: preview,
+    //     full: fullContent
+    // })
+    sendContentToEditor(content);
 }
 
 // const mapStateToProps = (state: any) => {

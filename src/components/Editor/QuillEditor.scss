@@ -1,12 +1,20 @@
 .quill-container{
     border: solid 1px black;
     width: 100%; //300px;
-    height: 50%; //300px;
+    height: 70%; //300px;
     //z-index: -3324;
     background-color: antiquewhite;
 
+    .full-quill{
+        background-color: deepskyblue;
+        height: 20rem;
+    }
+    .preview-quill{
+        background-color: aquamarine;
+        height: 10rem;
+    }
     .ql-container { //from react-quill
-        min-height: 20rem;
+        min-height: 10rem;
         //height: 100%;
         flex: 1;
         display: flex;

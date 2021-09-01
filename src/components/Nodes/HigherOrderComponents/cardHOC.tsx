@@ -1,4 +1,4 @@
-import { ScriptContent } from "@/models/nodeModels";
+import { DialogContent, ScriptContent } from "@/models/nodeModels";
 
 //store HOCs are in nodesHOC.tsx, should move here
 
@@ -17,7 +17,7 @@ export const withHandlers = (WrappedComponent: React.FunctionComponent<any>) =>
         )
     }
 
-const handleClick = (id: number, toggleEditor: Function, selectNode: Function, sendContentToEditor: Function, content: string | ScriptContent) => {
+const handleClick = (id: number, toggleEditor: Function, selectNode: Function, sendContentToEditor: Function, content: DialogContent | ScriptContent) => {
     console.log("click handler added")
     return (event: MouseEvent) => {
         console.log("clicked")

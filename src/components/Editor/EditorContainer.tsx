@@ -2,10 +2,12 @@ import QuillEditor from "./QuillEditor.jsx";
 import "./EditorContainer.scss"
 import { connect } from "react-redux";
 import { loadedFlowModel, toggledTextEditor } from "@/redux/actions";
-import { NodeModels } from "@/models/nodeModels";
+import { DialogContent, NodeModels } from "@/models/nodeModels";
 import { Delta } from "./quillTypes";
 import { withQuillEditorState } from "./editorHOC";
 import { createEditor } from "./editorFactory.js";
+import { literalToClass } from "@/models/usage/dataConversion.js";
+import { StandardRichContent } from "@/models/StandardRichContent.js";
 const EditorContainer = (props: any) => {
 
     const EditorWithState = withQuillEditorState(QuillEditor); //this causes the editor to loose focus on every key press...
@@ -23,8 +25,10 @@ const EditorContainer = (props: any) => {
                         props.toggleEditor,
                         props.nodeModel,
                         props.id,
-                        props.content,
-                        props.html
+                        //props.content,
+                        // props.json,
+                        // props.html
+                        props.dialog
                     )}
                 >
                     Done!
@@ -36,10 +40,28 @@ const EditorContainer = (props: any) => {
     )
 }
 
-const handleClick = (updateModel: Function, toggleEditor: Function, model: NodeModels, id: number, delta: Delta, html: string) => {
+const handleClick = (updateModel: Function, toggleEditor: Function, model: NodeModels, id: number, dialog: DialogContent/* delta: Delta, html: string */) => {
     //model.setHtmlById(id, html);
     //model.setJsonById(id, delta);
-    console.log("ATTEMPRING TO TOGGLE EDITOR OFF")
+
+
+
+    //console.log("ATTEMPRING TO TOGGLE EDITOR OFF --- html: \n", html)
+    model.setPreviewHtmlById(id, dialog.preview.html);//`<p>preview ${id}</p>`);
+    model.setFullHtmlById(id, dialog.full.html);//html);
+
+    const previewRichContent = literalToClass(
+        //{content: [{attributes: [], insert: `preview ${id}`}]},
+        dialog.preview.json,
+        StandardRichContent
+    )
+    model.setPreviewJsonById(id, previewRichContent);
+    const fullRichContent = literalToClass(
+        //{content: delta.ops},
+        dialog.full.json,
+        StandardRichContent
+    )
+    model.setFullJsonById(id, fullRichContent);
     toggleEditor(false);
 }
 

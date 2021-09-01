@@ -8,17 +8,37 @@ export type NamedValue = {
     value: "string" | number | boolean | null
 }
 
-export type ScriptContent = {
+export type ContentVersions = {
+    html: string,
+    json: RichContent//Delta
+}
+
+// export type ScriptContent = { //SHOULD NOT BE HERE
+//     script: string,
+//     arguments: NamedValue[]
+// }
+export type ScriptContent = { //SHOULD NOT BE HERE
     script: string,
     arguments: NamedValue[]
 }
 
+// export type DialogContent = {
+//     preview: string,
+//     full: string,
+//     delta: Delta // SHOULD NOT KNOW WHAT A DELTA IS!! -- correct interface is RichContent
+// }                      // OR since this type isn't used in the model then it shouldn't be here...
 export type DialogContent = {
-    preview: string,
-    full: string,
-    delta: Delta
-}
-
+    // preview: ContentVersions, //and it shouldn't implement ContentVersions, it needs access to RichContnet, but DialogContent works with the Delta type
+    // full: ContentVersions
+    preview: {
+        html: string,
+        json: Delta
+    },
+    full: {
+        html: string,
+        json: Delta
+    }
+}                      // SHOULD NOT BE HERE
 export interface Common{
     // id: number;
     // title: string;
@@ -69,6 +89,7 @@ export interface Named{
     get Name(): string;
     set Name(name: string);
 }
+
 export interface Dialog{
     //content: RichContent;
 
@@ -77,6 +98,24 @@ export interface Dialog{
 
     get Html(): string; //HTMLElement;
     set Html(html: string/* HTMLElement */);
+
+    get Preview(): ContentVersions;
+    set Preview(preview: ContentVersions);
+
+    get PreviewHtml(): string;
+    set PreviewHtml(html: string);
+
+    get PreviewJson(): RichContent;
+    set PreviewJson(json: RichContent);
+
+    get Full(): ContentVersions;
+    set Full(full: ContentVersions);
+
+    get FullHtml(): string;
+    set FullHtml(html: string);
+
+    get FullJson(): RichContent;
+    set FullJson(json: RichContent);
 }
 
 export interface DialogNode{
@@ -122,6 +161,27 @@ export interface NodeModels{
     getHtml: (index: number) => string;
     setHtml: (index: number, html: string) => void;
 
+    getPreviewHtml: (index: number) => string;
+    setPreviewHtml: (index: number, html: string) => void;
+
+    getPreviewJson: (index: number) => RichContent;
+    setPreviewJson: (index: number, json: RichContent) => void;    
+
+    getFullHtml: (index: number) => string;
+    setFullHtml: (index: number, html: string) => void;
+
+    getFullJson: (index: number) => RichContent;
+    setFullJson: (index: number, json: RichContent) => void;  
+
+    //getPreviewHtmlById: (index: number) => string;
+    setPreviewHtmlById: (id: number, html: string) => void;
+
+    //getPreviewJsonById: (index: number) => Delta;
+    setPreviewJsonById: (id: number, json: RichContent) => void;  
+
+    setFullHtmlById: (id: number, html: string) => void;
+    setFullJsonById: (id: number, json: RichContent) => void;     
+
     getScript: (index: number) => string;
     setScript: (index: number, script: string) => void;
 
@@ -150,4 +210,5 @@ export interface NodeModels{
     //checkIdForDoublesAndUpdate: (self: NodeModels, id: number) => number;
 
     addConnection: (outgoing: number, ingoing: number) => void;
+
 }

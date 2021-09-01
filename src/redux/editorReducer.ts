@@ -15,10 +15,20 @@ const initialState = {
         script: "",
         arguments: []
     },
+    // dialog: {
+    //     preview: "",
+    //     full: "",
+    //     delta: {ops: []}
+    // }
     dialog: {
-        preview: "",
-        full: "",
-        delta: {ops: []}
+        preview: {
+            html: "",
+            json: {ops: []}
+        },
+        full: {
+            html: "",
+            json: {ops: []}
+        }
     }
 }
 

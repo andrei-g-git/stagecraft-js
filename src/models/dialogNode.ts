@@ -1,4 +1,5 @@
-import { Common, Coordinates, Dialog, DialogNode, Named, Pictures } from "./nodeModels";
+import { Delta } from "@/components/Editor/quillTypes";
+import { Common, ContentVersions, Coordinates, Dialog, DialogNode, Named, Pictures } from "./nodeModels";
 import { Coord2D } from "./vectors";
 import { RichContent } from "./wysiwygModels";
 
@@ -11,6 +12,48 @@ export class BasicDialogNode implements DialogNode, Common, Coordinates, Named, 
         public dialog: Dialog
     ){}
 
+    get PreviewHtml(): string {
+        return this.dialog.PreviewHtml;
+    }
+    set PreviewHtml(html: string) {
+        this.dialog.PreviewHtml = html;
+    }
+    get PreviewJson(): RichContent {
+        return this.dialog.PreviewJson;
+    }
+    set PreviewJson(json: RichContent) {
+        this.dialog.PreviewJson = json;
+    }
+
+    get Preview(): ContentVersions {
+        return this.dialog.Preview;
+    }
+    set Preview(preview: ContentVersions) {
+        this.dialog.Preview = preview;
+    }
+//
+    get FullHtml(): string {
+        return this.dialog.FullHtml;
+    }
+    set FullHtml(html: string) {
+        this.dialog.FullHtml = html;
+    }
+    get FullJson(): RichContent {
+        return this.dialog.FullJson;
+    }
+    set FullJson(json: RichContent) {
+        this.dialog.FullJson = json;
+    }
+
+    get Full(): ContentVersions {
+        return this.dialog.Full;
+    }
+    set Full(full: ContentVersions) {
+        this.dialog.Full = full;
+    }
+//
+
+    
     get Id(): number {
         return this.common.Id;
     }

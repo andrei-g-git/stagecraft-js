@@ -28,13 +28,30 @@ const QuillEditor = (props) => {
         //     </div>
         // :
         //     <div></div> 
+
+        
+
         <div className="quill-container">
-            <ReactQuill theme="snow"
-                value={props.html}
+            <ReactQuill className="preview-quill"
+                theme="snow"
+                value={props.preview}
                 modules={getModules()}
                 formats={null}
                 //onChange={handleChange(props.changeContent, props.changeHtml)}
-                onChange={handleChange(props.changeDialog)}
+                //onChange={handleChange(props.changeDialog)}
+                onChange={handleChangePreview(props.changePreviewDialog, props.dialog)}
+            >
+
+            </ReactQuill>  
+
+            <ReactQuill className="full-quill"
+                theme="snow"
+                value={props.full}
+                modules={getModules()}
+                formats={null}
+                //onChange={handleChange(props.changeContent, props.changeHtml)}
+                //onChange={handleChange(props.changeDialog)}
+                onChange={handleChangeFull(props.changeFullDialog, props.dialog)}
             >
 
             </ReactQuill>               
@@ -43,9 +60,20 @@ const QuillEditor = (props) => {
     )
 }
 
+const handleChangeFull = (changeFullDialog, oldDialogState/* I should not be able to access this from here, I only use it for this one thing... */) => {
+    return (value, delta, source, editor) => {
+        changeFullDialog(value, editor.getContents(), oldDialogState);
+    }
+}
+const handleChangePreview = (changePreviewDialog, oldDialogState) => {
+    return (value, delta, source, editor) => {
+        changePreviewDialog(value, editor.getContents(), oldDialogState);
+    }
+}
+
 const handleChange = (changeDialog/* changeContent, changeHtml */) => {
     return (value, delta, source, editor) => {
-        // changeContent(editor.getContents());
+        // changeContent(editor.getContents());;;;
         // changeHtml(value);
         console.log("typing")
         changeDialog({
