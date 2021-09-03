@@ -15,11 +15,6 @@ const initialState = {
         script: "",
         arguments: []
     },
-    // dialog: {
-    //     preview: "",
-    //     full: "",
-    //     delta: {ops: []}
-    // }
     dialog: {
         preview: {
             html: "",

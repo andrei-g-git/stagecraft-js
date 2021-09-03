@@ -3,7 +3,8 @@ import { withState } from "../_Util/higherOrderComponents"
 import { Delta } from "./quillTypes"
 import { DialogContent, NodeModels } from "@/models/nodeModels"
 
-export const withQuillEditorState = (
+export const withQuillEditorState = ( //this causes the editor to loose focus on every key press...
+
     WrappedComponent: React.FunctionComponent<any>
 ) => {
     return withState(
@@ -11,8 +12,7 @@ export const withQuillEditorState = (
         (state: any) => {
             return {
                 content: state.editor.content,
-                html: state.editor.dialog.full.html,//state.editor.html,
-                //visible: state.ui.textEditorVisible,
+                html: state.editor.dialog.full.html,
                 id: state.model.selected,
                 dialog: state.editor.dialog,
                 full: state.editor.dialog.full.html,
@@ -20,16 +20,7 @@ export const withQuillEditorState = (
             }
         }, 
         (dispatch: Function) => {
-            return {
-                // changeContent: (content: Delta) => {
-                //     dispatch(changedEditorContent(content))
-                // },
-                // changeHtml: (html: string) => {
-                //     dispatch(changedEditorHtml(html))
-                // }
-                // changeDialog: (dialog: DialogContent) => {
-                //     dispatch(changedEditorDialog(dialog));
-                // },        
+            return {      
                 changePreviewDialog: (html: string, json: Delta, dialog: DialogContent) => {
                     const newDialog={
                         preview: {
@@ -89,11 +80,8 @@ export const withEditorContainerState = (
         WrappedComponent, 
         (state: any) => {
             return {
-                //content: state.editor.content,
-                //html: state.editor.html,
                 html: state.editor.dialog.full,
                 json: state.editor.dialog.delta,
-                //visible: state.ui.textEditorVisible,
                 visible: state.ui.editorVisible,
                 id: state.model.selected,
                 type: state.ui.editor,
@@ -106,7 +94,6 @@ export const withEditorContainerState = (
                     dispatch(loadedFlowModel(model));
                 },
                 toggleEditor: (visible: boolean) => {
-                    //dispatch(toggledTextEditor(visible))
                     dispatch(toggledEditor(visible));
                 },        
             }

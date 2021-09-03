@@ -1,6 +1,6 @@
 import { Delta } from "@/components/Editor/quillTypes";
 import { Common, Coordinates, Dialog, NamedValue, NodeModels, Script } from "./nodeModels";
-import { Coord2D, Coord2DPair } from "./vectors";
+import { Coord2DPair } from "./vectors";
 import {RichContent} from "./wysiwygModels";
 import { literalToClass } from "./usage/dataConversion";
 import { StandardRichContent } from "./StandardRichContent";
@@ -71,7 +71,7 @@ export class AllNodeModels implements NodeModels{
     getArguments = (index: number) => { // ARGUMENTS SHOULD HAVE NAMES --- {name: string, value: any} --- type should be preserved to render in different colors
         return (this.nodes[index] as unknown as Script).Arguments;
     }
-    setArguments = (index: number, args: NamedValue[] /* string[] */) => {
+    setArguments = (index: number, args: NamedValue[] ) => {
         (this.nodes[index] as unknown as Script).Arguments = args;
     }  
 
@@ -87,7 +87,6 @@ export class AllNodeModels implements NodeModels{
             .Position = {x: x, y: y};
     };
     getCoordinatesByIndex = (index: number) => {
-        //console.log("TTT", this.nodes[index])
         return (this.nodes[index] as unknown as Coordinates)
             .Position
     }
@@ -102,11 +101,9 @@ export class AllNodeModels implements NodeModels{
     }
 
     getConnectionPairs = () => {
-        //const idPairs: {in: number, out: number}[] = [];
         const coordinatePairs: Coord2DPair[] = [];
         this.nodes.forEach(node => {
             node.Outgoing.forEach(outgoingId => {
-                //idPairs.push({in: node.Id, out: outgoingId});
                 const outgoingNode = this.nodes.filter(node => node.Id === outgoingId)[0];
                 coordinatePairs.push({
                     x1: (node as unknown as Coordinates).Position.x,
@@ -116,8 +113,6 @@ export class AllNodeModels implements NodeModels{
                 })
             });
         });
-        // return idPairs.filter((item, index) => index === idPairs.indexOf(item)) //indexOf returns only the first index maching that value, filtering in uniques
-        //     .map(idPair => {x1: })
         return coordinatePairs.filter((pair, index) => index === coordinatePairs.indexOf(pair));
     }
 
@@ -143,8 +138,6 @@ export class AllNodeModels implements NodeModels{
             .PreviewHtml = html;       
     }
     setPreviewJsonById = (id: number, json: RichContent) => {
-        // const literal = {content: json.Content};
-        // const conentInstance = literalToClass(literal, StandardRichContent);
 
         ((this.nodes as unknown as Common[])
             .filter(node => node.Id === id)[0] as unknown as Dialog)
@@ -162,9 +155,8 @@ export class AllNodeModels implements NodeModels{
             .FullJson = json;
     }
 //
-    generateId = (/* self: NodeModels */) => { //I definitely need to test this...
+    generateId = () => { //I definitely need to test this...
         let id = Math.floor(Math.random() * 1000);
-        //id = this.checkIdForDoublesAndUpdate(this, id); // stack overflow...
         return id;
     }
 
@@ -174,13 +166,12 @@ export class AllNodeModels implements NodeModels{
 
         let result = id;
         if(nodesMatchingGeneratedId.length){
-            result = /* self */this.checkIdForDoublesAndUpdate(self, newId);
+            result = this.checkIdForDoublesAndUpdate(self, newId);
         }
         
         return result; 
     }
 
-    
     addConnection = (outgoing: number, ingoing: number) => { //outgoing node whose connection is dragged is the ingoing node id to the target and vice versa
         console.log("############# from NODE model, outgoing, ingoing:   ", outgoing, "   ", ingoing);
         (this.nodes as unknown as Common[])

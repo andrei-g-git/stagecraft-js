@@ -2,7 +2,6 @@ import { StandardRichElement } from "./standardRichElement";
 import { RichContent, RichElement } from "./wysiwygModels";
 
 export class StandardRichContent implements RichContent{
-    //content: RichElement[] = [new StandardRichElement()];
     constructor(
         public content: RichElement[] = [new StandardRichElement()]
     ){}

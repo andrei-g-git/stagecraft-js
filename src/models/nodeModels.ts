@@ -12,24 +12,12 @@ export type ContentVersions = {
     html: string,
     json: RichContent//Delta
 }
-
-// export type ScriptContent = { //SHOULD NOT BE HERE
-//     script: string,
-//     arguments: NamedValue[]
-// }
 export type ScriptContent = { //SHOULD NOT BE HERE
     script: string,
     arguments: NamedValue[]
 }
 
-// export type DialogContent = {
-//     preview: string,
-//     full: string,
-//     delta: Delta // SHOULD NOT KNOW WHAT A DELTA IS!! -- correct interface is RichContent
-// }                      // OR since this type isn't used in the model then it shouldn't be here...
 export type DialogContent = {
-    // preview: ContentVersions, //and it shouldn't implement ContentVersions, it needs access to RichContnet, but DialogContent works with the Delta type
-    // full: ContentVersions
     preview: {
         html: string,
         json: Delta
@@ -40,11 +28,6 @@ export type DialogContent = {
     }
 }                      // SHOULD NOT BE HERE
 export interface Common{
-    // id: number;
-    // title: string;
-    // type: string;
-    // ingoing: number[];
-    // outgoing: number[];
 
     get Id(): number;
     get Title(): string;
@@ -57,14 +40,7 @@ export interface Common{
     set Type(type: string); 
     set Ingoing(ingoing: number[]); 
     set Outgoing(outgoing: number[]); 
-    // setIngoing: {  fuck this there's basically no overloading in ts, don't even try, it's bullshit
-    //     (ingoing: number): void;
-    //     (ingoing: number, index: number): void;
-    // }  //THGESE NEED GETTERS TOO
-    // setOutgoing: {
-    //     (outgoing: number): void;
-    //     (outgoing: number, index: number): void;
-    // }
+
     setIngoingAtIndex: (ingoing: number, index: number) => void;
     setIngoing: (ingoing: number) => void;
 
@@ -73,31 +49,27 @@ export interface Common{
 }
 
 export interface Coordinates{
-    //position: Coord2D;
     get Position(): Coord2D;
     set Position(position: Coord2D);
 }
 
 export interface Pictures{
-    //avatar: string;
     get Avatar(): string;
     set Avatar(avatar: string);   
 }
 
 export interface Named{
-    //name: string;
     get Name(): string;
     set Name(name: string);
 }
 
 export interface Dialog{
-    //content: RichContent;
 
     get Content(): RichContent;
     set Content(content: RichContent);    
 
-    get Html(): string; //HTMLElement;
-    set Html(html: string/* HTMLElement */);
+    get Html(): string; 
+    set Html(html: string);
 
     get Preview(): ContentVersions;
     set Preview(preview: ContentVersions);
@@ -130,12 +102,12 @@ export interface Script{
     get Script(): string;
     set Script(code: string);
 
-    get Arguments(): NamedValue[];// string[];
-    set Arguments(args: NamedValue[] /* string[] */);
+    get Arguments(): NamedValue[];
+    set Arguments(args: NamedValue[] );
 
-    getArgument: (index: number) => NamedValue;// string;
-    setArgument: (arg: NamedValue/* string */) => void;
-    setArgumentAt: (index: number, arg: NamedValue/* string */) => void;
+    getArgument: (index: number) => NamedValue;
+    setArgument: (arg: NamedValue) => void;
+    setArgumentAt: (index: number, arg: NamedValue) => void;
 
     removeScript: () => void;
     removeArgument: (index: number) => void;
@@ -185,8 +157,8 @@ export interface NodeModels{
     getScript: (index: number) => string;
     setScript: (index: number, script: string) => void;
 
-    getArguments: (index: number) => NamedValue[];//string[]; // ARGUMENTS SHOULD HAVE NAMES --- {name: string, value: any} --- type should be preserved to render in different colors
-    setArguments: (index: number, args: NamedValue[]/* string[] */) => void;
+    getArguments: (index: number) => NamedValue[];
+    setArguments: (index: number, args: NamedValue[]) => void;
 
     getId: (index: number) => number;
     setId: (index: number, id: number) => void;
@@ -206,8 +178,7 @@ export interface NodeModels{
 
     addNode: (node: Common) => void;
 
-    generateId: (/* self: NodeModels */) => number;
-    //checkIdForDoublesAndUpdate: (self: NodeModels, id: number) => number;
+    generateId: () => number;
 
     addConnection: (outgoing: number, ingoing: number) => void;
 

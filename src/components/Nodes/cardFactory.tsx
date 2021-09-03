@@ -10,17 +10,12 @@ import ScriptCard from "./ScriptCard";
 
 export const createCard = (type: string, index: number, model: NodeModels) => {
     switch(type){
-        // case DIALOG:
-        //     const DialogCardWithState = withDialogCardState(DialogCard);
-        //     return <DialogCardWithState 
-        //         id={model.getId(index)} 
-        //         preview="<div> . . . .1234</div>"
-        //         fullContent={model.getHtml(index)}
-        //     /> 
+
         case DIALOG:
             const DialogWithHandlers = withHandlers(DialogCard);
             const DialogWithStateAndHandlers = withDialogCardState(DialogWithHandlers);
-            return<DialogWithStateAndHandlers id={model.getId(index)}
+            return<DialogWithStateAndHandlers 
+                id={model.getId(index)}
                 preview={model.getPreviewHtml(index)} 
                 full={model.getFullHtml(index)}
                 content={{
@@ -33,30 +28,13 @@ export const createCard = (type: string, index: number, model: NodeModels) => {
                         json: model.getFullJson(index)
                     }                    
                 }}
-                // preview={`<p>Foo ${model.getId(index)}</p>`}
-                // full={`<p>${index}${index}${index}${index}</p>`}
-                // content={{
-                //     preview: {
-                //         html: `<p>Foo ${model.getId(index)}</p>`,
-                //         json: {ops: [{attributes: [], insert: `Foo ${model.getId(index)}`}]}
-                //     },
-                //     full: {
-                //         html: `<p>${index}${index}${index}${index}</p>`,
-                //         json: {ops: [{attributes: [], insert: `${index}${index}${index}${index}`}]}
-                //     }                    
-                // }}
             />
         case SCRIPT:
-            //const ScriptCardWithState = withScriptCardState(ScriptCard);
-            //const WithStateAndHandlers = withHandlers(ScriptCardWithState);
-            //return <ScriptCardWithState
-            
+
             const WithHandlers = withHandlers(ScriptCard); //need to call this first even though it uses store state that hansn't yet been added...
             const WithStateAndHandlers = withScriptCardState(WithHandlers);
             return <WithStateAndHandlers
                 id={model.getId(index)}
-                //script={model.getScript(index)}
-                //arguments={model.getArguments(index)}
                 script="setCharacterLevel"
                 arguments={[
                     {name: "charName", value: "Tristran"},

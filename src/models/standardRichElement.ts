@@ -2,8 +2,6 @@ import { StandardRichAttributes } from "./standardRichAttributes";
 import { ImageBlob, RichAttributes, RichElement } from "./wysiwygModels";
 
 export class StandardRichElement implements RichElement{
-    // insert: string | ImageBlob = "";
-    // attributes: RichAttributes = new StandardRichAttributes();
     constructor(
         public insert: string | ImageBlob = "",
         public attributes: RichAttributes = new StandardRichAttributes()
