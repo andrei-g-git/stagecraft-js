@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { CoordPair } from "../Canvas/types.js";
+import { CoordPair } from "@/components/flow-chart";//"../flow-chart/canvas/types.js";
 import { Common, NodeModels } from "@/models/nodeModels.js";
 import { 
     loadedFlowModel,
@@ -9,10 +9,12 @@ import {
 import { AllNodeModels } from "@/models/AllNodeModels";
 import "./MainWindow.scss";
 import MainPane from "./MainPane";
-import FlowContainer from "../FlowSheet.tsx/FlowContainer";
-import EditorContainer from "../Editor/EditorContainer";
+import {FlowContainer} from "@/components/flow-chart";//"../flow-chart/flow-sheet/FlowContainer.js";
+//import EditorContainer from "../Editor/EditorContainer";
+import {EditorContainer} from "@/components/Editor"; //got an index
 import { withEditorContainerState } from "../Editor/editorHOC";
-import FlowToolbar from "../FlowToolbar/FlowToolbar.js";
+//import FlowToolbar from "../flow-chart/FlowToolbar/FlowToolbar.js";
+import { FlowToolbar } from "@/components/flow-chart";
 
 const MainWindow = (props: any) => {
     useEffect(() => {
@@ -64,20 +66,6 @@ const test = (model: NodeModels) => {
     return coordinates;
 }
 
-const makeCoordinatePairs = (coordinateArray: {x: number, y: number}[]): CoordPair[] => {
-    return coordinateArray.map(vector => {
-        return{
-            in: {
-                x: vector.x,
-                y: vector.y + 100
-            },
-            out: {
-                x: vector.x + 300,
-                y: vector.y + 100
-            }
-        }
-    })
-}
 
 const testNodeCreation = () => {
     const nodeModels: Common[] = [];

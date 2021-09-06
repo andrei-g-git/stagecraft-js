@@ -1,8 +1,8 @@
 import { NodeModels } from "@/models/nodeModels";
-import FlowCanvas from "../Canvas/FlowCanvas";
+import {FlowCanvas} from "@/components/flow-chart";//"../canvas/FlowCanvas";
 import FlowSheet from "./FlowSheet";
 import { useState, MouseEvent, useEffect } from "react";
-import { withCountState } from "../Canvas/canvasHOC";
+import { withCountState } from "../canvas/canvasHOC";
 import { connect } from "react-redux";
 import { changedFlowToolbarItem } from "@/redux/actions";
 import { DIALOG_NODE, NO_SELECTION, SCRIPT_NODE } from "@/const/toolbarItems";

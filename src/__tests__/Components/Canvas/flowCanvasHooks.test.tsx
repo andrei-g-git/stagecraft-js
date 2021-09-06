@@ -1,7 +1,7 @@
 import React from "react";
 import {describe, expect, it} from "vitest";
 import {render, screen} from "@testing-library/react";
-import {useCanvasContext} from "../../../components/Canvas/flowCanvasHooks";
+import {useCanvasContext} from "../../../components/flow-chart/canvas/flowCanvasHooks";
 //import FlowCanvasMock from "./FlowCanvasMock";
 
 describe("FlowCanvas Hooks", () => {

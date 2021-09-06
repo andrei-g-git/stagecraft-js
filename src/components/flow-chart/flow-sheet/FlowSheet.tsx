@@ -2,10 +2,10 @@ import { useEffect, useRef } from "react";
 import { Common, NodeModels } from "@/models/nodeModels";
 import { changedDragCounter, changedIngoingConnectorId, changedOutgoingConnectorId, loadedFlowModel } from "@/redux/actions";
 import {connect} from "react-redux";
-import DialogCard from "../Nodes/DialogCard";
-import DragHandle from "../Nodes/DragHandle.jsx";
-import { withInConnectorState, withOutConnectorState } from "../Nodes/connectorHOC";
-import {OutConnector, InConnector} from "../Nodes/Connectors";
+import DialogCard from "../../Nodes/DialogCard";
+import DragHandle from "../Nodes/DragHandle.js";
+import { withInConnectorState, withOutConnectorState } from "../../Nodes/connectorHOC";
+import {OutConnector, InConnector} from /* "@/components/flow-chart"; */"../Nodes/Connectors";
 import "./FlowSheet.scss";
 import { createCard } from "../Nodes/cardFactory";
 

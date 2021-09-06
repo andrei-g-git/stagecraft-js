@@ -7,6 +7,7 @@ export const drawBezierCurve = (
     leverLength: number
 ) => {
     if(ctx){ //branching is not that great for performance in loop code...
+        //console.log("drawing beziers")
         ctx.fillStyle = "red";
         ctx.beginPath();
         ctx.moveTo(x1, y1);

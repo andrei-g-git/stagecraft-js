@@ -1,4 +1,4 @@
-import { withState } from "../_Util/higherOrderComponents"
+import { withState } from "../../_Util/higherOrderComponents"
 
 export const withCountState = (
     WrappedComponent: React.FunctionComponent<any>

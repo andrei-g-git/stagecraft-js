@@ -4,7 +4,7 @@ import { withAddDialogState } from "./flowToolbarHOC";
 import {
     DIALOG_NODE,
     SCRIPT_NODE
-} from "../../const/toolbarItems";
+} from "../../../const/toolbarItems";
 
 const AddStatefulNode = withAddDialogState(AddNode); //mapStateToProps fumbles flowToolbarSelection after initial state, everything else works ...  -- still current?
 
