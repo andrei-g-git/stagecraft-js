@@ -1,7 +1,7 @@
 import { 
     DIALOG_NODE, 
     SCRIPT_NODE 
-} from "@/const/toolbarItems";
+} from "@/constants/toolbarItems";
 import { CommonNode } from "../commonNode";
 import { BasicDialogNode } from "../dialogNode";
 import { NodeCoordinates } from "../nodeCoordinates";

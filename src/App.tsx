@@ -1,5 +1,5 @@
-import MainWindow from './components/MainWindow/MainWindow'
-import { makeStore } from './redux/makeStore'
+import MainWindow from './features/MainWindow/MainWindow'
+import { makeStore } from './redux-store/makeStore'
 import { Provider } from 'react-redux';
 
 const store = makeStore();

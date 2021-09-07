@@ -2,7 +2,7 @@ import {expect, describe, test, it} from "vitest";
 import { AllNodeModels } from "@/models/AllNodeModels";
 import { Common } from "@/models/nodeModels";
 import { createNode } from "@/models/usage/factory";
-import { DIALOG_NODE } from "@/const/toolbarItems";
+import { DIALOG_NODE } from "@/constants/toolbarItems";
 
 describe("AllNodeModels", () => {
     it("generates unique node id", () => {

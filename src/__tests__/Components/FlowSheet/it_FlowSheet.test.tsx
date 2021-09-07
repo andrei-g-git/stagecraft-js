@@ -2,8 +2,8 @@ import {describe, expect, it} from "vitest";
 import {render, screen} from "@testing-library/react";
 import { Provider } from "react-redux";
 import FlowSheet from "@/components/flow-chart/flow-sheet/FlowSheet";
-import {makeStore} from "@/redux/makeStore";
-import { loadedFlowModel } from "@/redux/actions";
+import {makeStore} from "@/redux-store/makeStore";
+import { loadedFlowModel } from "@/redux-store/actions";
 import { AllNodeModels } from "@/models/AllNodeModels";
 import { BasicDialogNode } from "@/models/dialogNode";
 import { NodeCoordinates } from "@/models/nodeCoordinates";
@@ -12,7 +12,7 @@ import { NodeNames } from "@/models/nodeNames";
 import { NodePictures } from "@/models/nodePictures";
 import { NodeDialog } from "@/models/nodeDialog";
 import { Store } from "redux";
-import { selectedNodeId } from "@/redux/actions";
+import { selectedNodeId } from "@/redux-store/actions";
 
 describe("FlowSheet - DialogNode integration test", () => {
     it("renders correct markup from model to node", () => {
