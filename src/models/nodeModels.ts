@@ -1,5 +1,5 @@
 //import { DialogNode } from "./DialogNode";
-import { Delta } from "@/components/Editor/quillTypes";
+import { Delta } from "@/features/Editor/types";
 import {Coord2D, Coord2DPair} from "./vectors";
 import {RichContent} from "./wysiwygModels";
 

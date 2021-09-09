@@ -17,7 +17,7 @@ import {
     EDITOR_DIALOG_CHANGED
 } from "./actionTypes";
 import { /* GenericPayload, StringPayload */ ActionType, StringPayload, NumberPayload, DeltaPayload, NodeModelsPayload, BooleanPayload, ScriptPayload, DialogPayload} from "./types";
-import { Delta } from "@/components/Editor/quillTypes";
+import { Delta } from "@/features/Editor/types";
 
 
 export const loadedFlowModel = (model: NodeModels): (ActionType & NodeModelsPayload) => {

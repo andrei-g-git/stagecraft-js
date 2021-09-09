@@ -1,4 +1,4 @@
-import { Delta } from "@/components/Editor/quillTypes";
+import { Delta } from "@/features/Editor/types";
 import { Common, ContentVersions, Coordinates, Dialog, DialogNode, Named, Pictures } from "./nodeModels";
 import { Coord2D } from "./vectors";
 import { RichContent } from "./wysiwygModels";

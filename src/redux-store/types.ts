@@ -1,4 +1,4 @@
-import { Delta } from "@/components/Editor/quillTypes"
+import { Delta } from "@/features/Editor/types"
 import { DialogContent, NodeModels, ScriptContent } from "@/models/nodeModels"
 
 export type GenericPayload = {

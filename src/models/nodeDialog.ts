@@ -1,4 +1,4 @@
-import { Delta } from "@/components/Editor/quillTypes";
+import { Delta } from "@/features/Editor/types";
 import { StandardRichContent } from "./StandardRichContent";
 import { ContentVersions, Dialog } from "./nodeModels";
 import { RichContent, RichElement } from "./wysiwygModels";

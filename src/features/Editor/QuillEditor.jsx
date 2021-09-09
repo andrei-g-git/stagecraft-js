@@ -1,36 +1,10 @@
-import {connect} from "react-redux";
 import ReactQuill from "react-quill";
-import { changedEditorContent, changedEditorHtml } from "@/redux-store/actions";
 import 'react-quill/dist/quill.snow.css';
 import "./QuillEditor.scss";
-import { useEffect } from "react";
 
 const QuillEditor = (props) => {
-    // useEffect(() => {
-    //     if(props.visible) {
-    //         props.changeHtml(props.html)
-    //     }
-    // },
-    //     [props.visible]
-    // )
 
     return(
-        // props.visible ?
-        //      <div className="quill-container">
-        //         <ReactQuill theme="snow"
-        //             value={props.html}
-        //             modules={getModules()}
-        //             formats={null}
-        //             onChange={handleChange(props.changeContent, props.changeHtml)}
-        //         >
-
-        //         </ReactQuill>            
-        //     </div>
-        // :
-        //     <div></div> 
-
-        
-
         <div className="quill-container">
             <ReactQuill className="preview-quill"
                 theme="snow"
@@ -108,26 +82,5 @@ const getFormats = () => {
     ]
     return formats;
 }
-
-// const mapStateToProps = (state) => {
-//     return {
-//         content: state.editor.content,
-//         html: state.editor.html,
-//         visible: state.ui.textEditorVisible,
-//         id: state.model.selected
-//     }
-// }
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         changeContent: (content) => {
-//             dispatch(changedEditorContent(content))
-//         },
-//         changeHtml: (html) => {
-//             dispatch(changedEditorHtml(html))
-//         }
-//     }
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(QuillEditor);
 
 export default QuillEditor;
