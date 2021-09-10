@@ -2,12 +2,13 @@ import QuillEditor from "./QuillEditor.jsx";
 import "./EditorContainer.scss"
 import { connect } from "react-redux";
 import { loadedFlowModel, toggledTextEditor } from "@/redux-store/actions.js";
-import { DialogContent, NodeModels } from "@/models/nodeModels";
+import { DialogContent, NodeModels, ScriptContent } from "@/models/nodeModels";
 import { Delta } from "./types.js";
 import { withQuillEditorState } from "./higher-order-components/editorHOC.js";
 import { createEditor } from "./editorFactory.js";
 import { literalToClass } from "@/models/usage/dataConversion.js";
 import { StandardRichContent } from "@/models/StandardRichContent.js";
+import { TEXT_EDITOR } from "@/constants/editors.js";
 const EditorContainer = (props: any) => {
 
     return (
@@ -16,12 +17,21 @@ const EditorContainer = (props: any) => {
                 {
                     createEditor(props.type)
                 }   
-                <button onClick={() => handleClick(
-                        props.toggleEditor,
-                        props.nodeModel,
-                        props.id,
-                        props.dialog
-                    )}
+                <button onClick={props.type === TEXT_EDITOR ? 
+                            () => handleClick(
+                                props.toggleEditor,
+                                props.nodeModel,
+                                props.id,
+                                props.dialog
+                            ) 
+                        :
+                            () => handleScriptClick(
+                                props.toggleEditor,
+                                props.nodeModel,
+                                props.id,
+                                props.script                                
+                            )
+                    } 
                 >
                     Done!
                 </button>
@@ -48,6 +58,14 @@ const handleClick = (toggleEditor: Function, model: NodeModels, id: number, dial
     )
     model.setFullJsonById(id, fullRichContent);
     toggleEditor(false);
+}
+
+const handleScriptClick = (toggleEditor: Function, model: NodeModels, id: number, script: ScriptContent) => {
+
+    model.setScriptById(id, script.script);
+    model.setArgumentsById(id, script.arguments);
+
+    toggleEditor(false)
 }
 
 export default EditorContainer;

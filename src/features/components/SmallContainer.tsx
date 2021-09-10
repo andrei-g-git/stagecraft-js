@@ -1,3 +1,5 @@
+import "./SmallContainer.scss";
+
 const SmallContainer = (props: any) => {
     return(
         <div className={`small-container ${props.styles.join(" ")}`} >

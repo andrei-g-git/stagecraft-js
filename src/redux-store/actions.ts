@@ -14,9 +14,11 @@ import {
     SCRIPT_EDITOR_TOGGLED,
     EDITOR_CHANGED,
     EDITOR_TOGGLED,
-    EDITOR_DIALOG_CHANGED
+    EDITOR_DIALOG_CHANGED,
+    EDITOR_SCRIPT_NAME_CHANGED,
+    EDITOR_SCRIPT_ARGUMENT_CHANGED
 } from "./actionTypes";
-import { /* GenericPayload, StringPayload */ ActionType, StringPayload, NumberPayload, DeltaPayload, NodeModelsPayload, BooleanPayload, ScriptPayload, DialogPayload} from "./types";
+import { /* GenericPayload, StringPayload */ ActionType, StringPayload, NumberPayload, DeltaPayload, NodeModelsPayload, BooleanPayload, ScriptPayload, DialogPayload, IndexedStringPayload} from "./types";
 import { Delta } from "@/features/Editor/types";
 
 
@@ -120,5 +122,22 @@ export const changedEditorDialog = (dialog: DialogContent): (ActionType & Dialog
     return{
         type: EDITOR_DIALOG_CHANGED,
         payload: dialog
+    }
+}
+
+export const changedEditorScriptName = (name: string): (ActionType & StringPayload) => {
+    return{
+        type: EDITOR_SCRIPT_NAME_CHANGED,
+        payload: name
+    }
+}
+
+export const changedEditorScriptArgument = (arg: string, index: number): (ActionType & IndexedStringPayload) => {
+    return{
+        type: EDITOR_SCRIPT_ARGUMENT_CHANGED,
+        payload: {
+            argument: arg,
+            index: index
+        }
     }
 }

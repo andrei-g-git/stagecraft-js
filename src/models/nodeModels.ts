@@ -160,6 +160,11 @@ export interface NodeModels{
     getArguments: (index: number) => NamedValue[];
     setArguments: (index: number, args: NamedValue[]) => void;
 
+    getScriptById: (id: number) => string;
+    setScriptById: (id: number, script: string) => void;
+    getArgumentsById: (id: number) => NamedValue[];
+    setArgumentsById: (id: number, args: NamedValue[] ) => void;
+
     getId: (index: number) => number;
     setId: (index: number, id: number) => void;
 

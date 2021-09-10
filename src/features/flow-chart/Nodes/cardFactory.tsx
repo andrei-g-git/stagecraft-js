@@ -35,21 +35,11 @@ export const createCard = (type: string, index: number, model: NodeModels) => {
             const WithStateAndHandlers = withScriptCardState(WithHandlers);
             return <WithStateAndHandlers
                 id={model.getId(index)}
-                script="setCharacterLevel"
-                arguments={[
-                    {name: "charName", value: "Tristran"},
-                    {name: "level", value: 22},
-                    {name: "isWounded", value: true},
-                    {name: "weapon", value: null}
-                ]}
+                script={model.getScript(index)}
+                arguments={model.getArguments(index)}
                 content={{
-                    script: "setCharacterLevel",
-                    arguments: [
-                        {name: "charName", value: "Tristran"},
-                        {name: "level", value: 22},
-                        {name: "isWounded", value: true},
-                        {name: "weapon", value: null}
-                    ]
+                    script: model.getScript(index),
+                    arguments: model.getArguments(index)
                 }}
             />
         default:

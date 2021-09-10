@@ -19,4 +19,8 @@ export type DeltaPayload = {payload: Delta}
 export type NodeModelsPayload = {payload: NodeModels}
 export type ScriptPayload = {payload: ScriptContent}
 export type DialogPayload = {payload: DialogContent}
+export type IndexedStringPayload = {payload: {
+    argument: string,
+    index: number
+}}
 //export type Payload = {payload: }

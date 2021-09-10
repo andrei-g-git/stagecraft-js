@@ -2,9 +2,11 @@ import {
     EDITOR_CONTENT_CHANGED,
     EDITOR_DIALOG_CHANGED,
     EDITOR_HTML_CHANGED, 
-    EDITOR_SCRIPT_CHANGED
+    EDITOR_SCRIPT_ARGUMENT_CHANGED, 
+    EDITOR_SCRIPT_CHANGED,
+    EDITOR_SCRIPT_NAME_CHANGED
 } from "./actionTypes";
-import { ActionType, DeltaPayload, DialogPayload, ScriptPayload, StringPayload } from "./types";
+import { ActionType, DeltaPayload, DialogPayload, IndexedStringPayload, ScriptPayload, StringPayload } from "./types";
 
 const initialState = {
     content: {
@@ -48,7 +50,25 @@ export const editorReducer = (state = initialState, action: ActionType) => {
             return{
                 ...state,
                 dialog: (<DialogPayload><unknown>action).payload
-            }            
+            }   
+        case EDITOR_SCRIPT_NAME_CHANGED:
+            return{
+                ...state,
+                script: {
+                    script: (<StringPayload><unknown>action).payload,
+                    arguments: state.script.arguments
+                }
+            }     
+        case EDITOR_SCRIPT_ARGUMENT_CHANGED:
+            const index = (<IndexedStringPayload><unknown>action).payload.index;
+            const newArgument = (<IndexedStringPayload><unknown>action).payload.argument;
+            return{
+                ...state,
+                script: {
+                    script: state.script.script,
+                    arguments: state.script.arguments.map((arg: string, idx: number) => index === idx ? newArgument : arg)
+                }
+            }    
         default:
             return {...state};          
     }

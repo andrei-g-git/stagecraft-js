@@ -1,7 +1,8 @@
-import { changedEditorContent, changedEditorDialog, changedEditorHtml, loadedFlowModel, toggledEditor, toggledTextEditor } from "@/redux-store/actions"
+import { changedEditorContent, changedEditorDialog, changedEditorHtml, changedEditorScriptArgument, changedEditorScriptName, loadedFlowModel, toggledEditor, toggledTextEditor } from "@/redux-store/actions"
 import { withState } from "../../_Util/higherOrderComponents"
 import { Delta } from "../types"
 import { DialogContent, NodeModels } from "@/models/nodeModels"
+import { connect } from "react-redux"
 
 export const withQuillEditorState = ( //this causes the editor to loose focus on every key press...
 
@@ -85,7 +86,8 @@ export const withEditorContainerState = (
                 visible: state.ui.editorVisible,
                 id: state.model.selected,
                 type: state.ui.editor,
-                dialog: state.editor.dialog
+                dialog: state.editor.dialog,
+                script: state.editor.script
             }
         }, 
         (dispatch: Function) => {
@@ -100,3 +102,54 @@ export const withEditorContainerState = (
         }
     )
 }
+
+export const withScriptState = (WrappedComponent: React.FunctionComponent<any>) => {
+    return withState(
+        WrappedComponent,
+        (state: any) => {return{}},
+        (dispatch: Function) => {
+            return{       
+                handleChange: (text: string) => {
+                    dispatch(changedEditorScriptName(text));
+                }                        
+            }
+
+        }
+    )
+}
+
+// export const withArgumentState = (WrappedComponent: React.FunctionComponent<any>) => {
+//     return withState(
+//         WrappedComponent,
+//         (state: any) => {return{}},
+//         (dispatch: Function) => {
+//             return{
+//                 storeText: (text: string, index: number) => {
+//                     dispatch(changedEditorScriptArgument(text, index));
+//                 }                
+//             }
+
+//         }
+//     )
+// }
+
+export const withArgumentState = (
+    WrappedComponent: React.FunctionComponent<any>,
+) => connect(
+    (state: any) => {return{}}, 
+    (dispatch: Function) => {
+        return{
+            handleChange: (text: string, index: number) => {
+                console.log("<editorHOC.tsx> CALLED HANDLECHANGE FROM FINAL OR SECOND FINAL COMPONENT, content and index:   ", text, "  ", index)
+                dispatch(changedEditorScriptArgument(text, index));
+            }                
+        }
+
+    }
+)(
+    (props: any): JSX.Element => {
+        return (
+            <WrappedComponent {...props} />
+        )
+    }
+)

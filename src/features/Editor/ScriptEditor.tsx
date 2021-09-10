@@ -4,13 +4,13 @@ const ScriptEditor = (props: any) => {
     return(
         <div>
             {
-                props.script
+                props.renderScript(props.script)
             }
             {
-                props.arguments.map((arg: any) => 
-                    <p>{arg.value}</p>
+                props.arguments.map((arg: any, index: number) => 
+                    props.renderArgument(arg.value, index)
                 )
-            }
+            }            
         </div>
     )
 }

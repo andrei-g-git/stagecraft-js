@@ -68,12 +68,34 @@ export class AllNodeModels implements NodeModels{
     setScript = (index: number, script: string) => {
         (this.nodes[index] as unknown as Script).Script = script;
     }
-    getArguments = (index: number) => { // ARGUMENTS SHOULD HAVE NAMES --- {name: string, value: any} --- type should be preserved to render in different colors
+    getArguments = (index: number) => { 
         return (this.nodes[index] as unknown as Script).Arguments;
     }
     setArguments = (index: number, args: NamedValue[] ) => {
         (this.nodes[index] as unknown as Script).Arguments = args;
     }  
+//
+    getScriptById = (id: number) => {
+        return ((this.nodes as unknown as Common[])
+            .filter(node => node.Id === id)[0] as unknown as Script)
+            .Script
+    }
+    setScriptById = (id: number, script: string) => {
+        ((this.nodes as unknown as Common[])
+            .filter(node => node.Id === id)[0] as unknown as Script)
+            .Script = script;
+    }
+    getArgumentsById = (id: number) => { 
+        return ((this.nodes as unknown as Common[])
+            .filter(node => node.Id === id)[0] as unknown as Script)
+            .Arguments
+    }
+    setArgumentsById = (id: number, args: NamedValue[] ) => {
+        ((this.nodes as unknown as Common[])
+            .filter(node => node.Id === id)[0] as unknown as Script)
+            .Arguments = args;
+    } 
+
 
     getId = (index: number) => {
         return (this.nodes[index] as unknown as Common).Id;
