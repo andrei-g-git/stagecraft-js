@@ -4,7 +4,6 @@ import ScriptEditor from "./ScriptEditor";
 import QuillEditor from "./QuillEditor.jsx";
 import SmallContainer from "../components/SmallContainer";
 import TextField from "../components/TextField";
-import { withIndex } from "../components/higher-order-components/iterable-components";
 import { withChange, withChangeAtItem } from "../components/higher-order-components/listeners";
 
 export const createEditor = (type: number) => {
@@ -24,9 +23,8 @@ export const createEditor = (type: number) => {
             const ScriptField = withScriptState(TextField);
             const ScriptFieldWithChange = withChange(ScriptField);
 
-            //const Element = withArgumentState(TextField);
             const Element = withChangeAtItem(TextField);
-            //const ArgumentField = withChangeAtItem(Element);
+
             const ArgumentNameField = withArgumentNameState(Element);
 
             const ArgumentValueField = withArgumentValueState(Element);

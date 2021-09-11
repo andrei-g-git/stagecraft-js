@@ -3,7 +3,7 @@ import {
     DIALOG,
     SCRIPT
 } from "@/models/typeOfNodes";
-import { withDialogCardState, withScriptCardState } from "./higher-order-components/stateHOC";//"./nodesHOC";
+import { withDialogCardState, withScriptCardState } from "./higher-order-components/stateHOC";
 import { withHandlers } from "./higher-order-components/cardHOC";
 import DialogCard from "./card/DialogCard";
 import ScriptCard from "./card/ScriptCard";
@@ -38,7 +38,7 @@ export const createCard = (type: string, index: number, model: NodeModels) => {
                 script={model.getScript(index)}
                 arguments={[
                     {name: "charName", value: "Tristran"},
-                    {name: "level", value: 22},
+                    {name: "level", value: 33},
                     {name: "isWounded", value: true},
                     {name: "weapon", value: null}
                 ]}
@@ -46,7 +46,7 @@ export const createCard = (type: string, index: number, model: NodeModels) => {
                     script: model.getScript(index),
                     arguments: [
                         {name: "charName", value: "Tristran"},
-                        {name: "level", value: 22},
+                        {name: "level", value: 33},
                         {name: "isWounded", value: true},
                         {name: "weapon", value: null}
                     ]

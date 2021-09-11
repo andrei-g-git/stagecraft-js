@@ -89,7 +89,6 @@ const makeParanthesisAndArguments = (args: NamedValue [], argumentsTooLong: Func
 }
 
 const chooseValueType = (value: string | number | boolean | null) => {
-    //if(value === null) return "null";
     const stringValue = String(value);
     if(stringValue === "null") return stringValue;
     switch(typeof value){

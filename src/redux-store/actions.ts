@@ -145,15 +145,6 @@ export const changedEditorScriptName = (name: string): (ActionType & StringPaylo
     }
 }
 
-// export const changedEditorScriptArgument = (arg: string, index: number): (ActionType & IndexedStringPayload) => {
-//     return{
-//         type: EDITOR_SCRIPT_ARGUMENT_CHANGED,
-//         payload: {
-//             argument: arg,
-//             index: index
-//         }
-//     }
-// }
 export const changedEditorScriptArgument = (arg: NamedValue, index: number): (ActionType & IndexedNamedValuePayload) => {
     return{
         type: EDITOR_SCRIPT_ARGUMENT_CHANGED,

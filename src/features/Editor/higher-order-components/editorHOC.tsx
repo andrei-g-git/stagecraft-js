@@ -126,7 +126,6 @@ const withArgumentState = (
     (dispatch: Function) => {
         return{
             handleChange: (text: string, index: number) => {
-                //dispatch(changedEditorArgumentName(text, index));
                 dispatch(argumentAction(text, index));
             }                
         }
@@ -148,38 +147,3 @@ export const withArgumentNameState = (WrappedComponent: React.FunctionComponent<
 export const withArgumentValueState = (WrappedComponent: React.FunctionComponent<any>) => {
     return withArgumentState(WrappedComponent, changedEditorArgumentValue);
 }
-// export const withArgumentState = (WrappedComponent: React.FunctionComponent<any>) => {
-//     return withState(
-//         WrappedComponent,
-//         (state: any) => {return{}},
-//         (dispatch: Function) => {
-//             return{
-//                 storeText: (text: string, index: number) => {
-//                     dispatch(changedEditorScriptArgument(text, index));
-//                 }                
-//             }
-
-//         }
-//     )
-// }
-
-// export const withArgumentState = (
-//     WrappedComponent: React.FunctionComponent<any>,
-// ) => connect(
-//     (state: any) => {return{}}, 
-//     (dispatch: Function) => {
-//         return{
-//             handleChange: (text: string, index: number) => {
-//                 console.log("<editorHOC.tsx> CALLED HANDLECHANGE FROM FINAL OR SECOND FINAL COMPONENT, content and index:   ", text, "  ", index)
-//                 dispatch(changedEditorScriptArgument(text, index));
-//             }                
-//         }
-
-//     }
-// )(
-//     (props: any): JSX.Element => {
-//         return (
-//             <WrappedComponent {...props} />
-//         )
-//     }
-// )

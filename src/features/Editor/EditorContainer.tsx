@@ -1,10 +1,5 @@
-import QuillEditor from "./QuillEditor.jsx";
 import "./EditorContainer.scss"
-import { connect } from "react-redux";
-import { loadedFlowModel, toggledTextEditor } from "@/redux-store/actions.js";
 import { DialogContent, NodeModels, ScriptContent } from "@/models/nodeModels";
-import { Delta } from "./types.js";
-import { withQuillEditorState } from "./higher-order-components/editorHOC.js";
 import { createEditor } from "./editorFactory.js";
 import { literalToClass } from "@/models/usage/dataConversion.js";
 import { StandardRichContent } from "@/models/StandardRichContent.js";

@@ -80,16 +80,7 @@ export const editorReducer = (state = initialState, action: ActionType) => {
                     arguments: state.script.arguments
                 }
             }     
-        // case EDITOR_SCRIPT_ARGUMENT_CHANGED:
-        //     const index = (<IndexedStringPayload><unknown>action).payload.index;
-        //     const newArgument = (<IndexedStringPayload><unknown>action).payload.argument;
-        //     return{
-        //         ...state,
-        //         script: {
-        //             script: state.script.script,
-        //             arguments: state.script.arguments.map((arg: string, idx: number) => index === idx ? newArgument : arg)
-        //         }
-        //     }    
+   
         case EDITOR_SCRIPT_ARGUMENT_CHANGED:
             const index = (<IndexedNamedValuePayload><unknown>action).payload.index;
             const newArgument = (<IndexedNamedValuePayload><unknown>action).payload.pair;
