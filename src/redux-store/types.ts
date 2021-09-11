@@ -1,5 +1,5 @@
 import { Delta } from "@/features/Editor/types"
-import { DialogContent, NodeModels, ScriptContent } from "@/models/nodeModels"
+import { DialogContent, NamedValue, NodeModels, ScriptContent } from "@/models/nodeModels"
 
 export type GenericPayload = {
     type: string,
@@ -19,8 +19,15 @@ export type DeltaPayload = {payload: Delta}
 export type NodeModelsPayload = {payload: NodeModels}
 export type ScriptPayload = {payload: ScriptContent}
 export type DialogPayload = {payload: DialogContent}
-export type IndexedStringPayload = {payload: {
-    argument: string,
-    index: number
+export type IndexedStringPayload = {
+    payload: {
+        /* argument */string: string,
+        index: number
 }}
+export type IndexedNamedValuePayload = {
+    payload: {
+        pair: NamedValue,
+        index: number
+    }
+}
 //export type Payload = {payload: }

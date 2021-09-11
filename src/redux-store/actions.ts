@@ -1,4 +1,4 @@
-import { DialogContent, NodeModels, ScriptContent } from "@/models/nodeModels";
+import { DialogContent, NamedValue, NodeModels, ScriptContent } from "@/models/nodeModels";
 import { 
     FLOW_MODEL_LOADED,
     EDITOR_CONTENT_CHANGED,
@@ -16,9 +16,22 @@ import {
     EDITOR_TOGGLED,
     EDITOR_DIALOG_CHANGED,
     EDITOR_SCRIPT_NAME_CHANGED,
-    EDITOR_SCRIPT_ARGUMENT_CHANGED
+    EDITOR_SCRIPT_ARGUMENT_CHANGED,
+    EDITOR_ARGUMENT_NAME_CHANGED,
+    EDITOR_ARGUMENT_VALUE_CHANGED
 } from "./actionTypes";
-import { /* GenericPayload, StringPayload */ ActionType, StringPayload, NumberPayload, DeltaPayload, NodeModelsPayload, BooleanPayload, ScriptPayload, DialogPayload, IndexedStringPayload} from "./types";
+import { 
+    ActionType, 
+    StringPayload, 
+    NumberPayload, 
+    DeltaPayload, 
+    NodeModelsPayload, 
+    BooleanPayload, 
+    ScriptPayload, 
+    DialogPayload, 
+    IndexedNamedValuePayload,
+    IndexedStringPayload
+} from "./types";
 import { Delta } from "@/features/Editor/types";
 
 
@@ -132,11 +145,40 @@ export const changedEditorScriptName = (name: string): (ActionType & StringPaylo
     }
 }
 
-export const changedEditorScriptArgument = (arg: string, index: number): (ActionType & IndexedStringPayload) => {
+// export const changedEditorScriptArgument = (arg: string, index: number): (ActionType & IndexedStringPayload) => {
+//     return{
+//         type: EDITOR_SCRIPT_ARGUMENT_CHANGED,
+//         payload: {
+//             argument: arg,
+//             index: index
+//         }
+//     }
+// }
+export const changedEditorScriptArgument = (arg: NamedValue, index: number): (ActionType & IndexedNamedValuePayload) => {
     return{
         type: EDITOR_SCRIPT_ARGUMENT_CHANGED,
         payload: {
-            argument: arg,
+            pair: arg,
+            index: index
+        }
+    }
+}
+
+export const changedEditorArgumentName = (name: string, index: number): (ActionType & IndexedStringPayload) => {
+    return{
+        type: EDITOR_ARGUMENT_NAME_CHANGED,
+        payload: {
+            string: name,
+            index: index
+        }
+    }
+}
+
+export const changedEditorArgumentValue = (value: string, index: number): (ActionType & IndexedStringPayload) => {
+    return{
+        type: EDITOR_ARGUMENT_VALUE_CHANGED,
+        payload: {
+            string: value,
             index: index
         }
     }

@@ -1,4 +1,5 @@
 export const withChange = (WrappedComponent: React.FunctionComponent<any>) => (props: any) => {
+    console.log("added script change handler")
     return (
         <WrappedComponent {...props}
             handleChange={props.handleChange}

@@ -1,4 +1,4 @@
-import { changedEditorContent, changedEditorDialog, changedEditorHtml, changedEditorScriptArgument, changedEditorScriptName, loadedFlowModel, toggledEditor, toggledTextEditor } from "@/redux-store/actions"
+import { changedEditorArgumentName, changedEditorArgumentValue, changedEditorContent, changedEditorDialog, changedEditorHtml, changedEditorScriptArgument, changedEditorScriptName, loadedFlowModel, toggledEditor, toggledTextEditor } from "@/redux-store/actions"
 import { withState } from "../../_Util/higherOrderComponents"
 import { Delta } from "../types"
 import { DialogContent, NodeModels } from "@/models/nodeModels"
@@ -118,6 +118,36 @@ export const withScriptState = (WrappedComponent: React.FunctionComponent<any>) 
     )
 }
 
+const withArgumentState = (
+    WrappedComponent: React.FunctionComponent<any>,
+    argumentAction: Function
+) => connect(
+    (state: any) => {return{}}, 
+    (dispatch: Function) => {
+        return{
+            handleChange: (text: string, index: number) => {
+                //dispatch(changedEditorArgumentName(text, index));
+                dispatch(argumentAction(text, index));
+            }                
+        }
+
+    }
+)(
+    (props: any): JSX.Element => {
+        return (
+            <WrappedComponent {...props} />
+        )
+    }
+)
+
+
+export const withArgumentNameState = (WrappedComponent: React.FunctionComponent<any>) => {
+    return withArgumentState(WrappedComponent, changedEditorArgumentName);
+}
+
+export const withArgumentValueState = (WrappedComponent: React.FunctionComponent<any>) => {
+    return withArgumentState(WrappedComponent, changedEditorArgumentValue);
+}
 // export const withArgumentState = (WrappedComponent: React.FunctionComponent<any>) => {
 //     return withState(
 //         WrappedComponent,
@@ -133,23 +163,23 @@ export const withScriptState = (WrappedComponent: React.FunctionComponent<any>) 
 //     )
 // }
 
-export const withArgumentState = (
-    WrappedComponent: React.FunctionComponent<any>,
-) => connect(
-    (state: any) => {return{}}, 
-    (dispatch: Function) => {
-        return{
-            handleChange: (text: string, index: number) => {
-                console.log("<editorHOC.tsx> CALLED HANDLECHANGE FROM FINAL OR SECOND FINAL COMPONENT, content and index:   ", text, "  ", index)
-                dispatch(changedEditorScriptArgument(text, index));
-            }                
-        }
+// export const withArgumentState = (
+//     WrappedComponent: React.FunctionComponent<any>,
+// ) => connect(
+//     (state: any) => {return{}}, 
+//     (dispatch: Function) => {
+//         return{
+//             handleChange: (text: string, index: number) => {
+//                 console.log("<editorHOC.tsx> CALLED HANDLECHANGE FROM FINAL OR SECOND FINAL COMPONENT, content and index:   ", text, "  ", index)
+//                 dispatch(changedEditorScriptArgument(text, index));
+//             }                
+//         }
 
-    }
-)(
-    (props: any): JSX.Element => {
-        return (
-            <WrappedComponent {...props} />
-        )
-    }
-)
+//     }
+// )(
+//     (props: any): JSX.Element => {
+//         return (
+//             <WrappedComponent {...props} />
+//         )
+//     }
+// )

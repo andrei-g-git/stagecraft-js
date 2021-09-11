@@ -1,5 +1,12 @@
+import { NamedValue } from "@/models/nodeModels";
+import { useEffect } from "react";
 
 const ScriptEditor = (props: any) => {
+    useEffect(() => {
+        props.arguments
+    }, 
+        []
+    )
 
     return(
         <div>
@@ -7,10 +14,28 @@ const ScriptEditor = (props: any) => {
                 props.renderScript(props.script)
             }
             {
-                props.arguments.map((arg: any, index: number) => 
-                    props.renderArgument(arg.value, index)
+                props.arguments.map((arg: NamedValue, index: number) => 
+                    <div>
+                        <>  
+                            {
+                                props.renderArgumentName(arg.name, index)
+                            }
+                        </>
+                        <p>
+                            {" = "}
+                        </p>
+                        <>
+                            {
+                                props.renderArgumentValue(arg.value, index)
+                            }
+                        </>
+                            
+                            
+                    </div>
+                    
                 )
-            }            
+            }                       
+
         </div>
     )
 }
