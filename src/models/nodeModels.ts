@@ -4,8 +4,8 @@ import {Coord2D, Coord2DPair} from "./vectors";
 import {RichContent} from "./wysiwygModels";
 
 export type NamedValue = {
-    name: "string",
-    value: "string" | number | boolean | null
+    name: string,
+    value: string | number | boolean | null
 }
 
 export type ContentVersions = {

@@ -92,9 +92,8 @@ export const editorReducer = (state = initialState, action: ActionType) => {
                 }
             }     
         case EDITOR_ARGUMENT_NAME_CHANGED:    
-            const nameIndex = (<IndexedNamedValuePayload><unknown>action).payload.index;
-            const newNameArgument = (<IndexedNamedValuePayload><unknown>action).payload.pair;  
-            const name = newNameArgument.name;
+            const nameIndex = (<IndexedStringPayload><unknown>action).payload.index;
+            const name = (<IndexedStringPayload><unknown>action).payload.string;  
             return{
                 ...state,
                 script: {
@@ -107,14 +106,14 @@ export const editorReducer = (state = initialState, action: ActionType) => {
                                 value: arg.value
                             }
                         }
+                        return newArgument;
                     })
                 }
             }      
 
         case EDITOR_ARGUMENT_VALUE_CHANGED:    
-            const valueIndex = (<IndexedNamedValuePayload><unknown>action).payload.index;
-            const newArgument2 = (<IndexedNamedValuePayload><unknown>action).payload.pair;  
-            const value = newArgument2.value;
+            const valueIndex = (<IndexedStringPayload><unknown>action).payload.index;
+            const value = (<IndexedStringPayload><unknown>action).payload.string;  
             return{
                 ...state,
                 script: {
@@ -127,6 +126,7 @@ export const editorReducer = (state = initialState, action: ActionType) => {
                                 value: value
                             }
                         }
+                        return newArgument;
                     })
                 }
             } 

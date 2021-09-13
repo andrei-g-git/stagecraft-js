@@ -2,11 +2,6 @@ import { NamedValue } from "@/models/nodeModels";
 import { useEffect } from "react";
 
 const ScriptEditor = (props: any) => {
-    useEffect(() => {
-        props.arguments
-    }, 
-        []
-    )
 
     return(
         <div>

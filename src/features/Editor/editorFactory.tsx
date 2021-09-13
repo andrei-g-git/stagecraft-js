@@ -40,7 +40,6 @@ export const createEditor = (type: number) => {
                     }}
 
                     renderArgumentName={(content: string, index: number) => {
-                        console.log("11111")
                         return(
                             <SmallContainer styles={["small-size", "background-antiquewhite"]}>
                                 <ArgumentNameField content={content}
@@ -51,7 +50,6 @@ export const createEditor = (type: number) => {
                     }}
 
                     renderArgumentValue={(content: string, index: number) => {
-                        console.log("22222")
                         return(
                             <SmallContainer styles={["small-size", "background-antiquewhite"]}>
                                 <ArgumentValueField content={content}

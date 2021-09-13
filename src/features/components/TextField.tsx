@@ -6,7 +6,10 @@ const TextField = (props: any) => {
             type="text" 
             value={props.content}
             //onChange={(event) => props.storeText(event.target.value)}
-            onChange={(event) => props.handleChange(event.target.value)}
+            onChange={(event) => {
+                //console.log("TextField  props:  ", props, "  \n  target value:  ", event.target.value)
+                props.handleChange(event.target.value)
+            }}
         />
     )
 }
