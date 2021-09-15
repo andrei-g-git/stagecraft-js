@@ -149,8 +149,7 @@ export class AllNodeModels implements NodeModels{
 
         ((this.nodes as unknown as Common[])
             .filter(node => node.Id === id)[0] as unknown as Dialog)
-            .Content = conentInstance;//{content: content.ops};      //i think this is because of the properties I set in the interface, I should try only giving it methods and let the class implementation
-                                                //handle the properties i.e. constructor(public property: initialValue)
+            .Content = conentInstance;
     }
 
 
@@ -163,9 +162,8 @@ export class AllNodeModels implements NodeModels{
 
         ((this.nodes as unknown as Common[])
             .filter(node => node.Id === id)[0] as unknown as Dialog)
-            .PreviewJson = json // --- not actual json, it's a RichContent instance ... //conentInstance;      wefwafawefawef  //<<<<<<<  
+            .PreviewJson = json 
     }
-//
     setFullHtmlById = (id: number, html: string) => {
         ((this.nodes as unknown as Common[])
             .filter(node => node.Id === id)[0] as unknown as Dialog)
@@ -176,8 +174,8 @@ export class AllNodeModels implements NodeModels{
             .filter(node => node.Id === id)[0] as unknown as Dialog)
             .FullJson = json;
     }
-//
-    generateId = () => { //I definitely need to test this...
+
+    generateId = () => { 
         let id = Math.floor(Math.random() * 1000);
         return id;
     }
@@ -195,7 +193,6 @@ export class AllNodeModels implements NodeModels{
     }
 
     addConnection = (outgoing: number, ingoing: number) => { //outgoing node whose connection is dragged is the ingoing node id to the target and vice versa
-        console.log("############# from NODE model, outgoing, ingoing:   ", outgoing, "   ", ingoing);
         (this.nodes as unknown as Common[])
             .filter(node => node.Id === outgoing)[0]
             .setOutgoing(ingoing);

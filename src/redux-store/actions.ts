@@ -18,7 +18,8 @@ import {
     EDITOR_SCRIPT_NAME_CHANGED,
     EDITOR_SCRIPT_ARGUMENT_CHANGED,
     EDITOR_ARGUMENT_NAME_CHANGED,
-    EDITOR_ARGUMENT_VALUE_CHANGED
+    EDITOR_ARGUMENT_VALUE_CHANGED,
+    EDITOR_ARGUMENT_ADDED
 } from "./actionTypes";
 import { 
     ActionType, 
@@ -172,5 +173,12 @@ export const changedEditorArgumentValue = (value: string, index: number): (Actio
             string: value,
             index: index
         }
+    }
+}
+
+export const addedEditorArgument = () => {
+    return{
+        type: EDITOR_ARGUMENT_ADDED,
+        payload: null
     }
 }

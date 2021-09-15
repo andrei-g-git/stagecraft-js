@@ -2,7 +2,7 @@ import { withState } from "@/features/_Util/higherOrderComponents";
 import { StandardRichContent } from "@/models/StandardRichContent";
 import { DialogContent, NodeModels, ScriptContent } from "@/models/nodeModels";
 import { literalToClass } from "@/models/usage/dataConversion";
-import { toggledEditor } from "@/redux-store/actions";
+import { addedEditorArgument, toggledEditor } from "@/redux-store/actions";
 import { MapStateToPropsParam } from "react-redux";
 
 const withCloseEditorState = (
@@ -11,13 +11,6 @@ const withCloseEditorState = (
 ) => {
     return withState(
         WrappedComponent,
-        // (state: any) => {
-        //     return{
-        //         id: state.model.selected,
-        //         dialog: state.editor.dialog,
-        //         script: state.editor.script                
-        //     }
-        // },
         mapStateToProps,
         (dispatch: Function) => {
             return{       
@@ -105,4 +98,29 @@ const closeScriptEditor = (toggleEditor: Function, model: NodeModels, id: number
     model.setArgumentsById(id, script.arguments);
 
     toggleEditor(false)
+}
+
+
+// export const withArgumentAdder = (WrappedComponent: React.FunctionComponent<any>) => (props: any) => {
+//     return(
+//         <WrappedComponent />
+//     )
+// }
+
+export const withNewArgumentState = (WrappedComponent: React.FunctionComponent<any>) => {
+    return withState(
+        WrappedComponent,
+        (state: any) => {
+            return{
+
+            }
+        },
+        (dispatch: Function) => {
+            return{
+                handleClick: () => {
+                    dispatch(addedEditorArgument());
+                }
+            }
+        }    
+    )
 }

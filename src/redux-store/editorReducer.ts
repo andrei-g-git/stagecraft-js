@@ -1,5 +1,6 @@
 import { ContentVersions, NamedValue } from "@/models/nodeModels";
 import { 
+    EDITOR_ARGUMENT_ADDED,
     EDITOR_ARGUMENT_NAME_CHANGED,
     EDITOR_ARGUMENT_VALUE_CHANGED,
     EDITOR_CONTENT_CHANGED,
@@ -19,8 +20,9 @@ const initialState: {
         script: string,
         arguments: NamedValue[]
     },
+    arguments: number,
     dialog: {
-        preview: /* ContentVersions */{
+        preview: {
             html: "",
             json: Delta
         },
@@ -38,6 +40,7 @@ const initialState: {
         script: "",
         arguments: []
     },
+    arguments: 0, //length value
     dialog: {
         preview: {
             html: "",
@@ -130,6 +133,22 @@ export const editorReducer = (state = initialState, action: ActionType) => {
                     })
                 }
             } 
+        
+        case EDITOR_ARGUMENT_ADDED:
+            const args = state.script.arguments;
+            args.push({
+                name: "",
+                value: null
+            });
+
+            return{
+                ...state,
+                script: {
+                    script: state.script.script,
+                    arguments: args
+                },
+                arguments: state.arguments + 1
+            }
 
         default:
             return {...state};          

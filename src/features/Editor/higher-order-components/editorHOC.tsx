@@ -4,10 +4,7 @@ import { Delta } from "../types"
 import { DialogContent, NodeModels } from "@/models/nodeModels"
 import { connect } from "react-redux"
 
-export const withQuillEditorState = ( //this causes the editor to loose focus on every key press...
-
-    WrappedComponent: React.FunctionComponent<any>
-) => {
+export const withQuillEditorState = ( WrappedComponent: React.FunctionComponent<any>) => {
     return withState(
         WrappedComponent, 
         (state: any) => {
@@ -35,7 +32,7 @@ export const withQuillEditorState = ( //this causes the editor to loose focus on
                     }
                     dispatch(changedEditorDialog(newDialog));
                 },        
-                changeFullDialog: (html: string, json: Delta, dialog: DialogContent) => { //I should not require the editor to know the full ddialog state -- on the other hand the editor only needs to pass it to a function so it's just passing through...
+                changeFullDialog: (html: string, json: Delta, dialog: DialogContent) => { 
                     const newDialog={
                         preview: {
                             html: dialog.preview.html,
@@ -52,7 +49,6 @@ export const withQuillEditorState = ( //this causes the editor to loose focus on
         }
     )
 }
-//####################
 
 export const withScriptEditorState = (WrappedComponent: React.FunctionComponent<any>) => {
     return withState(
@@ -60,34 +56,24 @@ export const withScriptEditorState = (WrappedComponent: React.FunctionComponent<
         (state: any) => {
             return{
                 script: state.editor.script.script,
-                arguments: state.editor.script.arguments
+                arguments: state.editor.script.arguments,
+                argumentsLength: state.editor.arguments
             }
         }, 
         (dispatch: Function) => {
-            return {
-
-            }
+            return {}
         }
 
     )
 }
 
-
-
-export const withEditorContainerState = (
-    WrappedComponent: React.FunctionComponent<any>
-) => {
+export const withEditorContainerState = (WrappedComponent: React.FunctionComponent<any>) => {
     return withState(
         WrappedComponent, 
         (state: any) => {
             return {
-                // html: state.editor.dialog.full,
-                // json: state.editor.dialog.delta,
                 visible: state.ui.editorVisible,
-                //id: state.model.selected,
                 type: state.ui.editor,
-                //dialog: state.editor.dialog,
-                //script: state.editor.script
             }
         }, 
         (dispatch: Function) => {

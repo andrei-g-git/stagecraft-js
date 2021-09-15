@@ -1,12 +1,10 @@
-import "./EditorContainer.scss"
-import { DialogContent, NodeModels, ScriptContent } from "@/models/nodeModels";
 import { createEditor } from "./editorFactory.js";
-import { literalToClass } from "@/models/usage/dataConversion.js";
-import { StandardRichContent } from "@/models/StandardRichContent.js";
 import { TEXT_EDITOR } from "@/constants/editors.js";
-import { withCloseDialogEditor, withCloseDialogEditorState, withCloseScriptEditor, withCloseScriptEditorState } from "./higher-order-components/editor-buttons.hoc";
+import { withCloseDialogEditor, withCloseDialogEditorState, withCloseScriptEditor, withCloseScriptEditorState, withNewArgumentState } from "./higher-order-components/editor-buttons.hoc";
 import { GenericButton } from "../components";//"@/components";
-
+import "./EditorContainer.scss"
+import AddElement from "../components/AddElement.js";
+import { withClick } from "../components/higher-order-components/listeners.js";
 
 const EditorContainer = (props: any) => {
 
@@ -30,7 +28,14 @@ const EditorContainer = (props: any) => {
                             withCloseScriptEditorState,
                             withCloseScriptEditor
                         )
+                }
 
+                {
+                    makeAddArgumentButton(
+                        AddElement,
+                        withNewArgumentState,
+                        withClick
+                    )
                 }
             </div>
 
@@ -45,6 +50,10 @@ const makeCloseEditorButton = (Base: any, withState: Function, withClose: Functi
     return <CloseButton name="Close"/>
 }
 
-
+const makeAddArgumentButton = (Base: any, withState: Function, withClick: Function) => {
+    const SecondStage = withState(Base);
+    const AddArgument = withClick(SecondStage); 
+    return <AddArgument />    
+}
 
 export default EditorContainer;
