@@ -16,7 +16,7 @@ const FlowCanvas = (props: any) => {
     );
 
     useEffect(() => {
-        console.log("PAIRS:   ", props.receiveCoordinates())
+        //console.log("PAIRS:   ", props.receiveCoordinates())
     },
         [props.count]
     )

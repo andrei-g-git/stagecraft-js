@@ -4,6 +4,10 @@ import { createEditor } from "./editorFactory.js";
 import { literalToClass } from "@/models/usage/dataConversion.js";
 import { StandardRichContent } from "@/models/StandardRichContent.js";
 import { TEXT_EDITOR } from "@/constants/editors.js";
+import { withCloseDialogEditor, withCloseDialogEditorState, withCloseScriptEditor, withCloseScriptEditorState } from "./higher-order-components/editor-buttons.hoc";
+import { GenericButton } from "../components";//"@/components";
+
+
 const EditorContainer = (props: any) => {
 
     return (
@@ -12,24 +16,22 @@ const EditorContainer = (props: any) => {
                 {
                     createEditor(props.type)
                 }   
-                <button onClick={props.type === TEXT_EDITOR ? 
-                            () => handleClick(
-                                props.toggleEditor,
-                                props.nodeModel,
-                                props.id,
-                                props.dialog
-                            ) 
-                        :
-                            () => handleScriptClick(
-                                props.toggleEditor,
-                                props.nodeModel,
-                                props.id,
-                                props.script                                
-                            )
-                    } 
-                >
-                    Done!
-                </button>
+
+                {
+                    props.type === TEXT_EDITOR ? 
+                        makeCloseEditorButton(
+                            GenericButton,
+                            withCloseDialogEditorState,
+                            withCloseDialogEditor
+                        )
+                    :   
+                        makeCloseEditorButton(
+                            GenericButton,
+                            withCloseScriptEditorState,
+                            withCloseScriptEditor
+                        )
+
+                }
             </div>
 
         :
@@ -37,30 +39,12 @@ const EditorContainer = (props: any) => {
     )
 }
 
-const handleClick = (toggleEditor: Function, model: NodeModels, id: number, dialog: DialogContent) => {
-
-    model.setPreviewHtmlById(id, dialog.preview.html);
-    model.setFullHtmlById(id, dialog.full.html);
-
-    const previewRichContent = literalToClass(
-        dialog.preview.json,
-        StandardRichContent
-    )
-    model.setPreviewJsonById(id, previewRichContent);
-    const fullRichContent = literalToClass(
-        dialog.full.json,
-        StandardRichContent
-    )
-    model.setFullJsonById(id, fullRichContent);
-    toggleEditor(false);
+const makeCloseEditorButton = (Base: any, withState: Function, withClose: Function) => {
+    const SecondStage = withClose(Base);
+    const CloseButton = withState(SecondStage); 
+    return <CloseButton name="Close"/>
 }
 
-const handleScriptClick = (toggleEditor: Function, model: NodeModels, id: number, script: ScriptContent) => {
 
-    model.setScriptById(id, script.script);
-    model.setArgumentsById(id, script.arguments);
-
-    toggleEditor(false)
-}
 
 export default EditorContainer;

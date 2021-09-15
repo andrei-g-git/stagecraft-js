@@ -1,7 +1,9 @@
 import { NamedValue } from "@/models/nodeModels";
 import "./ScriptCard.scss";
+import { useEffect } from "react";
 
 const ScriptCard = (props: any) => {
+
     return(
         <div className="script-card"
             onClick={props.handleClick}

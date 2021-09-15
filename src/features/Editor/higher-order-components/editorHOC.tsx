@@ -81,13 +81,13 @@ export const withEditorContainerState = (
         WrappedComponent, 
         (state: any) => {
             return {
-                html: state.editor.dialog.full,
-                json: state.editor.dialog.delta,
+                // html: state.editor.dialog.full,
+                // json: state.editor.dialog.delta,
                 visible: state.ui.editorVisible,
-                id: state.model.selected,
+                //id: state.model.selected,
                 type: state.ui.editor,
-                dialog: state.editor.dialog,
-                script: state.editor.script
+                //dialog: state.editor.dialog,
+                //script: state.editor.script
             }
         }, 
         (dispatch: Function) => {
@@ -147,3 +147,5 @@ export const withArgumentNameState = (WrappedComponent: React.FunctionComponent<
 export const withArgumentValueState = (WrappedComponent: React.FunctionComponent<any>) => {
     return withArgumentState(WrappedComponent, changedEditorArgumentValue);
 }
+
+

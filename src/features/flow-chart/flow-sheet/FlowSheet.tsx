@@ -21,9 +21,9 @@ const FlowSheet = (props: any) => {
     );
 
     useEffect(() => {
-
+        console.log("editor state changed")
     },
-        [props.textEditorVisible]
+        [props.editorVisible]
     );
 
     return (

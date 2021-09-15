@@ -7,6 +7,7 @@ import TextField from "../components/TextField";
 import { withChange, withChangeAtItem } from "../components/higher-order-components/listeners";
 
 export const createEditor = (type: number) => {
+    console.log("---FROM EDITOR FACTORY type is::   ", type)
     switch(type){
         case NO_EDITOR:
             return <div></div>
@@ -18,7 +19,6 @@ export const createEditor = (type: number) => {
 
         case SCRIPT_EDITOR:
             const ScriptEditorWithState = withScriptEditorState(ScriptEditor);
-
           
             const ScriptField = withScriptState(TextField);
             const ScriptFieldWithChange = withChange(ScriptField);
@@ -32,6 +32,7 @@ export const createEditor = (type: number) => {
             return <div style={{width: "100%", height: "70%", backgroundColor: "gray"}}>
                 <ScriptEditorWithState 
                     renderScript={(content: string) => {
+                        console.log("<<<<FROM renderScript, content is:   ", content)
                         return(
                             <SmallContainer styles={["medium-size"]}>
                                 <ScriptFieldWithChange content={content}/>

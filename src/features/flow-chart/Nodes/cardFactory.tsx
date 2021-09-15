@@ -36,28 +36,28 @@ export const createCard = (type: string, index: number, model: NodeModels) => {
             return <WithStateAndHandlers
                 id={model.getId(index)}
                 script={model.getScript(index)}
-                arguments={[
-                    {name: "charName", value: "Tristran"},
-                    {name: "level", value: 33},
-                    {name: "isWounded", value: true},
-                    {name: "weapon", value: null}
-                ]}
-                content={{
-                    script: model.getScript(index),
-                    arguments: [
-                        {name: "charName", value: "Tristran"},
-                        {name: "level", value: 33},
-                        {name: "isWounded", value: true},
-                        {name: "weapon", value: null}
-                    ]
-                }}
-
-
-                // arguments={model.getArguments(index)}
+                // arguments={[
+                //     {name: "charName", value: "Tristran"},
+                //     {name: "level", value: 33},
+                //     {name: "isWounded", value: true},
+                //     {name: "weapon", value: null}
+                // ]}
                 // content={{
                 //     script: model.getScript(index),
-                //     arguments: model.getArguments(index)
-                // }}                
+                //     arguments: [
+                //         {name: "charName", value: "Tristran"},
+                //         {name: "level", value: 33},
+                //         {name: "isWounded", value: true},
+                //         {name: "weapon", value: null}
+                //     ]
+                // }}
+
+
+                arguments={model.getArguments(index)}
+                content={{
+                    script: model.getScript(index),
+                    arguments: model.getArguments(index)
+                }}                
             />
         default:
             const DefaultCard = withDialogCardState(DialogCard);

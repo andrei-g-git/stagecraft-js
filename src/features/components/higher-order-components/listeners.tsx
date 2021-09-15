@@ -15,3 +15,11 @@ export const withChangeAtItem = (WrappedComponent: React.FunctionComponent<any>)
         />
     )
 }
+
+export const withClick = (WrappedComponent: React.FunctionComponent<any>) => (props: any) => {
+    return (
+        <WrappedComponent {...props}
+            handleClick={props.handleClick}
+        />
+    )
+}

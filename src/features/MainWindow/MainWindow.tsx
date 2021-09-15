@@ -47,9 +47,9 @@ const MainWindow = (props: any) => {
 
 const handleMouseUp = (toggleConnecting: Function) => {
     return (event: any) => {
-        console.log("MOUSE UP-------------------------")
+        //console.log("MOUSE UP-------------------------")
         toggleConnecting(false);
-        console.log("still up")
+        //console.log("still up")
     }
 }
 const updateInOutCoordinates = (model: NodeModels) => {
