@@ -21,8 +21,8 @@ export const withDialogCardState = (
                     dispatch(selectedNodeId(id))
                 },
                 sendContentToEditor: (content: DialogContent) => {
-                    dispatch(changedEditorDialog(content));
-                }  
+                    dispatch(changedEditorDialog(content)); //this and changedEditorScript can be used for polymorphism, but on;ly when sending to the editor;
+                }                                               //changedEditorDialog can also be used by the Editor backward to the node, but not changedEditorScript which is replaced by more complex actions
             }
         }
     )

@@ -6,6 +6,11 @@ import FlowCanvas from "./canvas/FlowCanvas";
 import {InConnector, OutConnector} from "./Nodes/Connectors";
 import DialogCard from "./Nodes/card/DialogCard";
 
+import CardWindow from "./Nodes/card/CardWindow";
+import DialogCardLayout from "./Nodes/card/DialogCardLayout";
+import DialogContent from "./Nodes/card/DialogContent";
+import TitleBar from "./Nodes/card/TitleBar";
+
 import {withInConnectorState, withOutConnectorState} from "./Nodes/higher-order-components/connectorHOC";
 
 export {
@@ -18,6 +23,11 @@ export {
     OutConnector,
     DialogCard,
 
+    CardWindow,
+    DialogCardLayout,
+    DialogContent,
+    TitleBar,
+    
     withInConnectorState, withOutConnectorState
 }
 

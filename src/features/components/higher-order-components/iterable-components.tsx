@@ -5,3 +5,11 @@ export const withIndex = (WrappedComponent: React.FunctionComponent<any>, index:
         />
     )
 }
+
+export const withId = (WrappedComponent: React.FunctionComponent<any>, id: number) => (props: any) =>{
+    return (
+        <WrappedComponent {...props}
+            id={id}
+        />
+    )
+}

@@ -2,15 +2,18 @@ import { useEffect, useRef } from "react";
 import { Common, NodeModels } from "@/models/nodeModels";
 import { changedDragCounter, changedIngoingConnectorId, changedOutgoingConnectorId, loadedFlowModel } from "@/redux-store/actions.js";
 import {connect} from "react-redux";
-import {DialogCard} from "@/features/flow-chart";//"../../Nodes/DialogCard";
+import {CardWindow, DialogCard, TitleBar} from "@/features/flow-chart";//"../../Nodes/DialogCard";
 import DragHandle from "../Nodes/DragHandle.js";
 import { withInConnectorState, withOutConnectorState } from /* "@/features/flow-chart"; */"../Nodes/higher-order-components/connectorHOC.js";
 import {OutConnector, InConnector} from /* "@/features/flow-chart"; */"../Nodes/Connectors";
 import "./FlowSheet.scss";
 import { createCard } from "../Nodes/cardFactory";
+import { withId } from "@/features/components/higher-order-components/iterable-components.js";
 
 const OutConnectorWithState = withOutConnectorState(OutConnector);
 const InConnectorWithState = withInConnectorState(InConnector);
+
+//const CardWindowIdentified = withId(CardWindow);
 
 const FlowSheet = (props: any) => {
     const sheetRef = useRef(null);
@@ -31,27 +34,49 @@ const FlowSheet = (props: any) => {
             ref={sheetRef}
         >
             {   props.nodeModel ? 
-                    props.nodeModel.Models.map((node: Common, index: number) => 
-                        <DragHandle id={props.nodeModel.getId(index)}
-                            position={(props.nodeModel as NodeModels).getCoordinatesByIndex(index)}
-                            notifyPosition={updateModelCoordinates(props.nodeModel, props.incrementDragCounter, props.count)}
-                            notifyDragStop={recordModelOnDragEnd(props.nodeModel, props.loadModel)}
-                        >
-                            <div className="handle-inner-container"> 
-                                {
-                                    createCard(props.nodeModel.getType(index), index, props.nodeModel)
-                                }
+                    props.nodeModel.Models.map((node: Common, index: number) => {
+                        const CardWindowIdentified = withId(CardWindow, props.nodeModel.getId(index));
+                        return (
+                            <DragHandle id={props.nodeModel.getId(index)}
+                                position={(props.nodeModel as NodeModels).getCoordinatesByIndex(index)}
+                                notifyPosition={updateModelCoordinates(props.nodeModel, props.incrementDragCounter, props.count)}
+                                notifyDragStop={recordModelOnDragEnd(props.nodeModel, props.loadModel)}
+                                handleClass="card-handle"
+                            >
+                                {/* <div className="handle-inner-container"> 
+                                    {
+                                        createCard(props.nodeModel.getType(index), index, props.nodeModel)
+                                    }
 
-                                <InConnectorWithState id={props.nodeModel.getId(index)}
-                                    notifyConnection={addNodeConnectionToModel(props.nodeModel, props.outgoing, props.resetOutgoingAndIngoing)}
-                                />
+                                    <InConnectorWithState id={props.nodeModel.getId(index)}
+                                        notifyConnection={addNodeConnectionToModel(props.nodeModel, props.outgoing, props.resetOutgoingAndIngoing)}
+                                    />
 
-                                <OutConnectorWithState id={props.nodeModel.getId(index)}/>
+                                    <OutConnectorWithState id={props.nodeModel.getId(index)}/>
 
-                            </div>                           
-                        </DragHandle>
+                                </div>                            */}
+                                <CardWindowIdentified 
+                                    //children={undefined} 
+                                    titlebar={<TitleBar className="card-handle"/>}
+                                    inConnector={
+                                        <InConnectorWithState id={props.nodeModel.getId(index)}
+                                            notifyConnection={addNodeConnectionToModel(props.nodeModel, props.outgoing, props.resetOutgoingAndIngoing)}
+                                        />                                        
+                                    }
+                                    outConnector={
+                                        <OutConnectorWithState id={props.nodeModel.getId(index)}/>
+                                    }
+                                >
+
+                                    {
+                                        createCard(props.nodeModel.getType(index), index, props.nodeModel)
+                                    }
+                                    
+                                </CardWindowIdentified>
+                            </DragHandle>
+                        )
                   
-                    )
+                    })
                 :
                     <div></div>
             }

@@ -132,9 +132,9 @@ export const toggledEditor = (visible: boolean): (ActionType & BooleanPayload) =
     }
 }
 
-export const changedEditorDialog = (dialog: DialogContent): (ActionType & DialogPayload) => {
-    return{
-        type: EDITOR_DIALOG_CHANGED,
+export const changedEditorDialog = (dialog: DialogContent): (ActionType & DialogPayload) => { //this is bi-directional, changes both when clicking card to determine what content 
+    return{                                                                                     //the editor will open with and when editing the content - to determine what is 
+        type: EDITOR_DIALOG_CHANGED,                                                                //sent back to the card model  ... seems kind of dangerous...
         payload: dialog
     }
 }

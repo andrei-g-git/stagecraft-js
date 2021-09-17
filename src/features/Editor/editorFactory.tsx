@@ -17,27 +17,22 @@ export const createEditor = (type: number) => {
             const TextEditorWithState = withQuillEditorState(QuillEditor)
             return <TextEditorWithState />
             
-            case SCRIPT_EDITOR:
-                const ScriptEditorWithState = withScriptEditorState(ScriptEditor);
-              
-                const ScriptField = withScriptState(TextField);
-                //const ScriptFieldWithChange = withChange(ScriptField);
+        case SCRIPT_EDITOR:
+            const ScriptEditorWithState = withScriptEditorState(ScriptEditor);
+            
+            const ScriptField = withScriptState(TextField);
 
-                const Element = withChangeAtItem(TextField);
+            const Element = withChangeAtItem(TextField);
+            const ArgumentNameField = withArgumentNameState(Element);
+            const ArgumentValueField = withArgumentValueState(Element);                 
+            const ArgumentGroupJsx = ArgumentGroup(ArgumentNameField, ArgumentValueField);
 
-                const ArgumentNameField = withArgumentNameState(Element);
-
-                const ArgumentValueField = withArgumentValueState(Element);      
-                
-                //const ArgumentGroupStateful = withArgumentState(ArgumentGroup);
-                const ArgumentGroupJsx = ArgumentGroup(ArgumentNameField, ArgumentValueField);
-
-                return <div style={{width: "100%", height: "70%", backgroundColor: "gray"}}>
-                    <ScriptEditorWithState 
-                        Script={ScriptField}
-                        Argument={ArgumentGroupJsx}
-                    />
-                </div>
+            return <div style={{width: "100%", height: "70%", backgroundColor: "gray"}}>
+                <ScriptEditorWithState 
+                    Script={ScriptField}
+                    Argument={ArgumentGroupJsx}
+                />
+            </div>
                 
     }
 }

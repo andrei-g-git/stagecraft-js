@@ -7,9 +7,9 @@ import AddElement from "../components/AddElement.js";
 import { withClick } from "../components/higher-order-components/listeners.js";
 
 const EditorContainer = (props: any) => {
-
+    
     return (
-        props.visible? 
+        props.visible/* ? */ && 
             <div className="editor-container">
                 {
                     createEditor(props.type)
@@ -39,8 +39,8 @@ const EditorContainer = (props: any) => {
                 }
             </div>
 
-        :
-            <div></div>
+/*         :
+            <div></div> */
     )
 }
 

@@ -23,3 +23,14 @@ export const withClick = (WrappedComponent: React.FunctionComponent<any>) => (pr
         />
     )
 }
+
+export const withClickHandler = (WrappedComponent: React.FunctionComponent<any>) => (props: any) => {
+    return (
+        <div onClick={props.handleClick}>
+            <WrappedComponent {...props}
+                //handleClick={props.handleClick}
+            />            
+        </div>
+
+    )
+}

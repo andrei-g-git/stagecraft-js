@@ -4,7 +4,7 @@ import "./DragHandle.scss";
 const DragHandle = (props: any) => {
     return(
 
-            <Draggable handle=".card-handle"
+            <Draggable handle={`.${props.handleClass}`}//".card-handle"
                 axis="both"
                 defaultPosition={{x: props.position.x, y: props.position.y}}            
                 onStart={handleStart}
