@@ -42,22 +42,12 @@ const FlowSheet = (props: any) => {
                                 notifyPosition={updateModelCoordinates(props.nodeModel, props.incrementDragCounter, props.count)}
                                 notifyDragStop={recordModelOnDragEnd(props.nodeModel, props.loadModel)}
                                 handleClass="card-handle"
-                            >
-                                {/* <div className="handle-inner-container"> 
-                                    {
-                                        createCard(props.nodeModel.getType(index), index, props.nodeModel)
-                                    }
-
-                                    <InConnectorWithState id={props.nodeModel.getId(index)}
-                                        notifyConnection={addNodeConnectionToModel(props.nodeModel, props.outgoing, props.resetOutgoingAndIngoing)}
-                                    />
-
-                                    <OutConnectorWithState id={props.nodeModel.getId(index)}/>
-
-                                </div>                            */}
+                            > 
+                                <div style={{position: "absolute", height: "100%", width: "100%", top: 0, left: 0}}>
                                 <CardWindowIdentified 
                                     //children={undefined} 
                                     titlebar={<TitleBar className="card-handle"/>}
+                                    layout={createCard(props.nodeModel.getType(index), index, props.nodeModel)}
                                     inConnector={
                                         <InConnectorWithState id={props.nodeModel.getId(index)}
                                             notifyConnection={addNodeConnectionToModel(props.nodeModel, props.outgoing, props.resetOutgoingAndIngoing)}
@@ -68,11 +58,11 @@ const FlowSheet = (props: any) => {
                                     }
                                 >
 
-                                    {
+                                    {/* {
                                         createCard(props.nodeModel.getType(index), index, props.nodeModel)
-                                    }
+                                    } */}
                                     
-                                </CardWindowIdentified>
+                                </CardWindowIdentified></div>
                             </DragHandle>
                         )
                   

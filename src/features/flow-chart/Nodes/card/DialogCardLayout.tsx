@@ -1,3 +1,4 @@
+import "./DialogCardLayout.scss";
 
 const DialogCardLayout = (props: {
     picture: JSX.Element,
@@ -5,6 +6,7 @@ const DialogCardLayout = (props: {
     preview: JSX.Element,
     full: JSX.Element
 }) => {
+
     return (
         <div className="dialog-card-layout">
             <div className="dialog-card-picture">

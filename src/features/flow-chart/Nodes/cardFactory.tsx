@@ -10,6 +10,7 @@ import ScriptCard from "./card/ScriptCard";
 import DialogCardLayout from "./card/DialogCardLayout";
 import DialogContent from "./card/DialogContent";
 import { withClickHandler } from "@/features/components/higher-order-components/listeners";
+import { withId } from "@/features/components/higher-order-components/iterable-components";
 
 export const createCard = (type: string, index: number, model: NodeModels) => {
     switch(type){
@@ -32,12 +33,20 @@ export const createCard = (type: string, index: number, model: NodeModels) => {
             //         }                    
             //     }}
             // />
+            
 
-            const DialogWithCLICKHandlers = withClickHandler(DialogCardLayout);
-            const DialogWithHandlers = withHandlers(DialogWithCLICKHandlers);
-            const DialogWithStateAndHandlers = withDialogCardState(DialogWithHandlers);
+            const DialogWithStateAndhandlers = withId( //I have to trimm these out...
+                withDialogCardState(
+                    withHandlers(
+                        withClickHandler(DialogCardLayout)
+                    )
+                ),
+                model.getId(index)
+            )
 
-            return <DialogWithStateAndHandlers picture={<div>Picture</div>}
+
+
+            return <DialogWithStateAndhandlers picture={<div>Picture</div>}
                 name={<div>Name</div>}
                 preview={<DialogContent content={model.getPreviewHtml(index)}/>}
                 full={<DialogContent content={model.getFullHtml(index)}/>}

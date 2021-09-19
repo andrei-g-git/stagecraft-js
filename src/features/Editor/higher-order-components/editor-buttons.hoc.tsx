@@ -76,6 +76,8 @@ export const withCloseDialogEditor = (WrappedComponent: React.FunctionComponent<
 }
 const closeDialogEditor = (toggleEditor: Function, model: NodeModels, id: number, dialog: DialogContent) => {
 
+    console.log(`toggleEditor: \n${toggleEditor}\n, model:\n${model}\n, id:\n${id}\n, dialog:\n${dialog}   `);
+
     model.setPreviewHtmlById(id, dialog.preview.html);
     model.setFullHtmlById(id, dialog.full.html);
 

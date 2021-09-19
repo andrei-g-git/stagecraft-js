@@ -26,10 +26,13 @@ const handleClick = (id: number, toggleEditor: Function, selectNode: Function, s
 
 }
 
-export const withDragging = (WrappedComponent: React.FunctionComponent<any>) => 
-    (props: any) => {
-        return(
-            <WrappedComponent {...props} />
-        )
-    }
+
+
+
+// export const withDragging = (WrappedComponent: React.FunctionComponent<any>) => 
+//     (props: any) => {
+//         return(
+//             <WrappedComponent {...props} />
+//         )
+//     }
 

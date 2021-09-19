@@ -1,8 +1,10 @@
 import { ReactNode } from "react";
+import "./CardWindow.scss";
 
 const CardWindow = (props: {
-    children: ReactNode,
+    //children: ReactNode,
     titlebar: JSX.Element,
+    layout: JSX.Element,
     inConnector: JSX.Element,
     outConnector: JSX.Element
 }) => {
@@ -12,8 +14,11 @@ const CardWindow = (props: {
                 props.titlebar
             }
             {
-                props.children
+                props.layout
             }
+            {/* {
+                props.children
+            } */}
             {
                 props.inConnector
             }

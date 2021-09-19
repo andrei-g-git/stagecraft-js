@@ -26,7 +26,8 @@ export const withClick = (WrappedComponent: React.FunctionComponent<any>) => (pr
 
 export const withClickHandler = (WrappedComponent: React.FunctionComponent<any>) => (props: any) => {
     return (
-        <div onClick={props.handleClick}>
+        <div style={{width: "100%", height: "100%"}} //so this is pretty bad... 
+            onClick={props.handleClick}>
             <WrappedComponent {...props}
                 //handleClick={props.handleClick}
             />            
