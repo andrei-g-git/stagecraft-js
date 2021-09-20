@@ -19,7 +19,11 @@ import {
     EDITOR_SCRIPT_ARGUMENT_CHANGED,
     EDITOR_ARGUMENT_NAME_CHANGED,
     EDITOR_ARGUMENT_VALUE_CHANGED,
-    EDITOR_ARGUMENT_ADDED
+    EDITOR_ARGUMENT_ADDED,
+    EDITOR_PREVIEW_CHANGED,
+    EDITOR_FULL_TEXT_CHANGED,
+    PREVIEW_JSON_CHANGED,
+    FULL_TEXT_JSON_CHANGED
 } from "./actionTypes";
 import { 
     ActionType, 
@@ -180,5 +184,33 @@ export const addedEditorArgument = () => {
     return{
         type: EDITOR_ARGUMENT_ADDED,
         payload: null
+    }
+}
+
+export const changedEditorPreview = (value: string): (ActionType & StringPayload) => {
+    return{
+        type: EDITOR_PREVIEW_CHANGED,
+        payload: value
+    }
+}
+
+export const changedEditorFullText = (value: string): (ActionType & StringPayload) => {
+    return{
+        type: EDITOR_FULL_TEXT_CHANGED,
+        payload: value
+    }
+}
+
+export const changedEditorPreviewJson = (ops: Delta): (ActionType & DeltaPayload) => {
+    return{
+        type: PREVIEW_JSON_CHANGED,
+        payload: ops
+    }
+}
+
+export const changedEditorFullTextJson = (ops: Delta): (ActionType & DeltaPayload) => {
+    return{
+        type: FULL_TEXT_JSON_CHANGED,
+        payload: ops
     }
 }

@@ -63,6 +63,7 @@ export const withCloseScriptEditor = (WrappedComponent: React.FunctionComponent<
 }
 
 export const withCloseDialogEditor = (WrappedComponent: React.FunctionComponent<any>) => (props: any) => {
+    console.log("ADDING CLOSE BUTTON")
     return(
         <WrappedComponent {...props} 
             handleClick={() => closeDialogEditor(
@@ -76,7 +77,7 @@ export const withCloseDialogEditor = (WrappedComponent: React.FunctionComponent<
 }
 const closeDialogEditor = (toggleEditor: Function, model: NodeModels, id: number, dialog: DialogContent) => {
 
-    console.log(`toggleEditor: \n${toggleEditor}\n, model:\n${model}\n, id:\n${id}\n, dialog:\n${dialog}   `);
+    //console.log(`toggleEditor: \n${toggleEditor}\n, model:\n${model}\n, id:\n${id}\n, dialog:\n${dialog}   `);
 
     model.setPreviewHtmlById(id, dialog.preview.html);
     model.setFullHtmlById(id, dialog.full.html);

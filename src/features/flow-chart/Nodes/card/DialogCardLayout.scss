@@ -1,4 +1,16 @@
 .dialog-card-layout{
     width: 100%;
     height: 100%;
+
+    .dialog-card-preview{
+        height: 20%;
+        border: solid 1px gray;
+        background-color: rgba($color: #b67878, $alpha: 0.6);
+    }
+
+    .dialog-card-full{
+        height: 30%;
+        border: solid 1px gray;
+        background-color: rgba($color: #7883b6, $alpha: 0.6);
+    }  
 }

@@ -1,3 +1,5 @@
+import "./DialogCard.scss";
+
 const DialogContent = (props: {content: string}) => {
     return (
         <div className="preview-text-content">

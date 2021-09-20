@@ -3,7 +3,7 @@ import {
     DIALOG,
     SCRIPT
 } from "@/models/typeOfNodes";
-import { withDialogCardState, withScriptCardState } from "./higher-order-components/stateHOC";
+import { /* withDialogCardState,  */withFullTextState, withPreviewState, withScriptCardState } from "./higher-order-components/stateHOC";
 import { withHandlers } from "./higher-order-components/card.hoc";
 import DialogCard from "./card/DialogCard";
 import ScriptCard from "./card/ScriptCard";
@@ -16,50 +16,51 @@ export const createCard = (type: string, index: number, model: NodeModels) => {
     switch(type){
 
         case DIALOG:
-            // const DialogWithHandlers = withHandlers(DialogCard);
-            // const DialogWithStateAndHandlers = withDialogCardState(DialogWithHandlers);
-            // return<DialogWithStateAndHandlers 
-            //     id={model.getId(index)}
-            //     preview={model.getPreviewHtml(index)} 
-            //     full={model.getFullHtml(index)}
-            //     content={{
-            //         preview: {
-            //             html: model.getPreviewHtml(index),
-            //             json: model.getPreviewJson(index)
-            //         },
-            //         full: {
-            //             html: model.getFullHtml(index),
-            //             json: model.getFullJson(index)
-            //         }                    
-            //     }}
-            // />
             
+            // const DialogWithStateAndhandlers = withId( //I have to trimm these out...
+            //     withDialogCardState(
+            //         withHandlers(
+            //             withClickHandler(DialogCardLayout)
+            //         )
+            //     ),
+            //     model.getId(index)
+            // )
 
-            const DialogWithStateAndhandlers = withId( //I have to trimm these out...
-                withDialogCardState(
+
+            const PreviewContnet = withId(
+                withPreviewState(
                     withHandlers(
-                        withClickHandler(DialogCardLayout)
+                        withClickHandler(DialogContent)
                     )
                 ),
                 model.getId(index)
-            )
+            );
 
+            const FullContnet = withId(
+                withFullTextState(
+                    withHandlers(
+                        withClickHandler(DialogContent)
+                    )
+                ),
+                model.getId(index)
+            );
 
-
-            return <DialogWithStateAndhandlers picture={<div>Picture</div>}
+            return <DialogCardLayout picture={<div>Picture</div>}
                 name={<div>Name</div>}
-                preview={<DialogContent content={model.getPreviewHtml(index)}/>}
-                full={<DialogContent content={model.getFullHtml(index)}/>}
-                content={{
-                    preview: {
-                        html: model.getPreviewHtml(index),
-                        json: model.getPreviewJson(index)
-                    },
-                    full: {
-                        html: model.getFullHtml(index),
-                        json: model.getFullJson(index)
-                    }                    
-                }}                
+                // preview={<DialogContent content={model.getPreviewHtml(index)}/>}
+                // full={<DialogContent content={model.getFullHtml(index)}/>}
+                preview={<PreviewContnet content={model.getPreviewHtml(index)}/>}
+                full={<FullContnet content={model.getFullHtml(index)}/>}
+                // content={{
+                //     preview: {
+                //         html: model.getPreviewHtml(index),
+                //         json: model.getPreviewJson(index)
+                //     },
+                //     full: {
+                //         html: model.getFullHtml(index),
+                //         json: model.getFullJson(index)
+                //     }                    
+                // }}                
             />
 
         case SCRIPT:

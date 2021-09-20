@@ -11,8 +11,6 @@ const QuillEditor = (props) => {
                 value={props.preview}
                 modules={getModules()}
                 formats={null}
-                //onChange={handleChange(props.changeContent, props.changeHtml)}
-                //onChange={handleChange(props.changeDialog)}
                 onChange={handleChangePreview(props.changePreviewDialog, props.dialog)}
             >
 
@@ -23,8 +21,6 @@ const QuillEditor = (props) => {
                 value={props.full}
                 modules={getModules()}
                 formats={null}
-                //onChange={handleChange(props.changeContent, props.changeHtml)}
-                //onChange={handleChange(props.changeDialog)}
                 onChange={handleChangeFull(props.changeFullDialog, props.dialog)}
             >
 

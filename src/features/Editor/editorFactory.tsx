@@ -1,7 +1,8 @@
-import { NO_EDITOR, SCRIPT_EDITOR, TEXT_EDITOR } from "@/constants/editors";
-import { withArgumentNameState, withArgumentValueState, withQuillEditorState, withScriptEditorState, withScriptState } from "./higher-order-components/editorHOC";
+import { FULL_TEXT_EDITOR, NO_EDITOR, PREVIEW_TEXT_EDITOR, SCRIPT_EDITOR/* , TEXT_EDITOR  */} from "@/constants/editors";
+import { withArgumentNameState, withArgumentValueState, withQuillFullTextState, withQuillPreviewState, withScriptEditorState, withScriptState } from "./higher-order-components/editorHOC";
 import ScriptEditor from "./script-editor/ScriptEditor";
-import QuillEditor from "./QuillEditor.jsx";
+//import QuillEditor from "./QuillEditor_Old.jsx";
+import QuillEditor from "./dialog-editor/QuillEditor.jsx";
 import SmallContainer from "../components/SmallContainer";
 import TextField from "../components/TextField";
 import { withChange, withChangeAtItem } from "../components/higher-order-components/listeners";
@@ -13,10 +14,19 @@ export const createEditor = (type: number) => {
         case NO_EDITOR:
             return <div></div>
 
-        case TEXT_EDITOR:
-            const TextEditorWithState = withQuillEditorState(QuillEditor)
-            return <TextEditorWithState />
+        // case TEXT_EDITOR: //no longer exists
+        //     const TextEditorWithState = withQuillEditorState(QuillEditor);
+        //     return <TextEditorWithState />
             
+
+        case PREVIEW_TEXT_EDITOR:
+            const PreviewEditorWithState = withQuillPreviewState(QuillEditor)
+            return <PreviewEditorWithState />
+
+        case FULL_TEXT_EDITOR:
+            const FullTextEditorWithState = withQuillFullTextState(QuillEditor)
+            return <FullTextEditorWithState />
+
         case SCRIPT_EDITOR:
             const ScriptEditorWithState = withScriptEditorState(ScriptEditor);
             

@@ -5,10 +5,14 @@ import {
     EDITOR_ARGUMENT_VALUE_CHANGED,
     EDITOR_CONTENT_CHANGED,
     EDITOR_DIALOG_CHANGED,
+    EDITOR_FULL_TEXT_CHANGED,
     EDITOR_HTML_CHANGED, 
+    EDITOR_PREVIEW_CHANGED, 
     EDITOR_SCRIPT_ARGUMENT_CHANGED, 
     EDITOR_SCRIPT_CHANGED,
-    EDITOR_SCRIPT_NAME_CHANGED
+    EDITOR_SCRIPT_NAME_CHANGED,
+    FULL_TEXT_JSON_CHANGED,
+    PREVIEW_JSON_CHANGED
 } from "./actionTypes";
 import { ActionType, DeltaPayload, DialogPayload, IndexedNamedValuePayload, IndexedStringPayload, ScriptPayload, StringPayload } from "./types";
 import { Delta } from "@/features/Editor/types";
@@ -41,7 +45,7 @@ const initialState: {
         arguments: []
     },
     arguments: 0, //length value
-    dialog: {
+    dialog: { //these should all be separate values, too much headache keeping them tied
         preview: {
             html: "",
             json: {ops: []}
@@ -75,6 +79,68 @@ export const editorReducer = (state = initialState, action: ActionType) => {
                 ...state,
                 dialog: (<DialogPayload><unknown>action).payload
             }   
+
+        case EDITOR_PREVIEW_CHANGED:
+            //console.log(`FROM REDUCER, VLAUE   ${(<StringPayload><unknown>action).payload}`)
+            return{
+                ...state,
+                dialog: { 
+                    preview: {
+                        html: (<StringPayload><unknown>action).payload,
+                        json: state.dialog.preview.json
+                    },
+                    full: {
+                        html: state.dialog.full.html,
+                        json: state.dialog.full.json
+                    }
+                }
+            }
+
+        case EDITOR_FULL_TEXT_CHANGED:
+            return{
+                ...state,
+                dialog: { 
+                    preview: {
+                        html: state.dialog.full.html,
+                        json: state.dialog.preview.json
+                    },
+                    full: {
+                        html: (<StringPayload><unknown>action).payload,
+                        json: state.dialog.full.json
+                    }
+                }
+            }
+
+        case PREVIEW_JSON_CHANGED:
+            return{
+                ...state,
+                dialog: {
+                    preview:{
+                        html: state.dialog.preview.html,
+                        json: (<DeltaPayload><unknown>action).payload                            
+                    },
+                    full: {
+                        html: state.dialog.full.html,
+                        json: state.dialog.full.json
+                    }
+                }
+            }
+            case FULL_TEXT_JSON_CHANGED:
+                return{
+                    ...state,
+                    dialog: {
+                        preview:{
+                            html: state.dialog.preview.html,
+                            json: state.dialog.preview.json                            
+                        },
+                        full: {
+                            html: state.dialog.full.html,
+                            json: (<DeltaPayload><unknown>action).payload
+                        }
+                    }
+                }
+
+
         case EDITOR_SCRIPT_NAME_CHANGED:
             return{
                 ...state,
