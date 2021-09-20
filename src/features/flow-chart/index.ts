@@ -4,7 +4,7 @@ import FlowContainer from "./flow-sheet/FlowContainer";
 import FlowSheet from "./flow-sheet/FlowSheet";
 import FlowCanvas from "./canvas/FlowCanvas";
 import {InConnector, OutConnector} from "./Nodes/Connectors";
-import DialogCard from "./Nodes/card/DialogCard";
+import DialogCard from "../components/z-deprecated/DialogCard";
 
 import CardWindow from "./Nodes/card/CardWindow";
 import DialogCardLayout from "./Nodes/card/DialogCardLayout";

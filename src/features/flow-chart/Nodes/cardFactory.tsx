@@ -5,7 +5,7 @@ import {
 } from "@/models/typeOfNodes";
 import { /* withDialogCardState,  */withFullTextState, withPreviewState, withScriptCardState } from "./higher-order-components/stateHOC";
 import { withHandlers } from "./higher-order-components/card.hoc";
-import DialogCard from "./card/DialogCard";
+import DialogCard from "../../components/z-deprecated/DialogCard";
 import ScriptCard from "./card/ScriptCard";
 import DialogCardLayout from "./card/DialogCardLayout";
 import DialogContent from "./card/DialogContent";
@@ -47,20 +47,8 @@ export const createCard = (type: string, index: number, model: NodeModels) => {
 
             return <DialogCardLayout picture={<div>Picture</div>}
                 name={<div>Name</div>}
-                // preview={<DialogContent content={model.getPreviewHtml(index)}/>}
-                // full={<DialogContent content={model.getFullHtml(index)}/>}
                 preview={<PreviewContnet content={model.getPreviewHtml(index)}/>}
-                full={<FullContnet content={model.getFullHtml(index)}/>}
-                // content={{
-                //     preview: {
-                //         html: model.getPreviewHtml(index),
-                //         json: model.getPreviewJson(index)
-                //     },
-                //     full: {
-                //         html: model.getFullHtml(index),
-                //         json: model.getFullJson(index)
-                //     }                    
-                // }}                
+                full={<FullContnet content={model.getFullHtml(index)}/>}              
             />
 
         case SCRIPT:

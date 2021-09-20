@@ -29,6 +29,32 @@ export class AllNodeModels implements NodeModels{
         this.Models[index].Type = type;
     }
 
+    getTitle = (index: number) => {
+        return (this.Models[index]).Title;
+    }
+    setTitle = (title: string, index: number) => {
+        (this.Models[index]).Title = title;
+    }
+
+    getTitleById = (id: number) => {
+        console.log("GETTING TITLE FOR NODE WITH ID     ", id)
+        return ((this.nodes)
+            .filter(node => node.Id === id)[0])
+            .Title;        
+    }
+    setTitleById = (title: string, id: number) => {
+        ((this.nodes)
+        .filter(node => node.Id === id)[0])
+        .Title = title;
+    }
+
+    // getTitleJsonById = (id: number) => RichContent;
+    // setTitleJsonById = (title: RichContent, id: number) => {
+    //     /* (( */this.nodes/*  as unknown as Common[]) */
+    //     .filter(node => node.Id === id)[0] //as unknown as Dialog)
+    //     .Title = title;
+    // }
+
     getHtml = (index: number) => {
         return (this.nodes[index] as unknown as Dialog).Html;
     }

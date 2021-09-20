@@ -7,6 +7,8 @@ import {
     changedEditorPreview, 
     changedEditorPreviewJson, 
     changedEditorScriptName, 
+    changedTitle, 
+    //changedTitleJson, 
     loadedFlowModel, 
     toggledEditor
 } from "@/redux-store/actions"
@@ -48,6 +50,43 @@ export const withQuillFullTextState = ( WrappedComponent: React.FunctionComponen
                 changeDialog: (html: string, json: Delta) => {
                     dispatch(changedEditorFullText(html));
                     dispatch(changedEditorFullTextJson(json)); //not actually json, it's a literal
+                }     
+            }
+        }
+    )
+}
+
+export const withQuillTitleState = ( WrappedComponent: React.FunctionComponent<any>) => { //no longer using
+    return withState(
+        WrappedComponent, 
+        (state: any) => {
+            return {
+                content: state.editor.title.html
+            }
+        }, 
+        (dispatch: Function) => {
+            return {      
+                changeDialog: (html: string, json: Delta) => {
+                    dispatch(changedTitle(html));
+                    //dispatch(changedTitleJson(json)); //not actually json, it's a literal
+                }     
+            }
+        }
+    )
+}
+
+export const withTitleEditorState = ( WrappedComponent: React.FunctionComponent<any>) => {
+    return withState(
+        WrappedComponent, 
+        (state: any) => {
+            return {
+                content: state.editor.title
+            }
+        }, 
+        (dispatch: Function) => {
+            return {      
+                changeContent: (title: string, json: Delta) => {
+                    dispatch(changedTitle(title));
                 }     
             }
         }

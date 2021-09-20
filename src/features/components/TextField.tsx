@@ -1,12 +1,20 @@
-import "./TextField.scss";
 
-const TextField = (props: {content: string, handleChange: Function}) => {
+import { MouseEventHandler, useState } from "react";
+import "./TextField.scss";
+import { NodeModels } from "@/models/nodeModels";
+
+const TextField = (props: {content: string, handleChange: Function, className?: string, /* model: NodeModels */handleClick: MouseEventHandler}) => {
+    const [count, setCount] = useState(0);
     return(
-        <input className="text-field" 
+        <input className={props.className? props.className : "text-field"}
             type="text" 
-            value={props.content}
-            onChange={(event) => {props.handleChange(event.target.value)}}
-            //onChange={(event) => props.notify(event.target.value)}
+            value={/* props.model.getTitle(0)} */ props.content}
+            onChange={(event) => {
+                props.handleChange(event.target.value);
+                // setCount(count + 1);
+                // if(count > 1000) setCount(0)
+            }}
+            onClick={props.handleClick}
         />
     )
 }

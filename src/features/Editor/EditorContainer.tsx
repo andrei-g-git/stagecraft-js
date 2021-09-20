@@ -1,6 +1,6 @@
 import { createEditor } from "./editorFactory.js";
-import { FULL_TEXT_EDITOR, PREVIEW_TEXT_EDITOR, SCRIPT_EDITOR } from "@/constants/editors.js";
-import { withCloseDialogEditor, withCloseDialogEditorState, withCloseScriptEditor, withCloseScriptEditorState, withNewArgumentState } from "./higher-order-components/editor-buttons.hoc";
+import { FULL_TEXT_EDITOR, PREVIEW_TEXT_EDITOR, SCRIPT_EDITOR, TITLE_EDITOR } from "@/constants/editors.js";
+import { withCloseDialogEditor, withCloseDialogEditorState, withCloseScriptEditor, withCloseScriptEditorState, withCloseTitleEditor, withCloseTitleEditorState, withNewArgumentState } from "./higher-order-components/editor-buttons.hoc";
 import { GenericButton } from "../components";//"@/components";
 import "./EditorContainer.scss"
 import AddElement from "../components/AddElement.js";
@@ -16,22 +16,23 @@ const EditorContainer = (props: any) => {
                 }   
 
                 {
-                    (props.type === PREVIEW_TEXT_EDITOR) || (props.type === FULL_TEXT_EDITOR) ? 
-                        makeCloseEditorButton(
-                            GenericButton,
-                            withCloseDialogEditorState,
-                            withCloseDialogEditor
-                        )
-                    :   
-                        makeCloseEditorButton(
-                            GenericButton,
-                            withCloseScriptEditorState,
-                            withCloseScriptEditor
-                        )
+                    // (props.type === PREVIEW_TEXT_EDITOR) || (props.type === FULL_TEXT_EDITOR) ? 
+                    //     makeCloseEditorButton(
+                    //         GenericButton,
+                    //         withCloseDialogEditorState,
+                    //         withCloseDialogEditor
+                    //     )
+                    // :   
+                    //     makeCloseEditorButton(
+                    //         GenericButton,
+                    //         withCloseScriptEditorState,
+                    //         withCloseScriptEditor
+                    //     )
+                    makeCloseEditor(props.type)
                 }
 
                 {
-                    makeAddArgumentButton(
+                    makeAddArgumentButton( //should this be nested here?....
                         AddElement,
                         withNewArgumentState,
                         withClick
@@ -51,13 +52,19 @@ const makeCloseEditor = (type: number) => {
             const CloseDialogButton =  withCloseDialogEditorState(
                 withCloseDialogEditor(GenericButton)
             )
-            return <CloseDialogButton name="Close"/>
-
+            return <CloseDialogButton name="Close Dialog Editor"/>
+        
+        case TITLE_EDITOR:
+            const CloseTitleButton = withCloseTitleEditorState(
+                withCloseTitleEditor(GenericButton)
+            )
+        return <CloseTitleButton name="Close Title Button" />
+        
         case SCRIPT_EDITOR:
             const CloseScriptButton = withCloseScriptEditorState(
                 withCloseScriptEditor(GenericButton)
             )
-            return <CloseScriptButton name="Close"/>
+            return <CloseScriptButton name="Close Script Editor"/>
 
         default: return <div></div>
     }

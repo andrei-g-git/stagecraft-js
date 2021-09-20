@@ -12,7 +12,9 @@ import {
     EDITOR_SCRIPT_CHANGED,
     EDITOR_SCRIPT_NAME_CHANGED,
     FULL_TEXT_JSON_CHANGED,
-    PREVIEW_JSON_CHANGED
+    PREVIEW_JSON_CHANGED,
+    TITLE_CHANGED,
+    //TITLE_JSON_CHANGED
 } from "./actionTypes";
 import { ActionType, DeltaPayload, DialogPayload, IndexedNamedValuePayload, IndexedStringPayload, ScriptPayload, StringPayload } from "./types";
 import { Delta } from "@/features/Editor/types";
@@ -27,14 +29,19 @@ const initialState: {
     arguments: number,
     dialog: {
         preview: {
-            html: "",
+            html: string, //"", what the fuck...
             json: Delta
         },
         full: {
-            html: "",
+            html: string, //"",
             json: Delta
         }
-    }
+    },
+    // title:{
+    //     html: string, //"",
+    //     json: Delta //I should really replace "json" with "delta" or "object" or something...
+    // }
+    title: string
 } = {
     content: {
         ops: []
@@ -54,7 +61,12 @@ const initialState: {
             html: "",
             json: {ops: []}
         }
-    }
+    },
+    // title: {
+    //     html: "",
+    //     json: {ops: []}
+    // }
+    title: ""
 }
 
 export const editorReducer = (state = initialState, action: ActionType) => {
@@ -215,6 +227,29 @@ export const editorReducer = (state = initialState, action: ActionType) => {
                 },
                 arguments: state.arguments + 1
             }
+            case TITLE_CHANGED:
+                return{
+                    ...state,
+                    title: (<StringPayload><unknown>action).payload
+                } 
+                
+        // case TITLE_CHANGED:
+        //     return{
+        //         ...state,
+        //         title: {
+        //             html: (<StringPayload><unknown>action).payload,
+        //             json: state.title.json
+        //         }
+        //     }    
+
+        // case TITLE_JSON_CHANGED:
+        //     return{
+        //         ...state,
+        //         title: {
+        //             html: state.title.html,
+        //             json: (<DeltaPayload><unknown>action).payload,
+        //         }
+        //     } 
 
         default:
             return {...state};          

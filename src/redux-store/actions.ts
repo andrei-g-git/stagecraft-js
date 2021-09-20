@@ -3,7 +3,7 @@ import {
     FLOW_MODEL_LOADED,
     EDITOR_CONTENT_CHANGED,
     EDITOR_HTML_CHANGED,
-    NODE_ID_SELECTED,
+    NODE_SELECTED,
     TEXT_EDITOR_TOGGLED, 
     DRAG_COUNTER_CHANGED,
     CONNECTING_TOGGLED,
@@ -23,7 +23,10 @@ import {
     EDITOR_PREVIEW_CHANGED,
     EDITOR_FULL_TEXT_CHANGED,
     PREVIEW_JSON_CHANGED,
-    FULL_TEXT_JSON_CHANGED
+    FULL_TEXT_JSON_CHANGED,
+    TITLE_SELECTED,
+    TITLE_CHANGED,
+    //TITLE_JSON_CHANGED
 } from "./actionTypes";
 import { 
     ActionType, 
@@ -61,8 +64,15 @@ export const changedEditorHtml = (html: string): (ActionType & StringPayload) =>
 
 export const selectedNodeId = (id: number): (ActionType & NumberPayload) => {
     return {
-        type: NODE_ID_SELECTED,
+        type: NODE_SELECTED,
         payload: id
+    }
+}
+
+export const selectedTitle = (title: string): (ActionType & StringPayload) => {//(index: number): (ActionType & NumberPayload) => {
+    return {
+        type: TITLE_SELECTED,
+        payload: title //index
     }
 }
 
@@ -214,3 +224,17 @@ export const changedEditorFullTextJson = (ops: Delta): (ActionType & DeltaPayloa
         payload: ops
     }
 }
+
+export const changedTitle = (title: string): (ActionType & StringPayload) => {
+    return{
+        type: TITLE_CHANGED,
+        payload: title
+    }
+}
+
+// export const changedTitleJson = (title: Delta): (ActionType & DeltaPayload) => {
+//     return{
+//         type: TITLE_JSON_CHANGED,
+//         payload: title
+//     }
+// }

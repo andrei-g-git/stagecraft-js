@@ -1,5 +1,6 @@
-import { FULL_TEXT_EDITOR, NO_EDITOR, PREVIEW_TEXT_EDITOR, SCRIPT_EDITOR/* , TEXT_EDITOR  */} from "@/constants/editors";
-import { withArgumentNameState, withArgumentValueState, withQuillFullTextState, withQuillPreviewState, withScriptEditorState, withScriptState } from "./higher-order-components/editorHOC";
+import { FULL_TEXT_EDITOR, NO_EDITOR, PREVIEW_TEXT_EDITOR, SCRIPT_EDITOR,/* , TEXT_EDITOR  */
+TITLE_EDITOR} from "@/constants/editors";
+import { withArgumentNameState, withArgumentValueState, withQuillFullTextState, withQuillPreviewState, withQuillTitleState, withScriptEditorState, withScriptState, withTitleEditorState } from "./higher-order-components/editorHOC";
 import ScriptEditor from "./script-editor/ScriptEditor";
 //import QuillEditor from "./QuillEditor_Old.jsx";
 import QuillEditor from "./dialog-editor/QuillEditor.jsx";
@@ -7,6 +8,7 @@ import SmallContainer from "../components/SmallContainer";
 import TextField from "../components/TextField";
 import { withChange, withChangeAtItem } from "../components/higher-order-components/listeners";
 import ArgumentGroup from "./script-editor/ArgumentGroup";
+import LineEditor from "./script-editor/LineEditor";
 
 
 export const createEditor = (type: number) => {
@@ -20,12 +22,16 @@ export const createEditor = (type: number) => {
             
 
         case PREVIEW_TEXT_EDITOR:
-            const PreviewEditorWithState = withQuillPreviewState(QuillEditor)
+            const PreviewEditorWithState = withQuillPreviewState(QuillEditor);
             return <PreviewEditorWithState />
 
         case FULL_TEXT_EDITOR:
-            const FullTextEditorWithState = withQuillFullTextState(QuillEditor)
+            const FullTextEditorWithState = withQuillFullTextState(QuillEditor);
             return <FullTextEditorWithState />
+
+        case TITLE_EDITOR:
+            const TitleEditorWithState = withTitleEditorState(LineEditor);
+            return <TitleEditorWithState />
 
         case SCRIPT_EDITOR:
             const ScriptEditorWithState = withScriptEditorState(ScriptEditor);

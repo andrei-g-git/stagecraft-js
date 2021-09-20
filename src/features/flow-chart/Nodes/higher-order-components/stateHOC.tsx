@@ -1,7 +1,8 @@
-import { changedEditor, changedEditorDialog, changedEditorFullText, changedEditorHtml, changedEditorPreview, changedEditorScript, selectedNodeId, toggledEditor, toggledScriptEditor, toggledTextEditor } from "@/redux-store/actions";
+import { changedEditor, changedEditorDialog, changedEditorFullText, changedEditorHtml, changedEditorPreview, changedEditorScript, changedTitle, selectedNodeId, selectedTitle, toggledEditor, toggledScriptEditor, toggledTextEditor } from "@/redux-store/actions";
 import { withState } from "@/features/_Util/higherOrderComponents";
-import { DialogContent, ScriptContent } from "@/models/nodeModels";
-import { FULL_TEXT_EDITOR, PREVIEW_TEXT_EDITOR, SCRIPT_EDITOR/* , TEXT_EDITOR  */} from "@/constants/editors";
+import { DialogContent, NodeModels, ScriptContent } from "@/models/nodeModels";
+import { FULL_TEXT_EDITOR, PREVIEW_TEXT_EDITOR, SCRIPT_EDITOR,/* , TEXT_EDITOR  */
+TITLE_EDITOR} from "@/constants/editors";
 
 // export const withDialogCardState = (
 //     WrappedComponent: React.FunctionComponent<any>
@@ -71,6 +72,14 @@ export const withFullTextState = (WrappedComponent: React.FunctionComponent<any>
     );
 }
 
+export const withTitleState = (WrappedComponent: React.FunctionComponent<any>) => {
+    return withCardState(
+        WrappedComponent,
+        TITLE_EDITOR,
+        changedTitle
+    );
+}
+
 export const withScriptCardState = (WrappedComponent: React.FunctionComponent<any>) => {
     return withState(
         WrappedComponent, 
@@ -93,3 +102,29 @@ export const withScriptCardState = (WrappedComponent: React.FunctionComponent<an
         }
     )
 }
+
+
+// export const withTitleState = (WrappedComponent: React.FunctionComponent<any>, setTitle: Function, index: number) => {
+//     return withState(
+//         WrappedComponent,
+//         (state: any) => {
+//             return {
+//                 content: /* state.model.selectedTitle, */state.model.nodeModel.getTitle(index),
+//                 //model: state.model.nodeModel //test delete
+//             }
+//         },
+//         (dispatch: Function) => {
+//             return{
+//                 // handleClick: (/* index: number */) => {
+//                 //     console.log("HANDLING CLICK ON TITLE, ID IS:   ", id)
+//                 //     //dispatch(selectedNodeId(id));
+//                 //     dispatch(selectedTitle(index))
+//                 // },
+//                 handleChange: (content: string) => {
+//                     dispatch(selectedTitle(content)); //I shouldn't need this but it seems to act as a component updater since some prop changes, probably state.model as a whole
+//                     setTitle(content, index)
+//                 }
+//             }
+//         }
+//     )
+// }

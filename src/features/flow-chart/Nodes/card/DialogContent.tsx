@@ -1,4 +1,4 @@
-import "./DialogCard.scss";
+import "./DialogContent.scss";
 
 const DialogContent = (props: {content: string}) => {
     return (

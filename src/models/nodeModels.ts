@@ -27,6 +27,12 @@ export type DialogContent = {
         json: Delta
     }
 }                      // SHOULD NOT BE HERE
+export type TitleContent = {
+    html: string,
+    json: Delta
+}                      // SHOULD NOT BE HERE
+
+
 export interface Common{
 
     get Id(): number;
@@ -129,6 +135,15 @@ export interface NodeModels{
 
     getType: (index: number) => string;
     setType: (index: number, type: string) => void;
+
+    getTitle: (index: number) => string;
+    setTitle: (title: string, index: number) => void;
+
+    getTitleById: (id: number) => string;
+    setTitleById: (title: string, id: number) => void;
+
+    // getTitleJsonById: (id: number) => RichContent;
+    // setTitleJsonById: (title: RichContent, id: number) => void;
 
     getHtml: (index: number) => string;
     setHtml: (index: number, html: string) => void;

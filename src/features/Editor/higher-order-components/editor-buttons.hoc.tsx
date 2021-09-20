@@ -1,6 +1,6 @@
 import { withState } from "@/features/_Util/higherOrderComponents";
 import { StandardRichContent } from "@/models/StandardRichContent";
-import { DialogContent, NodeModels, ScriptContent } from "@/models/nodeModels";
+import { DialogContent, NodeModels, ScriptContent, TitleContent } from "@/models/nodeModels";
 import { literalToClass } from "@/models/usage/dataConversion";
 import { addedEditorArgument, toggledEditor } from "@/redux-store/actions";
 import { MapStateToPropsParam } from "react-redux";
@@ -49,6 +49,19 @@ export const withCloseScriptEditorState = (WrappedComponent: React.FunctionCompo
     )
 }
 
+export const withCloseTitleEditorState = (WrappedComponent: React.FunctionComponent<any>) => {
+    return withCloseEditorState(
+        WrappedComponent,
+        (state: any) => {
+            return{
+                id: state.model.selected,
+                model: state.model.nodeModel,
+                content: state.editor.title             
+            }
+        },
+    )
+}
+
 export const withCloseScriptEditor = (WrappedComponent: React.FunctionComponent<any>) => (props: any) => {
     return(
         <WrappedComponent {...props} 
@@ -75,6 +88,20 @@ export const withCloseDialogEditor = (WrappedComponent: React.FunctionComponent<
         />
     )
 }
+
+export const withCloseTitleEditor = (WrappedComponent: React.FunctionComponent<any>) => (props: any) => {
+    return(
+        <WrappedComponent {...props} 
+            handleClick={() => closeTitleEditor(
+                props.toggleEditor,
+                props.model,
+                props.id,
+                props.content
+            )}
+        />
+    )
+}
+
 const closeDialogEditor = (toggleEditor: Function, model: NodeModels, id: number, dialog: DialogContent) => {
 
     //console.log(`toggleEditor: \n${toggleEditor}\n, model:\n${model}\n, id:\n${id}\n, dialog:\n${dialog}   `);
@@ -94,6 +121,24 @@ const closeDialogEditor = (toggleEditor: Function, model: NodeModels, id: number
     model.setFullJsonById(id, fullRichContent);
     toggleEditor(false);
 }
+
+const closeTitleEditor = (toggleEditor: Function, model: NodeModels, id: number, title: string) => {
+
+    model.setTitleById(title, id);
+    toggleEditor(false);
+}
+
+// const closeTitleEditor = (toggleEditor: Function, model: NodeModels, id: number, title: TitleContent) =>{
+//     model.setTitleById(title.html, id);
+
+//     const titleContent = literalToClass(
+//         title.json,
+//         StandardRichContent
+//     )
+//     model.setTitle(id, previewRichContent);
+
+//     toggleEditor(false);
+// }
 
 const closeScriptEditor = (toggleEditor: Function, model: NodeModels, id: number, script: ScriptContent) => {
 
