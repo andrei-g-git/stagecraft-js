@@ -37,10 +37,6 @@ const initialState: {
             json: Delta
         }
     },
-    // title:{
-    //     html: string, //"",
-    //     json: Delta //I should really replace "json" with "delta" or "object" or something...
-    // }
     title: string
 } = {
     content: {
@@ -62,10 +58,6 @@ const initialState: {
             json: {ops: []}
         }
     },
-    // title: {
-    //     html: "",
-    //     json: {ops: []}
-    // }
     title: ""
 }
 
@@ -232,24 +224,6 @@ export const editorReducer = (state = initialState, action: ActionType) => {
                     ...state,
                     title: (<StringPayload><unknown>action).payload
                 } 
-                
-        // case TITLE_CHANGED:
-        //     return{
-        //         ...state,
-        //         title: {
-        //             html: (<StringPayload><unknown>action).payload,
-        //             json: state.title.json
-        //         }
-        //     }    
-
-        // case TITLE_JSON_CHANGED:
-        //     return{
-        //         ...state,
-        //         title: {
-        //             html: state.title.html,
-        //             json: (<DeltaPayload><unknown>action).payload,
-        //         }
-        //     } 
 
         default:
             return {...state};          

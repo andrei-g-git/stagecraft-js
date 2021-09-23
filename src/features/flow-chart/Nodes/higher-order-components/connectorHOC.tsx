@@ -48,9 +48,3 @@ export const withInConnectorState = (
         }
     )
 }
-
-// const mapStateToProps = (state: any) => {
-//     return {
-//         connecting: state.ui.connecting
-//     }
-// }

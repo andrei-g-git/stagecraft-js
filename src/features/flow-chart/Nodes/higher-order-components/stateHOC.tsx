@@ -104,27 +104,3 @@ export const withScriptCardState = (WrappedComponent: React.FunctionComponent<an
 }
 
 
-// export const withTitleState = (WrappedComponent: React.FunctionComponent<any>, setTitle: Function, index: number) => {
-//     return withState(
-//         WrappedComponent,
-//         (state: any) => {
-//             return {
-//                 content: /* state.model.selectedTitle, */state.model.nodeModel.getTitle(index),
-//                 //model: state.model.nodeModel //test delete
-//             }
-//         },
-//         (dispatch: Function) => {
-//             return{
-//                 // handleClick: (/* index: number */) => {
-//                 //     console.log("HANDLING CLICK ON TITLE, ID IS:   ", id)
-//                 //     //dispatch(selectedNodeId(id));
-//                 //     dispatch(selectedTitle(index))
-//                 // },
-//                 handleChange: (content: string) => {
-//                     dispatch(selectedTitle(content)); //I shouldn't need this but it seems to act as a component updater since some prop changes, probably state.model as a whole
-//                     setTitle(content, index)
-//                 }
-//             }
-//         }
-//     )
-// }

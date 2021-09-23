@@ -1,8 +1,6 @@
-import { Common, NodeModels } from "@/models/nodeModels";
 import { 
     FLOW_MODEL_LOADED,
-    NODE_SELECTED, 
-    TITLE_SELECTED
+    NODE_SELECTED
 } from "./actionTypes";
 
 const initialState = {
@@ -22,13 +20,8 @@ export const modelReducer = (state = initialState, action: any) => {
             return{
                 ...state,
                 selected: action.payload,
-                //selectedTitle: (state.nodeModel && (state.nodeModel as NodeModels).Length) ? (state.nodeModel as NodeModels).getTitleById(action.payload) : ""
             }
-        // case TITLE_SELECTED:
-        //     return{
-        //         ...state,
-        //         selectedTitle: action.payload
-        //     }
+
         default:
             return {...state};
     }

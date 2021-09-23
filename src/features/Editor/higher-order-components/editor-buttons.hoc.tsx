@@ -1,6 +1,6 @@
 import { withState } from "@/features/_Util/higherOrderComponents";
 import { StandardRichContent } from "@/models/StandardRichContent";
-import { DialogContent, NodeModels, ScriptContent, TitleContent } from "@/models/nodeModels";
+import { DialogContent, NodeModels, ScriptContent } from "@/models/nodeModels";
 import { literalToClass } from "@/models/usage/dataConversion";
 import { addedEditorArgument, toggledEditor } from "@/redux-store/actions";
 import { MapStateToPropsParam } from "react-redux";
@@ -76,7 +76,6 @@ export const withCloseScriptEditor = (WrappedComponent: React.FunctionComponent<
 }
 
 export const withCloseDialogEditor = (WrappedComponent: React.FunctionComponent<any>) => (props: any) => {
-    console.log("ADDING CLOSE BUTTON")
     return(
         <WrappedComponent {...props} 
             handleClick={() => closeDialogEditor(
@@ -104,8 +103,6 @@ export const withCloseTitleEditor = (WrappedComponent: React.FunctionComponent<a
 
 const closeDialogEditor = (toggleEditor: Function, model: NodeModels, id: number, dialog: DialogContent) => {
 
-    //console.log(`toggleEditor: \n${toggleEditor}\n, model:\n${model}\n, id:\n${id}\n, dialog:\n${dialog}   `);
-
     model.setPreviewHtmlById(id, dialog.preview.html);
     model.setFullHtmlById(id, dialog.full.html);
 
@@ -128,18 +125,6 @@ const closeTitleEditor = (toggleEditor: Function, model: NodeModels, id: number,
     toggleEditor(false);
 }
 
-// const closeTitleEditor = (toggleEditor: Function, model: NodeModels, id: number, title: TitleContent) =>{
-//     model.setTitleById(title.html, id);
-
-//     const titleContent = literalToClass(
-//         title.json,
-//         StandardRichContent
-//     )
-//     model.setTitle(id, previewRichContent);
-
-//     toggleEditor(false);
-// }
-
 const closeScriptEditor = (toggleEditor: Function, model: NodeModels, id: number, script: ScriptContent) => {
 
     model.setScriptById(id, script.script);
@@ -147,13 +132,6 @@ const closeScriptEditor = (toggleEditor: Function, model: NodeModels, id: number
 
     toggleEditor(false)
 }
-
-
-// export const withArgumentAdder = (WrappedComponent: React.FunctionComponent<any>) => (props: any) => {
-//     return(
-//         <WrappedComponent />
-//     )
-// }
 
 export const withNewArgumentState = (WrappedComponent: React.FunctionComponent<any>) => {
     return withState(

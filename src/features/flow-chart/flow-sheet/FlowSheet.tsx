@@ -2,19 +2,16 @@ import { useEffect, useRef } from "react";
 import { Common, NodeModels } from "@/models/nodeModels";
 import { changedDragCounter, changedIngoingConnectorId, changedOutgoingConnectorId, loadedFlowModel } from "@/redux-store/actions.js";
 import {connect} from "react-redux";
-import {CardWindow, DialogCard, DialogContent, TitleBar} from "@/features/flow-chart";//"../../Nodes/DialogCard";
+import {CardWindow, DialogContent, TitleBar} from "@/features/flow-chart";//"../../Nodes/DialogCard";
 import DragHandle from "../Nodes/DragHandle.js";
 import { withInConnectorState, withOutConnectorState } from /* "@/features/flow-chart"; */"../Nodes/higher-order-components/connectorHOC.js";
 import {OutConnector, InConnector} from /* "@/features/flow-chart"; */"../Nodes/Connectors";
-import "./FlowSheet.scss";
 import { createCard } from "../Nodes/cardFactory";
 import { withId } from "@/features/components/higher-order-components/iterable-components.js";
-import { withChange, withClickHandler } from "@/features/components/higher-order-components/listeners.js";
-import TextField from "@/features/components/TextField.js";
-import { withNotifyIndexedContentChange } from "@/features/components/higher-order-components/callbacks.js";
-import { withTitleChange } from "../Nodes/higher-order-components/node.hoc.js";
+import { withClickHandler } from "@/features/components/higher-order-components/listeners.js";
 import { withTitleState } from "../Nodes/higher-order-components/stateHOC.js";
 import { withHandlers } from "../Nodes/higher-order-components/card.hoc.js";
+import "./FlowSheet.scss";
 
 const OutConnectorWithState = withOutConnectorState(OutConnector);
 const InConnectorWithState = withInConnectorState(InConnector);
@@ -42,14 +39,6 @@ const FlowSheet = (props: any) => {
             {   props.nodeModel ? 
                     props.nodeModel.Models.map((node: Common, index: number) => {
                         const CardWindowIdentified = withId(CardWindow, props.nodeModel.getId(index));
-                        //const TitleField = TextField; 
-                        
-                        // const TitleField = withTitleState( //withTitleState is not the same function anymore, it's similar to what the dialog content component use
-                        //     //withTitleChange(TextField, props.nodeModel, index),
-                        //     TextField,
-                        //     props.nodeModel.setTitle,
-                        //     index
-                        // );
 
                         const TitleLabel = withId(
                             withTitleState(
@@ -69,12 +58,8 @@ const FlowSheet = (props: any) => {
                             > 
                                 <div style={{position: "absolute", height: "100%", width: "100%", top: 0, left: 0}}>
                                     <CardWindowIdentified 
-                                        //children={undefined} 
                                         titlebar={
                                             <TitleBar className="card-handle"
-                                                // title={<TitleField className="card-text-field"
-                                                //     //content={props.nodeModel.getTitle(index)} 
-                                                // />}
                                                 title={<TitleLabel content={props.nodeModel.getTitle(index)}/>}
                                             />
                                         }

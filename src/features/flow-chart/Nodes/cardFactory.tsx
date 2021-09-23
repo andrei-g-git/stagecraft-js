@@ -16,16 +16,6 @@ export const createCard = (type: string, index: number, model: NodeModels) => {
     switch(type){
 
         case DIALOG:
-            
-            // const DialogWithStateAndhandlers = withId( //I have to trimm these out...
-            //     withDialogCardState(
-            //         withHandlers(
-            //             withClickHandler(DialogCardLayout)
-            //         )
-            //     ),
-            //     model.getId(index)
-            // )
-
 
             const PreviewContnet = withId(
                 withPreviewState(

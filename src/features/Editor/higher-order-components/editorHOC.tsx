@@ -1,20 +1,18 @@
 import { 
     changedEditorArgumentName, 
     changedEditorArgumentValue, 
-    changedEditorDialog,
     changedEditorFullText,
     changedEditorFullTextJson,
     changedEditorPreview, 
     changedEditorPreviewJson, 
     changedEditorScriptName, 
-    changedTitle, 
-    //changedTitleJson, 
+    changedTitle,
     loadedFlowModel, 
     toggledEditor
 } from "@/redux-store/actions"
 import { withState } from "../../_Util/higherOrderComponents"
 import { Delta } from "../types"
-import { DialogContent, NodeModels } from "@/models/nodeModels"
+import { NodeModels } from "@/models/nodeModels"
 import { connect } from "react-redux"
 
 
@@ -56,25 +54,6 @@ export const withQuillFullTextState = ( WrappedComponent: React.FunctionComponen
     )
 }
 
-export const withQuillTitleState = ( WrappedComponent: React.FunctionComponent<any>) => { //no longer using
-    return withState(
-        WrappedComponent, 
-        (state: any) => {
-            return {
-                content: state.editor.title.html
-            }
-        }, 
-        (dispatch: Function) => {
-            return {      
-                changeDialog: (html: string, json: Delta) => {
-                    dispatch(changedTitle(html));
-                    //dispatch(changedTitleJson(json)); //not actually json, it's a literal
-                }     
-            }
-        }
-    )
-}
-
 export const withTitleEditorState = ( WrappedComponent: React.FunctionComponent<any>) => {
     return withState(
         WrappedComponent, 
@@ -92,94 +71,6 @@ export const withTitleEditorState = ( WrappedComponent: React.FunctionComponent<
         }
     )
 }
-
-// export const withQuillFullState = ( WrappedComponent: React.FunctionComponent<any>) => {
-//     return withState(
-//         WrappedComponent, 
-//         (state: any) => {
-//             return {
-//                 content: state.editor.dialog.preview.html
-//             }
-//         }, 
-//         (dispatch: Function) => {
-//             return {      
-//                 changePreviewDialog: (html: string, json: Delta, dialog: DialogContent) => {
-//                     const newDialog={
-//                         preview: {
-//                             html: html,
-//                             json: json
-//                         },
-//                         full: {
-//                             html: dialog.full.html, 
-//                             json: dialog.full.json
-//                         }
-//                     }
-//                     dispatch(changedEditorDialog(newDialog));
-//                 },        
-//                 changeFullDialog: (html: string, json: Delta, dialog: DialogContent) => { 
-//                     const newDialog={
-//                         preview: {
-//                             html: dialog.preview.html,
-//                             json: dialog.preview.json
-//                         },
-//                         full: {
-//                             html: html, 
-//                             json: json
-//                         }
-//                     }
-//                     dispatch(changedEditorDialog(newDialog));
-//                 }       
-//             }
-//         }
-//     )
-// }
-
-
-// export const withQuillEditorState = ( WrappedComponent: React.FunctionComponent<any>) => {
-//     return withState(
-//         WrappedComponent, 
-//         (state: any) => {
-//             return {
-//                 content: state.editor.content,
-//                 html: state.editor.dialog.full.html,
-//                 id: state.model.selected,
-//                 dialog: state.editor.dialog,
-//                 full: state.editor.dialog.full.html,
-//                 preview: state.editor.dialog.preview.html
-//             }
-//         }, 
-//         (dispatch: Function) => {
-//             return {      
-//                 changePreviewDialog: (html: string, json: Delta, dialog: DialogContent) => {
-//                     const newDialog={
-//                         preview: {
-//                             html: html,
-//                             json: json
-//                         },
-//                         full: {
-//                             html: dialog.full.html, 
-//                             json: dialog.full.json
-//                         }
-//                     }
-//                     dispatch(changedEditorDialog(newDialog));
-//                 },        
-//                 changeFullDialog: (html: string, json: Delta, dialog: DialogContent) => { 
-//                     const newDialog={
-//                         preview: {
-//                             html: dialog.preview.html,
-//                             json: dialog.preview.json
-//                         },
-//                         full: {
-//                             html: html, 
-//                             json: json
-//                         }
-//                     }
-//                     dispatch(changedEditorDialog(newDialog));
-//                 }       
-//             }
-//         }
-//     )
-// }
 
 export const withScriptEditorState = (WrappedComponent: React.FunctionComponent<any>) => {
     return withState(

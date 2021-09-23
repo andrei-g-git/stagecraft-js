@@ -16,18 +16,6 @@ const EditorContainer = (props: any) => {
                 }   
 
                 {
-                    // (props.type === PREVIEW_TEXT_EDITOR) || (props.type === FULL_TEXT_EDITOR) ? 
-                    //     makeCloseEditorButton(
-                    //         GenericButton,
-                    //         withCloseDialogEditorState,
-                    //         withCloseDialogEditor
-                    //     )
-                    // :   
-                    //     makeCloseEditorButton(
-                    //         GenericButton,
-                    //         withCloseScriptEditorState,
-                    //         withCloseScriptEditor
-                    //     )
                     makeCloseEditor(props.type)
                 }
 
@@ -59,7 +47,7 @@ const makeCloseEditor = (type: number) => {
                 withCloseTitleEditor(GenericButton)
             )
         return <CloseTitleButton name="Close Title Button" />
-        
+
         case SCRIPT_EDITOR:
             const CloseScriptButton = withCloseScriptEditorState(
                 withCloseScriptEditor(GenericButton)
@@ -68,13 +56,6 @@ const makeCloseEditor = (type: number) => {
 
         default: return <div></div>
     }
-}
-
-const makeCloseEditorButton = (Base: any, withState: Function, withClose: Function) => {
-    //console.log("ADDING CLOSE")
-    const SecondStage = withClose(Base);
-    const CloseButton = withState(SecondStage); 
-    return <CloseButton name="Close"/>
 }
 
 const makeAddArgumentButton = (Base: any, withState: Function, withClick: Function) => {
