@@ -9,21 +9,29 @@ const DialogCardLayout = (props: {
 
     return (
         <div className="dialog-card-layout">
-            <div className="dialog-card-picture">
-                {
-                    props.picture
-                }
+            <div className="picture-against-name-and-preview">
+                <div className="dialog-card-picture">
+                    {
+                        props.picture
+                    }
+                </div>
+
+                <div className="name-and-preview">
+                    <div className="dialog-card-name">
+                        {
+                            props.name
+                        }
+                    </div>
+                    <div className="dialog-card-preview">
+                        {
+                            props.preview
+                        }
+                    </div>                    
+                </div>                
             </div>
-            <div className="dialog-card-name">
-                {
-                    props.name
-                }
-            </div>
-            <div className="dialog-card-preview">
-                {
-                    props.preview
-                }
-            </div>
+
+
+
             <div className="dialog-card-full">
                 {
                     props.full

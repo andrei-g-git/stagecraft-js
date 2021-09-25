@@ -1,4 +1,5 @@
 import { DialogContent, ScriptContent } from "@/models/nodeModels";
+import { useTitleEditor } from "../card/hooks/card.hooks";
 
 //store HOCs are in nodesHOC.tsx, should move here
 
@@ -38,5 +39,14 @@ const handleClick = (id: number, toggleEditor: Function, selectNode: Function, s
 
 }
 
+export const withTitleEditorOpener = (WrappepdComponent: React.FunctionComponent<any>) => //doesn't work yet, it re-renders at the drop of a hat so when I close the editor it will jsut open up again
+    (props: any) => {
+        
+        useTitleEditor(props);
+        
+        return(
+            <WrappepdComponent {...props} />
+        )
+    }
 
-
+    

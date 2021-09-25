@@ -10,8 +10,9 @@ import { createCard } from "../Nodes/cardFactory";
 import { withId } from "@/features/components/higher-order-components/iterable-components.js";
 import { withClickHandler } from "@/features/components/higher-order-components/listeners.js";
 import { withTitleState } from "../Nodes/higher-order-components/stateHOC.js";
-import { withHandlers } from "../Nodes/higher-order-components/card.hoc.js";
+import { withHandlers, withTitleEditorOpener } from "../Nodes/higher-order-components/card.hoc.js";
 import "./FlowSheet.scss";
+import { withMemo } from "@/features/components/higher-order-components/re-act.hoc.js";
 
 const OutConnectorWithState = withOutConnectorState(OutConnector);
 const InConnectorWithState = withInConnectorState(InConnector);

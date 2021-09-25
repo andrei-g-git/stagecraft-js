@@ -49,6 +49,7 @@ const handleClick = (resetSelection: Function, selected: number, model: NodeMode
             model.addNode(createNode(selected));
             const index = model.Length - 1;
             model.setId(index, model.generateId(/* model */));//Math.floor(Math.random() * 1000));
+            model.setTitle("Click to change title", index);
             model.setCoordinatesByIndex(index, x, y);   
             model.setType(index, stringTypes.filter(pair => pair.enum === selected)[0].str); //well this is shit           
         }
