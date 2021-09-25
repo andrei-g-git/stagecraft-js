@@ -5,15 +5,16 @@
     .preview-text{
         width: 100%;
         height: 100%;
-        overflow-x: hidden;
-        overflow-y: auto; //scroll;
+        //overflow-x: hidden;
+        //overflow-y: auto; //scroll;
         display: flex;
         flex-wrap: wrap;
         font-size: 0.6rem;
-        
-        &::-webkit-scrollbar {
-            display: none;
-        }
+        margin: 0;
+        padding: 0;
+        // &::-webkit-scrollbar {
+        //     display: none;
+        // }
 
         p{
             //width: 100%;

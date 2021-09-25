@@ -88,6 +88,32 @@ export const withCloseDialogEditor = (WrappedComponent: React.FunctionComponent<
     )
 }
 
+export const withClosePreviewEditor = (WrappedComponent: React.FunctionComponent<any>) => (props: any) => {
+    return(
+        <WrappedComponent {...props} 
+            handleClick={() => closePreviewEditor(
+                props.toggleEditor,
+                props.model,
+                props.id,
+                props.dialog
+            )}
+        />
+    )
+}
+
+export const withCloseFullTextEditor = (WrappedComponent: React.FunctionComponent<any>) => (props: any) => {
+    return(
+        <WrappedComponent {...props} 
+            handleClick={() => closeFullTextEditor(
+                props.toggleEditor,
+                props.model,
+                props.id,
+                props.dialog
+            )}
+        />
+    )
+}
+
 export const withCloseTitleEditor = (WrappedComponent: React.FunctionComponent<any>) => (props: any) => {
     return(
         <WrappedComponent {...props} 
@@ -111,6 +137,29 @@ const closeDialogEditor = (toggleEditor: Function, model: NodeModels, id: number
         StandardRichContent
     )
     model.setPreviewJsonById(id, previewRichContent);
+    const fullRichContent = literalToClass(
+        dialog.full.json,
+        StandardRichContent
+    )
+    model.setFullJsonById(id, fullRichContent);
+    toggleEditor(false);
+}
+
+const closePreviewEditor = (toggleEditor: Function, model: NodeModels, id: number, dialog: DialogContent) => {
+
+    model.setPreviewHtmlById(id, dialog.preview.html);
+
+    const previewRichContent = literalToClass(
+        dialog.preview.json,
+        StandardRichContent
+    )
+    model.setPreviewJsonById(id, previewRichContent);
+    toggleEditor(false);
+}
+
+const closeFullTextEditor = (toggleEditor: Function, model: NodeModels, id: number, dialog: DialogContent) => {
+
+    model.setFullHtmlById(id, dialog.full.html);
     const fullRichContent = literalToClass(
         dialog.full.json,
         StandardRichContent

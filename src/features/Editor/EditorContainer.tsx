@@ -1,6 +1,6 @@
 import { createEditor } from "./editorFactory.js";
 import { FULL_TEXT_EDITOR, PREVIEW_TEXT_EDITOR, SCRIPT_EDITOR, TITLE_EDITOR } from "@/constants/editors.js";
-import { withCloseDialogEditor, withCloseDialogEditorState, withCloseScriptEditor, withCloseScriptEditorState, withCloseTitleEditor, withCloseTitleEditorState, withNewArgumentState } from "./higher-order-components/editor-buttons.hoc";
+import { withCloseDialogEditor, withCloseDialogEditorState, withCloseFullTextEditor, withClosePreviewEditor, withCloseScriptEditor, withCloseScriptEditorState, withCloseTitleEditor, withCloseTitleEditorState, withNewArgumentState } from "./higher-order-components/editor-buttons.hoc";
 import { GenericButton } from "../components";//"@/components";
 import "./EditorContainer.scss"
 import AddElement from "../components/AddElement.js";
@@ -35,12 +35,24 @@ const EditorContainer = (props: any) => {
 
 const makeCloseEditor = (type: number) => {
     switch(type){
-        case PREVIEW_TEXT_EDITOR:
+        // case PREVIEW_TEXT_EDITOR:
+        // case FULL_TEXT_EDITOR:
+        //     const CloseDialogButton =  withCloseDialogEditorState(
+        //         withCloseDialogEditor(GenericButton)
+        //     )
+        //     return <CloseDialogButton name="Close Dialog Editor"/>
         case FULL_TEXT_EDITOR:
-            const CloseDialogButton =  withCloseDialogEditorState(
-                withCloseDialogEditor(GenericButton)
+            const CloseFullTextButton = withCloseDialogEditorState(
+                withCloseFullTextEditor(GenericButton)
             )
-            return <CloseDialogButton name="Close Dialog Editor"/>
+            return <CloseFullTextButton name="Close Full Editor"/>     
+
+        case PREVIEW_TEXT_EDITOR:
+            const ClosePreviewButton = withCloseDialogEditorState(
+                withClosePreviewEditor(GenericButton)
+            )
+            return <ClosePreviewButton name="Close Preview Editor"/>        
+
         
         case TITLE_EDITOR:
             const CloseTitleButton = withCloseTitleEditorState(

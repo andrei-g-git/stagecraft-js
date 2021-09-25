@@ -1,47 +1,97 @@
-.dialog-card-layout{
+.dialog-card-grid-layout{
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    display: grid;
+    gap: 0.3rem 0.2rem;
+    //grid-template-areas:  ;    
+    grid-template-columns: 1fr 2.65fr;
+    grid-template-rows: minmax(0, 1fr) 2.65fr;
+    //background-color: blue;
 
-    .picture-against-name-and-preview{
-        width: 100%;
-        height: 25%;
+    .dialog-card-picture{
+        grid-column: 1 / span 1;
+        grid-row: 1 / span 1;
+        padding: 5%;
+    }    
+    
+    .name-and-preview{
+        grid-column: 2 / span 1;
+        grid-row: 1 / span 1;
+        border: solid 1px gray;
         display: flex;
-        align-items: center;
-        gap: 0.5rem;
+        flex-direction: column;
 
-        .dialog-card-picture{
-            width: 25%;
-            //flex: 1;
-            height: 0;
-            padding-top: 25%; //or 100%?
-            position: relative;
-        }   
-        
-        .name-and-preview{
-            //flex: 3;
-            width: 75%;
-            height: 100%;
-            
-            .dialog-card-name{
-                font-size: 0.6rem;
-            }
-
-            .dialog-card-preview{
-                //height: 20%;
-                width: 100%;
-                height: 80%;
-                border: solid 1px gray;
-                background-color: rgba($color: #b67878, $alpha: 0.6);
-            }
+        .dialog-card-name{
+            font-size: 0.6rem;
         }
+
+        .dialog-card-preview{
+            width: 100%;
+            flex/* -grow */: 1;
+            border: solid 1px gray;
+            border-left: none;
+            border-bottom: none;
+            overflow-y: scroll;
+            // min-width: 0;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+
+        }        
     }
 
     .dialog-card-full{
-        height: 50%;
-        border: solid 1px gray;
-        background-color: rgba($color: #7883b6, $alpha: 0.6);
-    }  
+        grid-column: 1 / span 2;
+        grid-row: 2 / span 1;   
+        border: solid 1px brown;     
+    }
 }
+
+
+// .dialog-card-layout{
+//     width: 100%;
+//     height: 100%;
+//     display: flex;
+//     flex-direction: column;
+//     gap: 1rem;
+
+//     .picture-against-name-and-preview{
+//         width: 100%;
+//         height: 25%;
+//         display: flex;
+//         align-items: center;
+//         gap: 0.5rem;
+
+//         .dialog-card-picture{
+//             width: 25%;
+//             //flex: 1;
+//             height: 0;
+//             padding-top: 25%; //or 100%?
+//             position: relative;
+//         }   
+        
+//         .name-and-preview{
+//             //flex: 3;
+//             width: 75%;
+//             height: 100%;
+            
+//             .dialog-card-name{
+//                 font-size: 0.6rem;
+//             }
+
+//             .dialog-card-preview{
+//                 //height: 20%;
+//                 width: 100%;
+//                 height: 80%;
+//                 border: solid 1px gray;
+//                 background-color: rgba($color: #b67878, $alpha: 0.6);
+//             }
+//         }
+//     }
+
+//     .dialog-card-full{
+//         height: 50%;
+//         border: solid 1px gray;
+//         background-color: rgba($color: #7883b6, $alpha: 0.6);
+//     }  
+// }
