@@ -14,7 +14,17 @@ import {FlowContainer} from "@/features/flow-chart";//"../flow-chart/flow-sheet/
 import {EditorContainer} from "@/features/Editor"; //got an index
 import { withEditorContainerState } from "../Editor/higher-order-components/editorHOC";
 //import FlowToolbar from "../flow-chart/FlowToolbar/FlowToolbar.js";
-import { FlowToolbar } from "@/features/flow-chart";
+//import { FlowToolbar } from "@/features/flow-chart";
+import FlowToolbarBP from "../flow-chart/flow-toolbar/FlowToolbarBP";
+import { DIALOG_NODE, SCRIPT_NODE } from "@/constants/toolbarItems";
+
+const toolbarItems = [
+    {type: DIALOG_NODE, icon: "chat"},
+    {type: SCRIPT_NODE, icon: "code"}
+]
+
+const cardTypes = toolbarItems.map((item: {type: number, icon: string}) => item.type);
+const icons = toolbarItems.map((item: {type: number, icon: string}) => item.icon);
 
 const MainWindow = (props: any) => {
     useEffect(() => {
@@ -37,7 +47,9 @@ const MainWindow = (props: any) => {
         >
 
             <MainPane center={<FlowContainer nodeModel={props.nodeModel}/>}
-                toolbar={<FlowToolbar />}
+                toolbar={<FlowToolbarBP cardTypes={cardTypes}
+                    icons={icons}
+                />}
                 right={<EditorContainerWithState nodeModel={props.nodeModel}/>}
             />
 
