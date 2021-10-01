@@ -17,6 +17,7 @@ import { withEditorContainerState } from "../Editor/higher-order-components/edit
 //import { FlowToolbar } from "@/features/flow-chart";
 import FlowToolbarBP from "../flow-chart/flow-toolbar/FlowToolbarBP";
 import { DIALOG_NODE, SCRIPT_NODE } from "@/constants/toolbarItems";
+import { MainNavbarBuilder } from "@/features/main-navigation";
 
 const toolbarItems = [
     {type: DIALOG_NODE, icon: "chat"},
@@ -46,8 +47,10 @@ const MainWindow = (props: any) => {
             onMouseUp={handleMouseUp(props.toggleConnecting)}
         >
 
-            <MainPane center={<FlowContainer nodeModel={props.nodeModel}/>}
-                toolbar={<FlowToolbarBP cardTypes={cardTypes}
+            <MainPane 
+                menubar={<MainNavbarBuilder />}
+                center={<FlowContainer nodeModel={props.nodeModel}/>}
+                toolbar={<FlowToolbarBP cardTypes={cardTypes} //MainWindow is basically becoming a god component...
                     icons={icons}
                 />}
                 right={<EditorContainerWithState nodeModel={props.nodeModel}/>}

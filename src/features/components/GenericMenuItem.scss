@@ -1,0 +1,18 @@
+.generic-menu-item{
+    li{
+        list-style-type: none; /* Remove bullets */
+        // padding: 0; /* Remove padding */
+        // margin: 0; /* Remove margins */   
+    }
+ 
+    //color: red; --this works, the above doesn't
+}
+
+// .generic-menu-item li{
+//     //& li{
+//         list-style-type: none; /* Remove bullets */
+//         // padding: 0; /* Remove padding */
+//         // margin: 0; /* Remove margins */   
+//     //}
+ 
+// }
