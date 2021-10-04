@@ -202,4 +202,5 @@ export interface NodeModels{
 
     addConnection: (outgoing: number, ingoing: number) => void;
 
+    getJson: () => string;
 }

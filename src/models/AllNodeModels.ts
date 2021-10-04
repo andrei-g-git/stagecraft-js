@@ -228,4 +228,9 @@ export class AllNodeModels implements NodeModels{
             .setIngoing(outgoing);            
     }
 
+    
+    getJson = () => {
+        return JSON.stringify(this.Models);
+    }
+
 }

@@ -29,6 +29,7 @@ const icons = toolbarItems.map((item: {type: number, icon: string}) => item.icon
 
 const MainWindow = (props: any) => {
     useEffect(() => {
+        console.log("MainWIndow mounted")
         props.loadModel(testNodeCreation())
     },
         []

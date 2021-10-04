@@ -7,6 +7,12 @@ export type {
     PropsWithIndex,
     MenuItemProps
 } from "./types";
+
+export{
+    withModelState
+} from "./higher-order-components/store.hoc"
+
+
 export {
     GenericButton
 }
