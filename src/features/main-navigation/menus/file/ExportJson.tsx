@@ -1,44 +1,34 @@
 import { NodeModels } from '@/models/nodeModels';
 import { useEffect } from 'react';
-import { connect } from 'react-redux';
 
 const ExportJson = (props: any) => { //needs to export only json, not also the html within --- and get rid of the composition objects
-    useEffect(() => {
-        console.log("MODELLLLLLLLL::::   ", props.model)
-    },
-        []
-    )
-
     return (
         <props.MenuItem name={props.name}
-            handleClick={() => exportModelJson(props.model)} 
+            handleClick={() => exportModelJson(props.model)}
         />
     )
 }
 
-const exportModelJson = (model: NodeModels) => {
+const exportModelJson = async (model: NodeModels) => {
     console.log("MODEL:  ", model)
     const data = model.getJson();
 
-    const fs = require("fs");
-    fs.writeFile("model.json", data, (err: any) => {
-        if (err) {
-            console.log(err)
-        } else {
-            console.log("Wrote to disk")
-        }
-    })
+    const jsonBlob = new Blob([data], { type: "text/plain" });
+    const fileHandler = await window.showSaveFilePicker({
+        suggestedName: "json-model.json",
+        types: [
+            {
+                description: "Json File",
+                accept: {
+                    "text/plain": [".json"]
+                }
+            }
+        ]
+    });
+
+    const writableFileStream = await fileHandler.createWritable();
+    await writableFileStream.write(jsonBlob);
+    await writableFileStream.close();
 }
 
-const mapStateToProps = (state: any) => {
-    return{
-        model: state.model.nodeModel
-    }
-}
-
-const mapDispatchToProps = (dispatch: Function) => {
-    return{
-
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(ExportJson);
+export default ExportJson;

@@ -1,8 +1,8 @@
 import {GenericMenuItem} from "@/features/components";
-import {ExportJson, MainNavbar, withExportJson} from "@/features/main-navigation";
+import {ExportJson, MainNavbar} from "@/features/main-navigation";
 import {NavMenu} from "@/features/components";/* "./menus/NavMenu"; */
 import { connect } from "react-redux";
-import { withModelState } from  "@/features/components"; //"../components/higher-order-components/store.hoc";
+import { withModelState } from  "@/features/components"; 
 
 
 
@@ -13,11 +13,10 @@ const MainNavbarBuilder = (props: any) => {
 			<NavMenu name="File"
 				icon="document"
 			>
-				<ExportJson 
-					name="Export as Jsonyyyy"
-					MenuItem={GenericMenuItem}
-				/>
-				{/* <GenericMenuItem name="bbbbb" /> */}
+				{
+					makeExportJsonItem("Export As JSON")
+				}
+
 			</NavMenu>
 
 			<NavMenu name="Edit"
@@ -27,23 +26,12 @@ const MainNavbarBuilder = (props: any) => {
 	)
 }
 
-// const makeExportJsonItem = (/* model: NodeModels */) => {    this is fucking stupid...
-// 	//const ExportAsJson = withExportJson(GenericMenuItem, model);
-// 	console.log("MAKING EXPORTJSON")
-// 	const ExportAsJsonWithState = withModelState(ExportJson);
-// 	return <ExportAsJsonWithState 
-// 		MenuItem={GenericMenuItem}
-// 		name="Export As JSON"
-// 	/>
-// }
-
-// const mapStateToProps = (state: any) => {
-// 	return{
-// 		model: state.model.nodeModels
-// 	}
-// }
-
-//export default connect(mapStateToProps, null)(MainNavbarBuilder);
-
+const makeExportJsonItem = (name: string) => {    
+	const ExportAsJsonWithState = withModelState(ExportJson);
+	return <ExportAsJsonWithState 
+		MenuItem={GenericMenuItem}
+		name={name}
+	/>
+}
 
 export default MainNavbarBuilder;

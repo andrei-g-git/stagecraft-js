@@ -11,6 +11,12 @@ import installExtension, { REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS } from 'electro
 const reactDevToolsPath = "C:/work/misc/ReactDevTools_manifestv2";
 const REDUX_DEVTOOLS_PATH = "C:/Users/me/AppData/Local/BraveSoftware/Brave-Browser/User Data/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd/3.0.19_0";
 
+//mine
+require('@electron/remote/main').initialize();
+
+//mine - for file handling
+app.commandLine.appendSwitch("enable-experimental-web-platform-features");
+
 // The built directory structure
 //
 // ├─┬ dist-electron
@@ -48,6 +54,10 @@ let win: BrowserWindow | null = null
 const preload = join(__dirname, '../preload/index.js')
 const url = process.env.VITE_DEV_SERVER_URL
 const indexHtml = join(process.env.DIST, 'index.html')
+
+//mine
+// const webContents = require("@electron/remote/main").webContents; //win.webContents;
+// require("@electron/remote/main").enable(webContents);
 
 
 async function createWindow() {
