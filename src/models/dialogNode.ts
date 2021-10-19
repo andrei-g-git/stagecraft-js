@@ -117,17 +117,17 @@ export class BasicDialogNode implements DialogNode, Common, Coordinates, Named, 
     set Avatar(avatar: string) {
         this.pictures.Avatar = avatar;
     }
-    get Content(): RichContent {
-        return this.dialog.Content;
-    }
-    set Content(content: RichContent){
-        this.dialog.Content = content;
-    }  
-    get Html(): string/* HTMLElement */{
-        return this.dialog.Html;
-    }
-    set Html(html: string/* HTMLElement */){
-        this.dialog.Html = html;
-    }   
+    // get Content(): RichContent {
+    //     return this.dialog.Content;
+    // }
+    // set Content(content: RichContent){
+    //     this.dialog.Content = content;
+    // }  
+    // get Html(): string/* HTMLElement */{
+    //     return this.dialog.Html;
+    // }
+    // set Html(html: string/* HTMLElement */){
+    //     this.dialog.Html = html;
+    // }   
     
 }

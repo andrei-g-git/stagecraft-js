@@ -1,9 +1,13 @@
 import { Delta } from "@/features/Editor/types";
-import { Common, Coordinates, Dialog, NamedValue, NodeModels, Script } from "./nodeModels";
+import { Common, Coordinates, Dialog, Named, NamedValue, NodeModels, Script } from "./nodeModels";
 import { Coord2DPair } from "./vectors";
 import {RichContent} from "./wysiwygModels";
 import { literalToClass } from "./usage/dataConversion";
 import { StandardRichContent } from "./StandardRichContent";
+import { DIALOG, SCRIPT } from "./typeOfNodes";
+import { BasicDialogNode } from "./dialogNode";
+import { BasicScriptNode } from "./scriptNode";
+import { retrieveNestedValue } from "@/utils/objects";
 
 export class AllNodeModels implements NodeModels{
     constructor(public nodes: Common[]){}
@@ -55,12 +59,12 @@ export class AllNodeModels implements NodeModels{
     //     .Title = title;
     // }
 
-    getHtml = (index: number) => {
-        return (this.nodes[index] as unknown as Dialog).Html;
-    }
-    setHtml = (index: number, html: string) => {
-        (this.nodes[index] as unknown as Dialog).Html = html;
-    };
+    // getHtml = (index: number) => {
+    //     return (this.nodes[index] as unknown as Dialog).Html;
+    // }
+    // setHtml = (index: number, html: string) => {
+    //     (this.nodes[index] as unknown as Dialog).Html = html;
+    // };
 
     getPreviewHtml = (index: number) => {
         return (this.nodes[index] as unknown as Dialog).PreviewHtml;
@@ -164,19 +168,19 @@ export class AllNodeModels implements NodeModels{
         return coordinatePairs.filter((pair, index) => index === coordinatePairs.indexOf(pair));
     }
 
-    setHtmlById = (id: number, html: string) => {
-        ((this.nodes as unknown as Common[])
-            .filter(node => node.Id === id)[0] as unknown as Dialog)
-            .Html = html;
-    }
-    setJsonById = (id: number, content: Delta) => { // NO DELTA!!!
-        const literal = {content: content.ops};
-        const conentInstance = literalToClass(literal, StandardRichContent);
+    // setHtmlById = (id: number, html: string) => {
+    //     ((this.nodes as unknown as Common[])
+    //         .filter(node => node.Id === id)[0] as unknown as Dialog)
+    //         .Html = html;
+    // }
+    // setJsonById = (id: number, content: Delta) => { // NO DELTA!!!
+    //     const literal = {content: content.ops};
+    //     const conentInstance = literalToClass(literal, StandardRichContent);
 
-        ((this.nodes as unknown as Common[])
-            .filter(node => node.Id === id)[0] as unknown as Dialog)
-            .Content = conentInstance;
-    }
+    //     ((this.nodes as unknown as Common[])
+    //         .filter(node => node.Id === id)[0] as unknown as Dialog)
+    //         .Content = conentInstance;
+    // }
 
 
     setPreviewHtmlById = (id: number, html: string) => {
@@ -231,6 +235,37 @@ export class AllNodeModels implements NodeModels{
     
     getJson = () => {
         return JSON.stringify(this.Models);
+    }
+
+    getOnlyJsonContent = () => {
+        const exportNodes =  this.Models.map((model: Common, index: number) => {
+            switch(model.Type){
+                case DIALOG:
+                    const dialogNode = model as BasicDialogNode;
+                    return{
+                        ...dialogNode.common,
+                        ...dialogNode.naming,
+                        dialog: {
+                            preview: retrieveNestedValue(dialogNode.dialog, "preview"),
+                            full: retrieveNestedValue(dialogNode.dialog, "full")
+                        }
+                    }
+                case SCRIPT:
+                    const scriptNode = model as BasicScriptNode;
+                    return{
+                        ...scriptNode.common,
+                        // script: {
+                        //     script: retrieveNestedValue(scriptNode, "script"),  //retrieves first instance of 'script' which has a 'script' prop itself -- should rename 'script' to 'name'
+                        //     arguments: retrieveNestedValue(scriptNode, "_arguments")
+                        // }
+                        ...scriptNode.script
+                    }
+                default: return "Sorry, nothing..."
+            }
+
+        })
+
+        return JSON.stringify(exportNodes)
     }
 
 }

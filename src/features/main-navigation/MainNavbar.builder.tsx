@@ -1,8 +1,8 @@
 import {GenericMenuItem} from "@/features/components";
-import {ExportJson, MainNavbar} from "@/features/main-navigation";
-import {NavMenu} from "@/features/components";/* "./menus/NavMenu"; */
-import { connect } from "react-redux";
+import {MainNavbar} from "@/features/main-navigation";
+import {NavMenu} from "@/features/components";
 import { withModelState } from  "@/features/components"; 
+import { withExportNodesJson, withSaveProject } from "./menus/hoc/file-menu.hoc";
 
 
 
@@ -14,7 +14,10 @@ const MainNavbarBuilder = (props: any) => {
 				icon="document"
 			>
 				{
-					makeExportJsonItem("Export As JSON")
+					makeSaveProjectItem("Save Project")
+				}
+				{
+					makeExportOnlyJson("Export as JSON")
 				}
 
 			</NavMenu>
@@ -26,10 +29,20 @@ const MainNavbarBuilder = (props: any) => {
 	)
 }
 
-const makeExportJsonItem = (name: string) => {    
-	const ExportAsJsonWithState = withModelState(ExportJson);
-	return <ExportAsJsonWithState 
-		MenuItem={GenericMenuItem}
+const makeSaveProjectItem = (name: string) => {  
+	const SaveProjectWithState = withModelState(
+		withSaveProject(GenericMenuItem) //only name and this differ, should have reusable function
+	);
+	return <SaveProjectWithState 
+		name={name}
+	/>
+}
+
+const makeExportOnlyJson = (name: string) => {
+	const ExportOnlyJsonWithState = withModelState(
+		withExportNodesJson(GenericMenuItem)
+	);
+	return <ExportOnlyJsonWithState 
 		name={name}
 	/>
 }

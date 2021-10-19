@@ -149,8 +149,12 @@ const closePreviewEditor = (toggleEditor: Function, model: NodeModels, id: numbe
 
     model.setPreviewHtmlById(id, dialog.preview.html);
 
+    const literal = {
+        content: dialog.preview.json.ops
+    }
+    
     const previewRichContent = literalToClass(
-        dialog.preview.json,
+        literal,
         StandardRichContent
     )
     model.setPreviewJsonById(id, previewRichContent);
@@ -160,8 +164,12 @@ const closePreviewEditor = (toggleEditor: Function, model: NodeModels, id: numbe
 const closeFullTextEditor = (toggleEditor: Function, model: NodeModels, id: number, dialog: DialogContent) => {
 
     model.setFullHtmlById(id, dialog.full.html);
+
+    const literal = {
+        content: dialog.full.json.ops
+    }
     const fullRichContent = literalToClass(
-        dialog.full.json,
+        literal,
         StandardRichContent
     )
     model.setFullJsonById(id, fullRichContent);

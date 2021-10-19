@@ -1,26 +1,33 @@
-import { MenuItemProps } from "@/features/components";
 import { NodeModels } from "@/models/nodeModels";
+import { saveTextFile } from "@/utils/file-handling";
 
-export const  withExportJson = (WrappedComponent: React.FunctionComponent<any>, model: NodeModels) => 
+const withSaveJson = (
+    WrappedComponent: React.FunctionComponent<any>,
+    data: string, 
+    suggestedName: string, 
+    format: "json" | "text" 
+) => 
     (props: any) => {
-        console.log("ADDED EXPORT JSON MENU ITEM")
         return(
             <WrappedComponent {...props} 
-                handleClick={() => exportModelJson(model)}
+                handleClick={() => saveJsonToFile(data, suggestedName, format)}
             />
         )
     }
 
-const exportModelJson = (model: NodeModels) => {
-    console.log("MODEL:  ", model)
-    const data = model.getJson();
-
-    const fs = require("fs");
-    fs.writeFile("model.json", data, (err: any) => {
-        if(err){ 
-            console.log(err)
-        } else {
-            console.log("Wrote to disk")
-        }
-    })
+const saveJsonToFile = (data: string, suggestedName: string, format: "json" | "text" ) => {
+    saveTextFile(data, suggestedName, format);
 }
+
+export const withSaveProject = (WrappedComponent: React.FunctionComponent<any>) =>
+    (props: any) => {
+        const SaveProjectMenuItem = withSaveJson(WrappedComponent, props.model.getJson(), "stagecraft-project", "json");
+        return(<SaveProjectMenuItem {...props}/>)
+    }
+
+export const withExportNodesJson = (WrappedComponent: React.FunctionComponent<any>) =>
+    (props: any) => {
+        const ExportNodesJsonMenuItem = withSaveJson(WrappedComponent, props.model.getOnlyJsonContent(), "project-json-nodes", "json");
+        return(<ExportNodesJsonMenuItem {...props}/>)
+    }
+    

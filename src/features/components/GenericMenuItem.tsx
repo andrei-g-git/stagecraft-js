@@ -3,6 +3,8 @@ import {MenuItemProps} from "@/features/components";
 import "./GenericMenuItem.scss";
 
 const GenericMenuItem = ({name, icon, handleClick}: MenuItemProps) => {
+
+    console.log("NAMEEE:  ", name)
     return (
        <MenuItem className="generic-menu-item"
             text={name}

@@ -3,5 +3,6 @@ export {default as MainNavbarBuilder} from "./MainNavbar.builder";
 export {default as ExportJson} from "./menus/file/ExportJson";
 
 export {
-    withExportJson
+    withSaveProject,
+    withExportNodesJson
 } from "./menus/hoc/file-menu.hoc";

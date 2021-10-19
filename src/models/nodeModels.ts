@@ -71,11 +71,11 @@ export interface Named{
 
 export interface Dialog{
 
-    get Content(): RichContent;
-    set Content(content: RichContent);    
+    // get Content(): RichContent;
+    // set Content(content: RichContent);    
 
-    get Html(): string; 
-    set Html(html: string);
+    // get Html(): string; 
+    // set Html(html: string);
 
     get Preview(): ContentVersions;
     set Preview(preview: ContentVersions);
@@ -145,8 +145,8 @@ export interface NodeModels{
     // getTitleJsonById: (id: number) => RichContent;
     // setTitleJsonById: (title: RichContent, id: number) => void;
 
-    getHtml: (index: number) => string;
-    setHtml: (index: number, html: string) => void;
+    // getHtml: (index: number) => string;
+    // setHtml: (index: number, html: string) => void;
 
     getPreviewHtml: (index: number) => string;
     setPreviewHtml: (index: number, html: string) => void;
@@ -183,9 +183,9 @@ export interface NodeModels{
     getId: (index: number) => number;
     setId: (index: number, id: number) => void;
 
-    setHtmlById: (id: number, html: string) => void;
+    // setHtmlById: (id: number, html: string) => void;
 
-    setJsonById: (id: number, json: Delta) => void;
+    // setJsonById: (id: number, json: Delta) => void;
 
     setCoordinatesById: (id: number, x: number, y: number) => void;
 
@@ -203,4 +203,6 @@ export interface NodeModels{
     addConnection: (outgoing: number, ingoing: number) => void;
 
     getJson: () => string;
+
+    getOnlyJsonContent: () => string;
 }

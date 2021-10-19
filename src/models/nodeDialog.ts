@@ -6,8 +6,8 @@ import { RichContent, RichElement } from "./wysiwygModels";
 export class NodeDialog implements Dialog{
 
     constructor(
-        public content : RichContent = new StandardRichContent(), 
-        public html: string = "",
+        // public content : RichContent = new StandardRichContent(), 
+        // public html: string = "",
         public preview: ContentVersions = {html: "", json: new StandardRichContent([])},
         public full: ContentVersions = {html: "", json: new StandardRichContent([])}
     ){}
@@ -50,17 +50,17 @@ export class NodeDialog implements Dialog{
         this.full.json = json;
     }
 ///    
-    get Content(): RichContent{
-        return this.content;
-    }
-    set Content(content: RichContent) {
-        this.content = content;
-    }
-    get Html(): string {
-       return this.html;
-    }
-    set Html(html: string) {
-        this.html = html;
-    }
+    // get Content(): RichContent{
+    //     return this.content;
+    // }
+    // set Content(content: RichContent) {
+    //     this.content = content;
+    // }
+    // get Html(): string {
+    //    return this.html;
+    // }
+    // set Html(html: string) {
+    //     this.html = html;
+    // }
 
 }

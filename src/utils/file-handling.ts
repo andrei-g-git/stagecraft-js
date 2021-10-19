@@ -16,3 +16,22 @@ export async function verifyPermission(fileHandle: FileSystemFileHandle, readWri
     // The user didn't grant permission, so return false.
     return false;
 }
+
+export const saveTextFile = async (data: string, suggestedName: string, type: "text" | "json") => {
+    const jsonBlob = new Blob([data], { type: "text/plain" });
+    const fileHandler = await window.showSaveFilePicker({
+        suggestedName: suggestedName,
+        types: [
+            {
+                description: "Json File",
+                accept: {
+                    "text/plain": [`.${type}`]
+                }
+            }
+        ]
+    });
+
+    const writableFileStream = await fileHandler.createWritable();
+    await writableFileStream.write(jsonBlob);
+    await writableFileStream.close();
+}
