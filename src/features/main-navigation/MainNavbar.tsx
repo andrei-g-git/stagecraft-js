@@ -1,10 +1,11 @@
 import { Navbar } from "@blueprintjs/core"
+import "./MainNavbar.scss";
 
 const Group = Navbar.Group;
 
 const MainNavbar = (props: any) => {
     return (
-        <Navbar>
+        <Navbar className="main-navbar">
             <Group>
                 {
                     props.children

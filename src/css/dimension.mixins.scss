@@ -1,0 +1,9 @@
+@mixin fit-content-horizontaly(){
+    width: 100vw;
+    height: fit-content;
+}
+
+@mixin fit-content-vertically($height: 100vw){
+    width: fit-content;
+    height: $height;
+}

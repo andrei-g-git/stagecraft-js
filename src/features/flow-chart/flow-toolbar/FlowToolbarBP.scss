@@ -1,6 +1,6 @@
 @import "@/css/dimension.mixins";
 @import "@/css/dimension.variables";
 
-.editor-container{
+.flow-toolbar{
     @include fit-content-vertically($work-area-vh);
 }

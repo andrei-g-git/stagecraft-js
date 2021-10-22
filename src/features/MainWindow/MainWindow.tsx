@@ -14,6 +14,7 @@ import { withEditorContainerState } from "../Editor/higher-order-components/edit
 import FlowToolbarBP from "../flow-chart/flow-toolbar/FlowToolbarBP";
 import { DIALOG_NODE, SCRIPT_NODE } from "@/constants/toolbarItems";
 import { MainNavbarBuilder } from "@/features/main-navigation";
+import { DividingContainer } from "@/features/components";
 
 const toolbarItems = [
     {type: DIALOG_NODE, icon: "chat"},
@@ -39,12 +40,30 @@ const MainWindow = (props: any) => {
         >
 
             <MainPane 
-                menubar={<MainNavbarBuilder />}
+                menubar={
+                    <DividingContainer border="bottom">
+                        <MainNavbarBuilder />
+                    </DividingContainer>
+                }
+                explorer={
+                    <DividingContainer border="right">
+                        <div style={{height: "100vh"}}>awefaewfawef</div>
+                    </DividingContainer>
+                }
                 center={<FlowContainer nodeModel={props.nodeModel}/>}
-                toolbar={<FlowToolbarBP cardTypes={cardTypes} //MainWindow is basically becoming a god component...
-                    icons={icons}
-                />}
-                right={<EditorContainerWithState nodeModel={props.nodeModel}/>}
+                toolbar={
+                    <DividingContainer border="right">
+                        <FlowToolbarBP cardTypes={cardTypes} 
+                            icons={icons}
+                        />                        
+                    </DividingContainer>
+
+                }
+                right={
+                    <DividingContainer border="left">
+                        <EditorContainerWithState nodeModel={props.nodeModel}/>
+                    </DividingContainer>    
+                }
             />
 
         </div>

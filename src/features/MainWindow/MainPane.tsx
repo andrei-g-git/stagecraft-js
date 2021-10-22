@@ -9,12 +9,15 @@ const MainPane = (props: any) => {
             </div>
             <div className="work-area">
                 <div className="left-nav">
-                    <div className="left-nav-top">
+                    {
+                        props.explorer
+                    }
+                    {/* <div className="left-nav-top">
 
                     </div>
                     <div className="left-nav-bottom">
 
-                    </div>
+                    </div> */}
                 </div>
                 <div className="canvas-toolbar">
                     {
