@@ -2,7 +2,8 @@ import {GenericMenuItem} from "@/features/components";
 import {MainNavbar} from "@/features/main-navigation";
 import {NavMenu} from "@/features/components";
 import { withModelState } from  "@/features/components"; 
-import { withExportNodesJson, withSaveProject } from "./menus/hoc/file-menu.hoc";
+import { withExportNodesJson, withLoadProject, withSaveProject } from "./menus/hoc/file-menu.hoc";
+import { withLoadNodesState } from "../components/higher-order-components/store.hoc";
 
 
 
@@ -18,6 +19,9 @@ const MainNavbarBuilder = (props: any) => {
 				}
 				{
 					makeExportOnlyJson("Export as JSON")
+				}
+				{
+					makeLoadProject("Load Project")
 				}
 
 			</NavMenu>
@@ -45,6 +49,13 @@ const makeExportOnlyJson = (name: string) => {
 	return <ExportOnlyJsonWithState 
 		name={name}
 	/>
+}
+
+const makeLoadProject = (name: string) => {
+	const LoadProjectWithState = withLoadNodesState(
+		withLoadProject(GenericMenuItem)
+	);
+	return <LoadProjectWithState name={name} />
 }
 
 export default MainNavbarBuilder;

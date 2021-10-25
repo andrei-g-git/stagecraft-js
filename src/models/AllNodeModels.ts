@@ -2,8 +2,6 @@ import { Delta } from "@/features/Editor/types";
 import { Common, Coordinates, Dialog, Named, NamedValue, NodeModels, Script } from "./nodeModels";
 import { Coord2DPair } from "./vectors";
 import {RichContent} from "./wysiwygModels";
-import { literalToClass } from "./usage/dataConversion";
-import { StandardRichContent } from "./StandardRichContent";
 import { DIALOG, SCRIPT } from "./typeOfNodes";
 import { BasicDialogNode } from "./dialogNode";
 import { BasicScriptNode } from "./scriptNode";

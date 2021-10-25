@@ -1,3 +1,8 @@
+import { AllNodeModels } from "@/models/AllNodeModels";
+import { literalToClass } from "@/models/usage/dataConversion";
+import { TextFormat } from "@/types/file-and-formats";
+
+
 export async function verifyPermission(fileHandle: FileSystemFileHandle, readWrite: boolean) {
     let options = {};
     if (readWrite) {
@@ -17,13 +22,26 @@ export async function verifyPermission(fileHandle: FileSystemFileHandle, readWri
     return false;
 }
 
+const getPickerOptions = (type: "text" | "json") => {
+    return {
+        types: [
+            {
+                description: `${type === "text" ? "Text" : "Json"} File`, //this should be injected 
+                accept: {
+                    "text/plain": [`.${type}`]
+                }
+            }
+        ]
+    }    
+}
+
 export const saveTextFile = async (data: string, suggestedName: string, type: "text" | "json") => {
     const jsonBlob = new Blob([data], { type: "text/plain" });
     const fileHandler = await window.showSaveFilePicker({
         suggestedName: suggestedName,
         types: [
             {
-                description: "Json File",
+                description: `${type === "text" ? "Text" : "Json"} File`, //this should be injected
                 accept: {
                     "text/plain": [`.${type}`]
                 }
@@ -34,4 +52,37 @@ export const saveTextFile = async (data: string, suggestedName: string, type: "t
     const writableFileStream = await fileHandler.createWritable();
     await writableFileStream.write(jsonBlob);
     await writableFileStream.close();
+}
+
+
+const selectFile = async (type: TextFormat) => {
+    const [handler] = await window.showOpenFilePicker(getPickerOptions(type));
+    return await handler.getFile();    
+}
+
+export const loadTextFile = async (type: TextFormat, doAfterReading: Function) => {
+    const selected = await selectFile(type);
+
+    const reader = new FileReader();
+    reader.addEventListener("loadend", () => {
+        doAfterReading(reader.result);
+    });
+    reader.readAsText(selected);
+}
+
+export const loadTextFileToInstance = async (type: TextFormat, doAfterReading: Function) => {
+    const selected = await selectFile(type);
+
+    const reader = new FileReader();
+    reader.addEventListener("loadend", () => {
+        if(reader.result){
+            const nodesLiteral = JSON.parse(reader.result as TextFormat);
+
+            const nodesModel = literalToClass({nodes: nodesLiteral}, AllNodeModels);
+            //debugger ///
+            doAfterReading(nodesModel);            
+        }
+
+    });
+    reader.readAsText(selected);
 }
