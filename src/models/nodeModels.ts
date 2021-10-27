@@ -33,6 +33,26 @@ export type TitleContent = {
 }                      // SHOULD NOT BE HERE
 
 
+// export type Instantiable = {
+//     literal: any;
+// }
+
+// export interface InstantiableStatic {
+//     new (...args: any[]): Instantiable;
+//     create: (objectLiteral: any) => any; 
+// }
+
+declare class _Instantiable{
+    literal: any;
+    create: (objectLiteral: any) => any;
+}
+export type Instantiable = typeof _Instantiable;
+
+
+export interface NestedModels{
+    nest: (literal: any) => void;
+}
+
 export interface Common{
 
     get Id(): number;

@@ -1,7 +1,7 @@
-import { Common, Coordinates, NamedValue, Script, ScriptNode } from "./nodeModels";
+import { Common, Coordinates, NamedValue, NestedModels, Script, ScriptNode } from "./nodeModels";
 import { Coord2D } from "./vectors";
 
-export class BasicScriptNode implements ScriptNode, Common, Coordinates, Script{
+export class BasicScriptNode implements ScriptNode, Common, Coordinates, Script, NestedModels{
     constructor(
         public common: Common, //these shouldn't be public...
         public coordinates: Coordinates,
@@ -89,4 +89,23 @@ export class BasicScriptNode implements ScriptNode, Common, Coordinates, Script{
     removeArgument = (index: number) => {
         this.script.removeArgument(index);
     }   
+
+    
+    nest = (literal: any) => {
+        this.common = literal.common;
+        this.coordinates = literal.coordinates;
+        this.script = literal.script
+    }
+
+    static create = (literal: {
+        common: any,
+        coordinates: any,
+        script: any
+    }) => {
+        return new BasicScriptNode(
+            literal.common,
+            literal.coordinates,
+            literal.script
+        );
+    }
 }

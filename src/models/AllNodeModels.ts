@@ -1,14 +1,25 @@
 import { Delta } from "@/features/Editor/types";
-import { Common, Coordinates, Dialog, Named, NamedValue, NodeModels, Script } from "./nodeModels";
+import { Common, Coordinates, Dialog, Instantiable, Named, NamedValue, NestedModels, NodeModels, Script } from "./nodeModels";
 import { Coord2DPair } from "./vectors";
 import {RichContent} from "./wysiwygModels";
 import { DIALOG, SCRIPT } from "./typeOfNodes";
 import { BasicDialogNode } from "./dialogNode";
 import { BasicScriptNode } from "./scriptNode";
-import { retrieveNestedValue } from "@/utils/objects";
+import { StaticImplements, findPropertyValue, iterateObject, retrieveNestedValue, staticImplements } from "@/utils/objects";
+import { nodeModelClasses } from "@/constants/classes";
 
-export class AllNodeModels implements NodeModels{
-    constructor(public nodes: Common[]){}
+//@staticImplements<InstantiableStatic>()
+
+export class AllNodeModels implements NodeModels, NestedModels/* , StaticImplements<InstantiableStatic, typeof AllNodeModels> */{
+//export const AllNodeModels: NodeModels & Instantiable = class {
+
+    //literal: any;
+    typeName: string;
+    
+    constructor(public nodes: Common[]){
+        //this.literal = null;
+        this.typeName = "all-nodes";
+    }
 
     get Models(): Common[] {
         return this.nodes;
@@ -266,4 +277,39 @@ export class AllNodeModels implements NodeModels{
         return JSON.stringify(exportNodes)
     }
 
+    
+    nest =(literal: any[]) => {
+        this.nodes = literal;
+    }
+
+    static createNested = (objectLiteral: any) => { 
+        
+        let immediateParent: any = null;
+        let topLevelInstance: AllNodeModels = new AllNodeModels([]);
+        iterateObject(objectLiteral, () => { //not good for testing...
+
+            return (property: string, immediateParentLiteral: any) => {
+                if(property === "typeName"){
+                    const propertyValue: string = immediateParentLiteral[property];
+                    const instance = findPropertyValue(propertyValue, nodeModelClasses).create(immediateParentLiteral); 
+                    if(immediateParent){
+                        console.log("IM PAR:  ", immediateParent)
+                        immediateParent.nest(instance);
+                    } else {
+                        //assume this is the second iteration and the immediate parent is the top level model
+                        if(immediateParent.instanceof(AllNodeModels)){
+                            topLevelInstance = immediateParent;
+                        }
+                    }
+                    immediateParent = instance;
+                }
+            }
+        });
+
+        return topLevelInstance;
+    }
+
+    static create = (objectLiteral: any[]) => { //this isn't an interface method...
+        return new AllNodeModels(objectLiteral)
+    }
 }

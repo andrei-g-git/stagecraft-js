@@ -1,16 +1,20 @@
 import { Delta } from "@/features/Editor/types";
-import { Common, ContentVersions, Coordinates, Dialog, DialogNode, Named, Pictures } from "./nodeModels";
+import { Common, ContentVersions, Coordinates, Dialog, DialogNode, Named, NestedModels, Pictures } from "./nodeModels";
 import { Coord2D } from "./vectors";
 import { RichContent } from "./wysiwygModels";
 
-export class BasicDialogNode implements DialogNode, Common, Coordinates, Named, Pictures, Dialog{
+export class BasicDialogNode implements DialogNode, Common, Coordinates, Named, Pictures, Dialog, NestedModels{
+    typeName: string;
+
     constructor(
         public common: Common,// = new CommonNode(),
         public coordinates: Coordinates,// = new NodeCoordinates(),
         public naming: Named,// = new NodeNames(),
         public pictures: Pictures,// = new NodePictures()
         public dialog: Dialog
-    ){}
+    ){
+        this.typeName = "dialog-node"
+    }
 
     get PreviewHtml(): string {
         return this.dialog.PreviewHtml;
@@ -130,4 +134,28 @@ export class BasicDialogNode implements DialogNode, Common, Coordinates, Named, 
     //     this.dialog.Html = html;
     // }   
     
+    
+    nest = (literal: any) => {
+        this.common = literal.common;
+        this.coordinates = literal.coordinates;
+        this.naming = literal.naming;
+        this.pictures = literal.pictures;
+        this.dialog = literal.dialog;
+    }
+
+    static create = (literal: {
+        common: any,
+        coordinates: any,
+        naming: any,
+        pictures: any,
+        dialog: any
+    }) => {
+        return new BasicDialogNode(
+            literal.common,
+            literal.coordinates,
+            literal.naming,
+            literal.pictures,
+            literal.dialog
+        );
+    }
 }
