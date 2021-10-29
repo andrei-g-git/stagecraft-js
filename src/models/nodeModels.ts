@@ -50,7 +50,12 @@ export type Instantiable = typeof _Instantiable;
 
 
 export interface NestedModels{
-    nest: (literal: any) => void;
+    readonly typeName: string;
+    //nest: (literal: any) => void;
+    // get TypeName(): String;
+    // get ClassName(): any;
+
+    nest: () => void;
 }
 
 export interface Common{

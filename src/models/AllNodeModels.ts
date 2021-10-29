@@ -5,9 +5,11 @@ import {RichContent} from "./wysiwygModels";
 import { DIALOG, SCRIPT } from "./typeOfNodes";
 import { BasicDialogNode } from "./dialogNode";
 import { BasicScriptNode } from "./scriptNode";
-import { StaticImplements, findPropertyValue, iterateObject, retrieveNestedValue, staticImplements } from "@/utils/objects";
-import { nodeModelClasses } from "@/constants/classes";
-
+import { StaticImplements, findPropertyValue, /* iteratNestedProperties, */ iterateNestedObjects, iterateObject, retrieveNestedValue, staticImplements } from "@/utils/objects";
+import { ALL_NODES_MODEL, nodeModelClasses } from "@/constants/classes";
+import { literalToClass } from "./usage/dataConversion";
+import {AnyNestedNodeModel} from  "./types";
+import { CommonNode } from "./commonNode";
 //@staticImplements<InstantiableStatic>()
 
 export class AllNodeModels implements NodeModels, NestedModels/* , StaticImplements<InstantiableStatic, typeof AllNodeModels> */{
@@ -18,7 +20,7 @@ export class AllNodeModels implements NodeModels, NestedModels/* , StaticImpleme
     
     constructor(public nodes: Common[]){
         //this.literal = null;
-        this.typeName = "all-nodes";
+        this.typeName = ALL_NODES_MODEL; //"all-nodes";
     }
 
     get Models(): Common[] {
@@ -277,36 +279,34 @@ export class AllNodeModels implements NodeModels, NestedModels/* , StaticImpleme
         return JSON.stringify(exportNodes)
     }
 
-    
-    nest =(literal: any[]) => {
-        this.nodes = literal;
+    nest = () => {
+        this.nodes = this.nodes.map((node: Common, index: number) => {
+             /* const classInstance = */ return literalToClass(node, nodeModelClasses[(node as unknown as NestedModels).typeName]) as Common; 
+
+             //return classInstance;
+        })
+        //console.log("THIS:   ",this)
     }
+    
 
-    static createNested = (objectLiteral: any) => { 
-        
-        let immediateParent: any = null;
-        let topLevelInstance: AllNodeModels = new AllNodeModels([]);
-        iterateObject(objectLiteral, () => { //not good for testing...
 
-            return (property: string, immediateParentLiteral: any) => {
-                if(property === "typeName"){
-                    const propertyValue: string = immediateParentLiteral[property];
-                    const instance = findPropertyValue(propertyValue, nodeModelClasses).create(immediateParentLiteral); 
-                    if(immediateParent){
-                        console.log("IM PAR:  ", immediateParent)
-                        immediateParent.nest(instance);
-                    } else {
-                        //assume this is the second iteration and the immediate parent is the top level model
-                        if(immediateParent.instanceof(AllNodeModels)){
-                            topLevelInstance = immediateParent;
-                        }
-                    }
-                    immediateParent = instance;
+    static createNested = (objectLiteral: any[]) => {
+        const allNodeModels = literalToClass({nodes: objectLiteral}, AllNodeModels);
+
+        iterateNestedObjects(
+            {topModel: allNodeModels}, 
+            //allNodeModels,
+            (branch: any) => {
+                
+                if(Object.hasOwn(branch, "typeName")){
+                    console.log("BRANCH is:   ", branch)
+                    console.log("typeName:   ", branch["typeName"])
+                    branch.nest();
                 }
-            }
-        });
+        })
 
-        return topLevelInstance;
+        return allNodeModels;
+
     }
 
     static create = (objectLiteral: any[]) => { //this isn't an interface method...

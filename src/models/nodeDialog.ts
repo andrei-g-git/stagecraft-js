@@ -1,16 +1,20 @@
 import { Delta } from "@/features/Editor/types";
 import { StandardRichContent } from "./StandardRichContent";
-import { ContentVersions, Dialog } from "./nodeModels";
+import { ContentVersions, Dialog, NestedModels } from "./nodeModels";
 import { RichContent, RichElement } from "./wysiwygModels";
+import { DIALOG_MODEL } from "@/constants/classes";
 
-export class NodeDialog implements Dialog{
-
+export class NodeDialog implements Dialog, NestedModels{
+    typeName: string = DIALOG_MODEL;
+    
     constructor(
         // public content : RichContent = new StandardRichContent(), 
         // public html: string = "",
         public preview: ContentVersions = {html: "", json: new StandardRichContent([])},
         public full: ContentVersions = {html: "", json: new StandardRichContent([])}
     ){}
+
+    nest =() => {}
 
     get Preview(): ContentVersions {
         return this.preview;

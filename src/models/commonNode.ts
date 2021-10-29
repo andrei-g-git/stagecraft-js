@@ -1,6 +1,8 @@
-import { Common } from "./nodeModels";
+import { COMMON_NODE_MODEL } from "@/constants/classes";
+import { Common, NestedModels } from "./nodeModels";
 
-export class CommonNode implements Common{
+export class CommonNode implements Common, NestedModels{
+    typeName: string = COMMON_NODE_MODEL;
 
     constructor(
         public id: number = 0,
@@ -9,6 +11,10 @@ export class CommonNode implements Common{
         public ingoing: number[] = [],
         public outgoing: number[] = []
     ){}
+
+    nest = () => {
+        //this.common = literalToClass(this.common, nodeModelClasses[(this.common as unknown as NestedModels).typeName]) as Common;
+    }
 
     get Id(): number {
         return this.id;        

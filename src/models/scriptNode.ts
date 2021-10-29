@@ -1,7 +1,11 @@
+import { SCRIPT_NODE_MODEL, nodeModelClasses } from "@/constants/classes";
 import { Common, Coordinates, NamedValue, NestedModels, Script, ScriptNode } from "./nodeModels";
 import { Coord2D } from "./vectors";
+import { literalToClass } from "./usage/dataConversion";
 
 export class BasicScriptNode implements ScriptNode, Common, Coordinates, Script, NestedModels{
+    typeName: string = SCRIPT_NODE_MODEL;
+
     constructor(
         public common: Common, //these shouldn't be public...
         public coordinates: Coordinates,
@@ -91,10 +95,10 @@ export class BasicScriptNode implements ScriptNode, Common, Coordinates, Script,
     }   
 
     
-    nest = (literal: any) => {
-        this.common = literal.common;
-        this.coordinates = literal.coordinates;
-        this.script = literal.script
+    nest = () => {
+        this.common = literalToClass(this.common, nodeModelClasses[(this.common as unknown as NestedModels).typeName]) as Common;
+        this.coordinates = literalToClass(this.coordinates, nodeModelClasses[(this.coordinates as unknown as NestedModels).typeName]) as Coordinates;
+        this.script = literalToClass(this.script, nodeModelClasses[(this.script as unknown as NestedModels).typeName]) as Script; 
     }
 
     static create = (literal: {

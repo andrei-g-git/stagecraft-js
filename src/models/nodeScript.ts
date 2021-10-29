@@ -1,8 +1,12 @@
-import { NamedValue, Script} from "./nodeModels";
+import { SCRIPT_MODEL } from "@/constants/classes";
+import { NamedValue, NestedModels, Script} from "./nodeModels";
 
-export class NodeScript implements Script{
+export class NodeScript implements Script, NestedModels{
+    typeName: string = SCRIPT_MODEL;
 
     constructor(private script: string = "", private _arguments: NamedValue[] /* string[] */ = []){} //wait should these be public? kind of deals away with encapsulation...
+
+    nest = () => {}
 
     get Script(): string {
         return this.script;
