@@ -1,6 +1,8 @@
+import { RICH_ATTRIBUTES_MODEL } from "@/constants/classes";
 import { RichAttributes } from "./wysiwygModels";
-
-export class StandardRichAttributes implements RichAttributes{
+//import {NestedModels} from "@/models";
+export class StandardRichAttributes implements RichAttributes/* , NestedModels */{
+    //typeName: string = RICH_ATTRIBUTES_MODEL;
 
     constructor(
         public bold: boolean = false, //should these be public?
@@ -13,6 +15,10 @@ export class StandardRichAttributes implements RichAttributes{
         public list: string = "",
         public indent: number = 1
     ){}
+
+    // nest = () => {
+    //     //leaf class, don't need this
+    // }
     
     get Bold(): boolean {
         throw new Error("Method not implemented.");

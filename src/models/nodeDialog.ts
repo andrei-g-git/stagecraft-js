@@ -1,20 +1,23 @@
 import { Delta } from "@/features/Editor/types";
 import { StandardRichContent } from "./StandardRichContent";
-import { ContentVersions, Dialog, NestedModels } from "./nodeModels";
+import { ContentVersions, Dialog/* , NestedModels */ } from "./nodeModels";
+import {NestedModels} from "@/models";
 import { RichContent, RichElement } from "./wysiwygModels";
 import { DIALOG_MODEL } from "@/constants/classes";
+import { literalToClass } from "./usage/dataConversion";
 
 export class NodeDialog implements Dialog, NestedModels{
     typeName: string = DIALOG_MODEL;
     
     constructor(
-        // public content : RichContent = new StandardRichContent(), 
-        // public html: string = "",
         public preview: ContentVersions = {html: "", json: new StandardRichContent([])},
         public full: ContentVersions = {html: "", json: new StandardRichContent([])}
     ){}
 
-    nest =() => {}
+    nest = () => {
+        this.preview.json = literalToClass(this.preview.json, StandardRichContent);
+        this.full.json = literalToClass(this.full.json, StandardRichContent);
+    }
 
     get Preview(): ContentVersions {
         return this.preview;
@@ -53,18 +56,5 @@ export class NodeDialog implements Dialog, NestedModels{
     set FullJson(json: RichContent) {
         this.full.json = json;
     }
-///    
-    // get Content(): RichContent{
-    //     return this.content;
-    // }
-    // set Content(content: RichContent) {
-    //     this.content = content;
-    // }
-    // get Html(): string {
-    //    return this.html;
-    // }
-    // set Html(html: string) {
-    //     this.html = html;
-    // }
 
 }

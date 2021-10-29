@@ -1,5 +1,6 @@
 import { PICTURES_MODEL } from "@/constants/classes";
-import { NestedModels, Pictures } from "./nodeModels";
+import { Pictures /* , NestedModels */ } from "./nodeModels";
+import {NestedModels} from "@/models";
 
 export class NodePictures implements Pictures, NestedModels{
     typeName: string = PICTURES_MODEL;

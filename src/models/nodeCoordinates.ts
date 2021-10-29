@@ -1,5 +1,6 @@
 import { COORDINATES_MODEL } from "@/constants/classes";
-import { Coordinates, NestedModels } from "./nodeModels";
+import { Coordinates/* , NestedModels */ } from "./nodeModels";
+import {NestedModels} from "@/models";
 import { Coord2D } from "./vectors";
 
 export class NodeCoordinates implements Coordinates, NestedModels{

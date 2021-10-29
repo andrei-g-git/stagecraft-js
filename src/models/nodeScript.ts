@@ -1,5 +1,6 @@
 import { SCRIPT_MODEL } from "@/constants/classes";
-import { NamedValue, NestedModels, Script} from "./nodeModels";
+import { NamedValue, Script/* , NestedModels */ } from "./nodeModels";
+import {NestedModels} from "@/models";
 
 export class NodeScript implements Script, NestedModels{
     typeName: string = SCRIPT_MODEL;

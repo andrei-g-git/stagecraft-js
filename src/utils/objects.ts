@@ -23,44 +23,11 @@ export const iterateObject = (object: any, callback: Function) => {
 export const iterateNestedObjects = (object: any, callback: Function) => {
     for(const prop in object){
         if(typeof(object[prop]) === "object"){
-            //console.log("BRANCH:  ", object[prop])
-
-            // const branch = object[prop];
-            // if(Array.isArray(branch)){
-            //     branch.forEach((item: any) => {
-            //         for(const prop in item){
-            //             if(typeof(item[prop]) === "object"){
-            //                 callback(item);
-            //                 iterateObject(item[prop], callback);
-            //             }
-            //         }
-            //     })
-            // } else {
                 callback(object[prop]);
                 iterateNestedObjects(object[prop], callback);                
-            //}
-
         }
     }
 }
-// export const iteratNestedProperties = (object: any, callback: Function) => {
-//     // for(const prop in object){
-//     //     if(typeof object[prop] === "object"){
-//     //         callback(object);
-//     //         iteratNestedProperties(object[prop], callback);
-//     //     }
-//     // }
-
-//     objectEntries(object).forEach((entry: any) => {
-//         const [, value] = entry;
-//         if(typeof value === "object"){
-//             callback(object, value);
-//             //console.log("value:   ", value)
-//             iteratNestedProperties(value, callback);
-//         }
-//     })
-
-// }
 
 //decorator
 export function staticImplements<T>() {

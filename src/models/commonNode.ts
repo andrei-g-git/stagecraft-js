@@ -1,5 +1,6 @@
 import { COMMON_NODE_MODEL } from "@/constants/classes";
-import { Common, NestedModels } from "./nodeModels";
+import { Common/* , NestedModels */ } from "./nodeModels";
+import {NestedModels} from "@/models";
 
 export class CommonNode implements Common, NestedModels{
     typeName: string = COMMON_NODE_MODEL;

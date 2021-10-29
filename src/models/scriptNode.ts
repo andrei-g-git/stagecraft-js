@@ -1,5 +1,6 @@
 import { SCRIPT_NODE_MODEL, nodeModelClasses } from "@/constants/classes";
-import { Common, Coordinates, NamedValue, NestedModels, Script, ScriptNode } from "./nodeModels";
+import { Common, Coordinates, NamedValue, Script, ScriptNode /* , NestedModels */ } from "./nodeModels";
+import {NestedModels} from "@/models";
 import { Coord2D } from "./vectors";
 import { literalToClass } from "./usage/dataConversion";
 

@@ -1,9 +1,10 @@
 import { Delta } from "@/features/Editor/types";
-import { Common, ContentVersions, Coordinates, Dialog, DialogNode, Named, NestedModels, Pictures } from "./nodeModels";
+import { Common, ContentVersions, Coordinates, Dialog, DialogNode, Named, Pictures } from "./nodeModels";
 import { Coord2D } from "./vectors";
 import { RichContent } from "./wysiwygModels";
 import { DIALOG_NODE_MODEL, nodeModelClasses } from "@/constants/classes";
 import { literalToClass } from "./usage/dataConversion";
+import {NestedModels} from "@/models";
 
 export class BasicDialogNode implements DialogNode, Common, Coordinates, Named, Pictures, Dialog, NestedModels{
     typeName: string = DIALOG_NODE_MODEL;
@@ -121,39 +122,16 @@ export class BasicDialogNode implements DialogNode, Common, Coordinates, Named, 
     set Avatar(avatar: string) {
         this.pictures.Avatar = avatar;
     }
-    // get Content(): RichContent {
-    //     return this.dialog.Content;
-    // }
-    // set Content(content: RichContent){
-    //     this.dialog.Content = content;
-    // }  
-    // get Html(): string/* HTMLElement */{
-    //     return this.dialog.Html;
-    // }
-    // set Html(html: string/* HTMLElement */){
-    //     this.dialog.Html = html;
-    // }   
-    
-    
-    // nest = (literal: any) => {
-    //     this.common = literal.common;
-    //     this.coordinates = literal.coordinates;
-    //     this.naming = literal.naming;
-    //     this.pictures = literal.pictures;
-    //     this.dialog = literal.dialog;
-    // }
 
     nest = () => {
-        //console.log(">>>>> commpn model class:   ", /* nodeModelClasses[*/( this.common as unknown as NestedModels).typeName/* ] */)
         this.common = literalToClass(this.common, nodeModelClasses[(this.common as unknown as NestedModels).typeName]) as Common;
         this.coordinates = literalToClass(this.coordinates, nodeModelClasses[(this.coordinates as unknown as NestedModels).typeName]) as Coordinates;
         this.naming = literalToClass(this.naming, nodeModelClasses[(this.naming as unknown as NestedModels).typeName]) as Named;
         this.pictures = literalToClass(this.pictures, nodeModelClasses[(this.pictures as unknown as NestedModels).typeName]) as Pictures;
         this.dialog = literalToClass(this.dialog, nodeModelClasses[(this.dialog as unknown as NestedModels).typeName]) as Dialog;    
-        //console.log("dialog node this:   ", this)  
     }
 
-    static create = (literal: {
+    static create = (literal: { //don't need
         common: any,
         coordinates: any,
         naming: any,

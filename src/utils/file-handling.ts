@@ -1,5 +1,4 @@
 import { AllNodeModels } from "@/models/AllNodeModels";
-import { literalToClass } from "@/models/usage/dataConversion";
 import { TextFormat } from "@/types/file-and-formats";
 
 
@@ -77,14 +76,8 @@ export const loadTextFileToInstance = async (type: TextFormat, doAfterReading: F
     reader.addEventListener("loadend", () => {
         if(reader.result){
             const nodesLiteral = JSON.parse(reader.result as TextFormat);
-
-            //const nodesModel = literalToClass({nodes: nodesLiteral}, AllNodeModels);
-            //console.log("START LOADING");
             const nodesModel = AllNodeModels.createNested(nodesLiteral);
             console.log("LOADDED MODEL:: ", nodesModel)
-            // const notTheActualModelInstance = new AllNodeModels([]);
-            // const nodesModel = notTheActualModelInstance.createNested(nodesLiteral);
-            //debugger ///
             doAfterReading(nodesModel);            
         }
 

@@ -1,16 +1,14 @@
 import { Delta } from "@/features/Editor/types";
-import { Common, Coordinates, Dialog, Instantiable, Named, NamedValue, NestedModels, NodeModels, Script } from "./nodeModels";
+import { Common, Coordinates, Dialog, Instantiable, Named, NamedValue, /* NestedModels, */ NodeModels, Script } from "./nodeModels";
 import { Coord2DPair } from "./vectors";
 import {RichContent} from "./wysiwygModels";
 import { DIALOG, SCRIPT } from "./typeOfNodes";
 import { BasicDialogNode } from "./dialogNode";
 import { BasicScriptNode } from "./scriptNode";
-import { StaticImplements, findPropertyValue, /* iteratNestedProperties, */ iterateNestedObjects, iterateObject, retrieveNestedValue, staticImplements } from "@/utils/objects";
+import { iterateNestedObjects, retrieveNestedValue, } from "@/utils/objects";
 import { ALL_NODES_MODEL, nodeModelClasses } from "@/constants/classes";
 import { literalToClass } from "./usage/dataConversion";
-import {AnyNestedNodeModel} from  "./types";
-import { CommonNode } from "./commonNode";
-//@staticImplements<InstantiableStatic>()
+import { NestedModels } from "@/models";
 
 export class AllNodeModels implements NodeModels, NestedModels/* , StaticImplements<InstantiableStatic, typeof AllNodeModels> */{
 //export const AllNodeModels: NodeModels & Instantiable = class {
