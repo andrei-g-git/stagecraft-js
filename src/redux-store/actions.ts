@@ -26,6 +26,7 @@ import {
     FULL_TEXT_JSON_CHANGED,
     TITLE_SELECTED,
     TITLE_CHANGED,
+    NAME_CHANGED,
     //TITLE_JSON_CHANGED
 } from "./actionTypes";
 import { 
@@ -238,3 +239,10 @@ export const changedTitle = (title: string): (ActionType & StringPayload) => {
 //         payload: title
 //     }
 // }
+
+export const changedName = (name: string): (ActionType & StringPayload) => {
+    return{
+        type: NAME_CHANGED,
+        payload: name
+    }
+}

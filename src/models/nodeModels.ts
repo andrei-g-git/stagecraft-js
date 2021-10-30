@@ -173,6 +173,12 @@ export interface NodeModels{
     // getHtml: (index: number) => string;
     // setHtml: (index: number, html: string) => void;
 
+
+    getName: (index: number) => string;
+    setName: (index: number, name: string) => void;
+    getNameById: (id: number) => string;
+    setNameById: (name: string, id: number) => void;
+
     getPreviewHtml: (index: number) => string;
     setPreviewHtml: (index: number, html: string) => void;
 

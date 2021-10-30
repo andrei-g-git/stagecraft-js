@@ -1,8 +1,9 @@
-import { changedEditor, changedEditorDialog, changedEditorFullText, changedEditorHtml, changedEditorPreview, changedEditorScript, changedTitle, selectedNodeId, selectedTitle, toggledEditor, toggledScriptEditor, toggledTextEditor } from "@/redux-store/actions";
+import { changedEditor, changedEditorDialog, changedEditorFullText, changedEditorHtml, changedEditorPreview, changedEditorScript, changedName, changedTitle, selectedNodeId, selectedTitle, toggledEditor, toggledScriptEditor, toggledTextEditor } from "@/redux-store/actions";
 import { withState } from "@/features/_Util/higherOrderComponents";
 import { DialogContent, NodeModels, ScriptContent } from "@/models/nodeModels";
-import { FULL_TEXT_EDITOR, PREVIEW_TEXT_EDITOR, SCRIPT_EDITOR,/* , TEXT_EDITOR  */
+import { FULL_TEXT_EDITOR, NAME_EDITOR, PREVIEW_TEXT_EDITOR, SCRIPT_EDITOR,/* , TEXT_EDITOR  */
 TITLE_EDITOR} from "@/constants/editors";
+import { NAME_CHANGED } from "@/redux-store/actionTypes";
 
 // export const withDialogCardState = (
 //     WrappedComponent: React.FunctionComponent<any>
@@ -77,6 +78,14 @@ export const withTitleState = (WrappedComponent: React.FunctionComponent<any>) =
         WrappedComponent,
         TITLE_EDITOR,
         changedTitle
+    );
+}
+
+export const withNameState = (WrappedComponent: React.FunctionComponent<any>) => {
+    return withCardState(
+        WrappedComponent,
+        NAME_EDITOR,
+        changedName
     );
 }
 

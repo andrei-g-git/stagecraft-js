@@ -1,8 +1,9 @@
-import { FULL_TEXT_EDITOR, NO_EDITOR, PREVIEW_TEXT_EDITOR, SCRIPT_EDITOR,/* , TEXT_EDITOR  */
+import { FULL_TEXT_EDITOR, NAME_EDITOR, NO_EDITOR, PREVIEW_TEXT_EDITOR, SCRIPT_EDITOR,/* , TEXT_EDITOR  */
 TITLE_EDITOR} from "@/constants/editors";
 import { 
     withArgumentNameState, 
     withArgumentValueState, 
+    withNameEditorState, 
     withQuillFullTextState, 
     withQuillPreviewState, 
     withScriptEditorState, 
@@ -33,6 +34,10 @@ export const createEditor = (type: number) => {
         case TITLE_EDITOR:
             const TitleEditorWithState = withTitleEditorState(LineEditor);
             return <TitleEditorWithState />
+
+        case NAME_EDITOR:
+            const NameEditorWithState = withNameEditorState(LineEditor);
+            return <NameEditorWithState />
 
         case SCRIPT_EDITOR:
             const ScriptEditorWithState = withScriptEditorState(ScriptEditor);

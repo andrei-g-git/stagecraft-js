@@ -14,6 +14,7 @@ import {
     FULL_TEXT_JSON_CHANGED,
     PREVIEW_JSON_CHANGED,
     TITLE_CHANGED,
+    NAME_CHANGED
     //TITLE_JSON_CHANGED
 } from "./actionTypes";
 import { ActionType, DeltaPayload, DialogPayload, IndexedNamedValuePayload, IndexedStringPayload, ScriptPayload, StringPayload } from "./types";
@@ -37,7 +38,8 @@ const initialState: {
             json: Delta
         }
     },
-    title: string
+    title: string,
+    name: string
 } = {
     content: {
         ops: []
@@ -58,7 +60,8 @@ const initialState: {
             json: {ops: []}
         }
     },
-    title: ""
+    title: "",
+    name: ""
 }
 
 export const editorReducer = (state = initialState, action: ActionType) => {
@@ -224,6 +227,12 @@ export const editorReducer = (state = initialState, action: ActionType) => {
                     ...state,
                     title: (<StringPayload><unknown>action).payload
                 } 
+
+            case NAME_CHANGED:
+                return{
+                    ...state,
+                    name: (<StringPayload><unknown>action).payload
+                }
 
         default:
             return {...state};          

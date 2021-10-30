@@ -4,12 +4,15 @@ import {NestedModels} from "@/models";
 
 export class NodeNames implements Named, NestedModels{
     typeName: string = NAMING_MODEL;
+
+    constructor(public name: string = ""){}
+
     nest = () => {}
     get Name(): string {
-        throw new Error("Method not implemented.");
+        return this.name;
     }
     set Name(name: string) {
-        throw new Error("Method not implemented.");
+        this.name = name;
     }
     
 }

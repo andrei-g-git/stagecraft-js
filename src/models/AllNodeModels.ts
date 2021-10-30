@@ -75,6 +75,24 @@ export class AllNodeModels implements NodeModels, NestedModels/* , StaticImpleme
     //     (this.nodes[index] as unknown as Dialog).Html = html;
     // };
 
+
+    getName = (index: number) => {
+        return (this.nodes[index] as unknown as Named).Name;
+    }
+    setName = (index: number, name: string) => {
+        (this.nodes[index] as unknown as Named).Name = name;
+    }
+    getNameById = (id: number) => {
+        return (((this.nodes)
+        .filter(node => node.Id === id)[0]) as unknown as Named)
+        .Name;       
+    }
+    setNameById = (name: string, id: number) => {
+        (((this.nodes)
+        .filter(node => node.Id === id)[0]) as unknown as Named)
+        .Name = name;
+    }
+
     getPreviewHtml = (index: number) => {
         return (this.nodes[index] as unknown as Dialog).PreviewHtml;
     }

@@ -6,6 +6,7 @@ import {
     changedEditorPreview, 
     changedEditorPreviewJson, 
     changedEditorScriptName, 
+    changedName, 
     changedTitle,
     loadedFlowModel, 
     toggledEditor
@@ -64,8 +65,26 @@ export const withTitleEditorState = ( WrappedComponent: React.FunctionComponent<
         }, 
         (dispatch: Function) => {
             return {      
-                changeContent: (title: string, json: Delta) => {
+                changeContent: (title: string, json: Delta) => { //I don't think I need the second argument anymore...
                     dispatch(changedTitle(title));
+                }     
+            }
+        }
+    )
+}
+
+export const withNameEditorState = ( WrappedComponent: React.FunctionComponent<any>) => {
+    return withState(
+        WrappedComponent, 
+        (state: any) => {
+            return {
+                content: state.editor.name 
+            }
+        }, 
+        (dispatch: Function) => {
+            return {      
+                changeContent: (name: string, json: Delta) => { //don't need second argument
+                    dispatch(changedName(name));
                 }     
             }
         }

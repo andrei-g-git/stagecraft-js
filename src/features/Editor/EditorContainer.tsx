@@ -1,6 +1,6 @@
 import { createEditor } from "./editorFactory.js";
-import { FULL_TEXT_EDITOR, PREVIEW_TEXT_EDITOR, SCRIPT_EDITOR, TITLE_EDITOR } from "@/constants/editors.js";
-import { withCloseDialogEditor, withCloseDialogEditorState, withCloseFullTextEditor, withClosePreviewEditor, withCloseScriptEditor, withCloseScriptEditorState, withCloseTitleEditor, withCloseTitleEditorState, withNewArgumentState } from "./higher-order-components/editor-buttons.hoc";
+import { FULL_TEXT_EDITOR, NAME_EDITOR, PREVIEW_TEXT_EDITOR, SCRIPT_EDITOR, TITLE_EDITOR } from "@/constants/editors.js";
+import { withCloseDialogEditor, withCloseDialogEditorState, withCloseFullTextEditor, withCloseNameEditor, withCloseNameEditorState, withClosePreviewEditor, withCloseScriptEditor, withCloseScriptEditorState, withCloseTitleEditor, withCloseTitleEditorState, withNewArgumentState } from "./higher-order-components/editor-buttons.hoc";
 import { GenericButton } from "../components";//"@/components";
 import "./EditorContainer.scss"
 import AddElement from "../components/AddElement.js";
@@ -58,7 +58,13 @@ const makeCloseEditor = (type: number) => {
             const CloseTitleButton = withCloseTitleEditorState(
                 withCloseTitleEditor(GenericButton)
             )
-        return <CloseTitleButton name="Close Title Button" />
+            return <CloseTitleButton name="Close Title Editor" />
+
+        case NAME_EDITOR:
+            const CloseNameButton = withCloseNameEditorState(
+                withCloseNameEditor(GenericButton)
+            )
+            return <CloseNameButton name="Close Name Editor" />
 
         case SCRIPT_EDITOR:
             const CloseScriptButton = withCloseScriptEditorState(

@@ -62,6 +62,19 @@ export const withCloseTitleEditorState = (WrappedComponent: React.FunctionCompon
     )
 }
 
+export const withCloseNameEditorState = (WrappedComponent: React.FunctionComponent<any>) => {
+    return withCloseEditorState(
+        WrappedComponent,
+        (state: any) => {
+            return{
+                id: state.model.selected,
+                model: state.model.nodeModel,
+                content: state.editor.name 
+            }
+        },
+    )
+}
+
 export const withCloseScriptEditor = (WrappedComponent: React.FunctionComponent<any>) => (props: any) => {
     return(
         <WrappedComponent {...props} 
@@ -127,6 +140,19 @@ export const withCloseTitleEditor = (WrappedComponent: React.FunctionComponent<a
     )
 }
 
+export const withCloseNameEditor = (WrappedComponent: React.FunctionComponent<any>) => (props: any) => { //dry
+    return(
+        <WrappedComponent {...props} 
+            handleClick={() => closeNameEditor(
+                props.toggleEditor,
+                props.model,
+                props.id,
+                props.content
+            )}
+        />
+    )
+}
+
 const closeDialogEditor = (toggleEditor: Function, model: NodeModels, id: number, dialog: DialogContent) => {
 
     model.setPreviewHtmlById(id, dialog.preview.html);
@@ -177,8 +203,12 @@ const closeFullTextEditor = (toggleEditor: Function, model: NodeModels, id: numb
 }
 
 const closeTitleEditor = (toggleEditor: Function, model: NodeModels, id: number, title: string) => {
-
     model.setTitleById(title, id);
+    toggleEditor(false);
+}
+
+const closeNameEditor = (toggleEditor: Function, model: NodeModels, id: number, name: string) => {
+    model.setNameById(name, id);
     toggleEditor(false);
 }
 
