@@ -6,3 +6,8 @@ export {
     withSaveProject,
     withExportNodesJson
 } from "./menus/hoc/file-menu.hoc";
+
+export{
+    withSettingsToggleState,
+    withOpenSettings
+} from "./menus/hoc/edit-menu.hoc";

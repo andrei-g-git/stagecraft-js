@@ -46,3 +46,5 @@ export const TITLE_CHANGED = "TITLE_CHANGED";
 
 export const NAME_CHANGED = "NAME_CHANGED";
 
+export const SETTINGS_TOGGLED = "SETTINGS_TOGGLED";
+

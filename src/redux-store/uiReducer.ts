@@ -8,7 +8,8 @@ import {
     TEXT_EDITOR_TOGGLED,
     SCRIPT_EDITOR_TOGGLED,
     EDITOR_CHANGED,
-    EDITOR_TOGGLED
+    EDITOR_TOGGLED,
+    SETTINGS_TOGGLED
 } from "./actionTypes";
 import { NO_SELECTION } from "@/constants/toolbarItems";
 
@@ -21,7 +22,8 @@ const initialState: {
     outgoing: number,
     ingoing: number,
     editor: number,
-    editorVisible: boolean
+    editorVisible: boolean,
+    settingsVisible: boolean
 } = {
     textEditorVisible: false,
     scriptEditorVisible: false,
@@ -31,7 +33,8 @@ const initialState: {
     outgoing: -1,
     ingoing: -1,
     editor: NO_EDITOR,
-    editorVisible: false
+    editorVisible: false,
+    settingsVisible: false
 }
 
 export const uiReducer = (state = initialState, action: any) => {
@@ -81,7 +84,11 @@ export const uiReducer = (state = initialState, action: any) => {
                 ...state,
                 editorVisible: action.payload
             }           
-
+        case SETTINGS_TOGGLED:
+            return{
+                ...state,
+                settingsVisible: action.payload
+            }
 
         default:
             return {...state};

@@ -27,6 +27,7 @@ import {
     TITLE_SELECTED,
     TITLE_CHANGED,
     NAME_CHANGED,
+    SETTINGS_TOGGLED,
     //TITLE_JSON_CHANGED
 } from "./actionTypes";
 import { 
@@ -244,5 +245,14 @@ export const changedName = (name: string): (ActionType & StringPayload) => {
     return{
         type: NAME_CHANGED,
         payload: name
+    }
+}
+
+export const toggledSettings = (isVisible: boolean): (ActionType & BooleanPayload) => {
+                        //debugger
+                        console.log("visiblity from actions:  ", isVisible)
+    return{
+        type: SETTINGS_TOGGLED,
+        payload: isVisible
     }
 }

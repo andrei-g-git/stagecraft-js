@@ -15,6 +15,9 @@ import FlowToolbarBP from "../flow-chart/flow-toolbar/FlowToolbarBP";
 import { DIALOG_NODE, SCRIPT_NODE } from "@/constants/toolbarItems";
 import { MainNavbarBuilder } from "@/features/main-navigation";
 import { DividingContainer } from "@/features/components";
+import SettingsBuilder from "../preferences/Settings.builder";
+
+import "@blueprintjs/core/lib/css/blueprint.css"; // THE CSS FOR THE ENTIRE FRAMEWORK
 
 const toolbarItems = [
     {type: DIALOG_NODE, icon: "chat"},
@@ -65,6 +68,8 @@ const MainWindow = (props: any) => {
                     </DividingContainer>    
                 }
             />
+
+            <SettingsBuilder />
 
         </div>
     )

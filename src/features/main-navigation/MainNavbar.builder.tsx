@@ -1,5 +1,5 @@
 import {GenericMenuItem} from "@/features/components";
-import {MainNavbar} from "@/features/main-navigation";
+import {MainNavbar, withOpenSettings, withSettingsToggleState} from "@/features/main-navigation";
 import {NavMenu} from "@/features/components";
 import { withModelState } from  "@/features/components"; 
 import { withExportNodesJson, withLoadProject, withSaveProject } from "./menus/hoc/file-menu.hoc";
@@ -28,7 +28,11 @@ const MainNavbarBuilder = (props: any) => {
 
 			<NavMenu name="Edit"
 				icon="edit"
-			/>			
+			> 
+				{
+					makeOpenSettings("Settings")
+				}
+			</NavMenu>			
 		</MainNavbar>
 	)
 }
@@ -56,6 +60,15 @@ const makeLoadProject = (name: string) => {
 		withLoadProject(GenericMenuItem)
 	);
 	return <LoadProjectWithState name={name} />
+}
+
+///////
+
+const makeOpenSettings = (name: string) => {
+	const OpenSettings = withSettingsToggleState(
+		withOpenSettings(GenericMenuItem)
+	);
+	return <OpenSettings name={name} />
 }
 
 export default MainNavbarBuilder;
