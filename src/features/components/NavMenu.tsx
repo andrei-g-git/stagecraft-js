@@ -1,9 +1,10 @@
 import { Button, Menu } from '@blueprintjs/core';
-import { Popover2 } from '@blueprintjs/popover2';
+import { Classes, Popover2 } from '@blueprintjs/popover2';
 
 const NavMenu = (props: any) => {
     return (
-        <Popover2 content={
+        <Popover2 popoverClassName={Classes.POPOVER2_CONTENT}
+            content={
                 <Menu key="menu">
                     {
                         props.children
