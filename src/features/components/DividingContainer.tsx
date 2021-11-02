@@ -8,12 +8,13 @@ const classMap = {
 }
 type PropType = {
     border: "top" | "right" | "bottom" | "left",
-    children: React.ReactNode
+    children: React.ReactNode,
+    fillParent?: boolean
 }
 
-const DividingContainer = ({border, children}: PropType) => {
+const DividingContainer = ({border, children, fillParent}: PropType) => {
     return (
-        <div className={`dividing-container ${classMap[border]}`}>
+        <div className={`dividing-container ${classMap[border]} ${fillParent? "fill-parent" : ""}`}>
             {
                 children
             }

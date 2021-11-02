@@ -1,8 +1,9 @@
 import { Classes, Tab, Tabs } from "@blueprintjs/core"
+import "./SettingsToolbar.scss";
 
 const SettingsToolbar = (props: {flowCard: JSX.Element}) => {
     return (
-        <Tabs //selectedTabId="balls"
+        <Tabs className="settings-toolbar"
             vertical={true}
         >
             <Tab className={Classes.TAB} 
@@ -13,7 +14,7 @@ const SettingsToolbar = (props: {flowCard: JSX.Element}) => {
             <Tab className={Classes.TAB} 
                 id="balls"
                 title="Balls"
-                panel={<div style={{width: 500, height: 400, background: "bisque"}}>bbbbbbb</div>}
+                panel={<div style={{width: 700, height: 400, background: "bisque"}}>bbbbbbb</div>}
             />     
             {/* <Tabs.Expander />   */}     
         </Tabs>

@@ -1,7 +1,6 @@
 
 import { MouseEventHandler, useState } from "react";
 import "./TextField.scss";
-import { NodeModels } from "@/models/nodeModels";
 
 const TextField = (props: {content: string, handleChange: Function, className?: string, /* model: NodeModels */handleClick: MouseEventHandler}) => {
     const [count, setCount] = useState(0);

@@ -1,4 +1,6 @@
 import GenericButton from "./GenericButton";
+import FieldSet from "./FieldSet";
+import TextField from "./TextField";
 
 export {default as NavMenu} from "./NavMenu";
 export {default as GenericMenuItem} from "./GenericMenuItem";
@@ -16,7 +18,9 @@ export{
 
 
 export {
-    GenericButton
+    GenericButton,
+    FieldSet,
+    TextField
 }
 
 

@@ -7,3 +7,12 @@ export const withCloseSettings = (WrappedComponent: React.FunctionComponent<any>
             />
         )
     }
+
+export const withAvatarDirectory = (WrappedComponent: React.FunctionComponent<any>) => 
+(props: any) => {
+    return(
+        <WrappedComponent {...props} 
+            handleChange={props.modifyAvatarDirectory}
+        />
+    )
+}

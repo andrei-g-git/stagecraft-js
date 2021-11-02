@@ -28,6 +28,7 @@ import {
     TITLE_CHANGED,
     NAME_CHANGED,
     SETTINGS_TOGGLED,
+    AVATAR_DIRECTORY_CHANGED,
     //TITLE_JSON_CHANGED
 } from "./actionTypes";
 import { 
@@ -254,5 +255,12 @@ export const toggledSettings = (isVisible: boolean): (ActionType & BooleanPayloa
     return{
         type: SETTINGS_TOGGLED,
         payload: isVisible
+    }
+}
+
+export const changedAvatarDirectory = (content: string): (ActionType & StringPayload) => {
+    return{
+        type: AVATAR_DIRECTORY_CHANGED,
+        payload: content
     }
 }

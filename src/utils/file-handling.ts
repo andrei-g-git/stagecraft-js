@@ -84,3 +84,16 @@ export const loadTextFileToInstance = async (type: TextFormat, doAfterReading: F
     });
     reader.readAsText(selected);
 }
+
+export const selectFolder = async () => {
+    const handler = await window.showDirectoryPicker();
+    for await (const entry of handler.values()){
+        if(entry.kind === "directory"){
+            const newHandler = await handler.getDirectoryHandle(entry.name, {create: false})
+
+            console.log("DIRECTORY:   ", entry.name)
+
+            break; //only need the first folder
+        }
+    }
+}
