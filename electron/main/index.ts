@@ -5,6 +5,10 @@ import { update } from './update'
 
 //mine
 import installExtension, { REDUX_DEVTOOLS, REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
+//mine
+import * as remoteMain from "@electron/remote/main";
+remoteMain.initialize();
+
 
 //mine
 //const reactDevToolsPath = "C:/Users/me/AppData/Local/BraveSoftware/Brave-Browser/User Data/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi/4.27.3_0";
@@ -12,7 +16,7 @@ const reactDevToolsPath = "C:/work/misc/ReactDevTools_manifestv2";
 const REDUX_DEVTOOLS_PATH = "C:/Users/me/AppData/Local/BraveSoftware/Brave-Browser/User Data/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd/3.0.19_0";
 
 //mine
-require('@electron/remote/main').initialize();
+//require('@electron/remote/main').initialize();
 
 //mine - for file handling
 app.commandLine.appendSwitch("enable-experimental-web-platform-features");
@@ -81,10 +85,12 @@ async function createWindow() {
       // Consider using contextBridge.exposeInMainWorld
       // Read more on https://www.electronjs.org/docs/latest/tutorial/context-isolation
       nodeIntegration: true,
-      contextIsolation: false,
+      contextIsolation: false
     },
   })
 
+  //mine
+  remoteMain.enable(win.webContents);
 
   //mine
   //win.removeMenu(); //< --------------------------------------------------------
