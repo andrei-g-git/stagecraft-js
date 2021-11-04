@@ -12,6 +12,8 @@ import DialogContent from "./Nodes/card/DialogContent";
 import TitleBar from "./Nodes/card/TitleBar";
 
 import {withInConnectorState, withOutConnectorState} from "./Nodes/higher-order-components/connectorHOC";
+import { withAssetsWorkingDirectoryState } from "./Nodes/card/hoc/state.hoc";
+import {withModelAvatar} from "./Nodes/card/hoc/handlers.hoc";
 
 export {
     FlowToolbar,
@@ -28,7 +30,10 @@ export {
     DialogContent,
     TitleBar,
     
-    withInConnectorState, withOutConnectorState
+    withInConnectorState, withOutConnectorState,
+
+    withAssetsWorkingDirectoryState,
+    withModelAvatar
 }
 
 export type {CoordPair} from "./canvas/types";

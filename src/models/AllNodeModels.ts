@@ -1,5 +1,5 @@
 import { Delta } from "@/features/Editor/types";
-import { Common, Coordinates, Dialog, Instantiable, Named, NamedValue, /* NestedModels, */ NodeModels, Script } from "./nodeModels";
+import { Common, Coordinates, Dialog, Instantiable, Named, NamedValue, /* NestedModels, */ NodeModels, Pictures, Script } from "./nodeModels";
 import { Coord2DPair } from "./vectors";
 import {RichContent} from "./wysiwygModels";
 import { DIALOG, SCRIPT } from "./typeOfNodes";
@@ -91,6 +91,17 @@ export class AllNodeModels implements NodeModels, NestedModels/* , StaticImpleme
         (((this.nodes)
         .filter(node => node.Id === id)[0]) as unknown as Named)
         .Name = name;
+    }
+
+    getAvatarById = (id: number) => {
+        return (((this.nodes)
+        .filter(node => node.Id === id)[0]) as unknown as Pictures)
+        .Avatar; 
+    }
+    setAvatarById = (id: number, fileName: string) => {
+        (((this.nodes)
+        .filter(node => node.Id === id)[0]) as unknown as Pictures)
+        .Avatar = fileName;
     }
 
     getPreviewHtml = (index: number) => {

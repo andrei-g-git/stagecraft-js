@@ -1,6 +1,8 @@
 import GenericButton from "./GenericButton";
 import FieldSet from "./FieldSet";
 import TextField from "./TextField";
+import ClickableThumbnail from "./ClickableThumbnail";
+
 
 export {default as NavMenu} from "./NavMenu";
 export {default as GenericMenuItem} from "./GenericMenuItem";
@@ -20,7 +22,8 @@ export{
 export {
     GenericButton,
     FieldSet,
-    TextField
+    TextField,
+    ClickableThumbnail
 }
 
 

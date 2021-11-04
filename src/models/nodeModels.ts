@@ -179,6 +179,9 @@ export interface NodeModels{
     getNameById: (id: number) => string;
     setNameById: (name: string, id: number) => void;
 
+    getAvatarById: (id: number) => string;
+    setAvatarById: (id: number, fileName: string) => void;
+
     getPreviewHtml: (index: number) => string;
     setPreviewHtml: (index: number, html: string) => void;
 

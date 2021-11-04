@@ -1,4 +1,5 @@
 import { 
+    //DIALOG_AVATAR_CHANGED,
     FLOW_MODEL_LOADED,
     NODE_SELECTED
 } from "./actionTypes";
@@ -21,6 +22,12 @@ export const modelReducer = (state = initialState, action: any) => {
                 ...state,
                 selected: action.payload,
             }
+
+        // case DIALOG_AVATAR_CHANGED:
+        //     return{
+        //         ...state,
+        //         nahhhhhhhhhhhhhhhhhhhhhhh
+        //     }
 
         default:
             return {...state};

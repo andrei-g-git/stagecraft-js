@@ -1,0 +1,1 @@
+export const DEFAULT_DIALOG_CARD_PICTURE = "person-question-mark.png";

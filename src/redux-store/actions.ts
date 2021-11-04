@@ -29,6 +29,7 @@ import {
     NAME_CHANGED,
     SETTINGS_TOGGLED,
     AVATAR_DIRECTORY_CHANGED,
+    //DIALOG_AVATAR_CHANGED,
     //TITLE_JSON_CHANGED
 } from "./actionTypes";
 import { 
@@ -264,3 +265,10 @@ export const changedAvatarDirectory = (content: string): (ActionType & StringPay
         payload: content
     }
 }
+
+// export const changedDialogAvatar = (fileName: string): (ActionType & StringPayload) => {    nope, gonna update the model directly, the store has it anyway...
+//     return{
+//         type: DIALOG_AVATAR_CHANGED,
+//         payload: fileName
+//     }
+// }
