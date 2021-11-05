@@ -11,8 +11,9 @@ import { withId } from "@/features/components/higher-order-components/iterable-c
 import { withClickHandler } from "@/features/components/higher-order-components/listeners.js";
 import { withTitleState } from "../Nodes/higher-order-components/stateHOC.js";
 import { withHandlers, withTitleEditorOpener } from "../Nodes/higher-order-components/card.hoc.js";
+import InlineContainer from "@/features/components/InlineContainer.js";
 import "./FlowSheet.scss";
-import { withMemo } from "@/features/components/higher-order-components/re-act.hoc.js";
+
 
 const OutConnectorWithState = withOutConnectorState(OutConnector);
 const InConnectorWithState = withInConnectorState(InConnector);
@@ -57,26 +58,26 @@ const FlowSheet = (props: any) => {
                                 notifyDragStop={recordModelOnDragEnd(props.nodeModel, props.loadModel)}
                                 handleClass="card-handle"
                             > 
-                                <div style={{position: "absolute", height: "100%", width: "100%", top: 0, left: 0}}>
-                                    <CardWindowIdentified 
-                                        titlebar={
-                                            <TitleBar className="card-handle"
-                                                title={<TitleLabel content={props.nodeModel.getTitle(index)}/>}
-                                            />
-                                        }
-                                        layout={createCard(props.nodeModel.getType(index), index, props.nodeModel)}
-                                        inConnector={
-                                            <InConnectorWithState id={props.nodeModel.getId(index)}
-                                                notifyConnection={addNodeConnectionToModel(props.nodeModel, props.outgoing, props.resetOutgoingAndIngoing)}
-                                            />                                        
-                                        }
-                                        outConnector={
-                                            <OutConnectorWithState id={props.nodeModel.getId(index)}/>
-                                        }
-                                    >
-                                        
-                                    </CardWindowIdentified>
-                                </div>
+                                <CardWindowIdentified 
+                                    width={150}
+                                    height={150}
+                                    titlebar={
+                                        <TitleBar className="card-handle"
+                                            title={<TitleLabel content={props.nodeModel.getTitle(index)}/>}
+                                        />
+                                    }
+                                    layout={createCard(props.nodeModel.getType(index), index, props.nodeModel)}
+                                    inConnector={
+                                        <InConnectorWithState id={props.nodeModel.getId(index)}
+                                            notifyConnection={addNodeConnectionToModel(props.nodeModel, props.outgoing, props.resetOutgoingAndIngoing)}
+                                        />                                        
+                                    }
+                                    outConnector={
+                                        <OutConnectorWithState id={props.nodeModel.getId(index)}/>
+                                    }
+                                >
+                                    
+                                </CardWindowIdentified>
                             </DragHandle>
                         )
                   
@@ -90,7 +91,6 @@ const FlowSheet = (props: any) => {
 
 const addNodeConnectionToModel = (model: NodeModels, outgoing: number, resetCurrentConnections: Function) => {
     return (ingoing: number) => {
-        console.log(">>>>>>>>  ", outgoing, "  ", ingoing)
         model.addConnection(outgoing, ingoing);
         resetCurrentConnections();
 

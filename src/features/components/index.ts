@@ -6,6 +6,7 @@ import ClickableThumbnail from "./ClickableThumbnail";
 
 export {default as NavMenu} from "./NavMenu";
 export {default as GenericMenuItem} from "./GenericMenuItem";
+export {default as InlineContainer} from "./InlineContainer";
 export type {
     PropsWithContent,
     PropsWithIndex,

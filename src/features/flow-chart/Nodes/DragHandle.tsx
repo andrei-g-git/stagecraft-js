@@ -11,12 +11,15 @@ const DragHandle = (props: any) => {
                 onDrag={handleDrag(props.notifyPosition, props.id)}
                 onStop={handleStop(props.notifyDragStop)}
             >
-                <div className="drag-inner-container">
-                    <div className="card-handle"></div>
-                    {
-                        props.children
-                    }                         
-                </div>                 
+                {/* <div className="drag-inner-container"> */}
+                    {/* <div className="card-handle"></div> */}
+                    <div>
+                        {
+                            props.children
+                        }                          
+                    </div>
+                       
+                {/* </div> */}                 
             </Draggable>
 
     )

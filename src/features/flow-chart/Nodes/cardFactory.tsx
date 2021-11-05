@@ -57,7 +57,7 @@ export const createCard = (type: string, index: number, model: NodeModels) => {
                 id
             )
 
-            return <DialogCardLayout picture={<Avatar size="test"/>}
+            return <DialogCardLayout picture={<Avatar size="fill"/>} 
                 name={<Name content={model.getName(index)} />}
                 preview={<PreviewContnet content={model.getPreviewHtml(index)}/>}
                 full={<FullContnet content={model.getFullHtml(index)}/>}              

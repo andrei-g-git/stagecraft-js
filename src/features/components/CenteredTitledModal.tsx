@@ -15,7 +15,6 @@ const CenteredTitledModal = (props: any/* {
             isOpen={props.isOpen}
             autoFocus={true}
             canEscapeKeyClose={true}
-            //canOutsideClickClose={true}
             onClose={props.handleClose}
             shouldReturnFocusOnClose={true}
         >
