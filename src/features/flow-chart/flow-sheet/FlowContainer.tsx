@@ -14,11 +14,11 @@ const FlowContainer = (props: any) => {
 
     const FlowCanvasWithState = withCountState(FlowCanvas); //FlowCanvas has refs...
 
-    useEffect(() => {
-        console.log("from FlowContainer, model is:   ", props.nodeModel)
-    }, 
-        []
-    )
+    // useEffect(() => {
+    //     console.log("from FlowContainer, model is:   ", props.nodeModel)
+    // }, 
+    //     []
+    // )
 
     return(
         <div style={{width: "100%", height: "100%", position: "relative"}}

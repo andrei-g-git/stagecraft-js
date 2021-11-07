@@ -14,6 +14,7 @@ import TextLabel from "@/features/components/TextLabel";
 import { ClickableThumbnail, withModelState } from "@/features/components";
 import { withModelAvatar } from "./card/hoc/handlers.hoc";
 import { withAssetsWorkingDirectoryState } from "./card/hoc/state.hoc";
+import FilePicker from "@/features/components/FilePicker";
 
 export const createCard = (type: string, index: number, model: NodeModels) => {
     switch(type){
@@ -36,7 +37,7 @@ export const createCard = (type: string, index: number, model: NodeModels) => {
                         /* withClickHandler( */DialogContent/* ) */
                     )
                 ),
-                id //model.getId(index)
+                id 
             );
 
             const Name = withId(
@@ -45,7 +46,7 @@ export const createCard = (type: string, index: number, model: NodeModels) => {
                         withClickHandler(TextLabel)
                     )
                 ),
-                id //model.getId(index)
+                id
             )
 
             const Avatar = withId(
@@ -57,7 +58,19 @@ export const createCard = (type: string, index: number, model: NodeModels) => {
                 id
             )
 
-            return <DialogCardLayout picture={<Avatar size="fill"/>} 
+            const CustomizableAvatar = <FilePicker handleChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    if(event.target.files){
+                        const fileName: string = event.target.files[0].name;
+                        model.setAvatarById(id, fileName);                 
+                    }
+
+                }}
+            >
+                <Avatar size="fill"/>
+
+            </FilePicker>
+
+            return <DialogCardLayout picture={CustomizableAvatar} 
                 name={<Name content={model.getName(index)} />}
                 preview={<PreviewContnet content={model.getPreviewHtml(index)}/>}
                 full={<FullContnet content={model.getFullHtml(index)}/>}              

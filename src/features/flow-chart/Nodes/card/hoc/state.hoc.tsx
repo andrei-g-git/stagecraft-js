@@ -31,3 +31,25 @@ export const withAssetsWorkingDirectoryState = (WrappedComponent: React.Function
             )
         }
     )
+
+// export const withAvatarDispatch = (WrappedComponent: React.FunctionComponent<any>) => 
+//     connect(
+//         (state: any) => {
+//             return{
+
+//             } 
+//         },
+//         (dispatch: Function) => {
+//             return{
+//                 changeAvatar: (fileName: string) => {
+//                     dispatch(nahhhhhhhh)   nope
+//                 }
+//             }
+//         }
+//     )(
+//         (props: any) => {
+//             return(
+//                 <WrappedComponent {...props} />
+//             )
+//         }
+//     )    
