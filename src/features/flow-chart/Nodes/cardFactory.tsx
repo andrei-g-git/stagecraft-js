@@ -33,7 +33,7 @@ export const createCard = (type: string, index: number, model: NodeModels) => {
             const FullContnet = withId(
                 withFullTextState(
                     withHandlers(
-                        withClickHandler(DialogContent)
+                        /* withClickHandler( */DialogContent/* ) */
                     )
                 ),
                 id //model.getId(index)

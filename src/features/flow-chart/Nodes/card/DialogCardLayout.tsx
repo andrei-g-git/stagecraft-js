@@ -8,8 +8,8 @@ const DialogCardLayout = (props: {
 }) => {
 
     return (
-        <div className="dialog-card-grid-layout"/* "dialog-card-layout" */>
-            {/* <div className="picture-against-name-and-preview">
+        <div className=/* "dialog-card-grid-layout" */"dialog-card-layout">
+            <div className="picture-against-name-and-preview">
                 <div className="dialog-card-picture">
                     {
                         props.picture
@@ -27,9 +27,18 @@ const DialogCardLayout = (props: {
                             props.preview
                         }
                     </div>                    
-                </div>                
-            </div> */}
-            <div className="dialog-card-picture">
+                </div>              
+            </div>
+
+            <div className="dialog-card-full">
+                {
+                    props.full
+                }
+            </div>  
+
+
+
+            {/* <div className="dialog-card-picture">
                 {
                     props.picture
                 }                
@@ -49,10 +58,13 @@ const DialogCardLayout = (props: {
             </div> 
 
             <div className="dialog-card-full">
-                {
-                    props.full
-                }
-            </div>                        
+                <div className="dialog-card-inner-container">
+                    {
+                        props.full
+                    }                    
+                </div>
+
+            </div>                         */}
         </div>
     )
 }

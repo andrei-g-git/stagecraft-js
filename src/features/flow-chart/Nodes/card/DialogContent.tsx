@@ -1,10 +1,12 @@
 import "./DialogContent.scss";
 
-const DialogContent = (props: {content: string}) => {
+const DialogContent = (props: {content: string, handleClick: (event: React.MouseEvent) => {}}) => {
 
     return (
-        <div className="preview-text-content-container">
-            <div className="preview-text" 
+        <div className="dialog-text-content-container"
+            onClick={props.handleClick}
+        >
+            <div className="dialog-text" 
                 dangerouslySetInnerHTML={{__html: props.content}}
             />
         </div>

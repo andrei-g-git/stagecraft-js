@@ -1,20 +1,23 @@
-.preview-text-content-container{
+.dialog-text-content-container{
     width: 100%;
-    height: 100%;
-
-    .preview-text{
+    height: 5rem;
+    
+    .dialog-text{
         width: 100%;
         height: 100%;
-        //overflow-x: hidden;
-        //overflow-y: auto; //scroll;
+        overflow-x: hidden;
+        overflow-y: scroll;
+
         display: flex;
         flex-wrap: wrap;
         font-size: 0.6rem;
         margin: 0;
         padding: 0;
-        // &::-webkit-scrollbar {
-        //     display: none;
-        // }
+
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
 
         p{
             //width: 100%;

@@ -13,15 +13,17 @@ const CardWindow = (props: {
         <div className="card-container"
             style={{width: props.width, height: props.height}}
         >
-            {
-                props.titlebar
-            }
-            {
-                props.layout
-            }
-            {/* {
-                props.children
-            } */}
+            <div className="without-connectors">
+                {
+                    props.titlebar
+                }
+                <div className="card-layout-container">
+                    {
+                        props.layout
+                    }                
+                </div>
+            </div>
+
             {
                 props.inConnector
             }

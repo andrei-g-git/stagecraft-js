@@ -6,7 +6,7 @@ import { useTitleEditor } from "../card/hooks/card.hooks";
 export const withHandlers = (WrappedComponent: React.FunctionComponent<any>) => //should be named differently
     (props: any) => {
         return(
-            <div style={{width: "100%", height: "100%"}} /* fuuuuck */
+/*             <div style={{width: "100%", height: "100%"}} 
                 onClick={handleClick(
                     props.id, 
                     props.toggleEditor, 
@@ -14,17 +14,16 @@ export const withHandlers = (WrappedComponent: React.FunctionComponent<any>) => 
                     props.sendContentToEditor, //bro this is polymorphism bro. Bro! --- nope, only the dialog card uses this...
                     props.content
                 )}
-            > 
+            > */ 
                 <WrappedComponent {...props}
-                    // handleClick={handleClick(
-                    //     props.id, 
-                    //     props.toggleEditor, 
-                    //     props.selectNode, 
-                    //     props.sendContentToEditor, //bro this is polymorphism bro. Bro! --- nope, only the dialog card uses this...
-                    //     props.content
-                    // )}
+                    handleClick={handleClick(
+                        props.id, 
+                        props.toggleEditor, 
+                        props.selectNode, 
+                        props.sendContentToEditor, //bro this is polymorphism bro. Bro! --- nope, only the dialog card uses this...
+                        props.content
+                    )}
                 /> 
-            </div>
 
         )
     }

@@ -6,7 +6,7 @@ export const withState = (
     mapStateToProps: MapStateToPropsParam<{}, {}, unknown>, //(state: any) => any, //{[key: string]: any},
     mapDispatchToProps: Function, //(dispatch: Function) => any //{[key: string]: Function}
 ) => connect(mapStateToProps, mapDispatchToProps)(
-    (props: any): JSX.Element => {
+    (props: any)/* : JSX.Element */ => {
         return (
             <WrappedComponent {...props} />
         )
