@@ -18,6 +18,8 @@ import { DividingContainer } from "@/features/components";
 import SettingsBuilder from "../preferences/Settings.builder";
 
 import "@blueprintjs/core/lib/css/blueprint.css"; // THE CSS FOR THE ENTIRE FRAMEWORK
+import EditorDrawerBuilder from "../Editor/EditorDrawer.builder";
+import EditorDrawer from "../Editor/EditorDrawer";
 
 const toolbarItems = [
     {type: DIALOG_NODE, icon: "chat"},
@@ -64,7 +66,10 @@ const MainWindow = (props: any) => {
                 }
                 right={
                     <DividingContainer border="left">
-                        <EditorContainerWithState nodeModel={props.nodeModel}/>
+                        {/* <EditorContainerWithState nodeModel={props.nodeModel}/> */}
+                        <EditorDrawerBuilder Editor={EditorDrawer}
+                            type={props.editorType}
+                        />
                     </DividingContainer>    
                 }
             />
@@ -93,7 +98,8 @@ const testNodeCreation = () => {
 const mapStateToProps = (state: any) => {
     return {
         nodeModel: state.model.nodeModel,
-        connecting: state.ui.connecting //for debugging 
+        connecting: state.ui.connecting, //for debugging 
+        editorType: state.ui.editor
     }
 }
 

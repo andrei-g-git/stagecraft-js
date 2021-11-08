@@ -11,7 +11,7 @@ import {
     withTitleEditorState 
 } from "./higher-order-components/editorHOC";
 import ScriptEditor from "./script-editor/ScriptEditor";
-import QuillEditor from "./dialog-editor/QuillEditor.jsx";
+import {QuillEditor} from "@/features/Editor";
 import TextField from "../components/TextField";
 import { withChangeAtItem } from "../components/higher-order-components/listeners";
 import ArgumentGroup from "./script-editor/ArgumentGroup";
