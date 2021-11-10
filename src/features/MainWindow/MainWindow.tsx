@@ -10,7 +10,7 @@ import "./MainWindow.scss";
 import MainPane from "./MainPane";
 import {FlowContainer} from "@/features/flow-chart";
 import {EditorContainer} from "@/features/Editor"; //got an index
-import { withEditorContainerState } from "../Editor/higher-order-components/editorHOC";
+import { withCloseEditor, withEditorContainerState } from "../Editor/higher-order-components/editorHOC";
 import FlowToolbarBP from "../flow-chart/flow-toolbar/FlowToolbarBP";
 import { DIALOG_NODE, SCRIPT_NODE } from "@/constants/toolbarItems";
 import { MainNavbarBuilder } from "@/features/main-navigation";
@@ -37,7 +37,10 @@ const MainWindow = (props: any) => {
         []
     )
 
-    const EditorContainerWithState = withEditorContainerState(EditorContainer);
+    //const EditorContainerWithState = withEditorContainerState(EditorContainer);
+    const EditorBuilder = withEditorContainerState(
+        withCloseEditor(EditorDrawerBuilder)
+    );
 
     return(
         <div className="main-window-container"
@@ -67,7 +70,7 @@ const MainWindow = (props: any) => {
                 right={
                     <DividingContainer border="left">
                         {/* <EditorContainerWithState nodeModel={props.nodeModel}/> */}
-                        <EditorDrawerBuilder Editor={EditorDrawer}
+                        <EditorBuilder Editor={EditorDrawer}
                             type={props.editorType}
                         />
                     </DividingContainer>    

@@ -1,17 +1,24 @@
 import ReactQuill from "react-quill";
 import 'react-quill/dist/quill.snow.css';
 import "./QuillEditor.scss";
+import { useEffect, useRef } from "react";
 
 const QuillEditor = (props) => {
-
+    const quillRef = useRef(null);
+    useEffect(() => {
+        quillRef.current.focus();
+    },
+        []
+    )
     return(
         <div className="quill-container">
-            <ReactQuill className="preview-quill"
+            <ReactQuill className="quill-editor"
                 theme="snow"
                 value={props.content}
                 modules={getModules()}
                 formats={null}
                 onChange={handleChange(props.changeDialog)}
+                ref={quillRef}
             >
 
             </ReactQuill>               

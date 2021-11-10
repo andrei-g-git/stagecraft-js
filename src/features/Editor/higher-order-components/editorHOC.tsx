@@ -15,6 +15,7 @@ import { withState } from "../../_Util/higherOrderComponents"
 import { Delta } from "../types"
 import { NodeModels } from "@/models/nodeModels"
 import { connect } from "react-redux"
+import { SyntheticEvent } from "react"
 
 
 export const withQuillPreviewState = ( WrappedComponent: React.FunctionComponent<any>) => {
@@ -174,5 +175,22 @@ export const withArgumentNameState = (WrappedComponent: React.FunctionComponent<
 export const withArgumentValueState = (WrappedComponent: React.FunctionComponent<any>) => {
     return withArgumentState(WrappedComponent, changedEditorArgumentValue);
 }
+
+
+export const withCloseEditor = (WrappedComponent: React.FunctionComponent<any>) =>
+    (props: any) => {
+        return(
+            <WrappedComponent {...props} 
+                handleClose={(event: SyntheticEvent<HTMLElement, Event>) => {
+                    //props.toggleEditor(false);
+                }}
+            />
+        )
+    }
+
+
+
+
+
 
 

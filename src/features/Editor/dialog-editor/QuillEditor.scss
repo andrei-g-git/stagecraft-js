@@ -1,31 +1,19 @@
 .quill-container{
-    //border: solid 1px black;
-    width: 100%; //300px;
-    height: 70%; //300px;
-    //z-index: -3324;
-    //background-color: antiquewhite;
+    width: 100%; 
+    height: 70%; 
 
-    .full-quill{
-        background-color: deepskyblue;
+    .quill-editor{
         height: 20rem;
     }
-    .preview-quill{
-        background-color: aquamarine;
-        height: 10rem;
+
+    .ql-snow{
+        border: none;
+        border-bottom: solid 1px #ccc;
     }
-    .ql-container { //from react-quill
+
+    .ql-container { 
         min-height: 10rem;
-        //height: 100%;
-        flex: 1;
         display: flex;
-        flex-direction: column;
-
-        // .ql-editor{ //this one is from react-quill
-        //     height: 80%;
-        //     flex: 1;
-        //     overflow-y: auto;        
-        // }        
+        flex-direction: column;   
     }
-
-
 }

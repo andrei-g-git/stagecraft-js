@@ -9,7 +9,7 @@ import { withClick } from "../components/higher-order-components/listeners.js";
 const EditorContainer = (props: any) => {
     
     return (
-        props.visible/* ? */ && 
+        props.visible && 
             <div className="editor-container">
                 {
                     createEditor(props.type)
@@ -27,20 +27,11 @@ const EditorContainer = (props: any) => {
                     )
                 }
             </div>
-
-/*         :
-            <div></div> */
     )
 }
 
 const makeCloseEditor = (type: number) => {
     switch(type){
-        // case PREVIEW_TEXT_EDITOR:
-        // case FULL_TEXT_EDITOR:
-        //     const CloseDialogButton =  withCloseDialogEditorState(
-        //         withCloseDialogEditor(GenericButton)
-        //     )
-        //     return <CloseDialogButton name="Close Dialog Editor"/>
         case FULL_TEXT_EDITOR:
             const CloseFullTextButton = withCloseDialogEditorState(
                 withCloseFullTextEditor(GenericButton)
