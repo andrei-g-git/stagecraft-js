@@ -26,7 +26,7 @@ export const withVisibilityState = (WrappedComponent: React.FunctionComponent<an
     )
 
 
-    export const withAvatarDirectoryState = (WrappedComponent: React.FunctionComponent<any>) => 
+export const withAvatarDirectoryState = (WrappedComponent: React.FunctionComponent<any>) => 
     connect(
         (state: any) => {
             return{

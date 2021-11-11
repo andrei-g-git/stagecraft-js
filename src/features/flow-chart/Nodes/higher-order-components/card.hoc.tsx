@@ -11,7 +11,7 @@ export const withHandlers = (WrappedComponent: React.FunctionComponent<any>) => 
                     props.id, 
                     props.toggleEditor, 
                     props.selectNode, 
-                    props.sendContentToEditor, //bro this is polymorphism bro. Bro! --- nope, only the dialog card uses this...
+                    props.sendContentToEditor, //bro this is polymorphism bro. Bro! --- except the content prop is tricky when used with script cards
                     props.content
                 )}
             > */ 
@@ -20,7 +20,7 @@ export const withHandlers = (WrappedComponent: React.FunctionComponent<any>) => 
                         props.id, 
                         props.toggleEditor, 
                         props.selectNode, 
-                        props.sendContentToEditor, //bro this is polymorphism bro. Bro! --- nope, only the dialog card uses this...
+                        props.sendContentToEditor, //bro this is polymorphism bro. Bro! --- except the content prop is tricky when used with script cards
                         props.content
                     )}
                 /> 

@@ -18,7 +18,7 @@ const EditorDrawer = (props: {children: React.ReactNode, icon: any, visible: boo
             canOutsideClickClose={false}
             canEscapeKeyClose={false}
             enforceFocus={true}
-            size={DrawerSize.SMALL}
+            size={"35%"/* DrawerSize.SMALL */}
         >
             <div className={Classes.DRAWER_BODY}>
                 {

@@ -7,6 +7,7 @@ const ScriptEditor = (props: {
     arguments: NamedValue[],
     Script: (props: PropsWithContent) => JSX.Element,
     Argument: (props: PropsWithContent) => JSX.Element,
+    Add: React.FunctionComponent<any>
 }) => {
 
     return(
@@ -19,6 +20,7 @@ const ScriptEditor = (props: {
                     />
                 )
             }
+            <props.Add />
         </div>
     )
 }

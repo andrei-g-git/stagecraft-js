@@ -138,6 +138,7 @@ export const withScriptState = (WrappedComponent: React.FunctionComponent<any>) 
         (dispatch: Function) => {
             return{       
                 handleChange: (text: string) => {
+                    console.log("typing in script field:  ", text)
                     dispatch(changedEditorScriptName(text));
                 }                        
             }

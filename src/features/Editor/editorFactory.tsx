@@ -13,9 +13,12 @@ import {
 import ScriptEditor from "./script-editor/ScriptEditor";
 import {QuillEditor} from "@/features/Editor";
 import TextField from "../components/TextField";
-import { withChangeAtItem } from "../components/higher-order-components/listeners";
+import { withChangeAtItem, withClick } from "../components/higher-order-components/listeners";
 import ArgumentGroup from "./script-editor/ArgumentGroup";
 import LineEditor from "./script-editor/LineEditor";
+import {AddElement} from "@/features/components";
+import { withNewArgumentState } from "./higher-order-components/editor-buttons.hoc";
+import ScriptEditorBP from "./script-editor/ScriptEditorBP";
 
 
 export const createEditor = (type: number) => {
@@ -40,22 +43,34 @@ export const createEditor = (type: number) => {
             return <NameEditorWithState />
 
         case SCRIPT_EDITOR:
-            const ScriptEditorWithState = withScriptEditorState(ScriptEditor);
-            
-            const ScriptField = withScriptState(TextField);
+            //const ScriptEditorWithState = withScriptEditorState(ScriptEditor);
+            const Editor = withScriptEditorState(ScriptEditorBP);
 
-            const Element = withChangeAtItem(TextField);
-            const ArgumentNameField = withArgumentNameState(Element);
-            const ArgumentValueField = withArgumentValueState(Element);                 
-            const ArgumentGroupJsx = ArgumentGroup(ArgumentNameField, ArgumentValueField);
+            //const ScriptField = withScriptState(TextField);
 
-            return <div style={{width: "100%", height: "70%", backgroundColor: "gray"}}>
-                <ScriptEditorWithState 
-                    Script={ScriptField}
-                    Argument={ArgumentGroupJsx}
-                />
-            </div>
+            //const Element = withChangeAtItem(TextField);
+            // const ArgumentNameField = withArgumentNameState(Element);
+            // const ArgumentValueField = withArgumentValueState(Element);                 
+            // const ArgumentGroupJsx = ArgumentGroup(ArgumentNameField, ArgumentValueField);
+
+            // const AddArgument = withClick( 
+            //     withNewArgumentState(AddElement)
+            // );
+
+            // return <div style={{width: "100%", height: "70%", backgroundColor: "gray"}}>
+            //     <ScriptEditorWithState 
+            //         Script={ScriptField}
+            //         Argument={ArgumentGroupJsx}
+            //         Add={AddArgument}
+            //     />
+            // </div>
+
+            return <Editor />
                 
     }
+}
+
+function makeAddArgumentButton(AddElement: any, withNewArgumentState: any, withClick: any) {
+    throw new Error("Function not implemented.");
 }
 

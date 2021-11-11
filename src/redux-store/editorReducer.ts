@@ -149,6 +149,7 @@ export const editorReducer = (state = initialState, action: ActionType) => {
 
 
         case EDITOR_SCRIPT_NAME_CHANGED:
+            //console.log("from reducer:   ", (<StringPayload><unknown>action).payload)
             return{
                 ...state,
                 script: {

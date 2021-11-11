@@ -4,6 +4,7 @@ import { DialogContent, NodeModels, ScriptContent } from "@/models/nodeModels";
 import { FULL_TEXT_EDITOR, NAME_EDITOR, PREVIEW_TEXT_EDITOR, SCRIPT_EDITOR,/* , TEXT_EDITOR  */
 TITLE_EDITOR} from "@/constants/editors";
 import { NAME_CHANGED } from "@/redux-store/actionTypes";
+import { connect } from "react-redux";
 
 // export const withDialogCardState = (
 //     WrappedComponent: React.FunctionComponent<any>
@@ -111,5 +112,3 @@ export const withScriptCardState = (WrappedComponent: React.FunctionComponent<an
         }
     )
 }
-
-

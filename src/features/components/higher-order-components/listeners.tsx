@@ -6,12 +6,35 @@ export const withChange = (WrappedComponent: React.FunctionComponent<any>) => (p
     )
 }
 
+export const withNotifyChange = (
+    WrappedComponent: React.FunctionComponent<any>,
+    notify: Function
+) => (props: any) => {
+    return (
+        <WrappedComponent {...props}
+            handleChange={(event: React.ChangeEvent) => notify((event.target) as HTMLInputElement).value}
+        />
+    )
+}
+
 export const withChangeAtItem = (WrappedComponent: React.FunctionComponent<any>) => (props: any) => {
     return (
         <WrappedComponent {...props}
             handleChange={(content: string) => {
                 props.handleChange(content, props.index); 
             }}
+        />
+    )
+}
+
+export const withChangeAtIndex = (
+    WrappedComponent: React.FunctionComponent<any>,
+    index: number,
+    notifyChange: Function
+) => (props: any) => {
+    return (
+        <WrappedComponent {...props}
+            handleChange={(event: React.ChangeEvent) => notifyChange(index, (event.target as HTMLInputElement).value)}
         />
     )
 }
