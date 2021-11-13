@@ -1,8 +1,5 @@
-import { FULL_TEXT_EDITOR, NAME_EDITOR, NO_EDITOR, PREVIEW_TEXT_EDITOR, SCRIPT_EDITOR,/* , TEXT_EDITOR  */
-TITLE_EDITOR} from "@/constants/editors";
-import { 
-    withArgumentNameState, 
-    withArgumentValueState, 
+import { FULL_TEXT_EDITOR, NAME_EDITOR, NO_EDITOR, PREVIEW_TEXT_EDITOR, SCRIPT_EDITOR, TITLE_EDITOR} from "@/constants/editors";
+import {
     withNameEditorState, 
     withQuillFullTextState, 
     withQuillPreviewState, 
@@ -10,15 +7,8 @@ import {
     withScriptState, 
     withTitleEditorState 
 } from "./higher-order-components/editorHOC";
-import ScriptEditor from "./script-editor/ScriptEditor";
-import {QuillEditor} from "@/features/Editor";
-import TextField from "../components/TextField";
-import { withChangeAtItem, withClick } from "../components/higher-order-components/listeners";
-import ArgumentGroup from "./script-editor/ArgumentGroup";
+import {QuillEditor, ScriptEditorBuilder} from "@/features/Editor";
 import LineEditor from "./script-editor/LineEditor";
-import {AddElement} from "@/features/components";
-import { withNewArgumentState } from "./higher-order-components/editor-buttons.hoc";
-import ScriptEditorBP from "./script-editor/ScriptEditorBP";
 
 
 export const createEditor = (type: number) => {
@@ -43,32 +33,9 @@ export const createEditor = (type: number) => {
             return <NameEditorWithState />
 
         case SCRIPT_EDITOR:
-            const Editor = withScriptEditorState(ScriptEditorBP);    
+            const Editor = withScriptEditorState(ScriptEditorBuilder);    
 
             return <Editor />
-
-            // const ScriptEditorWithState = withScriptEditorState(ScriptEditor);
-
-            // const ScriptField = withScriptState(TextField);
-
-            // const Element = withChangeAtItem(TextField);
-            // const ArgumentNameField = withArgumentNameState(Element);
-            // const ArgumentValueField = withArgumentValueState(Element);                 
-            // const ArgumentGroupJsx = ArgumentGroup(ArgumentNameField, ArgumentValueField);
-
-            // const AddArgument = withClick( 
-            //     withNewArgumentState(AddElement)
-            // );
-
-            // return <div style={{width: "100%", height: "70%", backgroundColor: "gray"}}>
-            //     <ScriptEditorWithState 
-            //         Script={ScriptField}
-            //         Argument={ArgumentGroupJsx}
-            //         Add={AddArgument}
-            //     />
-            // </div>
-
-
                 
     }
 }

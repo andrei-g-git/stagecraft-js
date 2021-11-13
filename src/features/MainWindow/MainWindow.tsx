@@ -37,7 +37,6 @@ const MainWindow = (props: any) => {
         []
     )
 
-    //const EditorContainerWithState = withEditorContainerState(EditorContainer);
     const EditorBuilder = withEditorContainerState(
         withCloseEditor(EditorDrawerBuilder)
     );
@@ -69,7 +68,6 @@ const MainWindow = (props: any) => {
                 }
                 right={
                     <DividingContainer border="left">
-                        {/* <EditorContainerWithState nodeModel={props.nodeModel}/> */}
                         <EditorBuilder Editor={EditorDrawer}
                             type={props.editorType}
                         />
