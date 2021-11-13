@@ -1,11 +1,15 @@
 import { NamedValue, ScriptContent } from "@/models/nodeModels";
+import "./ScriptCard.scss";
+
+const wrapClass = "flex-column";
 
 const ScriptCardBuilder = (props: {script: string, arguments: NamedValue[], ScriptElement: React.FunctionComponent<any>, content: ScriptContent,handleClick: (event: React.MouseEvent) => void}) => {
 
     return (
         <props.ScriptElement script={props.script}
-            arguments={makeParanthesisAndArguments(props.arguments)}
+            arguments={makeArguments(props.arguments)}
             wrapContent={argumentsLengthTooLong(props.arguments)}
+            wrapClass={wrapClass}
             handleClick={props.handleClick}
             content={props.content}
         />
@@ -26,11 +30,11 @@ const argumentsLengthTooLong = (args: NamedValue[]) => {
 }
 
 //maybe needs decorator
-const makeParanthesisAndArguments = (args: NamedValue []) => {
+const makeArguments = (args: NamedValue []) => {
     let additionalClass = "";
     let extraArgPairClass = "";
     if(argumentsLengthTooLong(args)){
-        additionalClass = " flex-column";
+        additionalClass = ` ${wrapClass}`;//" flex-column";
         extraArgPairClass = " argument-padding";
     }
 
@@ -63,6 +67,7 @@ const makeParanthesisAndArguments = (args: NamedValue []) => {
 }
 
 const chooseValueType = (value: string | number | boolean | null) => {
+    console.log("arg type:  ", typeof value)
     const stringValue = String(value);
     if(stringValue === "null") return stringValue;
     switch(typeof value){

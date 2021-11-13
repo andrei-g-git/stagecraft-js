@@ -31,13 +31,15 @@ const TextInputBP = //React.forwardRef(
 
         return (
             <InputGroup className={Classes.INPUT_GROUP}
-                onChange={(event) => props.handleChange(event.target.value)}//handleInnerChange(props.handleChange, setText, inputRef)}
-                //defaultValue={props.content}//""
+                onChange={(event) => {
+                    props.handleChange(event.target.value);
+                    //inputRef.current!.focus();
+                }}
                 fill={props.fill}
                 placeholder={props.placeholder}
                 type="text"
                 leftIcon={props.icon}
-                value={props.content/* text */}
+                value={props.content}// text }
                 ref={inputRef as unknown as LegacyRef<InputGroup>}
             />
 
@@ -46,9 +48,9 @@ const TextInputBP = //React.forwardRef(
             //     <input className="bp4-input" 
             //         type="text"  
             //         placeholder={props.placeholder} 
-            //         onChange={handleInnerChange(props.handleChange/* , setText, inputRef */)}
-            //         defaultValue={props.content}//""
-            //         //value={text}
+            //         onChange={(event) => props.handleChange(event.target.value)}//handleInnerChange(props.handleChange// , setText, inputRef */)}
+            //         //defaultValue={props.content}//""
+            //         value={props.content}//{text}
             //         ref={inputRef}
             //     />                
             // </div>

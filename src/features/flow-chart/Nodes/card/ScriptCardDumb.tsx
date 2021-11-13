@@ -1,12 +1,19 @@
 import { ScriptContent } from "@/models/nodeModels";
 import "./ScriptCard.scss";
 
-const ScriptCardDumb = (props: {script: string, content: ScriptContent, wrapContent: boolean, arguments: JSX.Element[] | JSX.Element,/* arguments: NamedValue, */ handleClick: (event: React.MouseEvent) => void}) => {
+const ScriptCardDumb = (props: {
+    script: string, 
+    content: ScriptContent, 
+    wrapContent: boolean, 
+    wrapClass: string,
+    arguments: JSX.Element[] | JSX.Element,/* arguments: NamedValue, */ 
+    handleClick: (event: React.MouseEvent) => void
+}) => {
     return (
         <div className="script-card"
             onClick={props.handleClick}
         >
-            <div className={`script-and-arguments${props.wrapContent? " flex-column" : ""}`}>
+            <div className={`script-and-arguments${props.wrapContent? (" " + props.wrapClass) : ""}`}>
                 <div>
                     <span className="function-span">
                         {
@@ -18,13 +25,13 @@ const ScriptCardDumb = (props: {script: string, content: ScriptContent, wrapCont
                         {"("}
                     </span>                
                 </div>
-                <div className={`after-open-paranthesis${props.wrapContent? " flex-column" : ""}`}>
-                    <span className={`arguments-line${props.wrapContent? " flex-column" : ""}`}>
-
-                    </span>
+                <div className={`after-open-paranthesis${props.wrapContent? (" " + props.wrapClass) : ""}`}>
+                    <span className={`arguments-line${props.wrapContent? (" " + props.wrapClass) : ""}`}>
                         {
                             props.arguments
                         }
+                    </span>
+
                     <span className="paranthesis">
                         {")"}
                     </span>                      
