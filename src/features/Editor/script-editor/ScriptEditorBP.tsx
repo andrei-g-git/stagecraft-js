@@ -1,4 +1,4 @@
-import { withChangeAtIndex, withNotifyChange } from "@/features/components";
+import { TextField, withChangeAtIndex, withNotifyChange } from "@/features/components";
 import TextInputBP from "@/features/components/TextInputBP";
 import { NamedValue, ScriptContent } from "@/models/nodeModels";
 import { Button, Classes, ControlGroup, Divider, FormGroup, Intent, Label } from "@blueprintjs/core";
@@ -8,6 +8,14 @@ import { withArgumentNameState, withArgumentValueState, withScriptState } from "
 import { withChangeAtItem, withClick } from "@/features/components/higher-order-components/listeners";
 import { withNewArgumentState } from "../higher-order-components/editor-buttons.hoc";
 import ButtonBP from "@/features/components/ButtonBP";
+
+const FunctionInput = withScriptState(TextInputBP);
+//const FunctionInput = withScriptState(TextField)
+
+const Element = withChangeAtItem(TextInputBP);
+const ArgumentName = withArgumentNameState(Element);
+const ArgumentValue = withArgumentValueState(Element);  
+
 
 const ScriptEditorBP = (props: {
     script: string,
@@ -29,11 +37,19 @@ const ScriptEditorBP = (props: {
     //     rememberFunctionInput(/* script, setScript */fullScript)
     // )
 
-    const FunctionInput = withScriptState(TextInputBP)
-    const Element = withChangeAtItem(TextInputBP);
-    const ArgumentName = withArgumentNameState(Element);
-    const ArgumentValue = withArgumentValueState(Element);  
+
+
+    // const FunctionInput = withScriptState(TextInputBP);
+    // //const FunctionInput = withScriptState(TextField)
+
+    // const Element = withChangeAtItem(TextInputBP);
+    // const ArgumentName = withArgumentNameState(Element);
+    // const ArgumentValue = withArgumentValueState(Element);  
+
     
+
+
+
     const AddArgument = withClick(
         withNewArgumentState(ButtonBP)
     )

@@ -40,7 +40,7 @@ const TextInputBP = //React.forwardRef(
                 type="text"
                 leftIcon={props.icon}
                 value={props.content}// text }
-                ref={inputRef as unknown as LegacyRef<InputGroup>}
+                ref={inputRef as unknown as LegacyRef<InputGroup>} //autofocus loss is not comming from here, TextField has the same problem when used in the BP editor...
             />
 
             // <div className="bp4-input-group">

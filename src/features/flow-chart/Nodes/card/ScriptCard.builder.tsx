@@ -1,5 +1,6 @@
 import { NamedValue, ScriptContent } from "@/models/nodeModels";
 import "./ScriptCard.scss";
+import { checkTypeOfStringified } from "@/utils/type-operations";
 
 const wrapClass = "flex-column";
 
@@ -48,7 +49,7 @@ const makeArguments = (args: NamedValue []) => {
             <span className="argument-equal-sign">
                 =    
             </span>   
-            <span className={`argument-${chooseValueType(arg.value)}`}>
+            <span className={`argument-${checkTypeOfStringified(arg.value as string)}`}>
                 {
                     arg.value?.toString()
                 }
@@ -66,16 +67,16 @@ const makeArguments = (args: NamedValue []) => {
     )      
 }
 
-const chooseValueType = (value: string | number | boolean | null) => {
-    console.log("arg type:  ", typeof value)
-    const stringValue = String(value);
-    if(stringValue === "null") return stringValue;
-    switch(typeof value){
-        case "string": return "string";
-        case "number": return "number";
-        case "boolean": return "boolean";
-        default: return "string";
-    }
-}
+// const chooseValueType = (value: string | number | boolean | null) => {
+//     console.log("arg type:  ", typeof value)
+//     const stringValue = String(value);
+//     if(stringValue === "null") return stringValue;
+//     switch(typeof value){
+//         case "string": return "string";
+//         case "number": return "number";
+//         case "boolean": return "boolean";
+//         default: return "string";
+//     }
+// }
 
 export default ScriptCardBuilder;

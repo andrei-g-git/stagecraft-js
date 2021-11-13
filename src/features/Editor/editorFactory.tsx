@@ -43,12 +43,15 @@ export const createEditor = (type: number) => {
             return <NameEditorWithState />
 
         case SCRIPT_EDITOR:
-            //const ScriptEditorWithState = withScriptEditorState(ScriptEditor);
-            const Editor = withScriptEditorState(ScriptEditorBP);
+            const Editor = withScriptEditorState(ScriptEditorBP);    
 
-            //const ScriptField = withScriptState(TextField);
+            return <Editor />
 
-            //const Element = withChangeAtItem(TextField);
+            // const ScriptEditorWithState = withScriptEditorState(ScriptEditor);
+
+            // const ScriptField = withScriptState(TextField);
+
+            // const Element = withChangeAtItem(TextField);
             // const ArgumentNameField = withArgumentNameState(Element);
             // const ArgumentValueField = withArgumentValueState(Element);                 
             // const ArgumentGroupJsx = ArgumentGroup(ArgumentNameField, ArgumentValueField);
@@ -65,7 +68,7 @@ export const createEditor = (type: number) => {
             //     />
             // </div>
 
-            return <Editor />
+
                 
     }
 }
