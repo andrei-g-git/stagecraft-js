@@ -6,6 +6,11 @@ import { withNewArgumentState } from "../higher-order-components/editor-buttons.
 import { withScriptState, withArgumentNameState, withArgumentValueState } from "../higher-order-components/editorHOC";
 import ScriptEditorBP from "./ScriptEditorBP";
 import ArgumentGroupBP from "./ArgumentGroupBP";
+import { Popover2 } from "@blueprintjs/popover2";
+import { withDeleteArgumentState } from "../hoc/state.hoc";
+import { withIndex, withPropsIndex } from "@/features/components/higher-order-components/iterable-components";
+import { withDeleteArgument } from "../hoc/handlers.hoc";
+import PopoverConfirmation from "@/features/components/PopoverConfirmation";
 
 const FunctionInput = withScriptState(TextInputBP);
 
@@ -15,6 +20,14 @@ const ArgumentValue = withArgumentValueState(Element);
 
 const AddArgument = withClick(
     withNewArgumentState(ButtonBP)
+)
+
+const Confirmation = withDeleteArgumentState(
+    withPropsIndex(
+        withDeleteArgument(
+            PopoverConfirmation
+        )
+    )
 )
 
 const ScriptEditorBuilder = (props: {
@@ -34,6 +47,7 @@ const ScriptEditorBuilder = (props: {
                                 index={index}
                                 ArgumentName={ArgumentName} 
                                 ArgumentValue={ArgumentValue}
+                                Confirmation={Confirmation}
                             />
                         )
                     }

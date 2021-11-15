@@ -29,6 +29,7 @@ import {
     NAME_CHANGED,
     SETTINGS_TOGGLED,
     AVATAR_DIRECTORY_CHANGED,
+    ARGUMENT_REMOVED,
     //DIALOG_AVATAR_CHANGED,
     //TITLE_JSON_CHANGED
 } from "./actionTypes";
@@ -272,3 +273,10 @@ export const changedAvatarDirectory = (content: string): (ActionType & StringPay
 //         payload: fileName
 //     }
 // }
+
+export const removedArgument = (index: number): (ActionType & NumberPayload) => {
+    return {
+        type: ARGUMENT_REMOVED,
+        payload: index
+    }
+}

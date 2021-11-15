@@ -14,10 +14,11 @@ import {
     FULL_TEXT_JSON_CHANGED,
     PREVIEW_JSON_CHANGED,
     TITLE_CHANGED,
-    NAME_CHANGED
+    NAME_CHANGED,
+    ARGUMENT_REMOVED
     //TITLE_JSON_CHANGED
 } from "./actionTypes";
-import { ActionType, DeltaPayload, DialogPayload, IndexedNamedValuePayload, IndexedStringPayload, ScriptPayload, StringPayload } from "./types";
+import { ActionType, DeltaPayload, DialogPayload, IndexedNamedValuePayload, IndexedStringPayload, NumberPayload, ScriptPayload, StringPayload } from "./types";
 import { Delta } from "@/features/Editor/types";
 
 const initialState: {
@@ -233,6 +234,22 @@ export const editorReducer = (state = initialState, action: ActionType) => {
                 return{
                     ...state,
                     name: (<StringPayload><unknown>action).payload
+                }
+
+            case ARGUMENT_REMOVED:
+                const editorArgs = state.script.arguments;
+                const argIndex = (<NumberPayload><unknown>action).payload;
+                if(editorArgs.length > argIndex){
+                    editorArgs.splice(argIndex, 1)
+                    return{
+                        ...state,
+                        script: {
+                            script: state.script.script,
+                            arguments: editorArgs
+                        }
+                    }                    
+                } else {
+                    console.log("argument index out of argument array bounds")
                 }
 
         default:

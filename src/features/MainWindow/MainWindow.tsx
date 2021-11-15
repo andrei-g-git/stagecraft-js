@@ -18,6 +18,8 @@ import { DividingContainer } from "@/features/components";
 import SettingsBuilder from "../preferences/Settings.builder";
 
 import "@blueprintjs/core/lib/css/blueprint.css"; // THE CSS FOR THE ENTIRE FRAMEWORK
+import "@blueprintjs/popover2/lib/css/blueprint-popover2.css";
+
 import EditorDrawerBuilder from "../Editor/EditorDrawer.builder";
 import EditorDrawer from "../Editor/EditorDrawer";
 

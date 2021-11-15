@@ -8,8 +8,13 @@ const ArgumentGroupBP = (props: {
     value: NamedValue["value"]  
     index: number, 
     ArgumentName: React.FunctionComponent<any>, 
-    ArgumentValue: React.FunctionComponent<any>    
+    ArgumentValue: React.FunctionComponent<any>,
+    Confirmation?: React.FunctionComponent<any>    
 }) => {
+
+    let PopoverConfirmation: React.FunctionComponent<any> = (props: {target: JSX.Element, placement: string}) => props.target;
+    if(props.Confirmation) PopoverConfirmation = props.Confirmation;
+
     return (
         <FormGroup
             label={`argument ${props.index}`}
@@ -29,9 +34,18 @@ const ArgumentGroupBP = (props: {
                     index={props.index}
                     icon="variable"
                 />   
-                <Button icon="delete" 
-                    intent={Intent.DANGER}
-                />             
+                <PopoverConfirmation 
+                    message={
+                        <h1>Delete?</h1>                      
+                    }
+                    placement="left"
+                    index={props.index}
+                >
+                    <Button icon="delete" 
+                        intent={Intent.DANGER}
+                    />  
+                </PopoverConfirmation>
+            
             </ControlGroup>
 
         </FormGroup>

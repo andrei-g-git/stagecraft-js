@@ -13,3 +13,11 @@ export const withId = (WrappedComponent: React.FunctionComponent<any>, id: numbe
         />
     )
 }
+
+export const withPropsIndex = (WrappedComponent: React.FunctionComponent<any>) => (props: any) =>{
+    return (
+        <WrappedComponent {...props}
+            index={props.index}
+        />
+    )
+}
