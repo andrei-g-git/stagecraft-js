@@ -20,7 +20,7 @@ import ScriptCardBuilder from "./card/ScriptCard.builder";
 import { SCRIPT_EDITOR } from "@/constants/editors";
 import {ScriptCardDumb} from "@/features/flow-chart";
 
-export const createCard = (type: string, index: number, model: NodeModels) => {
+export const createCardLayout = (type: string, index: number, model: NodeModels) => {
     switch(type){
 
         case DIALOG:

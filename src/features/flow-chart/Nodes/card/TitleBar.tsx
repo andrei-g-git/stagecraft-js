@@ -1,6 +1,10 @@
 import "./TitleBar.scss";
 
-const TitleBar = (props: {className: string, title: string | JSX.Element}) => {
+const TitleBar = (props: {
+    className: string, 
+    title: string | JSX.Element, 
+    Delete: JSX.Element
+}) => {
     return (
         <div className={props.className}>
             <div className="bar-title-container">
@@ -9,9 +13,9 @@ const TitleBar = (props: {className: string, title: string | JSX.Element}) => {
                 }
             </div>
             <div className="titlebar-buttons"> 
-                <div>{/* should be component */}
-                    X
-                </div>
+                {
+                    props.Delete
+                }
             </div>
         </div>
     )

@@ -1,6 +1,8 @@
+import { NodeModels } from "@/models/nodeModels";
 import { 
     //DIALOG_AVATAR_CHANGED,
     FLOW_MODEL_LOADED,
+    NODE_REMOVED,
     NODE_SELECTED
 } from "./actionTypes";
 
@@ -22,12 +24,15 @@ export const modelReducer = (state = initialState, action: any) => {
                 ...state,
                 selected: action.payload,
             }
+        case NODE_REMOVED:
+            const topModel = state.nodeModel as unknown as NodeModels;
+            const nodes = topModel.Models;
+            nodes.splice(action.payload, 1);
 
-        // case DIALOG_AVATAR_CHANGED:
-        //     return{
-        //         ...state,
-        //         nahhhhhhhhhhhhhhhhhhhhhhh
-        //     }
+            return{
+                ...state,
+                nodeModel: topModel //prob unnecessary
+            }
 
         default:
             return {...state};

@@ -1,4 +1,4 @@
-import { toggledEditor, changedEditor, selectedNodeId, changedEditorPreview, changedEditorFullText, changedTitle, changedName, changedEditorScript } from "@/redux-store/actions";
+import { toggledEditor, changedEditor, selectedNodeId, changedEditorPreview, changedEditorFullText, changedTitle, changedName, changedEditorScript, removedNode } from "@/redux-store/actions";
 import { connect } from "react-redux"
 import {ScriptContent} from "@/models/nodeModels";
 import { FULL_TEXT_EDITOR, NAME_EDITOR, PREVIEW_TEXT_EDITOR, SCRIPT_EDITOR, TITLE_EDITOR } from "@/constants/editors";
@@ -36,52 +36,6 @@ export const withFlowCardState = (
         }    
     )
 
-// export const withFlowCardState = (
-//     WrappedComponent: React.FunctionComponent<any>,
-//     type: number
-// ) => connect(
-//         (state: any) => {
-//             return {}
-//         }, 
-//         (dispatch: Function) => {
-//             return {
-//                 toggleEditor: (visible: boolean) => {
-//                     dispatch(toggledEditor(visible));
-//                     dispatch(changedEditor(type));
-//                 },
-//                 selectNode: (id: number) => {
-//                     dispatch(selectedNodeId(id))
-//                 },
-//                 sendContentToEditor: (content: string | ScriptContent) => {
-//                     dispatch(actionMap[type](content)); 
-//                 }                 
-//             }
-//         }    
-//     )(
-//         (props: any) => {
-//             return(
-//                 <WrappedComponent {...props} />
-//             )
-//         }        
-//     ) 
-
-
-// export const withAvatarState = (WrappedComponent: React.FunctionComponent<any>) => 
-//     connect(
-//         (state: any) => {
-//             return{
-//                 image: state.model.nodeModel.getAvatarById(fuckthis)
-//             } 
-//         },
-//         null
-//     )(
-//         (props: any) => {
-//             return(
-//                 <WrappedComponent {...props} />
-//             )
-//         }
-//     )
-
 export const withAssetsWorkingDirectoryState = (WrappedComponent: React.FunctionComponent<any>) => 
     connect(
         (state: any) => {
@@ -98,24 +52,24 @@ export const withAssetsWorkingDirectoryState = (WrappedComponent: React.Function
         }
     )
 
-// export const withAvatarDispatch = (WrappedComponent: React.FunctionComponent<any>) => 
-//     connect(
-//         (state: any) => {
-//             return{
+export const withDeleteNodeState = (WrappedComponent: React.FunctionComponent<any>) => 
+    connect(
+        (state: any) => {return{}},
+        (dispatch: Function) => {
+            return{
+                deleteNode: (index: number) => {
+                    dispatch(removedNode(index))
+                }
+            }
+        }
+    )(
+        (props: any) => {
+            return(
+                <WrappedComponent {...props} />
+            )
+        }
+    )
 
-//             } 
-//         },
-//         (dispatch: Function) => {
-//             return{
-//                 changeAvatar: (fileName: string) => {
-//                     dispatch(nahhhhhhhh)   nope
-//                 }
-//             }
-//         }
-//     )(
-//         (props: any) => {
-//             return(
-//                 <WrappedComponent {...props} />
-//             )
-//         }
-//     )    
+function removeNode(index: number): any {
+    throw new Error("Function not implemented.");
+}

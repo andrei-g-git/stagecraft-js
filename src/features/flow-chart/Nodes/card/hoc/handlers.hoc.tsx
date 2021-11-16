@@ -9,14 +9,6 @@ export const withModelAvatar = (WrappedComponent: React.FunctionComponent<any>) 
         )
     }
 
-// export const withAvatarFileHandler = (WrappedComponent: React.FunctionComponent<any>) => 
-//     (props: any) => {
-//         return(
-//             <WrappedComponent {...props} 
-//                 handleChange={props.model.setAvatarById(props.id, blah blahb blah)}
-//             />
-//         )
-//     }
 
 interface NewHTMLInputEvent extends Event {
     target: HTMLInputElement & EventTarget;
@@ -30,4 +22,13 @@ const handlePickedAvatar = (id: number, model: NodeModels) => {
 
     }
 }
+
+export const withDeleteNode = (WrappedComponent: React.FunctionComponent<any>) => 
+    (props: any) => {
+        return(
+            <WrappedComponent {...props} 
+                handleClick={() => props.deleteNode(props.index)}
+            />
+        )
+    }
     

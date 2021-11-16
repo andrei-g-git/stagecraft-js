@@ -16,6 +16,9 @@
         font-size: 0.67rem;
     }
     .titlebar-buttons{
-
+        width: 30%; //should probably just use flex:
+        height: 100%;
+        display: flex;
+        justify-content: flex-end;
     }
 }

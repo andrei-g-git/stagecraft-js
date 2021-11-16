@@ -2,7 +2,7 @@ import { Button, Intent } from "@blueprintjs/core";
 import { Classes, Placement, Popover2 } from "@blueprintjs/popover2";
 
 const PopoverConfirmation = (props: {
-    message: JSX.Element,
+    message: string | JSX.Element,
     placement: Placement,
     children: React.ReactNode,
     handleClick: (event: React.MouseEvent) => void

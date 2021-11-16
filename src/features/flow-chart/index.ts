@@ -12,13 +12,19 @@ import DialogContent from "./Nodes/card/DialogContent";
 import TitleBar from "./Nodes/card/TitleBar";
 
 import {withInConnectorState, withOutConnectorState} from "./Nodes/higher-order-components/connectorHOC";
-import { withAssetsWorkingDirectoryState, withFlowCardState } from "./Nodes/card/hoc/state.hoc";
+import { withAssetsWorkingDirectoryState, withFlowCardState, withDeleteNodeState } from "./Nodes/card/hoc/state.hoc";
 import {withModelAvatar} from "./Nodes/card/hoc/handlers.hoc";
 
 import ScriptCardBuilder from "./Nodes/card/ScriptCard.builder";
 
-export {default as ScriptCardDumb} from "./Nodes/card/ScriptCardDumb";
+export {createCardLayout} from "./Nodes/cardFactory"
+export {withTitleState} from "./Nodes/higher-order-components/stateHOC"; 
+export {withHandlers} from "./Nodes/higher-order-components/card.hoc";
+export {withDeleteNode} from "./Nodes/card/hoc/handlers.hoc";
 
+export {default as ScriptCardDumb} from "./Nodes/card/ScriptCardDumb";
+export {default as DragHandle} from "./Nodes/DragHandle";
+export {default as FlowCardBuilder} from "./flow-sheet/FlowCard.builder";
 export {
     FlowToolbar,
     AddNode,
@@ -39,7 +45,8 @@ export {
 
     withAssetsWorkingDirectoryState,
     withModelAvatar,
-    withFlowCardState
+    withFlowCardState,
+    withDeleteNodeState
 }
 
 export type {CoordPair} from "./canvas/types";
