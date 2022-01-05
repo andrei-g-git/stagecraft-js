@@ -49,12 +49,12 @@ const FlowCardBuilder = (props: PropType) => {
     );
 
     return (
-        <DragHandle id={props.model.getId(props.index)} //should be in card factory
-            position={(props.model as NodeModels).getCoordinatesByIndex(props.index)}
-            notifyPosition={updateModelCoordinates(props.model, props.incrementDragCounter, props.count)}
-            notifyDragStop={recordModelOnDragEnd(props.model, props.loadModel)}
-            handleClass="card-handle"
-        > 
+        // <DragHandle id={props.model.getId(props.index)} 
+        //     position={(props.model as NodeModels).getCoordinatesByIndex(props.index)}
+        //     notifyPosition={updateModelCoordinates(props.model, props.incrementDragCounter, props.count)}
+        //     notifyDragStop={recordModelOnDragEnd(props.model, props.loadModel)}
+        //     handleClass="card-handle"
+        // > 
             <CardWindowIdentified 
                 width={150}
                 height={150}
@@ -75,18 +75,18 @@ const FlowCardBuilder = (props: PropType) => {
                     />
                 }
                 layout={createCardLayout(props.model.getType(props.index), props.index, props.model)}
-                inConnector={
-                    <InConnectorWithState id={props.model.getId(props.index)}
-                        notifyConnection={addNodeConnectionToModel(props.model, props.outgoing, props.resetOutgoingAndIngoing)}
-                    />                                        
-                }
-                outConnector={
-                    <OutConnectorWithState id={props.model.getId(props.index)}/>
-                }
+                // inConnector={
+                //     <InConnectorWithState id={props.model.getId(props.index)}
+                //         notifyConnection={addNodeConnectionToModel(props.model, props.outgoing, props.resetOutgoingAndIngoing)}
+                //     />                                        
+                // }
+                // outConnector={
+                //     <OutConnectorWithState id={props.model.getId(props.index)}/>
+                // }
             >
                 
             </CardWindowIdentified>
-        </DragHandle>
+        //</DragHandle>
     )
 }
 

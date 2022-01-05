@@ -77,7 +77,7 @@ export const loadTextFileToInstance = async (type: TextFormat, doAfterReading: F
         if(reader.result){
             const nodesLiteral = JSON.parse(reader.result as TextFormat);
             const nodesModel = AllNodeModels.createNested(nodesLiteral);
-            console.log("LOADDED MODEL:: ", nodesModel)
+            //console.log("LOADDED MODEL:: ", nodesModel)
             doAfterReading(nodesModel);            
         }
 

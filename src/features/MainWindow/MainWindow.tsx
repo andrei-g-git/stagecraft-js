@@ -22,6 +22,7 @@ import "@blueprintjs/popover2/lib/css/blueprint-popover2.css";
 
 import EditorDrawerBuilder from "../Editor/EditorDrawer.builder";
 import EditorDrawer from "../Editor/EditorDrawer";
+import TestReactflowSheet from "../flow-chart/flow-sheet/test-reactflow-sheet";
 
 const toolbarItems = [
     {type: DIALOG_NODE, icon: "chat"},
@@ -47,37 +48,60 @@ const MainWindow = (props: any) => {
         <div className="main-window-container"
             onMouseUp={handleMouseUp(props.toggleConnecting)}
         >
+            {
+                props.nodeModel &&
+                <>
+                    {/* <div style={{width: "100%", height: "100%", position: "relative"}}>
+                            <div style={{width: "100%", height: "40px"}}>
+                                <DividingContainer border="bottom">
+                                    <MainNavbarBuilder />
+                                </DividingContainer>
 
-            <MainPane 
-                menubar={
-                    <DividingContainer border="bottom">
-                        <MainNavbarBuilder />
-                    </DividingContainer>
-                }
-                explorer={
-                    <DividingContainer border="right">
-                        <div style={{height: "100vh"}}>awefaewfawef</div>
-                    </DividingContainer>
-                }
-                center={<FlowContainer nodeModel={props.nodeModel}/>}
-                toolbar={
-                    <DividingContainer border="right">
-                        <FlowToolbarBP cardTypes={cardTypes} 
-                            icons={icons}
-                        />                        
-                    </DividingContainer>
+                            </div>
 
-                }
-                right={
-                    <DividingContainer border="left">
-                        <EditorBuilder Editor={EditorDrawer}
-                            type={props.editorType}
-                        />
-                    </DividingContainer>    
-                }
-            />
+                            <TestReactflowSheet model={props.nodeModel} />    
 
-            <SettingsBuilder />
+                    </div> */}
+
+                    
+
+
+                    <MainPane 
+                        menubar={
+                            <DividingContainer border="bottom">
+                                <MainNavbarBuilder />
+                            </DividingContainer>
+                        }
+                        explorer={
+                            <DividingContainer border="right">
+                                <div style={{height: "100vh"}}>awefaewfawef</div>
+                            </DividingContainer>
+                        }
+                        //center={<FlowContainer nodeModel={props.nodeModel}/> }
+                        center={<TestReactflowSheet model={props.nodeModel} />}
+                        toolbar={
+                            <DividingContainer border="right">
+                                <FlowToolbarBP cardTypes={cardTypes} 
+                                    icons={icons}
+                                />                        
+                            </DividingContainer>
+
+                        }
+                        right={
+                            <DividingContainer border="left">
+                                <EditorBuilder Editor={EditorDrawer}
+                                    type={props.editorType}
+                                />
+                            </DividingContainer>    
+                        }
+                    /> 
+
+                    <SettingsBuilder /> 
+      
+                </>
+                
+            }
+
 
         </div>
     )

@@ -326,8 +326,8 @@ export class AllNodeModels implements NodeModels, NestedModels/* , StaticImpleme
             (branch: any) => {
                 
                 if(Object.hasOwn(branch, "typeName")){
-                    console.log("BRANCH is:   ", branch)
-                    console.log("typeName:   ", branch["typeName"])
+                    // console.log("BRANCH is:   ", branch)
+                    // console.log("typeName:   ", branch["typeName"])
                     branch.nest();
                 }
         })
