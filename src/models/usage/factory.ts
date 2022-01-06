@@ -19,26 +19,40 @@ import { NodeScript } from "../nodeScript";
 export const createNode = (nodeType: number/* string */): Common => {
     switch(nodeType){
         case DIALOG_NODE: //DIALOG:
-            return <Common><unknown> new BasicDialogNode(
+            const dialogNode =  <Common><unknown> new BasicDialogNode(
                 new CommonNode(),
                 new NodeCoordinates(),
                 new NodeNames(),
                 new NodePictures(),
                 new NodeDialog()
             ); 
+            dialogNode.Type = convertTypeFromNumberToString(DIALOG_NODE);
+            return dialogNode;
         case SCRIPT_NODE: //SCRIPT:
-            return <Common><unknown> new BasicScriptNode(
+            const scriptNode =  <Common><unknown> new BasicScriptNode(
                 new CommonNode(),
                 new NodeCoordinates(),
                 new NodeScript()
             );
+            scriptNode.Type = convertTypeFromNumberToString(SCRIPT_NODE);
+            return scriptNode;
         default:
-            return <Common><unknown> new BasicDialogNode(
-                    new CommonNode(),
-                    new NodeCoordinates(),
-                    new NodeNames(),
-                    new NodePictures(),
-                    new NodeDialog()
-            );            
+            const defaultNode =  <Common><unknown> new BasicDialogNode(
+                new CommonNode(),
+                new NodeCoordinates(),
+                new NodeNames(),
+                new NodePictures(),
+                new NodeDialog()
+            ); 
+           defaultNode.Type = convertTypeFromNumberToString(DIALOG_NODE);
+            return defaultNode;           
     }
+}
+
+export const convertTypeFromNumberToString = (enumType: number) => { //why did I need this again?...
+    const stringTypes = [
+        {enum: DIALOG_NODE, str: DIALOG},
+        {enum: SCRIPT_NODE, str: SCRIPT}
+    ]
+    return stringTypes.filter(pair => pair.enum === enumType)[0].str;
 }

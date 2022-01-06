@@ -1,3 +1,5 @@
+
+
 export type PropsWithContent = {
     content: any,
     [keys: string] : any
@@ -13,3 +15,12 @@ export type MenuItemProps = {
     icon?: any, //needs BlueprintIcons_16Id | MaybeElement but BlueprintIcons_16Id is unresolved... 
     handleClick: (event: React.MouseEvent<HTMLElement, MouseEvent>) => void
 }
+
+export type ReactflowEdge = {
+    id: string,
+    source: string,
+    target: string
+}
+
+
+//export type Reactflow

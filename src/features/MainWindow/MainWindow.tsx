@@ -23,6 +23,7 @@ import "@blueprintjs/popover2/lib/css/blueprint-popover2.css";
 import EditorDrawerBuilder from "../Editor/EditorDrawer.builder";
 import EditorDrawer from "../Editor/EditorDrawer";
 import TestReactflowSheet from "../flow-chart/flow-sheet/test-reactflow-sheet";
+import ReactflowToolbar from "../flow-chart/flow-toolbar/ReactflowToolbar";
 
 const toolbarItems = [
     {type: DIALOG_NODE, icon: "chat"},
@@ -81,9 +82,10 @@ const MainWindow = (props: any) => {
                         center={<TestReactflowSheet model={props.nodeModel} />}
                         toolbar={
                             <DividingContainer border="right">
-                                <FlowToolbarBP cardTypes={cardTypes} 
+{/*                                 <FlowToolbarBP cardTypes={cardTypes} 
                                     icons={icons}
-                                />                        
+                                />  */}     
+                                <ReactflowToolbar />                  
                             </DividingContainer>
 
                         }

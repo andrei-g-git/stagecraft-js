@@ -10,7 +10,8 @@ export {default as InlineContainer} from "./InlineContainer";
 export type {
     PropsWithContent,
     PropsWithIndex,
-    MenuItemProps
+    MenuItemProps,
+    ReactflowEdge
 } from "./types";
 
 export {default as DividingContainer} from "./DividingContainer";
@@ -24,6 +25,10 @@ export{
     withChangeAtIndex,
     withNotifyChange
 } from "./higher-order-components/listeners";
+
+export{
+    useDragOver
+} from "./hooks/reactflow.hooks"
 
 export {
     GenericButton,

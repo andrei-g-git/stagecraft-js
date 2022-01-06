@@ -4,8 +4,8 @@ import "./CardWindow.scss";
 const CardWindow = (props: {
     titlebar: JSX.Element,
     layout: JSX.Element,
-    inConnector: JSX.Element,
-    outConnector: JSX.Element,
+    // inConnector: JSX.Element,
+    // outConnector: JSX.Element,
     width?: number | EndsWithSubstring<"%"> | EndsWithSubstring<"vw"> | EndsWithSubstring<"px">,
     height?: number | EndsWithSubstring<"%"> | EndsWithSubstring<"vh"> | EndsWithSubstring<"px">
 }) => {
@@ -24,12 +24,12 @@ const CardWindow = (props: {
                 </div>
             </div>
 
-            {
+            {/* {
                 props.inConnector
             }
             {
                 props.outConnector
-            }            
+            }             */}
         </div>
     )
 }

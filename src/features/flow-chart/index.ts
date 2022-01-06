@@ -17,6 +17,18 @@ import {withModelAvatar} from "./Nodes/card/hoc/handlers.hoc";
 
 import ScriptCardBuilder from "./Nodes/card/ScriptCard.builder";
 
+export {
+    CARD_HANDLE_CLASS
+} from "./constants/classes";
+export {
+    STANDARD_REACTFLOW_NODE_TYPE
+} from "./constants/nodes";
+
+export type {
+    ReactflowNode,
+    ReactflowBezier
+} from "./types";
+
 export {createCardLayout} from "./Nodes/cardFactory"
 export {withTitleState} from "./Nodes/higher-order-components/stateHOC"; 
 export {withHandlers} from "./Nodes/higher-order-components/card.hoc";
@@ -25,6 +37,14 @@ export {withDeleteNode} from "./Nodes/card/hoc/handlers.hoc";
 export {default as ScriptCardDumb} from "./Nodes/card/ScriptCardDumb";
 export {default as DragHandle} from "./Nodes/DragHandle";
 export {default as FlowCardBuilder} from "./flow-sheet/FlowCard.builder";
+
+export {
+    useAddEdge,
+    useDropNode,
+    useInitialNodesAndEdges,
+    useUpdateNodesAndEdges
+} from "./flow-sheet/hooks/reactflow.hooks";
+
 export {
     FlowToolbar,
     AddNode,

@@ -239,4 +239,8 @@ export interface NodeModels{
     getJson: () => string;
 
     getOnlyJsonContent: () => string;
+
+    setUpNode: (blank: Common, x: number, y: number) => Common;
+
+    getNewestNode: () => Common;
 }

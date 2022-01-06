@@ -1,0 +1,1 @@
+export const CARD_HANDLE_CLASS = ".card-handle";

@@ -9,6 +9,7 @@ import { iterateNestedObjects, retrieveNestedValue, } from "@/utils/objects";
 import { ALL_NODES_MODEL, nodeModelClasses } from "@/constants/classes";
 import { literalToClass } from "./usage/dataConversion";
 import { NestedModels } from "@/models";
+import { DIALOG_NODE, SCRIPT_NODE } from "@/constants/toolbarItems";
 
 export class AllNodeModels implements NodeModels, NestedModels/* , StaticImplements<InstantiableStatic, typeof AllNodeModels> */{
 //export const AllNodeModels: NodeModels & Instantiable = class {
@@ -248,6 +249,11 @@ export class AllNodeModels implements NodeModels, NestedModels/* , StaticImpleme
         return id;
     }
 
+    static generateId = () => { 
+        let id = Math.floor(Math.random() * 1000);
+        return id;
+    }
+
     private checkIdForDoublesAndUpdate = (self: NodeModels, id: number) => {
         const newId = Math.floor(Math.random() * 1000);
         const nodesMatchingGeneratedId = this.Models.filter(node => node.Id === id);
@@ -338,5 +344,24 @@ export class AllNodeModels implements NodeModels, NestedModels/* , StaticImpleme
 
     static create = (objectLiteral: any[]) => { //this isn't an interface method...
         return new AllNodeModels(objectLiteral)
+    }
+
+    getNewestNode = () => {
+        return this.Models.slice(-1)[0];
+    }
+
+    setUpNode = (blank: Common, x: number, y: number) => {
+        const stringTypes = [
+            {enum: DIALOG_NODE, str: DIALOG},
+            {enum: SCRIPT_NODE, str: SCRIPT}
+        ]
+
+        this.addNode(blank);
+        const index = this.Length - 1;
+        this.setId(index, this.generateId());
+        this.setTitle("Click to change title", index);
+        this.setCoordinatesByIndex(index, x, y);   
+        //this.setType(index, stringTypes.filter(pair => pair.enum === selected)[0].str); //well this is shit    
+        return this.getNewestNode();         
     }
 }
