@@ -1,5 +1,6 @@
 import { Common, Coordinates, NodeModels } from '@/models/nodeModels';
-import ReactFlow, { Background, BackgroundVariant, EdgeChange, NodeChange, Panel, Position, ReactFlowInstance, ReactFlowProvider, addEdge, applyEdgeChanges, applyNodeChanges } from 'reactflow';
+import ReactFlow, { Background, BackgroundVariant, Edge,  EdgeChange, NodeChange, Panel, Position, ReactFlowInstance, ReactFlowProvider, addEdge, applyEdgeChanges, applyNodeChanges } from 'reactflow';
+import DefaultEdge from "reactflow";
 import FlowCardBuilder from './FlowCard.builder';
 import { DIALOG } from '@/models/typeOfNodes';
 import {Pictures, Named, Dialog} from "@/models/nodeModels";
@@ -7,7 +8,7 @@ import 'reactflow/dist/style.css';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import "./test-reactflow-sheet.scss";
 import { useDragOver } from '@/features/components';
-import { useDropNode, useInitialNodesAndEdges, useUpdateNodesAndEdges } from './hooks/reactflow.hooks';
+import { useDropNode, useInitialEdges, useInitialNodes, useInitialNodesAndEdges, useUpdateNodesAndEdges } from './hooks/reactflow.hooks';
 import { createNode } from '@/models/usage/factory';
 import { CARD_HANDLE_CLASS, STANDARD_REACTFLOW_NODE_TYPE } from '@/features/flow-chart';
 import { ReactflowNode } from "@/features/flow-chart";
@@ -21,9 +22,13 @@ const TestReactflowSheet = (props: {
     // const [nodes, setNodes] = useState(initialNodes);
     // const [edges, setEdges] = useState(initialEdges);
 
-    const [nodes, edges, setNodes, setEdges] = useInitialNodesAndEdges(props.model);
+    //this re-renders when I load anything so I don't need to have an update hook
+    const [nodes, setNodes] = useInitialNodes(props.model.Models);  //instead of useInitialNodesAndEdges
+    const [edges, setEdges] = useInitialEdges(props.model.Models)
+    
+    //const [nodes, edges, setNodes, setEdges] = useInitialNodesAndEdges(props.model);
 
-    // useEffect(() => {
+    // useEffect(() => { instead of useUpdateNodesAndEdges
     //     setNodes(initialNodes);
     //     setEdges(initialEdges);
     //     console.log("model:  ", props.model)
@@ -32,8 +37,8 @@ const TestReactflowSheet = (props: {
     //     [props.model]
     // )
 
-    useUpdateNodesAndEdges(props.model, setNodes, setEdges);
-
+    //useUpdateNodesAndEdges(props.model, setNodes, setEdges);
+//debugger///
     useEffect(() => {
         if(edges){
             const lastConnectedEdge = edges.length && edges.slice(-1).pop();
@@ -60,14 +65,10 @@ const TestReactflowSheet = (props: {
 
     const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance<any, any> | null>(null);
 
-
-
-
-
     
     const handleConnect = useCallback(
         (params: any) => {
-            setEdges((eds) => addEdge(params, eds));
+            setEdges((eds) => addEdge(params, eds!));
         },
         [setEdges]
     );
@@ -77,7 +78,7 @@ const TestReactflowSheet = (props: {
         [setNodes]
     );
     const onEdgesChange = useCallback(
-        (changes: EdgeChange[]) => setEdges((eds) => applyEdgeChanges(changes, eds)),
+        (changes: EdgeChange[]) => setEdges((eds) => applyEdgeChanges(changes, eds!)),
         [setEdges]
     );
 

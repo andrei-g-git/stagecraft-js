@@ -347,7 +347,9 @@ export class AllNodeModels implements NodeModels, NestedModels/* , StaticImpleme
     }
 
     getNewestNode = () => {
-        return this.Models.slice(-1)[0];
+        //return this.nodes.slice(-1)[0];
+        if(this.nodes.length)
+            return this.nodes[this.nodes.length - 1];
     }
 
     setUpNode = (blank: Common, x: number, y: number) => {
@@ -357,11 +359,12 @@ export class AllNodeModels implements NodeModels, NestedModels/* , StaticImpleme
         ]
 
         this.addNode(blank);
-        const index = this.Length - 1;
+        const index = this.nodes.length - 1;
         this.setId(index, this.generateId());
         this.setTitle("Click to change title", index);
         this.setCoordinatesByIndex(index, x, y);   
         //this.setType(index, stringTypes.filter(pair => pair.enum === selected)[0].str); //well this is shit    
-        return this.getNewestNode();         
+        const newNode =  this.getNewestNode();        
+        if(newNode) return newNode;
     }
 }

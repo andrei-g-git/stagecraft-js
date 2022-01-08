@@ -42,7 +42,9 @@ export {
     useAddEdge,
     useDropNode,
     useInitialNodesAndEdges,
-    useUpdateNodesAndEdges
+    useUpdateNodesAndEdges,
+    useInitialEdges,
+    useInitialNodes
 } from "./flow-sheet/hooks/reactflow.hooks";
 
 export {

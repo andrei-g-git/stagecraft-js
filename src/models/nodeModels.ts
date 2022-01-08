@@ -240,7 +240,7 @@ export interface NodeModels{
 
     getOnlyJsonContent: () => string;
 
-    setUpNode: (blank: Common, x: number, y: number) => Common;
+    setUpNode: (blank: Common, x: number, y: number) => Common | undefined;
 
-    getNewestNode: () => Common;
+    getNewestNode: () => Common | undefined;
 }
